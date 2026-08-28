@@ -5,7 +5,7 @@
 // YouTube Channel Configuration
 const YOUTUBE_CONFIG = {
     channelId: 'UCQkPUJEsrjWNP2MfCJRwIFQ', // Replace with your channel ID
-    apiKey: 'YOUR_YOUTUBE_API_KEY', // You'll need to add this
+    apiKey: 'AIzaSyCfGV3otxaHIYqzHYozRfFGLilCzZZHgqw', // YouTube Data API Key
     channelUrl: 'https://www.youtube.com/@AlembeelaFoundation'
 };
 
@@ -32,13 +32,19 @@ function loadYouTubeVideos() {
     const channelId = 'UCQkPUJEsrjWNP2MfCJRwIFQ'; // Alembeela Foundation Channel ID
     const playlistId = 'UUQkPUJEsrjWNP2MfCJRwIFQ'; // Uploads playlist (U + Channel ID)
     
-    // Fetch from YouTube API (you need to set up API key in environment)
+    console.log('%c[YouTube Integration] Starting to fetch videos from channel...', 'color: #ef4444; font-weight: bold;');
+    
+    // Fetch from YouTube API
     fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=10&key=${YOUTUBE_CONFIG.apiKey}`)
         .then(response => response.json())
         .then(data => {
             console.log('%c[YouTube Integration] Fetching videos from channel...', 'color: #ef4444; font-weight: bold;');
-            if (data.items) {
+            if (data.items && data.items.length > 0) {
                 populateEpisodeCards(data.items);
+                console.log('%c[YouTube Integration] Successfully loaded videos from YouTube API', 'color: #10b981; font-weight: bold;');
+            } else {
+                console.warn('%c[YouTube API] No items found, loading fallback videos', 'color: #f59e0b;');
+                loadFallbackVideos();
             }
         })
         .catch(err => {
@@ -85,7 +91,7 @@ function populateEpisodeCards(videos) {
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-400 transition">${title}</h3>
                     <p class="text-gray-400 text-sm mb-6 leading-relaxed">${description}</p>
                 </div>
-                <button onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-2.5 rounded-xl transition">
+                <button onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-3 rounded-xl transition">
                     <i class="fa-solid fa-play"></i> Tazama Sehemu ya ${index + 1}
                 </button>
             </div>
