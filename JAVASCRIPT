@@ -1,0 +1,222 @@
+/* ==========================================================
+   Alembeela Foundation - Advanced Platform JavaScript (`script.js`)
+   ========================================================== */
+
+document.addEventListener('DOMContentLoaded', () => {
+    console.log("%c[Alembeela Foundation] Advanced platform script fully initialized. Úmbo Cha Babembe & Community Hub active.", "color: #eab308; font-weight: bold; background: #03140c; padding: 4px;");
+    
+    // Initialize components
+    initSmoothScrolling();
+});
+
+/**
+ * 1. Real-Time Episode Search / Filter Engine
+ * Filters the video grid dynamically based on user typing.
+ */
+function filterEpisodes() {
+    const input = document.getElementById('episodeSearch').value.toLowerCase();
+    const cards = document.querySelectorAll('.episode-card');
+
+    cards.forEach(card => {
+        const title = card.getAttribute('data-title').toLowerCase();
+        if (title.includes(input)) {
+            card.style.display = 'flex';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    console.log(`[Search Log] Filtering episode library with keyword: "${input}"`);
+}
+
+/**
+ * 2. Multilingual Dictionary Handler (Swahili / English)
+ * Switches UI elements based on the data-i18n attributes.
+ */
+const translations = {
+    sw: {
+        nav_home: "Nyumbani",
+        nav_about: "Kuhusu Sisi",
+        nav_series: "Vipindi vya Úmbo",
+        nav_wisdom: "Hekima ya Jamii",
+        nav_library: "Maktaba",
+        nav_teachings: "Mafunzo",
+        btn_watch: "Tazama Video",
+        hero_badge: "Saving our shared wisdom & community pillars",
+        hero_desc: "Tunafichua, kuhifadhi, na kusambaza urithi wa Babembe na mafunzo ya jamii yanayojenga misingi bora ya maisha, umoja, na heshima ya kibinadamu.",
+        hero_btn1: "Anza Kutazama Úmbo",
+        hero_btn2: "Toa Hekima Yako"
+    },
+    en: {
+        nav_home: "Home",
+        nav_about: "About Us",
+        nav_series: "Úmbo Series",
+        nav_wisdom: "Community Wisdom",
+        nav_library: "Library",
+        nav_teachings: "Teachings",
+        btn_watch: "Watch Video",
+        hero_badge: "Saving our shared wisdom & community pillars",
+        hero_desc: "Unveiling, preserving, and sharing Babembe heritage and community teachings that build solid foundations for life, unity, and human dignity.",
+        hero_btn1: "Start Watching Úmbo",
+        hero_btn2: "Share Your Wisdom"
+    }
+};
+
+function setLanguage(lang) {
+    console.log(`[Language Log] Switching interface language to: ${lang.toUpperCase()}`);
+    const elements = document.querySelectorAll('[data-i18n]');
+    elements.forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+        }
+    });
+}
+
+/**
+ * 3. Community Wisdom Submission Handler
+ * Appends new user contributions instantly to the live Wisdom Wall feed.
+ */
+function submitWisdom(event) {
+    event.preventDefault();
+    const name = document.getElementById('contributorName').value;
+    const text = document.getElementById('contributorWisdom').value;
+
+    const feed = document.getElementById('wisdomFeed');
+    const newCard = document.createElement('div');
+    newCard.className = "bg-emeraldCustom-900/40 border border-gold-500/30 p-6 rounded-2xl relative animate-pulse";
+    newCard.innerHTML = `
+        <i class="fa-solid fa-quote-left text-gold-500/20 text-4xl absolute top-4 right-6"></i>
+        <p class="text-gray-200 text-sm italic mb-3">"${text}"</p>
+        <span class="text-xs text-gold-400 font-bold">&mdash; ${name} (Community Contributor)</span>
+    `;
+
+    feed.prepend(newCard);
+    console.log(`[Wisdom Wall] New wisdom contributed by "${name}": "${text}"`);
+
+    // Reset form inputs
+    document.getElementById('wisdomForm').reset();
+    alert('Asante! Hekima yako imechapishwa kwenye uwanja wa jamii.');
+}
+
+/**
+ * 4. Digital E-Reader Library Modal Handlers
+ */
+function openReaderModal(title, content) {
+    const modal = document.getElementById('readerModal');
+    if (!modal) return;
+
+    document.getElementById('readerTitle').textContent = title;
+    document.getElementById('readerContent').textContent = content;
+    
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    console.log(`[Digital Library] Opened document reader for: "${title}"`);
+}
+
+function closeReaderModal() {
+    const modal = document.getElementById('readerModal');
+    if (!modal) return;
+
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    console.log("[Digital Library] Closed document reader.");
+}
+
+/**
+ * 5. Accordion Toggle for Teachings / FAQs
+ */
+function toggleAccordion(id) {
+    const content = document.getElementById(`content-${id}`);
+    const icon = document.getElementById(`icon-${id}`);
+    
+    if (!content || !icon) return;
+
+    if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+        console.log(`[Teachings FAQ] Opened FAQ accordion item #${id}`);
+    } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+        console.log(`[Teachings FAQ] Closed FAQ accordion item #${id}`);
+    }
+}
+
+/**
+ * 6. Audio Oral History Player Integration
+ */
+function toggleAudioPlayer() {
+    const audio = document.getElementById('audioPlayer');
+    const btnIcon = document.querySelector('#audioPlayBtn i');
+
+    if (!audio || !btnIcon) return;
+
+    if (audio.paused) {
+        audio.play().catch(err => console.warn("[Audio Playback Warning]:", err));
+        btnIcon.classList.remove('fa-play', 'ml-0.5');
+        btnIcon.classList.add('fa-pause');
+        console.log("[Audio Log] Playing oral history background track.");
+    } else {
+        audio.pause();
+        btnIcon.classList.remove('fa-pause');
+        btnIcon.classList.add('fa-play', 'ml-0.5');
+        console.log("[Audio Log] Pausing oral history background track.");
+    }
+}
+
+/**
+ * 7. Video Modal Pop-up Handlers
+ */
+function openVideoModal(videoUrl) {
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('modalIframe');
+    
+    if (!modal || !iframe) return;
+
+    iframe.src = videoUrl;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    document.body.style.overflow = 'hidden';
+    console.log(`[Video Modal] Opened with source: ${videoUrl}`);
+}
+
+function closeVideoModal() {
+    const modal = document.getElementById('videoModal');
+    const iframe = document.getElementById('modalIframe');
+    
+    if (!modal || !iframe) return;
+
+    iframe.src = '';
+    modal.classList.remove('flex');
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    console.log("[Video Modal] Closed and video halted.");
+}
+
+/**
+ * 8. Smooth Scrolling Enhancements
+ */
+function initSmoothScrolling() {
+    const navLinks = document.querySelectorAll('header nav a[href^="#"]');
+    
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            console.log(`[Navigation Log] Navigating smoothly to section: ${targetId}`);
+            
+            if (targetId.startsWith('#') && targetId.length > 1) {
+                e.preventDefault();
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            }
+        });
+    });
+}
