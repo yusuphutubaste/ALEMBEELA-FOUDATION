@@ -2,11 +2,26 @@
    Alembeela Foundation - Advanced Platform JavaScript (`script.js`)
    ========================================================== */
 
+// Configuration for production/debug mode
+const DEBUG = false;
+
+/**
+ * Safe logging utility - logs only in debug mode
+ */
+function debugLog(message) {
+    if (DEBUG) {
+        console.log(message);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("%c[Alembeela Foundation] Advanced platform script fully initialized. Úmbo Cha Babembe & Community Hub active.", "color: #eab308; font-weight: bold; background: #03140c; padding: 4px;");
+    debugLog("%c[Alembeela Foundation] Advanced platform script fully initialized. Úmbo Cha Babembe & Community Hub active.", "color: #eab308; font-weight: bold; background: #03140c; padding: 4px;");
     
     // Initialize components
     initSmoothScrolling();
+    
+    // Set default language to English
+    setLanguage('en');
 });
 
 /**
@@ -14,18 +29,38 @@ document.addEventListener('DOMContentLoaded', () => {
  * Filters the video grid dynamically based on user typing.
  */
 function filterEpisodes() {
-    const input = document.getElementById('episodeSearch').value.toLowerCase();
+    // Safely get the search input
+    const searchInput = document.getElementById('episodeSearch');
+    if (!searchInput) {
+        console.warn("[Search Error] Element with id 'episodeSearch' not found.");
+        return;
+    }
+    
+    const input = searchInput.value.toLowerCase();
     const cards = document.querySelectorAll('.episode-card');
+    
+    if (cards.length === 0) {
+        console.warn("[Search Warning] No episode cards found with class 'episode-card'.");
+        return;
+    }
 
     cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        if (title.includes(input)) {
+        const title = card.getAttribute('data-title');
+        
+        // Safely handle missing data-title attribute
+        if (!title) {
+            console.warn("[Search Warning] Episode card missing 'data-title' attribute.");
+            return;
+        }
+        
+        if (title.toLowerCase().includes(input)) {
             card.style.display = 'flex';
         } else {
             card.style.display = 'none';
         }
     });
-    console.log(`[Search Log] Filtering episode library with keyword: "${input}"`);
+    
+    debugLog(`[Search Log] Filtering episode library with keyword: "${input}"`);
 }
 
 /**
@@ -62,8 +97,21 @@ const translations = {
 };
 
 function setLanguage(lang) {
-    console.log(`[Language Log] Switching interface language to: ${lang.toUpperCase()}`);
+    // Validate language parameter
+    if (!translations[lang]) {
+        console.warn(`[Language Error] Language '${lang}' not found. Available languages: ${Object.keys(translations).join(', ')}`);
+        return;
+    }
+    
+    debugLog(`[Language Log] Switching interface language to: ${lang.toUpperCase()}`);
+    
     const elements = document.querySelectorAll('[data-i18n]');
+    
+    if (elements.length === 0) {
+        console.warn("[Language Warning] No elements with 'data-i18n' attribute found.");
+        return;
+    }
+    
     elements.forEach(el => {
         const key = el.getAttribute('data-i18n');
         if (translations[lang] && translations[lang][key]) {
@@ -73,29 +121,85 @@ function setLanguage(lang) {
 }
 
 /**
+ * Utility function to safely escape HTML to prevent XSS
+ */
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+/**
  * 3. Community Wisdom Submission Handler
  * Appends new user contributions instantly to the live Wisdom Wall feed.
  */
 function submitWisdom(event) {
     event.preventDefault();
-    const name = document.getElementById('contributorName').value;
-    const text = document.getElementById('contributorWisdom').value;
-
+    
+    // Safely get form elements
+    const nameInput = document.getElementById('contributorName');
+    const wisdomInput = document.getElementById('contributorWisdom');
     const feed = document.getElementById('wisdomFeed');
+    const wisdomForm = document.getElementById('wisdomForm');
+    
+    // Validate all required elements exist
+    if (!nameInput || !wisdomInput || !feed || !wisdomForm) {
+        console.error("[Wisdom Form Error] One or more required form elements not found.");
+        alert('Error: Form elements missing. Please contact support.');
+        return;
+    }
+    
+    const name = nameInput.value.trim();
+    const text = wisdomInput.value.trim();
+    
+    // Validate input is not empty
+    if (!name || !text) {
+        alert('Tafadhali jaza jina na hekima yako kabla ya kuwasilisha. (Please fill in both name and wisdom before submitting.)');
+        return;
+    }
+    
+    // Validate input length (prevent abuse)
+    if (name.length > 100) {
+        alert('Jina ni kirefu sana. Kwa karibuni 100 herufi. (Name is too long. Keep it under 100 characters.)');
+        return;
+    }
+    
+    if (text.length > 1000) {
+        alert('Hekima ni kirefu sana. Kwa karibuni 1000 herufi. (Wisdom text is too long. Keep it under 1000 characters.)');
+        return;
+    }
+    
+    // Create new card with escaped content (prevent XSS)
     const newCard = document.createElement('div');
     newCard.className = "bg-emeraldCustom-900/40 border border-gold-500/30 p-6 rounded-2xl relative animate-pulse";
-    newCard.innerHTML = `
-        <i class="fa-solid fa-quote-left text-gold-500/20 text-4xl absolute top-4 right-6"></i>
-        <p class="text-gray-200 text-sm italic mb-3">"${text}"</p>
-        <span class="text-xs text-gold-400 font-bold">&mdash; ${name} (Community Contributor)</span>
-    `;
-
+    
+    // Use textContent to safely add user input
+    const quoteIcon = document.createElement('i');
+    quoteIcon.className = "fa-solid fa-quote-left text-gold-500/20 text-4xl absolute top-4 right-6";
+    
+    const wisdomText = document.createElement('p');
+    wisdomText.className = "text-gray-200 text-sm italic mb-3";
+    wisdomText.textContent = `"${text}"`; // textContent escapes HTML automatically
+    
+    const attributionSpan = document.createElement('span');
+    attributionSpan.className = "text-xs text-gold-400 font-bold";
+    attributionSpan.textContent = `— ${name} (Community Contributor)`;
+    
+    newCard.appendChild(quoteIcon);
+    newCard.appendChild(wisdomText);
+    newCard.appendChild(attributionSpan);
+    
     feed.prepend(newCard);
-    console.log(`[Wisdom Wall] New wisdom contributed by "${name}": "${text}"`);
-
+    debugLog(`[Wisdom Wall] New wisdom contributed by "${name}": "${text}"`);
+    
     // Reset form inputs
-    document.getElementById('wisdomForm').reset();
-    alert('Asante! Hekima yako imechapishwa kwenye uwanja wa jamii.');
+    wisdomForm.reset();
+    alert('Asante! Hekima yako imechapishwa kwenye uwanja wa jamii. (Thank you! Your wisdom has been posted to the community wall.)');
 }
 
 /**
@@ -103,25 +207,38 @@ function submitWisdom(event) {
  */
 function openReaderModal(title, content) {
     const modal = document.getElementById('readerModal');
-    if (!modal) return;
+    const readerTitle = document.getElementById('readerTitle');
+    const readerContent = document.getElementById('readerContent');
+    
+    // Validate all required elements exist
+    if (!modal || !readerTitle || !readerContent) {
+        console.error("[Reader Modal Error] Required modal elements not found.");
+        return;
+    }
 
-    document.getElementById('readerTitle').textContent = title;
-    document.getElementById('readerContent').textContent = content;
+    // Use textContent to safely set content
+    readerTitle.textContent = title;
+    readerContent.textContent = content;
     
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
-    console.log(`[Digital Library] Opened document reader for: "${title}"`);
+    
+    debugLog(`[Digital Library] Opened document reader for: "${title}"`);
 }
 
 function closeReaderModal() {
     const modal = document.getElementById('readerModal');
-    if (!modal) return;
+    if (!modal) {
+        console.error("[Reader Modal Error] Modal element not found.");
+        return;
+    }
 
     modal.classList.remove('flex');
     modal.classList.add('hidden');
     document.body.style.overflow = 'auto';
-    console.log("[Digital Library] Closed document reader.");
+    
+    debugLog("[Digital Library] Closed document reader.");
 }
 
 /**
@@ -131,16 +248,20 @@ function toggleAccordion(id) {
     const content = document.getElementById(`content-${id}`);
     const icon = document.getElementById(`icon-${id}`);
     
-    if (!content || !icon) return;
+    // Validate elements exist
+    if (!content || !icon) {
+        console.error(`[Accordion Error] Accordion elements not found for id: ${id}`);
+        return;
+    }
 
     if (content.classList.contains('hidden')) {
         content.classList.remove('hidden');
         icon.classList.add('rotate-180');
-        console.log(`[Teachings FAQ] Opened FAQ accordion item #${id}`);
+        debugLog(`[Teachings FAQ] Opened FAQ accordion item #${id}`);
     } else {
         content.classList.add('hidden');
         icon.classList.remove('rotate-180');
-        console.log(`[Teachings FAQ] Closed FAQ accordion item #${id}`);
+        debugLog(`[Teachings FAQ] Closed FAQ accordion item #${id}`);
     }
 }
 
@@ -151,18 +272,25 @@ function toggleAudioPlayer() {
     const audio = document.getElementById('audioPlayer');
     const btnIcon = document.querySelector('#audioPlayBtn i');
 
-    if (!audio || !btnIcon) return;
+    // Validate elements exist
+    if (!audio || !btnIcon) {
+        console.error("[Audio Player Error] Audio player elements not found.");
+        return;
+    }
 
     if (audio.paused) {
-        audio.play().catch(err => console.warn("[Audio Playback Warning]:", err));
+        audio.play().catch(err => {
+            console.warn("[Audio Playback Warning]:", err);
+            alert('Unable to play audio. Please check your browser settings.');
+        });
         btnIcon.classList.remove('fa-play', 'ml-0.5');
         btnIcon.classList.add('fa-pause');
-        console.log("[Audio Log] Playing oral history background track.");
+        debugLog("[Audio Log] Playing oral history background track.");
     } else {
         audio.pause();
         btnIcon.classList.remove('fa-pause');
         btnIcon.classList.add('fa-play', 'ml-0.5');
-        console.log("[Audio Log] Pausing oral history background track.");
+        debugLog("[Audio Log] Pausing oral history background track.");
     }
 }
 
@@ -170,29 +298,51 @@ function toggleAudioPlayer() {
  * 7. Video Modal Pop-up Handlers
  */
 function openVideoModal(videoUrl) {
+    // Validate URL is provided
+    if (!videoUrl || typeof videoUrl !== 'string') {
+        console.error("[Video Modal Error] Invalid video URL provided.");
+        return;
+    }
+    
     const modal = document.getElementById('videoModal');
     const iframe = document.getElementById('modalIframe');
     
-    if (!modal || !iframe) return;
+    // Validate elements exist
+    if (!modal || !iframe) {
+        console.error("[Video Modal Error] Modal elements not found.");
+        return;
+    }
+
+    // Validate iframe is actually an iframe element
+    if (!(iframe instanceof HTMLIFrameElement)) {
+        console.error("[Video Modal Error] modalIframe is not an iframe element.");
+        return;
+    }
 
     iframe.src = videoUrl;
     modal.classList.remove('hidden');
     modal.classList.add('flex');
     document.body.style.overflow = 'hidden';
-    console.log(`[Video Modal] Opened with source: ${videoUrl}`);
+    
+    debugLog(`[Video Modal] Opened with source: ${videoUrl}`);
 }
 
 function closeVideoModal() {
     const modal = document.getElementById('videoModal');
     const iframe = document.getElementById('modalIframe');
     
-    if (!modal || !iframe) return;
+    // Validate elements exist
+    if (!modal || !iframe) {
+        console.error("[Video Modal Error] Modal elements not found.");
+        return;
+    }
 
     iframe.src = '';
     modal.classList.remove('flex');
     modal.classList.add('hidden');
     document.body.style.overflow = 'auto';
-    console.log("[Video Modal] Closed and video halted.");
+    
+    debugLog("[Video Modal] Closed and video halted.");
 }
 
 /**
@@ -201,10 +351,16 @@ function closeVideoModal() {
 function initSmoothScrolling() {
     const navLinks = document.querySelectorAll('header nav a[href^="#"]');
     
+    if (navLinks.length === 0) {
+        console.warn("[Navigation Warning] No navigation links found with hash hrefs.");
+        return;
+    }
+    
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             const targetId = this.getAttribute('href');
-            console.log(`[Navigation Log] Navigating smoothly to section: ${targetId}`);
+            
+            debugLog(`[Navigation Log] Navigating smoothly to section: ${targetId}`);
             
             if (targetId.startsWith('#') && targetId.length > 1) {
                 e.preventDefault();
@@ -215,6 +371,8 @@ function initSmoothScrolling() {
                         behavior: 'smooth',
                         block: 'start'
                     });
+                } else {
+                    console.warn(`[Navigation Warning] Target element not found: ${targetId}`);
                 }
             }
         });
