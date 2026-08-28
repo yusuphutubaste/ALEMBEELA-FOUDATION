@@ -54,7 +54,10 @@
             </nav>
 
             <div class="flex items-center gap-4">
-                <a href="#series" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-gold-600 text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-gold-500/50 hover:shadow-gold-400/60 transition">
+                <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" class="hidden sm:inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white px-5 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-red-600/50 transition transform hover:scale-105">
+                    <i class="fa-brands fa-youtube"></i> <span>YouTube Channel</span>
+                </a>
+                <a href="#series" class="hidden sm:inline-flex items-center gap-2 bg-gradient-to-r from-gold-500 to-gold-600 text-black px-5 py-2.5 rounded-full font-bold text-sm shadow-lg shadow-gold-500/50 transition transform hover:scale-105">
                     <i class="fa-solid fa-play"></i> <span data-i18n="btn_watch">Tazama Video</span>
                 </a>
             </div>
@@ -83,11 +86,11 @@
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-                <a href="#series" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 text-black px-8 py-4 rounded-xl font-extrabold shadow-lg shadow-gold-500/50 hover:scale-105 transition">
+                <a href="#series" class="w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 text-black px-8 py-4 rounded-xl font-extrabold text-sm shadow-lg shadow-gold-500/50 hover:scale-105 transition">
                     <i class="fa-solid fa-circle-play text-xl"></i> <span data-i18n="hero_btn1">Anza Kutazama Úmbo</span>
                 </a>
-                <a href="#wisdom-wall" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-emerald-900/40 border border-gold-500/30 hover:bg-emerald-900/80 text-white px-8 py-4 rounded-xl font-bold transition">
-                    <i class="fa-solid fa-feather-pointed text-gold-400"></i> <span data-i18n="hero_btn2">Toa Hekima Yako</span>
+                <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" class="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-red-600/20 border-2 border-red-600 hover:bg-red-600/40 text-red-400 px-8 py-4 rounded-xl font-extrabold text-sm shadow-lg shadow-red-600/30 transition transform hover:scale-105">
+                    <i class="fa-brands fa-youtube text-xl"></i> <span>Subscribe to YouTube</span>
                 </a>
             </div>
         </div>
@@ -97,87 +100,22 @@
         <div class="text-center max-w-3xl mx-auto mb-12">
             <span class="text-gold-500 font-bold uppercase tracking-widest text-xs block mb-3">Mfululizo Maalum wa Video</span>
             <h2 class="text-4xl font-black text-white mb-4">Úmbo Cha Babembe Episodes</h2>
-            <p class="text-gray-400 mb-8">Tafuta na utazame vipindi vyote vilivyobeba mafunzo ya msingi ya jamii.</p>
+            <p class="text-gray-400 mb-8">Tafuta na utazame vipindi vyote vilivyobeba mafunzo ya msingi ya jamii. Videos zote zinatoka YouTube Channel yetu.</p>
             
             <div class="relative max-w-md mx-auto">
                 <i class="fa-solid fa-search absolute left-4 top-3.5 text-gold-500"></i>
-                <input type="text" id="episodeSearch" onkeyup="filterEpisodes()" placeholder="Tafuta sehemu au somo..." class="w-full bg-emeraldCustom-900 border border-gold-500/30 rounded-full py-3 pl-12 pr-4 text-sm text-white focus:outline-none focus:border-gold-400 transition">
+                <input type="text" id="episodeSearch" onkeyup="filterEpisodes()" placeholder="Tafuta sehemu au somo..." class="w-full bg-emeraldCustom-900 border border-gold-500/30 rounded-full py-3 pl-12 pr-4 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-gold-400">
             </div>
         </div>
 
         <div id="episodesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="episode-card bg-emeraldCustom-900/60 border border-gold-600/20 rounded-2xl overflow-hidden hover:border-gold-500 transition duration-300 flex flex-col justify-between group" data-title="Mwanzo wa Safari na Misingi">
-                <div class="relative h-48 bg-black overflow-hidden">
-                    <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="absolute inset-0 z-20 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
-                        <div class="w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center text-lg shadow-lg">
-                            <i class="fa-solid fa-play ml-1"></i>
-                        </div>
-                    </a>
-                    <div class="w-full h-full bg-gradient-to-br from-gold-600/30 to-emerald-600/30 flex items-center justify-center">
-                        <i class="fa-solid fa-film text-gold-400 text-6xl opacity-40"></i>
+            <!-- Videos will be auto-loaded from YouTube API here -->
+            <div class="col-span-full text-center py-12">
+                <div class="inline-flex flex-col items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-gold-500/20 border-2 border-gold-500 flex items-center justify-center animate-spin">
+                        <i class="fa-solid fa-spinner text-gold-400 text-2xl"></i>
                     </div>
-                    <div class="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-gold-500/40 text-gold-400 text-xs font-bold px-3 py-1 rounded-full z-10">
-                        Sehemu ya 1: Misingi
-                    </div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-400 transition">Mwanzo wa Safari na Misingi</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Gundua mizizi ya Úmbo, historia ya asili, na maadili yaliyosimamia jamii.</p>
-                    </div>
-                    <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-2.5 rounded-lg transition">
-                        <i class="fa-solid fa-play"></i> Tazama Sehemu ya 1
-                    </button>
-                </div>
-            </div>
-
-            <div class="episode-card bg-emeraldCustom-900/60 border border-gold-600/20 rounded-2xl overflow-hidden hover:border-gold-500 transition duration-300 flex flex-col justify-between group" data-title="Uvumbuzi na Siri za Ndani">
-                <div class="relative h-48 bg-black overflow-hidden">
-                    <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="absolute inset-0 z-20 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
-                        <div class="w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center text-lg shadow-lg">
-                            <i class="fa-solid fa-play ml-1"></i>
-                        </div>
-                    </a>
-                    <div class="w-full h-full bg-gradient-to-br from-gold-600/30 to-emerald-600/30 flex items-center justify-center">
-                        <i class="fa-solid fa-film text-gold-400 text-6xl opacity-40"></i>
-                    </div>
-                    <div class="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-gold-500/40 text-gold-400 text-xs font-bold px-3 py-1 rounded-full z-10">
-                        Sehemu ya 2 & 3: Siri za Ndani
-                    </div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-400 transition">Uvumbuzi na Siri za Ndani</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Masomo ya kina kuhusu mtiririko wa vizazi na hekima za kuzuia migogoro.</p>
-                    </div>
-                    <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-2.5 rounded-lg transition">
-                        <i class="fa-solid fa-play"></i> Tazama Sehemu ya 2-3
-                    </button>
-                </div>
-            </div>
-
-            <div class="episode-card bg-emeraldCustom-900/60 border border-gold-600/20 rounded-2xl overflow-hidden hover:border-gold-500 transition duration-300 flex flex-col justify-between group" data-title="Sirri za Kina na Ramani za Kale">
-                <div class="relative h-48 bg-black overflow-hidden">
-                    <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="absolute inset-0 z-20 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
-                        <div class="w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center text-lg shadow-lg">
-                            <i class="fa-solid fa-play ml-1"></i>
-                        </div>
-                    </a>
-                    <div class="w-full h-full bg-gradient-to-br from-gold-600/30 to-emerald-600/30 flex items-center justify-center">
-                        <i class="fa-solid fa-film text-gold-400 text-6xl opacity-40"></i>
-                    </div>
-                    <div class="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-gold-500/40 text-gold-400 text-xs font-bold px-3 py-1 rounded-full z-10">
-                        Sehemu ya 6: Hitimisho
-                    </div>
-                </div>
-                <div class="p-6 flex-1 flex flex-col justify-between">
-                    <div>
-                        <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-400 transition">Sirri za Kina na Ramani za Kale</h3>
-                        <p class="text-gray-400 text-sm mb-6 leading-relaxed">Ufumbuzi wa ramani na mafumbo yatakayosaidia vizazi vijavyo.</p>
-                    </div>
-                    <button onclick="openVideoModal('https://www.youtube.com/embed/dQw4w9WgXcQ')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-2.5 rounded-lg transition">
-                        <i class="fa-solid fa-play"></i> Tazama Sehemu ya 6
-                    </button>
+                    <p class="text-gray-400 font-semibold">Loading videos from YouTube Channel...</p>
                 </div>
             </div>
         </div>
@@ -212,11 +150,11 @@
                     <form id="wisdomForm" onsubmit="submitWisdom(event)" class="space-y-4">
                         <div>
                             <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Jina Lako / Kitambulisho</label>
-                            <input type="text" id="contributorName" required placeholder="Mf. Mwanajamii" class="w-full bg-black/50 border border-gold-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-400 transition">
+                            <input type="text" id="contributorName" required placeholder="Mf. Mwanajamii" class="w-full bg-black/50 border border-gold-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-400">
                         </div>
                         <div>
                             <label class="block text-xs font-bold text-gray-300 uppercase tracking-wider mb-2">Ujumbe au Hekima ya Jamii</label>
-                            <textarea id="contributorWisdom" rows="4" required placeholder="Andika hapa mafunzo au neno la busara..." class="w-full bg-black/50 border border-gold-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-400 transition resize-none"></textarea>
+                            <textarea id="contributorWisdom" rows="4" required placeholder="Andika hapa mafunzo au neno la busara..." class="w-full bg-black/50 border border-gold-500/30 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-gold-400 resize-none"></textarea>
                         </div>
                         <button type="submit" class="w-full bg-gradient-to-r from-gold-500 to-gold-600 text-black font-extrabold py-3.5 rounded-xl hover:scale-[1.02] transition shadow-lg cursor-pointer">
                             <i class="fa-solid fa-paper-plane mr-2"></i> Tuma Hekima Jamii
@@ -241,7 +179,7 @@
                     <h3 class="text-2xl font-bold text-white mb-3">Misingi ya Úmbo na Utamaduni</h3>
                     <p class="text-gray-300 text-sm mb-6 leading-relaxed">Ufafanuzi wa kina kuhusu jinsi jamii ilivyoweka sheria za kusaidia kila mwanajamii kuishi kwa amani na ustawi.</p>
                 </div>
-                <button onclick="openReaderModal('Misingi ya Úmbo', 'Hati hii inaleta mwanga mkubwa kuhusu jinsi mababu zetu walivyotumia Úmbo kama mwongozo wa kimaadili na kusaidia jamii kutatua changamoto zake. Inaeleza misingi ya utamaduni, mifumo ya kufa na kuishi, na jinsi kila mwanajamii anavyocheza jukumu katika ustawi wa wote.')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-3 rounded-lg transition">
+                <button onclick="openReaderModal('Misingi ya Úmbo', 'Hati hii inaleta mwanga mkubwa kuhusu jinsi mababu zetu walivyotumia Úmbo kama mwongozo wa kimaadili na kusaidia jamii kutatua chaguo na migogoro. Ili kuruka upande, Úmbo linatoa msingi mzuri wa maamuzi na heshima.')" class="bg-gradient-to-r from-gold-500 to-gold-600 text-black font-bold py-3 rounded-xl hover:scale-[1.02] transition">
                     <i class="fa-solid fa-book-open mr-2"></i> Soma Muhtasari
                 </button>
             </div>
@@ -252,7 +190,7 @@
                     <h3 class="text-2xl font-bold text-white mb-3">Elimu kwa Vijana na Vizazi Vijavyo</h3>
                     <p class="text-gray-300 text-sm mb-6 leading-relaxed">Mafunzo maalumu ya kuwajengea vijana uwezo wa kujitambua, kulinda rasilimali za jamii, na kuheshimu wazee.</p>
                 </div>
-                <button onclick="openReaderModal('Elimu kwa Vijana', 'Elimu hii inasisitiza kwamba nguvu ya jamii inategemea jinsi vijana wanavyoelewa asili yao na kuchukua jukumu la kulinda urithi wa mababu zetu. Inakumbuka wazo la kuwa kila mtu ana wajibu wa jamii, akina mama, na kujenga mustakabali mzuri.')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-3 rounded-lg transition">
+                <button onclick="openReaderModal('Elimu kwa Vijana', 'Elimu hii inasisitiza kwamba nguvu ya jamii inategemea jinsi vijana wanavyoelewa asili yao na kuchukua jukumu la kulinda urithi wa Babembe. Kwa kujenga ujifunzaji, tunajengea mustakabali mzuri.')" class="bg-gradient-to-r from-gold-500 to-gold-600 text-black font-bold py-3 rounded-xl hover:scale-[1.02] transition">
                     <i class="fa-solid fa-book-open mr-2"></i> Soma Muhtasari
                 </button>
             </div>
@@ -274,7 +212,7 @@
                         <i id="icon-1" class="fa-solid fa-chevron-down text-gold-400 transition"></i>
                     </button>
                     <div id="content-1" class="hidden px-6 pb-6 text-gray-300 text-sm leading-relaxed border-t border-gold-600/20 pt-4">
-                        Úmbo Cha Babembe ni mfumo wa kumbukumbu, historia, na sheria za kiasili zilizowekwa kulinda na kuongoza jamii. Kinasaidia kufundisha maadili, mshikamano, na njia za kutatua matatizo ya jamii kwa njia ya amani na mahaba. Ni mtazamo ambao unasakataza wote wanajamii kuwa sehemu moja ya kila kitu kinachofanywa.
+                        Úmbo Cha Babembe ni mfumo wa kumbukumbu, historia, na sheria za kiasili zilizowekwa kulinda na kuongoza jamii. Kinasaidia kufundisha maadili, mshikamano, na njia za kutatua migogoro bila kuchafua umuhimu wa jamii.
                     </div>
                 </div>
 
@@ -284,7 +222,7 @@
                         <i id="icon-2" class="fa-solid fa-chevron-down text-gold-400 transition"></i>
                     </button>
                     <div id="content-2" class="hidden px-6 pb-6 text-gray-300 text-sm leading-relaxed border-t border-gold-600/20 pt-4">
-                        Hekima ya kiasili inatoa misingi ya uongozi bora, ulinzi wa mazingira, na upendo wa kijamii ambayo ni ya ulimwengu mzima. Kila mtu anaweza kujifunza jinsi jamii ilivyojitegemeea kupitia wazo la umoja, kujitambua, na kuheshimu kila mwanajamii bila kujali tofauti zake. Hii ni hekima ya ulimwengu yote.
+                        Hekima ya kiasili inatoa misingi ya uongozi bora, ulinzi wa mazingira, na upendo wa kijamii ambayo ni ya ulimwengu mzima. Kila mtu anaweza kujifunza jinsi jamii ilivyojitegemea na kujenga misingi mzuri ya maadili.
                     </div>
                 </div>
 
@@ -294,7 +232,7 @@
                         <i id="icon-3" class="fa-solid fa-chevron-down text-gold-400 transition"></i>
                     </button>
                     <div id="content-3" class="hidden px-6 pb-6 text-gray-300 text-sm leading-relaxed border-t border-gold-600/20 pt-4">
-                        Unaweza kuchangia kwa kutumia fomu ya "Uwanja wa Hekima ya Jamii" ambapo unaweza kuandika ushauri wako, msemo, au mafunzo ambayo unayofikiria yanaweza kusaidia wanajamii wengine. Kila mchango utarejea na kulindwa kwa heshima na kumkumbuka mtoa ushauri.
+                        Unaweza kuchangia kwa kutumia fomu ya "Uwanja wa Hekima ya Jamii" ambapo unaweza kuandika ushauri wako, msemo, au mafunzo ambayo unayofikiria yanaweza kusaidia wanajamii wengine. Jibu lako litaonyeshwa moja kwa moja.
                     </div>
                 </div>
             </div>
@@ -325,10 +263,10 @@
             <div>
                 <h4 class="text-white font-bold mb-4 uppercase tracking-wider text-xs">Wasiliana Nasi</h4>
                 <div class="flex items-center gap-4 text-lg">
-                    <a href="https://youtube.com" target="_blank" class="w-10 h-10 rounded-full bg-emeraldCustom-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition">
+                    <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" class="w-10 h-10 rounded-full bg-emeraldCustom-900 border border-red-500/50 flex items-center justify-center text-red-500 hover:bg-red-600 hover:text-white transition">
                         <i class="fa-brands fa-youtube"></i>
                     </a>
-                    <a href="https://facebook.com" target="_blank" class="w-10 h-10 rounded-full bg-emeraldCustom-900 border border-gold-500/30 flex items-center justify-center text-gold-400 hover:bg-gold-500 hover:text-black transition">
+                    <a href="https://facebook.com/AlembeelaFoundation" target="_blank" class="w-10 h-10 rounded-full bg-emeraldCustom-900 border border-blue-500/50 flex items-center justify-center text-blue-500 hover:bg-blue-600 hover:text-white transition">
                         <i class="fa-brands fa-facebook"></i>
                     </a>
                 </div>
@@ -351,7 +289,7 @@
         </div>
         <div class="flex items-center gap-4">
             <audio id="audioPlayer" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
-            <button onclick="toggleAudioPlayer()" id="audioPlayBtn" class="w-10 h-10 rounded-full bg-gold-500 text-black flex items-center justify-center text-sm font-bold hover:bg-gold-400 transition cursor-pointer">
+            <button onclick="toggleAudioPlayer()" id="audioPlayBtn" class="w-10 h-10 rounded-full bg-gold-500 text-black flex items-center justify-center text-sm font-bold hover:bg-gold-400 transition">
                 <i class="fa-solid fa-play ml-0.5"></i>
             </button>
         </div>
@@ -359,7 +297,7 @@
 
     <div id="videoModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
         <div class="relative w-full max-w-4xl bg-black rounded-2xl overflow-hidden border border-gold-500/40 shadow-2xl">
-            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-gold-500 text-black font-bold flex items-center justify-center hover:bg-gold-400 transition cursor-pointer">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-gold-500 text-black font-bold flex items-center justify-center hover:bg-gold-400 transition">
                 <i class="fa-solid fa-xmark text-lg"></i>
             </button>
             <div class="aspect-video w-full">
