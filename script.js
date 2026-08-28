@@ -2,6 +2,13 @@
    Alembeela Foundation - Advanced Platform JavaScript (`script.js`)
    ========================================================== */
 
+// YouTube Channel Configuration
+const YOUTUBE_CONFIG = {
+    channelId: 'UCQkPUJEsrjWNP2MfCJRwIFQ', // Replace with your channel ID
+    apiKey: 'YOUR_YOUTUBE_API_KEY', // You'll need to add this
+    channelUrl: 'https://www.youtube.com/@AlembeelaFoundation'
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // Styled custom startup banner in console
     console.log(
@@ -13,7 +20,116 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize components
     initSmoothScrolling();
+    loadYouTubeVideos();
 });
+
+/**
+ * Load YouTube Videos Automatically
+ * Fetches latest videos from Alembeela Foundation channel
+ */
+function loadYouTubeVideos() {
+    // Using YouTube Data API to fetch latest uploads
+    const channelId = 'UCQkPUJEsrjWNP2MfCJRwIFQ'; // Alembeela Foundation Channel ID
+    const playlistId = 'UUQkPUJEsrjWNP2MfCJRwIFQ'; // Uploads playlist (U + Channel ID)
+    
+    // Fetch from YouTube API (you need to set up API key in environment)
+    fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=10&key=${YOUTUBE_CONFIG.apiKey}`)
+        .then(response => response.json())
+        .then(data => {
+            console.log('%c[YouTube Integration] Fetching videos from channel...', 'color: #ef4444; font-weight: bold;');
+            if (data.items) {
+                populateEpisodeCards(data.items);
+            }
+        })
+        .catch(err => {
+            console.warn('%c[YouTube API Error] Using fallback video data', 'color: #f59e0b;');
+            console.log('Error:', err);
+            // Fallback: Use hardcoded video for demo
+            loadFallbackVideos();
+        });
+}
+
+/**
+ * Populate Episode Cards with YouTube Videos
+ */
+function populateEpisodeCards(videos) {
+    const episodesGrid = document.getElementById('episodesGrid');
+    if (!episodesGrid) return;
+
+    episodesGrid.innerHTML = '';
+
+    videos.forEach((video, index) => {
+        const videoId = video.snippet.resourceId.videoId;
+        const title = video.snippet.title;
+        const description = video.snippet.description.substring(0, 100) + '...';
+        const thumbnail = video.snippet.thumbnails.medium.url;
+
+        const episodeCard = document.createElement('div');
+        episodeCard.className = 'episode-card bg-emeraldCustom-900/60 border border-gold-600/20 rounded-2xl overflow-hidden hover:border-gold-500 transition duration-300 flex flex-col justify-between group';
+        episodeCard.setAttribute('data-title', title.toLowerCase());
+
+        episodeCard.innerHTML = `
+            <div class="relative h-48 bg-black overflow-hidden">
+                <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="absolute inset-0 z-20 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
+                    <div class="w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center text-lg shadow-lg">
+                        <i class="fa-solid fa-play ml-1"></i>
+                    </div>
+                </a>
+                <img src="${thumbnail}" alt="${title}" class="w-full h-full object-cover">
+                <div class="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-gold-500/40 text-gold-400 text-xs font-bold px-3 py-1 rounded-full z-10">
+                    Sehemu ya ${index + 1}
+                </div>
+            </div>
+            <div class="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-400 transition">${title}</h3>
+                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">${description}</p>
+                </div>
+                <button onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-2.5 rounded-xl transition">
+                    <i class="fa-solid fa-play"></i> Tazama Sehemu ya ${index + 1}
+                </button>
+            </div>
+        `;
+
+        episodesGrid.appendChild(episodeCard);
+    });
+
+    console.log(`%c[YouTube Integration] Loaded ${videos.length} videos successfully`, 'color: #10b981; font-weight: bold;');
+}
+
+/**
+ * Fallback: Load demo videos if API fails
+ */
+function loadFallbackVideos() {
+    const fallbackVideos = [
+        {
+            snippet: {
+                title: 'Úmbo Cha Babembe - Part 1: Misingi',
+                description: 'Gundua mizizi ya Úmbo, historia ya asili, na maadili yaliyosimamia jamii...',
+                resourceId: { videoId: 'chCvVUD1FPo' },
+                thumbnails: { medium: { url: 'https://img.youtube.com/vi/chCvVUD1FPo/mqdefault.jpg' } }
+            }
+        },
+        {
+            snippet: {
+                title: 'Úmbo Cha Babembe - Part 2: Siri za Ndani',
+                description: 'Masomo ya kina kuhusu mtiririko wa vizazi na hekima za kuzuia migogoro...',
+                resourceId: { videoId: 'chCvVUD1FPo' },
+                thumbnails: { medium: { url: 'https://img.youtube.com/vi/chCvVUD1FPo/mqdefault.jpg' } }
+            }
+        },
+        {
+            snippet: {
+                title: 'Úmbo Cha Babembe - Part 3: Hitimisho',
+                description: 'Ufumbuzi wa ramani na mafumbo yatakayosaidia vizazi vijavyo...',
+                resourceId: { videoId: 'chCvVUD1FPo' },
+                thumbnails: { medium: { url: 'https://img.youtube.com/vi/chCvVUD1FPo/mqdefault.jpg' } }
+            }
+        }
+    ];
+
+    populateEpisodeCards(fallbackVideos);
+}
 
 /**
  * 1. Real-Time Episode Search / Filter Engine
