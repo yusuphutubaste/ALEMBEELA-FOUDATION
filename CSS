@@ -1,0 +1,71 @@
+/* ==========================================================
+   Alembeela Foundation - Custom Stylesheet (`style.css`)
+   ========================================================== */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&display=swap');
+
+:root {
+    --gold-primary: #eab308;
+    --gold-light: #facc15;
+    --gold-dark: #ca8a04;
+    --emerald-darkest: #03140c;
+    --emerald-deep: #062316;
+}
+
+body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    background-color: var(--emerald-darkest);
+    color: #f3f4f6;
+    overflow-x: hidden;
+}
+
+/* Custom Gold Gradient Text */
+.gold-text {
+    background: linear-gradient(135deg, var(--gold-light) 0%, var(--gold-primary) 50%, var(--gold-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Custom Mesh Background Effect */
+.bg-mesh {
+    background-color: var(--emerald-darkest);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(234, 179, 8, 0.08) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(6, 35, 22, 0.8) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(10, 45, 28, 0.4) 0px, transparent 100%);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--emerald-darkest);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #a16207;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--gold-primary);
+}
+
+/* Smooth Transition Utilities */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 300ms;
+}
+
+/* Glow Effect Helpers */
+.gold-glow {
+    box-shadow: 0 0 25px rgba(234, 179, 8, 0.25);
+}
+
+.gold-glow-lg {
+    box-shadow: 0 0 40px rgba(234, 179, 8, 0.4);
+}
