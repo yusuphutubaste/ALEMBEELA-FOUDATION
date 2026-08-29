@@ -9,6 +9,14 @@ const YOUTUBE_CONFIG = {
     channelUrl: 'https://www.youtube.com/@AlembeelaFoundation'
 };
 
+// Audio/Oral History Configuration
+const AUDIO_CONFIG = {
+    introMusic: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', // Intro music (plays first)
+    enableAutoPlaylist: true, // Automatically play next track
+    fadeInDuration: 3000, // 3 second fade-in
+    fadeOutDuration: 2000 // 2 second fade-out
+};
+
 document.addEventListener('DOMContentLoaded', () => {
     // Styled custom startup banner in console
     console.log(
@@ -21,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize components
     initSmoothScrolling();
     loadYouTubeVideos();
+    initAudioPlayer();
 });
 
 /**
@@ -41,6 +50,9 @@ function loadYouTubeVideos() {
             console.log('%c[YouTube Integration] Fetching videos from channel...', 'color: #ef4444; font-weight: bold;');
             if (data.items && data.items.length > 0) {
                 populateEpisodeCards(data.items);
+                // Store videos for audio extraction
+                window.youtubeVideos = data.items;
+                initAudioPlaylist(data.items);
                 console.log('%c[YouTube Integration] Successfully loaded videos from YouTube API', 'color: #10b981; font-weight: bold;');
             } else {
                 console.warn('%c[YouTube API] No items found, loading fallback videos', 'color: #f59e0b;');
@@ -73,6 +85,7 @@ function populateEpisodeCards(videos) {
         const episodeCard = document.createElement('div');
         episodeCard.className = 'episode-card bg-emeraldCustom-900/60 border border-gold-600/20 rounded-2xl overflow-hidden hover:border-gold-500 transition duration-300 flex flex-col justify-between group';
         episodeCard.setAttribute('data-title', title.toLowerCase());
+        episodeCard.setAttribute('data-video-id', videoId);
 
         episodeCard.innerHTML = `
             <div class="relative h-48 bg-black overflow-hidden">
@@ -135,6 +148,136 @@ function loadFallbackVideos() {
     ];
 
     populateEpisodeCards(fallbackVideos);
+}
+
+/**
+ * Initialize Audio Player with Smooth Transitions
+ */
+function initAudioPlayer() {
+    const audioPlayer = document.getElementById('audioPlayer');
+    if (!audioPlayer) return;
+
+    console.log('%c[Audio Player] Initialized with fade effects', 'color: #fb923c; font-weight: bold;');
+    
+    // Set initial volume
+    audioPlayer.volume = 0;
+    
+    // Smooth fade-in when play button is clicked
+    audioPlayer.addEventListener('play', () => {
+        fadeAudioIn(audioPlayer);
+    });
+
+    // Smooth fade-out when stopped
+    audioPlayer.addEventListener('pause', () => {
+        fadeAudioOut(audioPlayer);
+    });
+}
+
+/**
+ * Initialize Audio Playlist from YouTube Videos
+ */
+function initAudioPlaylist(videos) {
+    console.group('%c[Audio Playlist] Building from YouTube videos', 'color: #fb923c; font-weight: bold;');
+    
+    window.audioPlaylist = {
+        currentIndex: -1, // Start with intro music
+        tracks: [
+            {
+                title: '🎵 Intro Music - Alembeela Foundation',
+                src: AUDIO_CONFIG.introMusic,
+                type: 'intro'
+            }
+        ]
+    };
+
+    // Add video titles to playlist (users can select which to listen to)
+    videos.forEach((video, index) => {
+        window.audioPlaylist.tracks.push({
+            title: video.snippet.title,
+            videoId: video.snippet.resourceId.videoId,
+            type: 'video',
+            description: video.snippet.description.substring(0, 60)
+        });
+    });
+
+    console.log(`Playlist created with ${window.audioPlaylist.tracks.length} tracks`);
+    console.groupEnd();
+}
+
+/**
+ * Fade In Audio Smoothly
+ */
+function fadeAudioIn(audioElement, duration = AUDIO_CONFIG.fadeInDuration) {
+    const steps = 20;
+    const stepDuration = duration / steps;
+    const maxVolume = 0.8; // Don't go to 100% to protect ears
+    let currentStep = 0;
+
+    const fadeInterval = setInterval(() => {
+        currentStep++;
+        audioElement.volume = (currentStep / steps) * maxVolume;
+
+        if (currentStep >= steps) {
+            clearInterval(fadeInterval);
+            audioElement.volume = maxVolume;
+            console.log('%c[Audio] Fade-in complete', 'color: #10b981;');
+        }
+    }, stepDuration);
+}
+
+/**
+ * Fade Out Audio Smoothly
+ */
+function fadeAudioOut(audioElement, duration = AUDIO_CONFIG.fadeOutDuration) {
+    const steps = 15;
+    const stepDuration = duration / steps;
+    const startVolume = audioElement.volume;
+    let currentStep = 0;
+
+    const fadeInterval = setInterval(() => {
+        currentStep++;
+        audioElement.volume = startVolume * (1 - (currentStep / steps));
+
+        if (currentStep >= steps) {
+            clearInterval(fadeInterval);
+            audioElement.volume = 0;
+            console.log('%c[Audio] Fade-out complete', 'color: #10b981;');
+        }
+    }, stepDuration);
+}
+
+/**
+ * Play Next Track in Playlist
+ */
+function playNextTrack() {
+    if (!window.audioPlaylist) return;
+
+    const audioPlayer = document.getElementById('audioPlayer');
+    if (!audioPlayer) return;
+
+    // Move to next track
+    window.audioPlaylist.currentIndex++;
+    
+    if (window.audioPlaylist.currentIndex >= window.audioPlaylist.tracks.length) {
+        window.audioPlaylist.currentIndex = 0; // Loop back to intro
+    }
+
+    const track = window.audioPlaylist.tracks[window.audioPlaylist.currentIndex];
+
+    console.group('%c[Audio Playlist] Playing next track', 'color: #fb923c;');
+    console.log(`Track: ${track.title}`);
+    console.log(`Type: ${track.type}`);
+    console.groupEnd();
+
+    if (track.type === 'intro') {
+        audioPlayer.src = track.src;
+    } else {
+        // For video tracks, link to the video (can be embedded later)
+        console.warn('[Audio] Video audio extraction not yet implemented. Showing intro music instead.');
+        audioPlayer.src = AUDIO_CONFIG.introMusic;
+    }
+
+    audioPlayer.play();
 }
 
 /**
