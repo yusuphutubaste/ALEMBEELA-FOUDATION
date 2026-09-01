@@ -30,7 +30,70 @@ document.addEventListener('DOMContentLoaded', () => {
     initSmoothScrolling();
     loadYouTubeVideos();
     initAudioPlayer();
+    initMobileMenu();
 });
+
+/**
+ * Mobile Menu Toggle Function
+ */
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const hamburgerIcon = document.getElementById('hamburgerIcon');
+    
+    if (!mobileMenu || !hamburgerIcon) return;
+    
+    console.log('%c[Mobile Menu] Toggle clicked', 'color: #38bdf8; font-weight: bold;');
+    
+    if (mobileMenu.classList.contains('hidden')) {
+        // Open menu
+        mobileMenu.classList.remove('hidden');
+        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
+        hamburgerIcon.classList.remove('fa-bars');
+        hamburgerIcon.classList.add('fa-xmark');
+        document.body.style.overflow = 'hidden';
+        console.log("State: Menu Opened");
+    } else {
+        // Close menu
+        mobileMenu.style.maxHeight = '0';
+        setTimeout(() => {
+            mobileMenu.classList.add('hidden');
+        }, 300);
+        hamburgerIcon.classList.remove('fa-xmark');
+        hamburgerIcon.classList.add('fa-bars');
+        document.body.style.overflow = 'auto';
+        console.log("State: Menu Closed");
+    }
+}
+
+/**
+ * Initialize Mobile Menu
+ */
+function initMobileMenu() {
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuLinks = mobileMenu?.querySelectorAll('a[href^="#"]');
+    
+    if (!mobileMenu || !mobileMenuLinks) return;
+    
+    console.log('%c[Mobile Menu] Initialized', 'color: #38bdf8; font-weight: bold;');
+    
+    // Close menu when a link is clicked (handled in toggleMobileMenu)
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            // The menu will close via toggleMobileMenu() call in HTML
+            console.log(`%c[Mobile Menu] Navigating to: ${link.getAttribute('href')}`, 'color: #34d399;');
+        });
+    });
+    
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        const header = document.querySelector('header');
+        const menuBtn = document.getElementById('mobileMenuBtn');
+        
+        if (header && !header.contains(e.target) && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+            toggleMobileMenu();
+        }
+    });
+}
 
 /**
  * Load YouTube Videos Automatically
@@ -89,7 +152,7 @@ function populateEpisodeCards(videos) {
 
         episodeCard.innerHTML = `
             <div class="relative h-48 bg-black overflow-hidden">
-                <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="absolute inset-0 z-20 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition">
+                <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="absolute inset-0 z-20 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition cursor-pointer">
                     <div class="w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center text-lg shadow-lg">
                         <i class="fa-solid fa-play ml-1"></i>
                     </div>
@@ -104,7 +167,7 @@ function populateEpisodeCards(videos) {
                     <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-400 transition">${title}</h3>
                     <p class="text-gray-400 text-sm mb-6 leading-relaxed">${description}</p>
                 </div>
-                <button onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-3 rounded-xl transition">
+                <button onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-2.5 px-4 rounded-lg transition cursor-pointer">
                     <i class="fa-solid fa-play"></i> Tazama Sehemu ya ${index + 1}
                 </button>
             </div>
