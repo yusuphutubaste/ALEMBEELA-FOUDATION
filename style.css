@@ -1,674 +1,331 @@
-/* ==========================================================================
-   ALEMBEELA FOUNDATION — STYLESHEET (WITH LOGO, LANG SWITCH & FOOTER)
-   ========================================================================== */
-
-:root {
-  --bg-main: #07140f;
-  --bg-surface: #0d2219;
-  --bg-card: #112b20;
-  --bg-elevated: #17382a;
-  --border-subtle: rgba(212, 175, 55, 0.24);
-  --border-strong: rgba(212, 175, 55, 0.55);
-
-  --text-primary: #f4f7f5;
-  --text-secondary: #b8cbc1;
-  --text-muted: #849c90;
-
-  --gold: #d4af37;
-  --gold-bright: #f0cf65;
-  --gold-soft: rgba(212, 175, 55, 0.14);
-
-  --emerald: #1f7a55;
-  --emerald-bright: #289c6d;
-
-  --freeze-active: #38bdf8;
-  --freeze-soft: rgba(56, 189, 248, 0.16);
-
-  --block-active: #f97316;
-  --block-soft: rgba(249, 115, 22, 0.16);
-
-  --radius-sm: 8px;
-  --radius-md: 14px;
-  --radius-lg: 20px;
-  --radius-pill: 999px;
-
-  --shadow-card: 0 10px 28px rgba(0, 0, 0, 0.35);
-  --shadow-bar: 0 -8px 28px rgba(0, 0, 0, 0.55);
-}
-
-*,
-*::before,
-*::after {
+* {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
 }
 
 body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background: radial-gradient(circle at top, #102a1f 0%, var(--bg-main) 58%);
-  color: var(--text-primary);
-  line-height: 1.55;
-  padding-bottom: 190px;
-  min-height: 100vh;
+  color: #2d3748;
+  background-color: #f7fafc;
+  line-height: 1.6;
 }
 
-body.modal-open {
-  overflow: hidden;
-}
-
-.hidden {
-  display: none !important;
-}
-
-.container {
-  width: min(1160px, 92vw);
-  margin-inline: auto;
-}
-
-.toast-banner {
-  position: fixed;
-  top: 18px;
-  right: 18px;
-  z-index: 1200;
-  max-width: min(420px, 90vw);
-  background: var(--bg-elevated);
-  color: var(--text-primary);
-  border: 1px solid var(--border-strong);
-  border-left: 4px solid var(--gold-bright);
-  border-radius: var(--radius-md);
-  padding: 12px 16px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  box-shadow: var(--shadow-card);
-}
-
-/* Header, Logo & Language Switch */
-.site-header {
-  background: rgba(7, 20, 15, 0.9);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--border-subtle);
-  padding: 16px 0;
+/* Urambazaji */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 8%;
+  background: #ffffff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
   position: sticky;
   top: 0;
-  z-index: 40;
+  z-index: 1000;
 }
 
-.header-inner {
+.logo {
+  font-size: 22px;
+  font-weight: 700;
+  color: #1a202c;
+}
+
+.logo span {
+  color: #c53030; /* Rangi nyekundu yenye mvuto wa YouTube/Foundation */
+}
+
+.nav-links {
+  list-style: none;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
+  gap: 20px;
 }
 
-.brand-wrap {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.site-logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
-  background: linear-gradient(135deg, var(--gold), var(--emerald-bright));
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  color: #07140f;
-  font-weight: 900;
-  font-size: 1rem;
-  flex-shrink: 0;
-}
-
-.site-logo--sm {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  font-size: 0.85rem;
-}
-
-.brand-title {
-  margin: 0;
-  font-size: clamp(1.2rem, 2.4vw, 1.65rem);
-  font-weight: 800;
-}
-
-.brand-subtitle {
-  margin: 2px 0 0;
-  font-size: 0.84rem;
-  color: var(--text-secondary);
-}
-
-.header-right {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 10px;
-}
-
-.lang-switch {
-  display: inline-flex;
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-pill);
-  padding: 3px;
-}
-
-.lang-btn {
-  border: 0;
-  background: transparent;
-  color: var(--text-secondary);
-  font-size: 0.78rem;
-  font-weight: 800;
-  padding: 5px 10px;
-  border-radius: var(--radius-pill);
-  cursor: pointer;
-}
-
-.lang-btn.is-active {
-  background: var(--gold);
-  color: #07140f;
-}
-
-.second-channel-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
+.nav-links a {
   text-decoration: none;
-  font-size: 0.84rem;
-  font-weight: 700;
-  padding: 8px 13px;
-  border-radius: var(--radius-pill);
-  background: var(--gold-soft);
-  color: var(--gold-bright);
-  border: 1px solid var(--border-strong);
+  color: #4a5568;
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
-.second-channel-link:hover {
-  background: rgba(212, 175, 55, 0.24);
+.nav-links a:hover {
+  color: #c53030;
 }
 
-/* Main & Search */
-.main-content {
-  padding-top: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 32px;
-}
-
-.search-panel {
-  background: var(--bg-surface);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 16px 18px;
-}
-
-.search-label {
-  display: block;
-  font-size: 0.88rem;
-  font-weight: 700;
-  color: var(--gold-bright);
-  margin-bottom: 8px;
-}
-
-.search-box {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--bg-main);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 6px 8px 6px 12px;
-}
-
-.search-input {
-  flex: 1;
-  min-width: 0;
-  background: transparent;
+/* Vitufe */
+.btn-primary {
+  background: #c53030;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
   border: none;
-  color: var(--text-primary);
-  font-size: 0.94rem;
-  padding: 7px 4px;
-  outline: none;
+  cursor: pointer;
+  transition: background 0.3s;
 }
 
-.search-summary {
-  margin: 8px 0 0;
-  font-size: 0.82rem;
-  color: var(--text-secondary);
+.btn-primary:hover {
+  background: #9b2c2c;
 }
 
-/* Sections & Cards */
-.content-section {
+.btn-secondary {
+  background: transparent;
+  color: #ffffff;
+  padding: 10px 22px;
+  border-radius: 25px;
+  border: 2px solid #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-secondary:hover {
+  background: #ffffff;
+  color: #1a202c;
+}
+
+/* Hero Section */
+.hero {
+  background: linear-gradient(rgba(15, 23, 42, 0.82), rgba(15, 23, 42, 0.82)),
+              url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+  color: #ffffff;
+  padding: 90px 8%;
+  text-align: center;
+}
+
+.hero-content h1 {
+  font-size: 38px;
+  margin-bottom: 18px;
+}
+
+.hero-content p {
+  font-size: 17px;
+  max-width: 650px;
+  margin: 0 auto 28px;
+  color: #e2e8f0;
+}
+
+.hero-buttons {
   display: flex;
-  flex-direction: column;
-  gap: 16px;
+  justify-content: center;
+  gap: 15px;
 }
 
-.section-header {
+/* Takwimu */
+.stats {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
+  justify-content: space-around;
+  padding: 40px 8%;
+  background: #ffffff;
+  border-bottom: 1px solid #edf2f7;
+  text-align: center;
+}
+
+.stat-card h3 {
+  font-size: 36px;
+  color: #c53030;
+}
+
+/* Mpangilio wa kurasa */
+section {
+  padding: 60px 8%;
 }
 
 .section-title {
-  margin: 0;
-  font-size: clamp(1.18rem, 2.2vw, 1.45rem);
-  font-weight: 800;
-}
-
-.filter-group {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
-
-.filter-btn {
-  background: var(--bg-surface);
-  color: var(--text-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-pill);
-  padding: 7px 14px;
-  font-size: 0.84rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.filter-btn.is-active {
-  background: var(--gold);
-  color: #09130e;
-  border-color: var(--gold-bright);
-}
-
-.cards-grid,
-.playlists-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-}
-
-.media-card,
-.playlist-card {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 12px;
-  box-shadow: var(--shadow-card);
-}
-
-.media-card[data-type="short"] {
-  border-top: 3px solid var(--gold-bright);
-}
-
-.media-card[data-type="video"] {
-  border-top: 3px solid var(--emerald-bright);
-}
-
-.media-card__top {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 8px;
-}
-
-.media-card__badge,
-.playlist-card__tag {
-  font-size: 0.72rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--gold-bright);
-}
-
-.media-card__type {
-  font-size: 0.7rem;
-  font-weight: 800;
-  padding: 2px 8px;
-  border-radius: var(--radius-pill);
-  background: rgba(255, 255, 255, 0.07);
-  color: var(--text-secondary);
-}
-
-.media-card__title,
-.playlist-card__title {
-  margin: 6px 0 4px;
-  font-size: 1rem;
-  font-weight: 700;
-}
-
-.media-card__desc,
-.playlist-card__desc {
-  margin: 0;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
-}
-
-.media-card__actions,
-.playlist-card__actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 7px;
-}
-
-.empty-state {
-  grid-column: 1 / -1;
-  background: var(--bg-surface);
-  border: 1px dashed var(--border-strong);
-  border-radius: var(--radius-lg);
-  padding: 20px;
   text-align: center;
-  color: var(--text-secondary);
+  margin-bottom: 45px;
 }
 
-/* Buttons & Switches */
-.btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  border: 1px solid transparent;
-  border-radius: var(--radius-sm);
-  font-size: 0.84rem;
-  font-weight: 700;
-  padding: 8px 13px;
-  cursor: pointer;
-  text-decoration: none;
-  color: var(--text-primary);
-  background: var(--bg-elevated);
+.section-title h2 {
+  font-size: 30px;
+  color: #1a202c;
 }
 
-.btn--sm {
-  padding: 6px 10px;
-  font-size: 0.78rem;
+.section-title p {
+  color: #718096;
 }
 
-.btn--primary {
-  background: var(--gold);
-  color: #08120d;
-  font-weight: 800;
+/* Video Kuu */
+.featured-video {
+  background: #edf2f7;
 }
 
-.btn--ghost {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: var(--border-subtle);
-  color: var(--text-secondary);
+.main-video-wrapper {
+  max-width: 850px;
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 ratio */
+  height: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
 }
 
-.btn--ghost.is-saved {
-  color: var(--gold-bright);
-  border-color: var(--gold);
-  background: var(--gold-soft);
-}
-
-.btn--toggle {
-  background: var(--bg-card);
-  border-color: var(--border-subtle);
-  color: var(--text-secondary);
-}
-
-.btn--toggle.is-active {
-  background: rgba(31, 122, 85, 0.28);
-  border-color: var(--emerald-bright);
-  color: #86efac;
-}
-
-.switch-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 7px 12px;
-  border-radius: var(--radius-pill);
-  border: 1px solid var(--border-subtle);
-  background: var(--bg-card);
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.switch-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--text-muted);
-}
-
-.switch-btn--freeze.is-on {
-  background: var(--freeze-soft);
-  border-color: var(--freeze-active);
-  color: #bae6fd;
-}
-
-.switch-btn--freeze.is-on .switch-dot {
-  background: var(--freeze-active);
-}
-
-.switch-btn--block.is-on {
-  background: var(--block-soft);
-  border-color: var(--block-active);
-  color: #fed7aa;
-}
-
-.switch-btn--block.is-on .switch-dot {
-  background: var(--block-active);
-}
-
-/* Sauti za Wazee Bar */
-.elders-bar {
-  position: fixed;
+.main-video-wrapper iframe {
+  position: absolute;
+  top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 60;
-  background: rgba(9, 24, 18, 0.96);
-  backdrop-filter: blur(12px);
-  border-top: 1px solid var(--border-strong);
-  box-shadow: var(--shadow-bar);
-  padding: 11px 0;
-}
-
-.elders-bar__inner {
-  display: grid;
-  grid-template-columns: 1.2fr auto auto;
-  align-items: center;
-  gap: 14px;
-}
-
-.elders-meta-row {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 3px;
-}
-
-.elders-tag {
-  font-size: 0.7rem;
-  font-weight: 800;
-  text-transform: uppercase;
-  color: var(--gold-bright);
-  background: var(--gold-soft);
-  padding: 2px 8px;
-  border-radius: var(--radius-pill);
-}
-
-.elders-pos {
-  font-size: 0.76rem;
-  font-weight: 800;
-}
-
-.elders-status {
-  font-size: 0.7rem;
-  font-weight: 700;
-  color: #86efac;
-}
-
-.elders-title {
-  font-size: 0.94rem;
-  font-weight: 800;
-}
-
-.elders-progress-wrap {
-  width: 100%;
-  height: 5px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: var(--radius-pill);
-  overflow: hidden;
-  margin-top: 6px;
-}
-
-.elders-progress-bar {
-  height: 100%;
-  width: 0%;
-  background: linear-gradient(90deg, var(--emerald-bright), var(--gold-bright));
-}
-
-.elders-time-row {
-  display: flex;
-  justify-content: space-between;
-  font-size: 0.7rem;
-  color: var(--text-muted);
-  margin-top: 2px;
-}
-
-.elders-controls {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-}
-
-.elders-switches {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-/* Footer */
-.site-footer {
-  margin-top: 40px;
-  padding: 24px 0 32px;
-  border-top: 1px solid var(--border-subtle);
-  background: rgba(7, 20, 15, 0.7);
-}
-
-.footer-inner {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.footer-brand {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.footer-brand p {
-  margin: 2px 0 0;
-  font-size: 0.82rem;
-  color: var(--text-secondary);
-}
-
-.footer-links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-}
-
-.footer-links a {
-  color: var(--gold-bright);
-  text-decoration: none;
-  font-size: 0.85rem;
-  font-weight: 700;
-}
-
-.footer-links a:hover {
-  text-decoration: underline;
-}
-
-/* Modal */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  background: rgba(2, 8, 5, 0.84);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 16px;
-}
-
-.modal-card {
-  width: min(920px, 100%);
-  background: var(--bg-surface);
-  border: 1px solid var(--border-strong);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-}
-
-.modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 12px 16px;
-  background: var(--bg-card);
-  border-bottom: 1px solid var(--border-subtle);
-}
-
-.modal-title {
-  margin: 0;
-  font-size: 0.96rem;
-  font-weight: 700;
-}
-
-.modal-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.btn--close {
-  background: rgba(239, 68, 68, 0.16);
-  border-color: rgba(239, 68, 68, 0.45);
-  color: #fecaca;
-}
-
-.modal-body {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  background: #000;
-}
-
-.modal-iframe {
   width: 100%;
   height: 100%;
   border: 0;
-  display: block;
 }
 
-@media (max-width: 960px) {
-  body {
-    padding-bottom: 240px;
+.featured-desc {
+  max-width: 850px;
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+.featured-desc h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+}
+
+/* Video Grid (Mfululizo wa Video) */
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+.video-card {
+  background: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
+
+.iframe-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+}
+
+.iframe-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.card-info {
+  padding: 16px;
+}
+
+.card-info h4 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  color: #1a202c;
+}
+
+.card-info p {
+  font-size: 13px;
+  color: #718096;
+}
+
+/* Kuhusu Sisi */
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+}
+
+.about-card {
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border-top: 4px solid #c53030;
+}
+
+.about-card h3 {
+  margin-bottom: 12px;
+  color: #1a202c;
+}
+
+/* Fomu ya Mawasiliano */
+.contact-form {
+  max-width: 550px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.contact-form input, .contact-form textarea {
+  padding: 12px 15px;
+  border: 1px solid #cbd5e0;
+  border-radius: 8px;
+  font-size: 15px;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  border-color: #c53030;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 22px;
+  background: #1a202c;
+  color: #a0aec0;
+  font-size: 14px;
+}
+
+/* Simu */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    gap: 15px;
   }
-  .elders-bar__inner {
-    grid-template-columns: 1fr;
-    gap: 10px;
-  }
-  .elders-switches {
-    flex-direction: row;
+  .nav-links {
     flex-wrap: wrap;
+    justify-content: center;
+  }
+  .hero-content h1 {
+    font-size: 26px;
+  }
+  .stats {
+    flex-direction: column;
+    gap: 20px;
   }
 }
+3. script.js
+Hakikisha script.js ina msimbo huu kwa ajili ya kufanya namba zitembee vizuri na fomu ifanye kazi:
+
+document.addEventListener("DOMContentLoaded", () => {
+  // Huongeza namba taratibu (Animated Counters)
+  const counters = document.querySelectorAll(".counter");
+
+  counters.forEach(counter => {
+    counter.innerText = "0";
+
+    const updateCounter = () => {
+      const target = +counter.getAttribute("data-target");
+      const current = +counter.innerText;
+      const increment = Math.max(1, target / 50);
+
+      if (current < target) {
+        counter.innerText = `${Math.ceil(current + increment)}`;
+        setTimeout(updateCounter, 25);
+      } else {
+        counter.innerText = `${target}+`;
+      }
+    };
+
+    updateCounter();
+  });
+
+  // Uthibitisho wa ujumbe
+  const contactForm = document.getElementById("contactForm");
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Ahsante! Ujumbe wako umepokelewa na timu ya Alembeela Foundation.");
+      contactForm.reset();
+    });
+  }
+});
