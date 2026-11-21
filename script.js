@@ -1,19 +1,28 @@
 /* =========================================================
-   1. MENYU YA SIMU (MOBILE NAVIGATION)
+   1. MENYU YA SIMU NA VIFAA TOFAUTI (MOBILE DRAWER MENU)
    ========================================================= */
 const menuToggle = document.getElementById('menuToggle');
+const closeMenuBtn = document.getElementById('closeMenuBtn');
 const navLinks = document.getElementById('navLinks');
+const menuBackdrop = document.getElementById('menuBackdrop');
 
-if (menuToggle && navLinks) {
-    menuToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-    });
+function openMobileMenu() {
+    if (navLinks) navLinks.classList.add('active');
+    if (menuBackdrop) menuBackdrop.classList.add('active');
+}
 
-    // Funga menyu ya simu mtumiaji akibonyeza kiungo chochote
+function closeMobileMenu() {
+    if (navLinks) navLinks.classList.remove('active');
+    if (menuBackdrop) menuBackdrop.classList.remove('active');
+}
+
+if (menuToggle) menuToggle.addEventListener('click', openMobileMenu);
+if (closeMenuBtn) closeMenuBtn.addEventListener('click', closeMobileMenu);
+if (menuBackdrop) menuBackdrop.addEventListener('click', closeMobileMenu);
+
+if (navLinks) {
     navLinks.querySelectorAll('a').forEach((link) => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-        });
+        link.addEventListener('click', closeMobileMenu);
     });
 }
 
@@ -37,38 +46,13 @@ const translations = {
         about_title: "Kuhusu Alembeela Foundation",
         founder_role: "Mwanzilishi — Alembeela Foundation",
         bio_heading: "Sauti ya Urithi, Hekima ya Wazee na Ujenzi wa Jamii",
-        bio_p1: "Alembeela alianzisha Alembeela Foundation akiwa na maono ya dhati ya kuhakikisha utambulisho, historia, mila, na lugha adhimu ya Kibembe havipotei bali vinahifadhiwa na kuheshimiwa na vizazi vya sasa na vijavyo popote walipo duniani.",
-        bio_p2: "Kupitia jukwaa hili, unaposikiliza na kufuatilia Úmbo Cha Babembe kwa makini, unapata hazina kubwa ya mafundisho kuhusu asili yako, nasaba ya familia, heshima, na misingi imara ya maisha.",
-        bio_p3: "Zaidi ya mafundisho ya Úmbo, tovuti hii ni eneo maalum la kuelimishana na kulishana maarifa—ambapo vijana, wamama, wadada, wakaka, watoto, na jamii nzima ya dunia wanajifunza kuishi vizuri pamoja kwa upendo, maadili mema, na amani ya kudumu.",
-        hl_1: "Uhifadhi wa Historia & Nasaba",
-        hl_2: "Mafundisho kwa Lugha ya Kibembe",
-        hl_3: "Eneo la Upendo, Maadili na Amani",
         pillars_kicker: "TUNACHOFUNDISHA",
         pillars_title: "Nguzo Nne za Kuelimishana",
-        p1_title: "Úmbo Cha Babembe",
-        p1_desc: "Sikiliza na fuatilia simulizi na hekima za Úmbo zinazofundisha maana ya maisha, ujasiri, na busara za mababu.",
-        p2_title: "Asili na Nasaba",
-        p2_desc: "Kujua ulikotoka, koo za Babembe, na historia ya familia zetu ili kujenga msingi imara wa kujitambua.",
-        p3_title: "Lugha ya Kibembe",
-        p3_desc: "Kuunganisha wazee na kizazi kipya kupitia mafunzo ya lugha yetu ya asili kwa watoto, vijana, na watu wazima.",
-        p4_title: "Maadili, Upendo & Amani",
-        p4_desc: "Masomo mengine ya kijamii nje ya Úmbo yanayofundisha wamama, vijana, wadada, na wakaka kuishi kwa upendo na amani.",
         vid_kicker: "TAZAMA NA SIKILIZA",
         vid_title: "Maktaba ya Video (Video Library)",
-        vid_sub: "Fuatilia mafundisho ya Úmbo Cha Babembe pamoja na masomo ya maadili, familia, na amani.",
-        filter_all: "Video Zote",
-        filter_umbo: "Úmbo Cha Babembe",
-        filter_ethics: "Maadili, Upendo & Amani",
-        yt_more_title: "Ungependa Kutazama Mafundisho Zaidi?",
-        yt_more_desc: "Tembelea chaneli zetu mbili rasmi za YouTube ili kupata mfululizo mzima wa masomo ya Úmbo na elimu ya jamii:",
+        yt_more_title: "Ungependa Kutazama na Kujifunza Zaidi?",
         contact_kicker: "WASILIANA NASI",
-        contact_title: "Tuma Ujumbe Wako",
-        contact_sub: "Mawasiliano",
-        contact_desc: "Kwa maswali, ushauri, au ushirikiano, wasiliana nasi hapa:",
-        footer_desc: "Jukwaa rasmi la kufundisha Úmbo Cha Babembe, kulinda historia, lugha ya Kibembe, na kujenga jamii yenye upendo, maadili mema, na amani duniani kote.",
-        footer_links: "Viungo vya Haraka",
-        footer_channels: "Chaneli Rasmi",
-        footer_community: "Wasiliana Nasi"
+        contact_title: "Tuma Ujumbe Wako"
     },
     bem: {
         nav_home: "Mwaambo",
@@ -86,38 +70,13 @@ const translations = {
         about_title: "Bikwatene na Alembeela Foundation",
         founder_role: "Mwandi — Alembeela Foundation",
         bio_heading: "Izwi lya Ubulongo, Bwenge bwa Bakulu na Bulembo",
-        bio_p1: "Alembeela atangile Alembeela Foundation na mutima wa kubika historia, mila, na lulemi lwetu lwa Kibembe bileke kupota, kadi biheshimiwe na bana ba lelo na ba kesho mu nsi yose.",
-        bio_p2: "Mu lukala luno, nga waumvwa na kulonda Úmbo Cha Babembe na makini, ukafundishwa bingi bikwatene na asili yobe, nasaba ya lupwa, heshima, na bulembo bwa maisha.",
-        bio_p3: "Kandi, luno ni lubanza lwa kufundishana—mwene bakulu, bamama, bashikulu, balume, na bana bafundishana kwikala na lutondo, maadili mazuri, na bulembo.",
-        hl_1: "Kubika Historia & Nasaba",
-        hl_2: "Mafundisho mu Lulemi lwa Kibembe",
-        hl_3: "Lubanza lwa Lutondo na Bulembo",
         pillars_kicker: "BYO TUFUNDISHA",
         pillars_title: "Misingi Ine ya Kufundishana",
-        p1_title: "Úmbo Cha Babembe",
-        p1_desc: "Umvwa na londa bwenge bwa Úmbo bufundisha maana ya maisha na busara za bakulu.",
-        p2_title: "Asili na Nasaba",
-        p2_desc: "Kwijiba ko wafuma, makabila ga Babembe, na historia ya lupwa lwetu.",
-        p3_title: "Lulemi lwa Kibembe",
-        p3_desc: "Kuunganisha bakulu na bana ba lelo mu lulemi lwetu lwa asili.",
-        p4_title: "Maadili, Lutondo & Bulembo",
-        p4_desc: "Mafundisho ga kwikala na lutondo, heshima, na bulembo mu jamii yose.",
         vid_kicker: "LOLA NA UMVWA",
         vid_title: "Maktaba ya Video (Úmbo & Maadili)",
-        vid_sub: "Londa mafundisho ga Úmbo Cha Babembe na masomo ga maadili na bulembo.",
-        filter_all: "Video Zose",
-        filter_umbo: "Úmbo Cha Babembe",
-        filter_ethics: "Maadili, Lutondo & Bulembo",
         yt_more_title: "Olongelelwe Kulola Mafundisho Mangi?",
-        yt_more_desc: "Ingila mu chaneli zetu ibili za YouTube ulole masomo mangi ga Úmbo na jamii:",
         contact_kicker: "TUBONANE",
-        contact_title: "Tuma Ujumbe Wobe",
-        contact_sub: "Mawasiliano",
-        contact_desc: "Nga uli na swali ao ushauri, tubonane hapa:",
-        footer_desc: "Lukala lwa kufundisha Úmbo Cha Babembe, kubika historia, lulemi lwa Kibembe, na kubaka jamii ya lutondo na bulembo.",
-        footer_links: "Viungo vya Haraka",
-        footer_channels: "Chaneli Rasmi",
-        footer_community: "Tubonane"
+        contact_title: "Tuma Ujumbe Wobe"
     },
     en: {
         nav_home: "Home",
@@ -135,20 +94,125 @@ const translations = {
         about_title: "About Alembeela Foundation",
         founder_role: "Founder — Alembeela Foundation",
         bio_heading: "Voice of Heritage, Wisdom of Elders & Community Building",
-        bio_p1: "Alembeela founded Alembeela Foundation with a deep vision to ensure that the identity, history, traditions, and noble Kibembe language are preserved and respected by current and future generations worldwide.",
-        bio_p2: "Through this platform, as you listen closely to Úmbo Cha Babembe, you gain a wealth of teachings about your origins, family lineage, respect, and strong life principles.",
-        bio_p3: "Beyond Úmbo teachings, this website is a dedicated space for mutual learning—where youth, mothers, sisters, brothers, children, and the global community learn to live together in love, good values, and lasting peace.",
-        hl_1: "Preservation of History & Lineage",
-        hl_2: "Teachings in Kibembe Language",
-        hl_3: "Space for Love, Values & Peace",
         pillars_kicker: "WHAT WE TEACH",
         pillars_title: "Four Pillars of Mutual Learning",
-        p1_title: "Úmbo Cha Babembe",
-        p1_desc: "Listen to and follow the stories and wisdom of Úmbo that teach the meaning of life, courage, and ancestral wisdom.",
-        p2_title: "Origin & Lineage",
-        p2_desc: "Know where you come from, Babembe clans, and our family history to build a strong foundation of self-identity.",
-        p3_title: "Kibembe Language",
-        p3_desc: "Connecting elders and the new generation through lessons in our native language for children, youth, and adults.",
-        p4_title: "Morals, Love & Peace",
-        p4_desc: "Social lessons beyond Úmbo teaching mothers, youth, sisters, and brothers how to live in love and peace.",
         vid_kicker: "WATCH & LISTEN",
+        vid_title: "Video Library",
+        yt_more_title: "Want to Watch and Learn More?",
+        contact_kicker: "CONTACT US",
+        contact_title: "Send Your Message"
+    },
+    fr: {
+        nav_home: "Accueil",
+        nav_about: "À Propos",
+        nav_teachings: "Enseignements",
+        nav_videos: "Vidéothèque",
+        nav_photos: "Archives Photos",
+        nav_contact: "Contact",
+        hero_tag: "HÉRITAGE • CULTURE • ÚMBO • PAIX",
+        hero_title: "Bienvenue à Alembeela Foundation",
+        hero_desc: "Plateforme numérique officielle dédiée à l'enseignement de l'Úmbo Cha Babembe, à la préservation de l'histoire, de la langue Kibembe et à la promotion de l'amour, des bonnes mœurs et de la paix.",
+        btn_watch: "Voir les Enseignements",
+        btn_gallery: "Galerie Photos",
+        about_kicker: "ORIGINE & VISION",
+        about_title: "À Propos d'Alembeela Foundation",
+        founder_role: "Fondateur — Alembeela Foundation",
+        bio_heading: "Voix de l'Héritage, Sagesse des Anciens et Paix",
+        pillars_kicker: "CE QUE NOUS ENSEIGNONS",
+        pillars_title: "Quatre Piliers d'Éducation",
+        vid_kicker: "REGARDER & ÉCOUTER",
+        vid_title: "Vidéothèque",
+        yt_more_title: "Voulez-vous Voir Plus d'Enseignements ?",
+        contact_kicker: "CONTACTEZ-NOUS",
+        contact_title: "Envoyez Votre Message"
+    },
+    rn: {
+        nav_home: "Intango",
+        nav_about: "Ivyerekeye Twebwe",
+        nav_teachings: "Inyigisho",
+        nav_videos: "Isomero ry'Amavidewo",
+        nav_photos: "Amafoto n'Icibutso",
+        nav_contact: "Twandikire",
+        hero_tag: "IRAGI • IMICO • ÚMBO • AMAHORO",
+        hero_title: "Kaze muri Alembeela Foundation",
+        hero_desc: "Urubuga rwemewe rwo kwigisha Úmbo Cha Babembe, kubungabunga kahise, ururimi rw'Ikibembe, no kwubaka urukundo, indero nziza n'amahoro hagati y'abakurambere n'urwaruka kw'isi yose.",
+        btn_watch: "Raba Inyigisho",
+        btn_gallery: "Raba Amafoto",
+        about_kicker: "INKOMOKO N'ICEREKEZO",
+        about_title: "Ivyerekeye Alembeela Foundation",
+        founder_role: "Uwabitanguje — Alembeela Foundation",
+        bio_heading: "Ijwi ry'Iragi, Ubwenge bw'Abakurambere n'Amahoro",
+        pillars_kicker: "IVYO TWIGISHA",
+        pillars_title: "Inkingi Zine zo Kwungurana Ubumenyi",
+        vid_kicker: "RABA KANDI WUMVIRIZE",
+        vid_title: "Isomero ry'Amavidewo",
+        yt_more_title: "Wipfuza Kuraba Izindi Nyigisho?",
+        contact_kicker: "TWANDIKIRE",
+        contact_title: "Rungika Ubutumwa Bwawe"
+    },
+    es: {
+        nav_home: "Inicio",
+        nav_about: "Sobre Nosotros",
+        nav_teachings: "Enseñanzas",
+        nav_videos: "Videoteca",
+        nav_photos: "Archivo de Fotos",
+        nav_contact: "Contacto",
+        hero_tag: "PATRIMONIO • CULTURA • ÚMBO • PAZ",
+        hero_title: "Bienvenido a Alembeela Foundation",
+        hero_desc: "Plataforma digital oficial dedicada a enseñar Úmbo Cha Babembe, preservar la historia, el idioma Kibembe y construir un puente de amor, buenos valores y paz entre los mayores y las nuevas generaciones.",
+        btn_watch: "Ver Enseñanzas",
+        btn_gallery: "Archivo de Fotos",
+        about_kicker: "ORIGEN Y VISIÓN",
+        about_title: "Sobre Alembeela Foundation",
+        founder_role: "Fundador — Alembeela Foundation",
+        bio_heading: "Voz del Patrimonio, Sabiduría de los Mayores y Paz",
+        pillars_kicker: "LO QUE ENSEÑAMOS",
+        pillars_title: "Cuatro Pilares de Aprendizaje",
+        vid_kicker: "VER Y ESCUCHAR",
+        vid_title: "Videoteca",
+        yt_more_title: "¿Quieres Ver Más Enseñanzas?",
+        contact_kicker: "CONTÁCTANOS",
+        contact_title: "Envía Tu Mensaje"
+    }
+};
+
+const languageSelector = document.getElementById('languageSelector');
+const googleTranslateDiv = document.getElementById('google_translate_element');
+
+if (languageSelector) {
+    languageSelector.addEventListener('change', (e) => {
+        const selectedLang = e.target.value;
+
+        if (selectedLang === 'more') {
+            if (googleTranslateDiv) {
+                googleTranslateDiv.style.display = 'block';
+            }
+            return;
+        } else if (googleTranslateDiv) {
+            googleTranslateDiv.style.display = 'none';
+        }
+
+        const dict = translations[selectedLang];
+        if (!dict) return;
+
+        document.querySelectorAll('[data-i18n]').forEach((el) => {
+            const key = el.getAttribute('data-i18n');
+            if (dict[key]) {
+                el.textContent = dict[key];
+            }
+        });
+    });
+}
+
+/* =========================================================
+   3. KUCHUJA VIDEO (VIDEO LIBRARY FILTER)
+   ========================================================= */
+const videoFilterBtns = document.querySelectorAll('.filter-btn');
+const videoCards = document.querySelectorAll('.video-card');
+
+videoFilterBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        videoFilterBtns.forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        const filter = btn.getAttribute('data-filter');
