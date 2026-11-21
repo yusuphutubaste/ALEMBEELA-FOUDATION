@@ -3,44 +3,44 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Alembeela Foundation | Utamaduni na Jamii</title>
+  <title>Alembeela Foundation | Utamaduni na Historia Yetu</title>
   
-  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Navigation Bar -->
+  <!-- Navigation -->
   <header class="navbar">
     <div class="nav-container">
-      <a href="#home" class="logo">Alembeela <span>Foundation</span></a>
+      <a href="index.html" class="logo-area">
+        <img src="logo.png" alt="Alembeela Foundation Logo" class="brand-logo" onerror="this.style.display='none'">
+        <span class="logo-text">Alembeela <span>Foundation</span></span>
+      </a>
 
-      <!-- Live Instant Search Bar -->
+      <!-- Search Bar -->
       <div class="search-box">
         <i class="fa-solid fa-magnifying-glass"></i>
-        <input type="text" id="searchInput" placeholder="Tafuta video, simulizi...">
-        <button type="button" id="clearSearch" title="Futa utafutaji"><i class="fa-solid fa-xmark"></i></button>
+        <input type="text" id="searchInput" placeholder="Tafuta hapa...">
+        <button type="button" id="clearSearch" title="Futa"><i class="fa-solid fa-xmark"></i></button>
       </div>
 
-      <!-- Menu Links -->
+      <!-- Links -->
       <nav>
         <ul class="nav-links" id="navLinks">
-          <li><a href="#home">Mwanzo</a></li>
-          <li><a href="#featured">Video Kuu</a></li>
-          <li><a href="#shorts-series">Vipande Fupi</a></li>
-          <li><a href="#gallery">Picha za Jamii</a></li>
-          <li><a href="#channels">Chaneli Zetu</a></li>
-          <li><a href="#about">Kuhusu Sisi</a></li>
-          <li><a href="#contact">Mawasiliano</a></li>
+          <li><a href="index.html#home">Mwanzo</a></li>
+          <li><a href="index.html#featured">Video Kuu</a></li>
+          <li><a href="index.html#shorts-series">Vipande Fupi</a></li>
+          <li><a href="picha.html">Picha za Jamii</a></li>
+          <li><a href="index.html#channels">Chaneli Zetu</a></li>
+          <li><a href="index.html#about">Kuhusu Sisi</a></li>
+          <li><a href="index.html#contact">Mawasiliano</a></li>
         </ul>
       </nav>
 
-      <!-- Theme Switch & Mobile Menu Toggle -->
       <div class="nav-actions">
-        <button type="button" id="themeToggle" class="theme-btn" title="Badili muonekano">
+        <button type="button" id="themeToggle" class="theme-btn" title="Badili mwonekano">
           <i class="fa-solid fa-sun light-icon"></i>
           <i class="fa-solid fa-moon dark-icon"></i>
         </button>
@@ -49,8 +49,7 @@
           <i class="fa-brands fa-youtube"></i> @Alembeelawaidi
         </a>
 
-        <!-- Hamburger Icon -->
-        <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Fungua Menyu">
+        <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menyu">
           <span></span>
           <span></span>
           <span></span>
@@ -59,157 +58,113 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section id="home" class="hero">
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <span class="hero-badge"><i class="fa-solid fa-landmark"></i> Kuhifadhi Asili na Historia</span>
+      <span class="hero-badge"><i class="fa-solid fa-landmark"></i> Hazina ya Jamii Yetu</span>
       <h1>Kuhifadhi Urithi, Utamaduni na Historia Yetu</h1>
-      <p>Karibu kwenye tovuti rasmi ya Alembeela Foundation. Fuatilia simulizi za kweli, mila na desturi za jamii yetu.</p>
+      <p>Karibu Alembeela Foundation. Hapa tunakusanya na kusimulia historia za kweli, mila zetu, na asili ya Babembe ili zisipotee.</p>
       <div class="hero-buttons">
-        <a href="#featured" class="btn-primary"><i class="fa-solid fa-play"></i> Tazama Video Kuu</a>
+        <a href="#featured" class="btn-primary"><i class="fa-solid fa-play"></i> Tazama Úmbo cha Babembe</a>
         <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" class="btn-secondary"><i class="fa-brands fa-youtube"></i> Chaneli ya Alembeela wa Idi</a>
       </div>
     </div>
   </section>
 
-  <!-- Takwimu / Milestones -->
+  <!-- Takwimu -->
   <section class="stats">
     <div class="stat-card">
       <div class="stat-icon"><i class="fa-solid fa-film"></i></div>
       <h3 class="counter" data-target="15">0</h3>
-      <p>Maudhui & Simulizi</p>
+      <p>Simulizi Zilizorekodiwa</p>
     </div>
     <div class="stat-card">
-      <div class="stat-icon"><i class="fa-solid fa-eye"></i></div>
-      <h3 class="counter" data-target="200">0</h3>
-      <p>Watazamaji Wetu</p>
+      <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+      <h3 class="counter" data-target="500">0</h3>
+      <p>Familia na Watazamaji</p>
     </div>
     <div class="stat-card">
-      <div class="stat-icon"><i class="fa-solid fa-certificate"></i></div>
+      <div class="stat-icon"><i class="fa-solid fa-shield-halved"></i></div>
       <h3 class="counter" data-target="100">0</h3>
       <p>Asilimia ya Uhalisia</p>
     </div>
   </section>
 
-  <!-- Video Kuu Moja Pekee (Featured Video) -->
+  <!-- Video Kuu Moja -->
   <section id="featured" class="video-section">
     <div class="section-title">
-      <span class="sub-title">Video Kuu</span>
+      <span class="sub-title">Video Maalum</span>
       <h2>ÚMBO CHA BABEMBE</h2>
-      <p>Simulizi na historia halisi ya Babembe moja kwa moja kutoka kwenye chaneli yetu</p>
+      <p>Tazama simulizi hii inayoeleza kwa kina historia, asili na misingi yetu.</p>
     </div>
 
-    <div class="single-video-wrapper searchable-item" data-keywords="umbo cha babembe simulizi historia asili video kuu">
+    <div class="single-video-wrapper searchable-item" data-keywords="umbo cha babembe simulizi historia babembe sehemu ya kwanza pili">
       <div class="iframe-container">
         <iframe 
-          src="https://www.youtube.com/embed/xsxfbtJnrzg?si=ifUad4YtvfgcAmMy" 
+          src="https://www.youtube.com/embed/xsxfbtJnrzg" 
           title="ÚMBO CHA BABEMBE" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          referrerpolicy="strict-origin-when-cross-origin" 
           allowfullscreen>
         </iframe>
       </div>
       <div class="card-info">
-        <span class="video-tag">Maudhui Kuu</span>
+        <span class="video-tag">Mfululizo wa Úmbo</span>
         <h4>Úmbo cha Babembe</h4>
-        <p>Tazama simulizi hii ya kusisimua kuhusu utambulisho, asili na misingi ya jamii yetu.</p>
+        <p>Kipindi hiki kinachambua kwa kina mila, majina, na kumbukumbu za wazee wetu.</p>
       </div>
     </div>
   </section>
 
-  <!-- Kundi la Shorts (Vipande Fupi) -->
+  <!-- Shorts -->
   <section id="shorts-series" class="shorts-section">
     <div class="section-title">
       <span class="sub-title">Vipande Vifupi</span>
-      <h2>Vipande Fupi & Matukio (Shorts)</h2>
-      <p>Shorts za haraka zenye mafunzo na utambulisho</p>
+      <h2>Vipande Fupi & Matukio</h2>
+      <p>Mambo madogo yenye maana kubwa kuhusu maisha na utamaduni wetu.</p>
     </div>
 
     <div class="shorts-grid">
-      <!-- Short 1 -->
-      <div class="short-card searchable-item" data-keywords="short kipande kifupi babembe alembeela">
+      <div class="short-card searchable-item" data-keywords="short kipande kifupi umbo alembeela">
         <div class="short-iframe-wrapper">
-          <iframe 
-            src="https://www.youtube.com/embed/HhJm-izUZk4" 
-            title="Short 1" 
-            allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/HhJm-izUZk4" title="Short 1" allowfullscreen></iframe>
         </div>
-        <div class="short-label"><i class="fa-brands fa-youtube"></i> Short #1</div>
+        <div class="short-label"><i class="fa-brands fa-youtube"></i> Kipande #1</div>
       </div>
 
-      <!-- Short 2 -->
       <div class="short-card searchable-item" data-keywords="short kipande kifupi matukio ya jamii">
         <div class="short-iframe-wrapper">
-          <iframe 
-            src="https://www.youtube.com/embed/jCPtT8ZPsoE" 
-            title="Short 2" 
-            allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/jCPtT8ZPsoE" title="Short 2" allowfullscreen></iframe>
         </div>
-        <div class="short-label"><i class="fa-brands fa-youtube"></i> Short #2</div>
+        <div class="short-label"><i class="fa-brands fa-youtube"></i> Kipande #2</div>
       </div>
 
-      <!-- Short 3 -->
       <div class="short-card searchable-item" data-keywords="short kipande kifupi alembeela wa idi">
         <div class="short-iframe-wrapper">
-          <iframe 
-            src="https://www.youtube.com/embed/VklA0Aw2TLc" 
-            title="Short 3" 
-            allowfullscreen>
-          </iframe>
+          <iframe src="https://www.youtube.com/embed/VklA0Aw2TLc" title="Short 3" allowfullscreen></iframe>
         </div>
-        <div class="short-label"><i class="fa-brands fa-youtube"></i> Short #3</div>
+        <div class="short-label"><i class="fa-brands fa-youtube"></i> Kipande #3</div>
       </div>
     </div>
   </section>
 
-  <!-- Sehemu ya Picha za Jamii (Ziko wazi tayari kwa ajili yako kuongeza picha zako) -->
-  <section id="gallery" class="gallery-section">
-    <div class="section-title">
-      <span class="sub-title">Matunzio</span>
-      <h2>Picha za Jamii</h2>
-      <p>Sehemu maalum ya kuweka picha za shughuli, wazee wa mila, na matukio ya jamii</p>
-    </div>
-
-    <div class="gallery-grid">
-      <!-- Nafasi ya Picha 1 -->
-      <div class="gallery-placeholder searchable-item" data-keywords="picha ya kwanza jamii">
-        <i class="fa-solid fa-image placeholder-icon"></i>
-        <h4>Nafasi ya Picha #1</h4>
-        <p>Bofya au badilisha hapa ili kuweka picha yako</p>
+  <!-- Kiungo cha Ukurasa wa Picha -->
+  <section class="gallery-promo-section">
+    <div class="gallery-promo-box">
+      <div class="promo-text">
+        <h2>Matunzio ya Picha za Jamii</h2>
+        <p>Tazama albamu yetu ya picha za kumbukumbu, mikutano, na wazee wa jamii kwenye ukurasa maalum wa picha.</p>
       </div>
-
-      <!-- Nafasi ya Picha 2 -->
-      <div class="gallery-placeholder searchable-item" data-keywords="picha ya pili jamii">
-        <i class="fa-solid fa-image placeholder-icon"></i>
-        <h4>Nafasi ya Picha #2</h4>
-        <p>Bofya au badilisha hapa ili kuweka picha yako</p>
-      </div>
-
-      <!-- Nafasi ya Picha 3 -->
-      <div class="gallery-placeholder searchable-item" data-keywords="picha ya tatu jamii">
-        <i class="fa-solid fa-image placeholder-icon"></i>
-        <h4>Nafasi ya Picha #3</h4>
-        <p>Bofya au badilisha hapa ili kuweka picha yako</p>
-      </div>
-
-      <!-- Nafasi ya Picha 4 -->
-      <div class="gallery-placeholder searchable-item" data-keywords="picha ya nne jamii">
-        <i class="fa-solid fa-image placeholder-icon"></i>
-        <h4>Nafasi ya Picha #4</h4>
-        <p>Bofya au badilisha hapa ili kuweka picha yako</p>
-      </div>
+      <a href="picha.html" class="btn-primary"><i class="fa-solid fa-images"></i> Fungua Ukurasa wa Picha</a>
     </div>
   </section>
 
-  <!-- Chaneli ya Pili Promo -->
+  <!-- Chaneli ya Pili -->
   <section id="channels" class="channel-promo">
     <div class="channel-promo-box">
-      <div class="channel-badge"><i class="fa-brands fa-youtube"></i> Chaneli ya Pili</div>
-      <h2>Fuatilia Pia Chaneli Yetu ya @Alembeelawaidi</h2>
-      <p>Kwenye <strong>@Alembeelawaidi</strong> tunashiriki simulizi nyingi za kila siku na matukio ya kijamii. Jiunge nasi:</p>
+      <div class="channel-badge"><i class="fa-brands fa-youtube"></i> Chaneli Ndugu</div>
+      <h2>Fuatilia Pia @Alembeelawaidi</h2>
+      <p>Kwenye chaneli ya <strong>@Alembeelawaidi</strong> tunashiriki maisha ya kila siku na safari za kutafuta historia. Karibu ujiunge nasi huko pia:</p>
       <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" class="btn-channel-large">
         <i class="fa-brands fa-youtube"></i> Tembelea @Alembeelawaidi
       </a>
@@ -219,20 +174,20 @@
   <!-- Kuhusu Sisi -->
   <section id="about" class="about">
     <div class="section-title">
-      <span class="sub-title">Dhamira Yetu</span>
+      <span class="sub-title">Lengo Letu</span>
       <h2>Kuhusu Alembeela Foundation</h2>
-      <p>Kazi tunayoifanya na malengo yetu kwa jamii</p>
+      <p>Tumejitolea kuhakikisha kumbukumbu za wazee na mila zetu zinabaki salama.</p>
     </div>
     <div class="about-grid">
-      <div class="about-card searchable-item" data-keywords="kuhusu sisi uhifadhi historia mila asili">
+      <div class="about-card searchable-item" data-keywords="kuhusu sisi historia mila asili urithi">
         <div class="about-icon"><i class="fa-solid fa-scroll"></i></div>
-        <h3>Uhifadhi wa Historia na Mila</h3>
-        <p>Kuhakikisha kumbukumbu, majina, na simulizi za asili hazipotei bali zinahifadhiwa kwa heshima kwa ajili ya vizazi vijavyo.</p>
+        <h3>Kuhifadhi Asili na Mila</h3>
+        <p>Mila nyingi zinasahaulika kwa sababu hazikuandikwa. Kazi yetu ni kurekodi sauti, picha na simulizi ili watoto wetu wajue walikotoka.</p>
       </div>
-      <div class="about-card searchable-item" data-keywords="kuhusu sisi umoja ustawi jamii">
+      <div class="about-card searchable-item" data-keywords="kuhusu sisi umoja jamii mshikamano">
         <div class="about-icon"><i class="fa-solid fa-hand-holding-heart"></i></div>
-        <h3>Umoja na Ustawi wa Jamii</h3>
-        <p>Kujenga daraja imara la mshikamano, kutoa elimu ya utamaduni, na kuwasaidia wanajamii kujivunia asili yao.</p>
+        <h3>Kuleta Jamii Pamoja</h3>
+        <p>Kutumia maudhui haya kuwakutanisha watu wetu popote walipo duniani na kujenga mshikamano wa kweli.</p>
       </div>
     </div>
   </section>
@@ -240,97 +195,77 @@
   <!-- Mawasiliano -->
   <section id="contact" class="contact">
     <div class="section-title">
-      <span class="sub-title">Mawasiliano</span>
+      <span class="sub-title">Tupigie / Tuandikie</span>
       <h2>Wasiliana Nasi</h2>
-      <p>Tuandikie maoni au ushauri wako hapa:</p>
+      <p>Kama una jambo unataka tushirikiane au ushauri wowote, tuandikie hapa:</p>
     </div>
     <form class="contact-form" id="contactForm">
       <div class="form-row">
-        <input type="text" placeholder="Jina Lako Kamili" required>
-        <input type="email" placeholder="Barua Pepe Yako" required>
+        <input type="text" placeholder="Jina Lako" required>
+        <input type="email" placeholder="Barua Pepe" required>
       </div>
       <input type="text" placeholder="Mada ya Ujumbe" required>
-      <textarea rows="5" placeholder="Andika ujumbe wako hapa..." required></textarea>
+      <textarea rows="4" placeholder="Andika ujumbe wako hapa..." required></textarea>
       <button type="submit" class="btn-primary"><i class="fa-solid fa-paper-plane"></i> Tuma Ujumbe</button>
     </form>
   </section>
 
-  <!-- 4-Column Footer -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="footer-container">
-      
-      <!-- Safu 1: Brand Info -->
       <div class="footer-col brand-col">
-        <h3 class="footer-brand">Alembeela <span>Foundation</span></h3>
-        <p class="brand-mission">
-          Kuhifadhi urithi, mila, na simulizi halisi za jamii yetu kwa ajili ya kuelimisha na kuhamasisha vizazi vya sasa na vijavyo.
-        </p>
+        <div class="footer-logo-row">
+          <img src="logo.png" alt="Alembeela Logo" class="footer-logo" onerror="this.style.display='none'">
+          <h3 class="footer-brand">Alembeela <span>Foundation</span></h3>
+        </div>
+        <p class="brand-mission">Kuhifadhi historia na kuunganisha jamii yetu kupitia simulizi za kweli.</p>
         <div class="social-links">
-          <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
-          <a href="#" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-          <a href="#" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
-          <a href="#" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a>
         </div>
       </div>
 
-      <!-- Safu 2: Quick Links -->
       <div class="footer-col">
-        <h4 class="col-title">Viungo vya Haraka</h4>
+        <h4 class="col-title">Kurasa</h4>
         <ul class="footer-nav">
-          <li><a href="#home">Mwanzo</a></li>
-          <li><a href="#featured">Video Kuu</a></li>
-          <li><a href="#shorts-series">Vipande Fupi</a></li>
-          <li><a href="#gallery">Picha za Jamii</a></li>
-          <li><a href="#about">Kuhusu Sisi</a></li>
-          <li><a href="#contact">Mawasiliano</a></li>
+          <li><a href="index.html#home">Mwanzo</a></li>
+          <li><a href="index.html#featured">Video Kuu</a></li>
+          <li><a href="index.html#shorts-series">Vipande Fupi</a></li>
+          <li><a href="picha.html">Picha za Jamii</a></li>
+          <li><a href="index.html#about">Kuhusu Sisi</a></li>
+          <li><a href="index.html#contact">Mawasiliano</a></li>
         </ul>
       </div>
 
-      <!-- Safu 3: Contact Details -->
       <div class="footer-col contact-col">
         <h4 class="col-title">Mawasiliano</h4>
         <ul class="contact-list">
-          <li>
-            <i class="fa-solid fa-location-dot"></i>
-            <span>Denver, CO, Marekani</span>
-          </li>
-          <li>
-            <i class="fa-solid fa-phone"></i>
-            <a href="tel:+13035550199">+1 (303) 555-0199</a>
-          </li>
-          <li>
-            <i class="fa-solid fa-envelope"></i>
-            <a href="mailto:info@alembeelafoundation.org">info@alembeelafoundation.org</a>
-          </li>
-          <li>
-            <i class="fa-solid fa-clock"></i>
-            <span>Jumatatu - Ijumaa: 9:00 AM - 5:00 PM</span>
-          </li>
+          <li><i class="fa-solid fa-location-dot"></i> <span>Denver, Colorado</span></li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+13035550199">+1 (303) 555-0199</a></li>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@alembeelafoundation.org">info@alembeelafoundation.org</a></li>
         </ul>
       </div>
 
-      <!-- Safu 4: Newsletter -->
       <div class="footer-col newsletter-col">
-        <h4 class="col-title">Pata Taarifa Mpya</h4>
-        <p class="newsletter-desc">Jiunge na jarida letu ili kupokea taarifa za video mpya punde inapowekwa mtandaoni.</p>
+        <h4 class="col-title">Taarifa Mpya</h4>
+        <p class="newsletter-desc">Weka barua pepe yako ili usipitwe na video au simulizi mpya.</p>
         <form class="newsletter-form" id="newsletterForm">
           <div class="input-group">
             <input type="email" placeholder="Barua pepe yako..." required>
-            <button type="submit">Jiunge</button>
+            <button type="submit">Tuma</button>
           </div>
         </form>
       </div>
-
     </div>
 
-    <!-- Bottom Bar (Mwaka unasasishwa kiotomatiki) -->
     <div class="footer-bottom">
       <div class="bottom-container">
         <p class="copyright">&copy; <span id="currentYear"></span> Alembeela Foundation. Haki zote zimehifadhiwa.</p>
         <div class="legal-links">
-          <a href="#">Privacy Policy</a>
+          <a href="#">Faragha</a>
           <span class="divider">|</span>
-          <a href="#">Terms of Service</a>
+          <a href="#">Vigezo</a>
         </div>
       </div>
     </div>
