@@ -11,7 +11,7 @@ body {
   line-height: 1.6;
 }
 
-/* Urambazaji */
+/* Urambazaji / Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -31,7 +31,7 @@ body {
 }
 
 .logo span {
-  color: #c53030;
+  color: #e67e22;
 }
 
 .nav-links {
@@ -48,12 +48,12 @@ body {
 }
 
 .nav-links a:hover {
-  color: #c53030;
+  color: #e67e22;
 }
 
-/* Vitufe */
+/* Vitufe (Buttons) */
 .btn-primary {
-  background: #c53030;
+  background: #e67e22;
   color: #ffffff;
   padding: 10px 22px;
   border-radius: 25px;
@@ -65,7 +65,7 @@ body {
 }
 
 .btn-primary:hover {
-  background: #9b2c2c;
+  background: #cf6d17;
 }
 
 .btn-secondary {
@@ -96,7 +96,7 @@ body {
 }
 
 .btn-channel:hover {
-  background: #c53030;
+  background: #e67e22;
 }
 
 /* Hero Section */
@@ -138,10 +138,10 @@ body {
 
 .stat-card h3 {
   font-size: 36px;
-  color: #c53030;
+  color: #e67e22;
 }
 
-/* Sehemu za Kurasa */
+/* Sehemu za Kurasa (Sections) */
 section {
   padding: 60px 8%;
 }
@@ -162,7 +162,7 @@ section {
   color: #718096;
 }
 
-/* Kundi la ÚMBO CHA BABEMBE */
+/* ÚMBO CHA BABEMBE Section */
 .video-section {
   background: #f1f5f9;
 }
@@ -212,7 +212,7 @@ section {
   color: #718096;
 }
 
-/* Sehemu ya Shorts (Vertical 9:16) */
+/* Shorts Section (9:16) */
 .shorts-section {
   background: #ffffff;
 }
@@ -234,7 +234,7 @@ section {
 
 .short-iframe-wrapper {
   position: relative;
-  padding-bottom: 177.77%; /* Uwiano wa wima wa Shorts (9:16) */
+  padding-bottom: 177.77%; /* 9:16 ratio */
   height: 0;
 }
 
@@ -247,7 +247,7 @@ section {
   border: 0;
 }
 
-/* Tangazo la Chaneli ya Pili */
+/* Chaneli ya Pili Promo */
 .channel-promo {
   background: #edf2f7;
   text-align: center;
@@ -275,7 +275,7 @@ section {
 
 .btn-channel-large {
   display: inline-block;
-  background: #c53030;
+  background: #e67e22;
   color: #ffffff;
   padding: 12px 28px;
   border-radius: 30px;
@@ -286,7 +286,7 @@ section {
 }
 
 .btn-channel-large:hover {
-  background: #9b2c2c;
+  background: #cf6d17;
 }
 
 /* Kuhusu Sisi */
@@ -301,7 +301,7 @@ section {
   border-radius: 12px;
   padding: 30px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-  border-top: 4px solid #c53030;
+  border-top: 4px solid #e67e22;
 }
 
 .about-card h3 {
@@ -327,19 +327,230 @@ section {
 
 .contact-form input:focus, .contact-form textarea:focus {
   outline: none;
-  border-color: #c53030;
+  border-color: #e67e22;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 24px;
-  background: #1a202c;
-  color: #cbd5e0;
+/* =======================================
+   Modern 4-Column Footer
+======================================= */
+.site-footer {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  padding-top: 60px;
+  border-top: 3px solid #e67e22;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 25px 45px;
+  display: grid;
+  grid-template-columns: 1.3fr 0.9fr 1.1fr 1.2fr;
+  gap: 40px;
+}
+
+.footer-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.footer-brand span {
+  color: #e67e22;
+}
+
+.brand-mission {
+  color: #d1d5db;
   font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
 }
 
-/* Kwenye Simu */
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #2a2a2a;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 15px;
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: #e67e22;
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+.col-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 8px;
+}
+
+.col-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 35px;
+  height: 2px;
+  background-color: #e67e22;
+}
+
+.footer-nav {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-nav li {
+  margin-bottom: 10px;
+}
+
+.footer-nav a {
+  color: #d1d5db;
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.footer-nav a:hover {
+  color: #e67e22;
+  padding-left: 6px;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.contact-list i {
+  color: #e67e22;
+  margin-top: 3px;
+  font-size: 15px;
+  width: 16px;
+  text-align: center;
+}
+
+.contact-list a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-list a:hover {
+  color: #e67e22;
+}
+
+.newsletter-desc {
+  font-size: 14px;
+  color: #d1d5db;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+.newsletter-form .input-group {
+  display: flex;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.newsletter-form input {
+  flex: 1;
+  padding: 12px 14px;
+  border: 1px solid #333333;
+  background: #262626;
+  color: #ffffff;
+  font-size: 14px;
+  outline: none;
+}
+
+.newsletter-form input:focus {
+  border-color: #e67e22;
+}
+
+.newsletter-form button {
+  background: #e67e22;
+  color: #ffffff;
+  border: none;
+  padding: 0 18px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.newsletter-form button:hover {
+  background: #cf6d17;
+}
+
+.footer-bottom {
+  border-top: 1px solid #2d2d2d;
+  padding: 20px 25px;
+  background-color: #141414;
+}
+
+.bottom-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+  color: #9ca3af;
+}
+
+.legal-links a {
+  color: #9ca3af;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.legal-links a:hover {
+  color: #e67e22;
+}
+
+.legal-links .divider {
+  margin: 0 8px;
+  color: #4b5563;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 35px;
+  }
+}
+
 @media (max-width: 768px) {
   .navbar {
     flex-direction: column;
@@ -356,5 +567,17 @@ footer {
   .stats {
     flex-direction: column;
     gap: 20px;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .bottom-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 12px;
   }
 }
