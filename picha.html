@@ -6,131 +6,9 @@
   <title>Picha &amp; Kumbukumbu — Alembeela Foundation</title>
   <meta name="description" content="Maktaba ya picha, kumbukumbu za asili ya familia, mila, na shughuli za jamii ya Babembe — Alembeela Foundation." />
   <link rel="stylesheet" href="style.css" />
-  <style>
-    /* Mitindo maalum ya ukurasa wa Picha (Inaendana na style.css mpya) */
-    .gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-      gap: 20px;
-    }
-
-    .photo-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-light);
-      border-radius: var(--radius-md);
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      box-shadow: var(--shadow-sm);
-      cursor: pointer;
-      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
-    }
-
-    .photo-card:hover {
-      transform: translateY(-3px);
-      box-shadow: var(--shadow-md);
-      border-color: var(--gold-main);
-    }
-
-    .photo-thumb-wrap {
-      position: relative;
-      aspect-ratio: 4 / 3;
-      background: var(--obsidian);
-      overflow: hidden;
-    }
-
-    .photo-thumb {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.35s ease;
-    }
-
-    .photo-card:hover .photo-thumb {
-      transform: scale(1.04);
-    }
-
-    .photo-body {
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      flex: 1;
-    }
-
-    .photo-title {
-      margin: 0;
-      font-size: 1rem;
-      font-weight: 800;
-      color: var(--text-dark);
-      line-height: 1.35;
-    }
-
-    .photo-caption {
-      margin: 0;
-      font-size: 0.86rem;
-      color: var(--text-muted);
-    }
-
-    /* Lightbox Modal */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      z-index: 1000;
-      background: rgba(5, 10, 8, 0.92);
-      backdrop-filter: blur(8px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .lightbox-dialog {
-      background: var(--bg-card);
-      border: 2px solid var(--gold-main);
-      border-radius: var(--radius-lg);
-      max-width: min(920px, 95vw);
-      width: 100%;
-      overflow: hidden;
-      box-shadow: var(--shadow-md);
-    }
-
-    .lightbox-img-wrap {
-      background: var(--obsidian);
-      max-height: 70vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-
-    .lightbox-img {
-      max-width: 100%;
-      max-height: 70vh;
-      object-fit: contain;
-      display: block;
-    }
-
-    .lightbox-footer {
-      padding: 18px 20px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      border-top: 1px solid var(--border-light);
-    }
-
-    .lightbox-nav {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-  </style>
 </head>
 <body>
-  <!-- Top Navigation Bar (Matches index.html) -->
+  <!-- Top Navigation Bar -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="brand-wrap">
@@ -156,7 +34,7 @@
         </div>
 
         <a
-          href="https://youtube.com"
+          href="https://www.youtube.com/@AlembeelaFoundation"
           target="_blank"
           rel="noopener noreferrer"
           class="btn btn-gold btn-sm"
@@ -229,7 +107,7 @@
     </section>
   </main>
 
-  <!-- Obsidian & Gold Footer -->
+  <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-grid">
       <div class="footer-brand">
@@ -246,7 +124,7 @@
         <a href="index.html#theaterSection" data-i18n="navSeries">Úmbo Cha Babembe</a>
         <a href="index.html#pillarsSection" data-i18n="navMission">Dhamira Yetu</a>
         <a href="picha.html" data-i18n="navPhotos">Picha</a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">@AlembeelaFoundation</a>
+        <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" rel="noopener noreferrer">@AlembeelaFoundation</a>
       </div>
     </div>
   </footer>
@@ -273,14 +151,10 @@
   </div>
 
   <script>
-    /* ========================================================================
-       ORODHA YA PICHA (Badilisha 'src' ziwe majina ya picha zako kwenye folda)
-       Mfano: 'images/familia1.jpg' au link ya picha
-       ======================================================================== */
     const PHOTOS = [
       {
         id: 'pic-1',
-        src: 'https://ytimg.com',
+        src: 'https://i.ytimg.com/vi/chCvVUD1FPo/hqdefault.jpg',
         category: 'asili',
         badge: 'Asili & Familia',
         title: 'Úmbo Cha Babembe — Sehemu ya Kwanza (1)',
@@ -288,7 +162,7 @@
       },
       {
         id: 'pic-2',
-        src: 'https://ytimg.com',
+        src: 'https://i.ytimg.com/vi/xsxfbtJnrzg/hqdefault.jpg',
         category: 'mila',
         badge: 'Mila & Wazee',
         title: 'Úmbo Cha Babembe — Sehemu ya Pili (2)',
@@ -299,3 +173,72 @@
     const TEXTS = {
       bem: {
         navSeries: 'Úmbo Cha Babembe',
+        navMission: 'Maboko Metu',
+        navArchive: 'Maktaba',
+        navPhotos: 'Bipicha',
+        heroKicker: 'KUMBUKUMBU ZA BIPICHA',
+        heroHeading: 'Bipicha bya Asili, Mila, na Bakulu',
+        heroLead:
+          'Hifadhi ya bipicha bya historia, milango, mikutano ya bakulu, na maboko ma bantu ba Babembe. Finya kipicha kyose kuikilola bunene.',
+        backVideosBtn: '← Buluka ku Video',
+        galleryEyebrow: 'MAKTABA YA BIPICHA',
+        galleryHeading: 'Kumbukumbu Zose',
+        searchPlaceholder: 'Tafuta kipicha: Asili, Bakulu, Mila...',
+        clearBtn: 'Futa',
+        catAll: 'Zose',
+        catLineage: 'Asili & Milango',
+        catTraditions: 'Mila & Bakulu',
+        catCommunity: 'Maboko ma Bantu',
+        emptyMsg: 'Hakuna kipicha kilichopatikana.',
+        footerCopy: 'Kulinda asili ya milango, mila, na malaka ma bantu ba Babembe.',
+        closeBtn: '✕ Funga'
+      },
+      sw: {
+        navSeries: 'Úmbo Cha Babembe',
+        navMission: 'Dhamira Yetu',
+        navArchive: 'Maktaba',
+        navPhotos: 'Picha',
+        heroKicker: 'KUMBUKUMBU ZA PICHA',
+        heroHeading: 'Picha za Asili, Mila, na Sauti za Wazee',
+        heroLead:
+          'Hifadhi ya picha za kihistoria, familia, mikutano ya wazee, na matukio ya jamii ya Babembe. Bonyeza picha yoyote kuiona kwa ukubwa kamili.',
+        backVideosBtn: '← Rudi Kwenye Video',
+        galleryEyebrow: 'MAKTABA YA PICHA',
+        galleryHeading: 'Kumbukumbu Zote',
+        searchPlaceholder: 'Tafuta picha: Asili, Wazee, Mila, Tukio...',
+        clearBtn: 'Futa',
+        catAll: 'Zote',
+        catLineage: 'Asili & Familia',
+        catTraditions: 'Mila & Wazee',
+        catCommunity: 'Matukio ya Jamii',
+        emptyMsg: 'Hakuna picha iliyopatikana kwa utafutaji huu.',
+        footerCopy: 'Kuhifadhi asili ya familia, mila, na sauti za jamii ya Babembe.',
+        closeBtn: '✕ Funga'
+      },
+      en: {
+        navSeries: 'Úmbo Cha Babembe',
+        navMission: 'Our Mission',
+        navArchive: 'Archive',
+        navPhotos: 'Photos',
+        heroKicker: 'PHOTO ARCHIVES',
+        heroHeading: 'Photos of Lineage, Traditions, and Elders',
+        heroLead:
+          'An archive of historical photos, family heritage, elders’ gatherings, and Babembe community initiatives. Click any photo to view full size.',
+        backVideosBtn: '← Back to Videos',
+        galleryEyebrow: 'PHOTO LIBRARY',
+        galleryHeading: 'All Archives',
+        searchPlaceholder: 'Search photos: Lineage, Elders, Traditions...',
+        clearBtn: 'Clear',
+        catAll: 'All',
+        catLineage: 'Lineage & Family',
+        catTraditions: 'Traditions & Elders',
+        catCommunity: 'Community Events',
+        emptyMsg: 'No photos matched your search.',
+        footerCopy: 'Preserving family lineage, traditions, and voices of the Babembe community.',
+        closeBtn: '✕ Close'
+      }
+    };
+
+    let currentLang = 'sw';
+    let activeCategory = 'all';
+    let searchTerm = '';
