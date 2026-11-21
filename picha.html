@@ -3,42 +3,58 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Picha za Jamii | Alembeela Foundation</title>
+  <title>Matunzio ya Picha za Jamii | Alembeela Foundation</title>
+  <meta name="description" content="Tazama kumbukumbu katika picha: Wazee wa jamii, shughuli za kijamii, na maeneo ya kihistoria ya Babembe.">
   
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- Navigation -->
-  <header class="navbar">
+  <header class="navbar" id="top">
     <div class="nav-container">
-      <a href="index.html" class="logo-area">
-        <img src="logo.png" alt="Alembeela Foundation Logo" class="brand-logo" onerror="this.style.display='none'">
-        <span class="logo-text">Alembeela <span>Foundation</span></span>
+      <a href="index.html" class="logo-area" aria-label="Alembeela Foundation Home">
+        <div class="af-logo-badge">AF</div>
+        <div class="brand-text">
+          <span class="brand-name">Alembeela</span>
+          <span class="brand-sub">Foundation</span>
+        </div>
       </a>
 
-      <nav>
+      <nav aria-label="Menyu">
         <ul class="nav-links" id="navLinks">
-          <li><a href="index.html">Rudi Mwanzo</a></li>
-          <li><a href="picha.html" class="active-link">Picha za Jamii</a></li>
-          <li><a href="index.html#featured">Video Zetu</a></li>
-          <li><a href="index.html#contact">Mawasiliano</a></li>
+          <li><a href="index.html#home" data-i18n="nav_home">Mwanzo</a></li>
+          <li><a href="picha.html" class="active-link" data-i18n="nav_gallery">Picha za Jamii</a></li>
+          <li><a href="index.html#featured" data-i18n="nav_featured">Video Kuu</a></li>
+          <li><a href="index.html#channels" data-i18n="nav_channels">Chaneli Zetu</a></li>
+          <li><a href="index.html#contact" data-i18n="nav_contact">Mawasiliano</a></li>
         </ul>
       </nav>
 
       <div class="nav-actions">
-        <button type="button" id="themeToggle" class="theme-btn" title="Badili mwonekano">
+        <!-- Language Switcher -->
+        <button type="button" id="langToggle" class="lang-btn" aria-label="Badili Lugha / Switch Language">
+          <span id="langFlag">🇹🇿</span>
+          <span id="langLabel">SW</span>
+        </button>
+
+        <!-- Theme Toggle -->
+        <button type="button" id="themeToggle" class="theme-btn" aria-label="Badili Mandhari">
           <i class="fa-solid fa-sun light-icon"></i>
           <i class="fa-solid fa-moon dark-icon"></i>
         </button>
 
-        <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" class="btn-channel-nav">
-          <i class="fa-brands fa-youtube"></i> @Alembeelawaidi
+        <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" rel="noopener" class="btn-channel-nav" title="YouTube Channel">
+          <i class="fa-brands fa-youtube"></i>
+          <span>YouTube</span>
         </a>
 
-        <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menyu">
+        <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Fungua Menyu">
           <span></span>
           <span></span>
           <span></span>
@@ -47,74 +63,155 @@
     </div>
   </header>
 
-  <!-- Kichwa cha Ukurasa wa Picha -->
+  <!-- Page Header -->
   <section class="page-header">
     <div class="header-content">
-      <h1>Matunzio ya Picha za Jamii</h1>
-      <p>Kumbukumbu zetu katika picha: Wazee wetu, matukio ya jamii na maeneo yetu ya asili.</p>
+      <span class="hero-badge">
+        <i class="fa-solid fa-camera"></i>
+        <span data-i18n="gallery_badge">Kumbukumbu Halisi Katika Picha</span>
+      </span>
+      <h1 data-i18n="page_gallery_title">Matunzio ya Picha za Jamii</h1>
+      <p data-i18n="page_gallery_desc">Picha za matukio, wazee wa jamii, maeneo ya kurekodia simulizi, na safari za kutunza urithi wetu. Bofya picha yoyote ili kuiona kubwa.</p>
     </div>
   </section>
 
-  <!-- Albamu ya Picha -->
+  <!-- Full Gallery Grid -->
   <section class="gallery-full-section">
     <div class="gallery-grid">
-      <!-- Sehemu hizi ziko wazi. Utakapokuwa tayari kuweka picha, badilisha tag ya <div> na kuwa:
-           <div class="gallery-item" data-caption="Maelezo ya picha">
-             <img src="jina_la_picha.jpg" alt="Picha">
-           </div>
-      -->
-      <div class="gallery-placeholder">
-        <i class="fa-solid fa-camera placeholder-icon"></i>
-        <h4>Picha #1</h4>
-        <p>Weka picha yako hapa baadaye</p>
+      <!-- Item 1 -->
+      <div class="gallery-card" data-caption-sw="Mazungumzo na wazee wa mila kuhusu misingi ya asili ya Babembe." data-caption-en="Conversations with community elders on ancestral Babembe roots.">
+        <div class="gallery-thumb-wrap">
+          <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Wazee wa Jamii" loading="lazy">
+          <div class="gallery-badge"><i class="fa-solid fa-expand"></i></div>
+        </div>
+        <div class="gallery-card-body">
+          <h4 data-i18n="gallery_p1_title">Wazee na Mila</h4>
+          <p data-i18n="gallery_p1_text">Hekima za kale zinazolindwa kwa ajili ya vizazi vijavyo.</p>
+        </div>
       </div>
 
-      <div class="gallery-placeholder">
-        <i class="fa-solid fa-camera placeholder-icon"></i>
-        <h4>Picha #2</h4>
-        <p>Weka picha yako hapa baadaye</p>
+      <!-- Item 2 -->
+      <div class="gallery-card" data-caption-sw="Mkutano wa vijana wakifundishwa majina ya ukoo na utambulisho." data-caption-en="Youth learning tribal clan names and identity.">
+        <div class="gallery-thumb-wrap">
+          <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80" alt="Vijana na Urithi" loading="lazy">
+          <div class="gallery-badge"><i class="fa-solid fa-expand"></i></div>
+        </div>
+        <div class="gallery-card-body">
+          <h4 data-i18n="gallery_p2_title">Urithi kwa Vijana</h4>
+          <p data-i18n="gallery_p2_text">Kuelimisha kizazi kipya kujivunia historia yao.</p>
+        </div>
       </div>
 
-      <div class="gallery-placeholder">
-        <i class="fa-solid fa-camera placeholder-icon"></i>
-        <h4>Picha #3</h4>
-        <p>Weka picha yako hapa baadaye</p>
+      <!-- Item 3 -->
+      <div class="gallery-card" data-caption-sw="Safari ya kurekodi maeneo ya kihistoria na asili." data-caption-en="Expedition documenting historical sites and origins.">
+        <div class="gallery-thumb-wrap">
+          <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80" alt="Mazingira ya Asili" loading="lazy">
+          <div class="gallery-badge"><i class="fa-solid fa-expand"></i></div>
+        </div>
+        <div class="gallery-card-body">
+          <h4 data-i18n="gallery_p3_title">Maeneo ya Asili</h4>
+          <p data-i18n="gallery_p3_text">Kumbukumbu za kijiografia na chimbuko letu.</p>
+        </div>
       </div>
 
-      <div class="gallery-placeholder">
-        <i class="fa-solid fa-camera placeholder-icon"></i>
-        <h4>Picha #4</h4>
-        <p>Weka picha yako hapa baadaye</p>
+      <!-- Item 4 -->
+      <div class="gallery-card" data-caption-sw="Mshikamano na furaha ya kifamilia wakati wa shughuli za jamii." data-caption-en="Solidarity and community gatherings celebrating our heritage.">
+        <div class="gallery-thumb-wrap">
+          <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Umoja wa Jamii" loading="lazy">
+          <div class="gallery-badge"><i class="fa-solid fa-expand"></i></div>
+        </div>
+        <div class="gallery-card-body">
+          <h4 data-i18n="gallery_p4_title">Umoja wa Jamii</h4>
+          <p data-i18n="gallery_p4_text">Kujenga undugu imara popote tulipo duniani.</p>
+        </div>
       </div>
 
+      <!-- Item 5 (Placeholder for Upload) -->
       <div class="gallery-placeholder">
-        <i class="fa-solid fa-camera placeholder-icon"></i>
-        <h4>Picha #5</h4>
-        <p>Weka picha yako hapa baadaye</p>
+        <i class="fa-solid fa-camera-retro placeholder-icon"></i>
+        <h4 data-i18n="placeholder_5_title">Nafasi ya Picha Mpya</h4>
+        <p data-i18n="placeholder_5_desc">Picha inayofuata itaongezwa hapa mara matukio mapya yakirekodiwa.</p>
       </div>
 
+      <!-- Item 6 (Placeholder for Upload) -->
       <div class="gallery-placeholder">
-        <i class="fa-solid fa-camera placeholder-icon"></i>
-        <h4>Picha #6</h4>
-        <p>Weka picha yako hapa baadaye</p>
+        <i class="fa-solid fa-images placeholder-icon"></i>
+        <h4 data-i18n="placeholder_6_title">Nafasi ya Picha Mpya</h4>
+        <p data-i18n="placeholder_6_desc">Picha inayofuata itaongezwa hapa mara matukio mapya yakirekodiwa.</p>
       </div>
     </div>
   </section>
 
-    <!-- Footer -->
+  <!-- Lightbox Modal -->
+  <div id="lightboxModal" class="lightbox-modal" role="dialog" aria-hidden="true" aria-label="Picha Iliyokuzwa">
+    <button type="button" class="close-lightbox" id="closeLightbox" aria-label="Funga Picha">&times;</button>
+    <div class="lightbox-content">
+      <img id="lightboxImg" src="" alt="Picha Kamili">
+      <p id="lightboxCaption"></p>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-col brand-col">
+        <div class="footer-logo-row">
+          <div class="af-logo-badge footer-af-badge">AF</div>
+          <div class="brand-text">
+            <span class="brand-name">Alembeela</span>
+            <span class="brand-sub">Foundation</span>
+          </div>
+        </div>
+        <p class="brand-mission" data-i18n="footer_mission">
+          Taasisi iliyojitolea kulinda, kurithisha, na kuenzi utamaduni, mila, na historia ya Babembe kwa maendeleo endelevu ya jamii.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="col-title" data-i18n="footer_quick_links">Viungo</h4>
+        <ul class="footer-nav">
+          <li><a href="index.html#home" data-i18n="nav_home">Mwanzo</a></li>
+          <li><a href="picha.html" data-i18n="nav_gallery">Picha za Jamii</a></li>
+          <li><a href="index.html#featured" data-i18n="nav_featured">Video Kuu</a></li>
+          <li><a href="index.html#channels" data-i18n="nav_channels">Chaneli Zetu</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col contact-col">
+        <h4 class="col-title" data-i18n="footer_contact_info">Mawasiliano</h4>
+        <ul class="contact-list">
+          <li><i class="fa-solid fa-location-dot"></i> <span>Denver, Colorado, USA</span></li>
+          <li><i class="fa-solid fa-phone"></i> <a href="tel:+13035550199">+1 (303) 555-0199</a></li>
+          <li><i class="fa-solid fa-envelope"></i> <a href="mailto:info@alembeelafoundation.org">info@alembeelafoundation.org</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4 class="col-title" data-i18n="nav_channels">Chaneli Zetu</h4>
+        <div class="social-links" aria-label="Social Media">
+          <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" rel="noopener" aria-label="YouTube Alembeela Foundation"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" rel="noopener" aria-label="YouTube Alembeela wa Idi"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/13035550199" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+    </div>
+
     <div class="footer-bottom">
       <div class="bottom-container">
-        <p class="copyright">&copy; <span id="currentYear"></span> Alembeela Foundation. Haki zote zimehifadhiwa.</p>
+        <p class="copyright">&copy; <span id="currentYear"></span> Alembeela Foundation. <span data-i18n="footer_rights">Haki zote zimehifadhiwa.</span></p>
         <div class="legal-links">
-          <a href="index.html">Rudi Ukurasa Mkuu</a>
+          <a href="index.html" data-i18n="btn_back_home">&larr; Rudi Ukurasa Mkuu</a>
         </div>
       </div>
     </div>
   </footer>
 
+  <!-- WhatsApp Float -->
+  <a href="https://wa.me/13035550199?text=Habari%20Alembeela%20Foundation" class="whatsapp-float" target="_blank" rel="noopener" aria-label="Wasiliana Nasi WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-tooltip" data-i18n="wa_tooltip">Tuandikie WhatsApp</span>
+  </a>
+
   <script src="script.js"></script>
 </body>
 </html>
-
-
