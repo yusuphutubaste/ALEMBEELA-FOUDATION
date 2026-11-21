@@ -4,37 +4,38 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Picha &amp; Kumbukumbu — Alembeela Foundation</title>
-  <meta name="description" content="Maktaba ya picha, kumbukumbu za wazee, na matukio ya urithi wa jamii ya Babembe — Alembeela Foundation." />
+  <meta name="description" content="Maktaba ya picha, kumbukumbu za asili ya familia, mila, na shughuli za jamii ya Babembe — Alembeela Foundation." />
   <link rel="stylesheet" href="style.css" />
   <style>
-    /* Mitindo maalum kwa ajili ya ukurasa wa Picha (Gallery & Lightbox) */
+    /* Mitindo maalum ya ukurasa wa Picha (Inaendana na style.css mpya) */
     .gallery-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
     }
 
     .photo-card {
       background: var(--bg-card);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-light);
       border-radius: var(--radius-md);
       overflow: hidden;
       display: flex;
       flex-direction: column;
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-sm);
       cursor: pointer;
-      transition: transform 0.2s ease, border-color 0.2s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
     }
 
     .photo-card:hover {
       transform: translateY(-3px);
-      border-color: var(--gold-bright);
+      box-shadow: var(--shadow-md);
+      border-color: var(--gold-main);
     }
 
     .photo-thumb-wrap {
       position: relative;
       aspect-ratio: 4 / 3;
-      background: #040d09;
+      background: var(--obsidian);
       overflow: hidden;
     }
 
@@ -47,11 +48,11 @@
     }
 
     .photo-card:hover .photo-thumb {
-      transform: scale(1.05);
+      transform: scale(1.04);
     }
 
     .photo-body {
-      padding: 14px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       gap: 8px;
@@ -60,15 +61,16 @@
 
     .photo-title {
       margin: 0;
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--text-primary);
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.35;
     }
 
     .photo-caption {
       margin: 0;
-      font-size: 0.84rem;
-      color: var(--text-secondary);
+      font-size: 0.86rem;
+      color: var(--text-muted);
     }
 
     /* Lightbox Modal */
@@ -76,7 +78,7 @@
       position: fixed;
       inset: 0;
       z-index: 1000;
-      background: rgba(4, 12, 9, 0.94);
+      background: rgba(5, 10, 8, 0.92);
       backdrop-filter: blur(8px);
       display: flex;
       align-items: center;
@@ -85,17 +87,17 @@
     }
 
     .lightbox-dialog {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-strong);
+      background: var(--bg-card);
+      border: 2px solid var(--gold-main);
       border-radius: var(--radius-lg);
       max-width: min(920px, 95vw);
       width: 100%;
       overflow: hidden;
-      box-shadow: var(--shadow-card);
+      box-shadow: var(--shadow-md);
     }
 
     .lightbox-img-wrap {
-      background: #000;
+      background: var(--obsidian);
       max-height: 70vh;
       display: flex;
       align-items: center;
@@ -111,104 +113,141 @@
     }
 
     .lightbox-footer {
-      padding: 16px 20px;
+      padding: 18px 20px;
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
+      border-top: 1px solid var(--border-light);
     }
 
     .lightbox-nav {
       display: flex;
+      align-items: center;
       gap: 8px;
     }
   </style>
 </head>
 <body>
-  <!-- Header -->
+  <!-- Top Navigation Bar (Matches index.html) -->
   <header class="site-header">
     <div class="container header-inner">
-      <div class="brand-wrap">
-        <a href="index.html" class="site-logo" aria-label="Rudi Mwanzo" style="text-decoration: none;">AF</a>
+      <a href="index.html" class="brand-wrap">
+        <div class="af-crest" aria-hidden="true"><span>AF</span></div>
         <div>
-          <h1 class="brand-title">Alembeela Foundation</h1>
-          <p class="brand-subtitle" data-i18n="subtitle">Maktaba ya Picha &amp; Kumbukumbu za Urithi</p>
+          <span class="brand-title">ALEMBEELA FOUNDATION</span>
+          <span class="brand-handle">@AlembeelaFoundation</span>
         </div>
-      </div>
+      </a>
 
-      <div class="header-right">
-        <a href="index.html" class="btn btn-outline" data-i18n="backHome">← Video &amp; Maktaba</a>
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <a href="index.html#theaterSection" class="nav-link" data-i18n="navSeries">Úmbo Cha Babembe</a>
+        <a href="index.html#pillarsSection" class="nav-link" data-i18n="navMission">Dhamira Yetu</a>
+        <a href="index.html#librarySection" class="nav-link" data-i18n="navArchive">Maktaba</a>
+        <a href="picha.html" class="nav-link is-active" data-i18n="navPhotos">Picha</a>
+      </nav>
 
+      <div class="header-actions">
         <div class="lang-switch" role="group" aria-label="Language switch">
+          <button type="button" class="lang-btn" data-lang="bem">BEM</button>
           <button type="button" class="lang-btn is-active" data-lang="sw">SW</button>
           <button type="button" class="lang-btn" data-lang="en">EN</button>
         </div>
+
+        <a
+          href="https://youtube.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-gold btn-sm"
+        >
+          YouTube ↗
+        </a>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="container main-content">
-    <!-- Hero Banner -->
-    <section class="hero-banner">
-      <span class="hero-badge" data-i18n="badge">Kumbukumbu za Jamii</span>
-      <h2 class="hero-title" data-i18n="heroTitle">Picha za Urithi &amp; Sauti za Wazee</h2>
-      <p class="hero-desc" data-i18n="heroDesc">
-        Tazama picha za kihistoria, mila, mikutano ya wazee, na shughuli za kuhifadhi utamaduni wa Babembe. Bonyeza picha yoyote kuiona kwa ukubwa kamili.
-      </p>
-    </section>
-
-    <!-- Search & Category Filter -->
-    <section class="search-panel">
-      <label for="photoSearch" class="search-label" data-i18n="searchLabel">
-        Tafuta picha (mfano: Wazee, Úmbo, Mila, Tukio...)
-      </label>
-      <div class="search-box">
-        <span aria-hidden="true">🔍</span>
-        <input
-          type="search"
-          id="photoSearch"
-          class="search-input"
-          placeholder="Andika jina au maelezo ya picha..."
-          autocomplete="off"
-        />
-        <button type="button" id="clearPhotoSearch" class="btn btn-ghost hidden" data-i18n="clearBtn">Futa</button>
-      </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section class="content-section">
-      <div class="section-header">
-        <h2 class="section-title" data-i18n="galleryHeading">Picha Zote</h2>
-
-        <div class="filter-tabs" role="tablist">
-          <button type="button" class="tab-btn is-active" data-cat="all" data-i18n="catAll">Zote</button>
-          <button type="button" class="tab-btn" data-cat="wazee" data-i18n="catElders">Sauti za Wazee</button>
-          <button type="button" class="tab-btn" data-cat="urithi" data-i18n="catHeritage">Urithi &amp; Mila</button>
-          <button type="button" class="tab-btn" data-cat="matukio" data-i18n="catEvents">Matukio</button>
+  <!-- Emerald & Gold Banner Hero -->
+  <section class="foundation-hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <span class="hero-kicker" data-i18n="heroKicker">KUMBUKUMBU ZA PICHA</span>
+        <h1 class="hero-heading" data-i18n="heroHeading">
+          Picha za Asili, Mila, na Sauti za Wazee
+        </h1>
+        <p class="hero-lead" data-i18n="heroLead">
+          Hifadhi ya picha za kihistoria, familia, mikutano ya wazee, na matukio ya jamii ya Babembe. Bonyeza picha yoyote kuiona kwa ukubwa kamili.
+        </p>
+        <div class="hero-cta">
+          <a href="index.html" class="btn btn-gold" data-i18n="backVideosBtn">
+            ← Rudi Kwenye Video
+          </a>
         </div>
       </div>
 
-      <div id="galleryGrid" class="gallery-grid"></div>
+      <div class="hero-emblem-card" aria-hidden="true">
+        <div class="emblem-ring">
+          <span class="emblem-letters">AF</span>
+        </div>
+        <p class="emblem-motto">ALEMBEELA FOUNDATION</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Gallery Section -->
+  <main class="main-body">
+    <section class="section-block">
+      <div class="container">
+        <div class="archive-toolbar">
+          <div>
+            <span class="section-eyebrow" data-i18n="galleryEyebrow">MAKTABA YA PICHA</span>
+            <h2 class="section-heading" data-i18n="galleryHeading">Kumbukumbu Zote</h2>
+          </div>
+
+          <div class="search-wrap">
+            <input
+              type="search"
+              id="photoSearch"
+              class="search-field"
+              placeholder="Tafuta picha: Asili, Wazee, Mila, Tukio..."
+              data-i18n-placeholder="searchPlaceholder"
+              autocomplete="off"
+            />
+            <button type="button" id="clearPhotoSearch" class="btn btn-light-outline hidden" data-i18n="clearBtn">Futa</button>
+          </div>
+        </div>
+
+        <div class="filter-bar" role="tablist">
+          <button type="button" class="filter-chip is-active" data-cat="all" data-i18n="catAll">Zote</button>
+          <button type="button" class="filter-chip" data-cat="asili" data-i18n="catLineage">Asili &amp; Familia</button>
+          <button type="button" class="filter-chip" data-cat="mila" data-i18n="catTraditions">Mila &amp; Wazee</button>
+          <button type="button" class="filter-chip" data-cat="jamii" data-i18n="catCommunity">Matukio ya Jamii</button>
+        </div>
+
+        <div id="galleryGrid" class="gallery-grid"></div>
+      </div>
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Obsidian & Gold Footer -->
   <footer class="site-footer">
-    <div class="container footer-inner">
+    <div class="container footer-grid">
       <div class="footer-brand">
-        <div class="site-logo site-logo--sm" aria-hidden="true">AF</div>
+        <div class="af-crest af-crest--sm" aria-hidden="true"><span>AF</span></div>
         <div>
-          <strong>Alembeela Foundation</strong>
-          <p class="footer-copy" data-i18n="footerCopy">Urithi, mafunzo, na sauti za jamii — GitHub Pages.</p>
+          <strong class="footer-name">ALEMBEELA FOUNDATION</strong>
+          <p class="footer-tagline" data-i18n="footerCopy">
+            Kuhifadhi asili ya familia, mila, na sauti za jamii ya Babembe.
+          </p>
         </div>
       </div>
 
-      <nav class="footer-links">
-        <a href="index.html" data-i18n="backHome">← Video &amp; Maktaba</a>
-        <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer">YouTube</a>
-      </nav>
+      <div class="footer-links">
+        <a href="index.html#theaterSection" data-i18n="navSeries">Úmbo Cha Babembe</a>
+        <a href="index.html#pillarsSection" data-i18n="navMission">Dhamira Yetu</a>
+        <a href="picha.html" data-i18n="navPhotos">Picha</a>
+        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">@AlembeelaFoundation</a>
+      </div>
     </div>
   </footer>
 
@@ -220,14 +259,14 @@
       </div>
       <div class="lightbox-footer">
         <div>
-          <span id="lbBadge" class="media-badge"></span>
-          <h3 id="lbTitle" class="photo-title" style="margin-top: 6px;"></h3>
-          <p id="lbDesc" class="photo-caption"></p>
+          <span id="lbBadge" class="gold-pill"></span>
+          <h3 id="lbTitle" class="photo-title" style="margin-top: 8px;"></h3>
+          <p id="lbDesc" class="photo-caption" style="margin-top: 4px;"></p>
         </div>
         <div class="lightbox-nav">
-          <button type="button" id="lbPrev" class="ctrl-btn">⏮</button>
-          <button type="button" id="lbNext" class="ctrl-btn">⏭</button>
-          <button type="button" id="lbClose" class="ctrl-btn ctrl-btn--primary" data-i18n="closeBtn">✕ Funga</button>
+          <button type="button" id="lbPrev" class="btn btn-light-outline btn-sm">⏮</button>
+          <button type="button" id="lbNext" class="btn btn-light-outline btn-sm">⏭</button>
+          <button type="button" id="lbClose" class="btn btn-gold btn-sm" data-i18n="closeBtn">✕ Funga</button>
         </div>
       </div>
     </div>
@@ -236,63 +275,27 @@
   <script>
     /* ========================================================================
        ORODHA YA PICHA (Badilisha 'src' ziwe majina ya picha zako kwenye folda)
-       Mfano: 'images/picha1.jpg' au link ya picha mtandaoni
+       Mfano: 'images/familia1.jpg' au link ya picha
        ======================================================================== */
     const PHOTOS = [
       {
         id: 'pic-1',
         src: 'https://ytimg.com',
-        category: 'wazee',
-        badge: 'Sauti za Wazee',
-        title: 'Úmbo Cha Babembe — Sehemu ya Kwanza',
-        description: 'Kumbukumbu ya mazungumzo ya wazee kuhusu asili na historia ya Babembe.'
+        category: 'asili',
+        badge: 'Asili & Familia',
+        title: 'Úmbo Cha Babembe — Sehemu ya Kwanza (1)',
+        description: 'Kumbukumbu za chimbuko, nasaba ya familia, na historia ya jamii ya Babembe.'
       },
       {
         id: 'pic-2',
         src: 'https://ytimg.com',
-        category: 'urithi',
-        badge: 'Urithi & Mila',
-        title: 'Úmbo Cha Babembe — Sehemu ya Pili',
-        description: 'Mafunzo ya mila, desturi, na maadili ya jamii.'
-      },
-      {
-        id: 'pic-3',
-        src: 'https://ytimg.com',
-        category: 'matukio',
-        badge: 'Matukio',
-        title: 'Úmbo Cha Babembe — Sehemu ya Tatu',
-        description: 'Kumbukumbu za pamoja za Alembeela Foundation (@Alembeelawaidi).'
+        category: 'mila',
+        badge: 'Mila & Wazee',
+        title: 'Úmbo Cha Babembe — Sehemu ya Pili (2)',
+        description: 'Mafundisho ya mila, desturi, na hekima za wazee katika lugha ya Kibembe.'
       }
     ];
 
     const TEXTS = {
-      sw: {
-        subtitle: 'Maktaba ya Picha & Kumbukumbu za Urithi',
-        backHome: '← Video & Maktaba',
-        badge: 'Kumbukumbu za Jamii',
-        heroTitle: 'Picha za Urithi & Sauti za Wazee',
-        heroDesc: 'Tazama picha za kihistoria, mila, mikutano ya wazee, na shughuli za kuhifadhi utamaduni wa Babembe. Bonyeza picha yoyote kuiona kwa ukubwa kamili.',
-        searchLabel: 'Tafuta picha (mfano: Wazee, Úmbo, Mila, Tukio...)',
-        clearBtn: 'Futa',
-        galleryHeading: 'Picha Zote',
-        catAll: 'Zote',
-        catElders: 'Sauti za Wazee',
-        catHeritage: 'Urithi & Mila',
-        catEvents: 'Matukio',
-        emptyMsg: 'Hakuna picha iliyopatikana kwa utafutaji huu.',
-        footerCopy: 'Urithi, mafunzo, na sauti za jamii — GitHub Pages.',
-        closeBtn: '✕ Funga'
-      },
-      en: {
-        subtitle: 'Photo Gallery & Heritage Archives',
-        backHome: '← Videos & Library',
-        badge: 'Community Archives',
-        heroTitle: 'Heritage Photos & Elders’ Voices',
-        heroDesc: 'Explore historical photos, traditions, elders’ gatherings, and cultural preservation of the Babembe community. Click any photo to view full screen.',
-        searchLabel: 'Search photos (e.g., Elders, Úmbo, Heritage, Event...)',
-        clearBtn: 'Clear',
-        galleryHeading: 'All Photos',
-        catAll: 'All',
-        catElders: 'Elders Voices',
-        catHeritage: 'Heritage & Culture',
-        catEvents: 'Events',
+      bem: {
+        navSeries: 'Úmbo Cha Babembe',
