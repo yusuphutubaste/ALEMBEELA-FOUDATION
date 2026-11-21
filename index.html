@@ -3,47 +3,61 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alembeela Foundation — Urithi, Asili &amp; Mila za Babembe</title>
-  <meta name="description" content="Alembeela Foundation (@AlembeelaFoundation) — Kuhifadhi asili ya familia, mila, na uelimishaji wa jamii ya Babembe kupitia mfululizo wa Úmbo Cha Babembe." />
+  <title>Alembeela Foundation — Urithi, Asili &amp; Mila za Babembe (@Alembeelawaidi)</title>
+  <meta name="description" content="Alembeela Foundation (@Alembeelawaidi) — Kuhifadhi asili ya familia, mila, na uelimishaji wa jamii ya Babembe kupitia mfululizo wa Úmbo Cha Babembe." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Toast Notification -->
   <div id="toastBanner" class="toast-banner hidden" role="status" aria-live="polite"></div>
 
-  <!-- Top Navigation Bar -->
+  <!-- Top Navigation Bar (Desktop + Mobile Menu) -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="brand-wrap">
         <div class="af-crest" aria-hidden="true"><span>AF</span></div>
         <div>
           <span class="brand-title">ALEMBEELA FOUNDATION</span>
-          <span class="brand-handle">@AlembeelaFoundation</span>
+          <span class="brand-handle">@Alembeelawaidi</span>
         </div>
       </a>
 
-      <nav class="main-nav" aria-label="Primary Navigation">
-        <a href="#theaterSection" class="nav-link is-active" data-i18n="navSeries">Úmbo Cha Babembe</a>
-        <a href="#pillarsSection" class="nav-link" data-i18n="navMission">Dhamira Yetu</a>
-        <a href="#librarySection" class="nav-link" data-i18n="navArchive">Maktaba</a>
-        <a href="picha.html" class="nav-link" data-i18n="navPhotos">Picha</a>
-      </nav>
+      <!-- Mobile Hamburger Button -->
+      <button
+        type="button"
+        id="mobileMenuBtn"
+        class="mobile-menu-toggle"
+        aria-expanded="false"
+        aria-controls="primaryNav"
+        aria-label="Fungua Menyu"
+      >
+        <span class="hamburger-icon">☰</span>
+      </button>
 
-      <div class="header-actions">
-        <div class="lang-switch" role="group" aria-label="Language switch">
-          <button type="button" class="lang-btn" data-lang="bem">BEM</button>
-          <button type="button" class="lang-btn is-active" data-lang="sw">SW</button>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <div id="primaryNav" class="nav-collapse">
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a href="#theaterSection" class="nav-link is-active" data-i18n="navSeries">Úmbo Cha Babembe</a>
+          <a href="#pillarsSection" class="nav-link" data-i18n="navMission">Dhamira Yetu</a>
+          <a href="#librarySection" class="nav-link" data-i18n="navArchive">Maktaba</a>
+          <a href="picha.html" class="nav-link" data-i18n="navPhotos">Picha</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button type="button" class="lang-btn" data-lang="bem">BEM</button>
+            <button type="button" class="lang-btn is-active" data-lang="sw">SW</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+
+          <a
+            href="https://youtube.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-gold btn-sm"
+          >
+            @Alembeelawaidi ↗
+          </a>
         </div>
-
-        <a
-          href="https://youtube.com"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-gold btn-sm"
-        >
-          YouTube ↗
-        </a>
       </div>
     </div>
   </header>
@@ -69,7 +83,7 @@
             rel="noopener noreferrer"
             class="btn btn-emerald-outline"
           >
-            @Alembeelawaidi ↗
+            YouTube: @Alembeelawaidi ↗
           </a>
         </div>
       </div>
@@ -103,7 +117,15 @@
         <div class="theater-layout">
           <div class="theater-stage">
             <div class="video-aspect">
-              <div id="ytPlayerMount"></div>
+              <iframe
+                id="ytPlayerFrame"
+                src="https://youtube.com"
+                title="ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allowfullscreen
+              ></iframe>
             </div>
 
             <div class="now-playing-card">
@@ -131,7 +153,7 @@
           <aside class="episode-sidebar" aria-label="Orodha ya Sehemu">
             <div class="sidebar-head">
               <h3 class="sidebar-title" data-i18n="episodesListTitle">Sehemu za Mfululizo</h3>
-              <span id="episodeCountPill" class="count-pill">2</span>
+              <span id="episodeCountPill" class="count-pill">3</span>
             </div>
             <div id="episodeQueueList" class="episode-list"></div>
           </aside>
@@ -189,7 +211,7 @@
               type="search"
               id="searchInput"
               class="search-field"
-              placeholder="Tafuta: Úmbo, Sehemu ya 1, Asili, Kibembe..."
+              placeholder="Tafuta: Úmbo, Sehemu ya 1, Short, Kibembe..."
               data-i18n-placeholder="searchPlaceholder"
               autocomplete="off"
             />
@@ -207,29 +229,3 @@
           <button type="button" class="filter-chip" data-filter="short">
             Shorts (<span id="countShorts">0</span>)
           </button>
-          <button type="button" class="filter-chip" data-filter="saved">
-            <span data-i18n="savedTab">Vipendwa</span> (<span id="countSaved">0</span>)
-          </button>
-        </div>
-
-        <div id="mediaGrid" class="archive-grid"></div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <div class="af-crest af-crest--sm" aria-hidden="true"><span>AF</span></div>
-        <div>
-          <strong class="footer-name">ALEMBEELA FOUNDATION</strong>
-          <p class="footer-tagline" data-i18n="footerCopy">
-            Kuhifadhi asili ya familia, mila, na sauti za jamii ya Babembe.
-          </p>
-        </div>
-      </div>
-
-      <div class="footer-links">
-        <a href="#theaterSection" data-i18n="navSeries">Úmbo Cha Babembe</a>
-        <a href="#pillarsSection" data-i18n="navMission">Dhamira Yetu</a>
