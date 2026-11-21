@@ -859,7 +859,7 @@ section {
 }
 
 /* =========================================================
-   AF FOOTER (MULTI-COLUMN GRID + LEFT ICON-ONLY BOXES)
+   AF FOOTER (MULTI-COLUMN GRID + CLEAN SOCIAL LOGOS/ICONS)
    ========================================================= */
 .af-footer {
     background: linear-gradient(180deg, #040705 0%, var(--emerald-dark) 145%);
@@ -918,47 +918,51 @@ section {
     margin-bottom: 16px;
 }
 
-/* Maboksi madogo upande wa kushoto: aikoni ya app pekee bila jina */
+/* Aikoni / logo za app pekee bila kiboksi */
 .af-icon-only-boxes {
     display: flex;
+    align-items: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 16px;
 }
 
 .af-icon-box {
-    width: 44px;
-    height: 44px;
-    border-radius: 10px;
-    background: var(--black-card);
-    border: 1px solid var(--border-gold);
-    display: flex;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: auto;
+    height: auto;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
     text-decoration: none;
-    font-size: 1.2rem;
-    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
+    font-size: 1.65rem;
+    line-height: 1;
+    transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 .af-icon-box:hover {
-    transform: translateY(-3px);
-    border-color: var(--gold-bright);
-    background: rgba(7, 98, 52, 0.35);
+    transform: translateY(-3px) scale(1.08);
+    filter: brightness(1.15);
 }
 
 .af-icon-box.box-yt i {
-    color: #FF4D4D;
+    color: #FF2E2E;
 }
 
 .af-icon-box.box-fb i {
-    color: #4A8CFF;
+    color: #1877F2;
 }
 
 .af-icon-box.box-tt i {
-    color: #5CE1E6;
+    color: #FFFFFF;
+    text-shadow: -2px 0 #25F4EE, 2px 0 #FE2C55;
 }
 
 .af-icon-box.box-ig i {
-    color: #F27D9E;
+    background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .af-col-title {
@@ -1031,19 +1035,22 @@ section {
 }
 
 .af-channel-card i.platform-yt {
-    color: #FF4D4D;
+    color: #FF2E2E;
 }
 
 .af-channel-card i.platform-fb {
-    color: #4A8CFF;
+    color: #1877F2;
 }
 
 .af-channel-card i.platform-tt {
-    color: #5CE1E6;
+    color: #FFFFFF;
+    text-shadow: -1.5px 0 #25F4EE, 1.5px 0 #FE2C55;
 }
 
 .af-channel-card i.platform-ig {
-    color: #F27D9E;
+    background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF, #515BD4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .af-channel-card strong {
