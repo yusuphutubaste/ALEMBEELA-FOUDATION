@@ -3,14 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alembeela Foundation — Maktaba, Playlists & Sauti za Wazee</title>
+  <title>Alembeela Foundation — Maktaba, Playlists &amp; Sauti za Wazee</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Toast notification -->
   <div id="toastBanner" class="toast-banner hidden" role="status" aria-live="polite"></div>
 
-  <!-- Top Header -->
   <header class="site-header">
     <div class="container header-inner">
       <div class="brand-block">
@@ -18,7 +16,6 @@
         <h1 class="brand-title">Úmbo Cha Babembe &amp; Urithi wa Jamii</h1>
       </div>
 
-      <!-- Dual YouTube Channel Links (@Alembeelawaidi + Foundation) -->
       <div class="channel-links" aria-label="Channel za YouTube">
         <a
           href="https://www.youtube.com/@Alembeelawaidi"
@@ -45,7 +42,7 @@
   </header>
 
   <main class="container main-content">
-    <!-- Global Site Search Bar -->
+    <!-- Search Bar ya Tovuti Nzima -->
     <section class="search-panel" aria-label="Utafutaji wa tovuti nzima">
       <label for="globalSearchInput" class="search-label">
         Tafuta chochote kwenye tovuti (Video, Short, Playlist, au Sauti za Wazee)
@@ -71,7 +68,7 @@
       <p id="searchSummary" class="search-summary">Inaonyesha maudhui yote ya tovuti.</p>
     </section>
 
-    <!-- Library Section (All / Video / Short) -->
+    <!-- Library (All / Video / Short / Vipendwa) -->
     <section id="librarySection" class="content-section" aria-labelledby="libraryHeading">
       <div class="section-header">
         <div>
@@ -128,7 +125,7 @@
       <div id="libraryGrid" class="cards-grid"></div>
     </section>
 
-    <!-- Dedicated Playlists Section (Sequential In-Site Playback) -->
+    <!-- Playlists (Mfululizo Ndani ya Tovuti) -->
     <section id="playlistsSection" class="content-section" aria-labelledby="playlistsHeading">
       <div class="section-header">
         <div>
@@ -143,7 +140,7 @@
     </section>
   </main>
 
-  <!-- Sauti za Wazee — Sticky / Persistent Player Bar -->
+  <!-- Sauti za Wazee (Vipande 3, Auto-Next + Loop Nzima + Swichi za Kugandisha na Kuzuia) -->
   <aside
     id="eldersPlayerBar"
     class="elders-bar"
@@ -173,7 +170,6 @@
         </div>
       </div>
 
-      <!-- Queue & Playback Controls -->
       <div class="elders-controls">
         <button id="elderPrevBtn" type="button" class="btn btn--icon" title="Kipande kilichopita">
           ⏮ Nyuma
@@ -198,7 +194,6 @@
         </button>
       </div>
 
-      <!-- Switch Buttons: Kugandisha (Freeze) & Kuzuia (Block) -->
       <div class="elders-switches" aria-label="Vitufe vya kuswichi hali">
         <button
           id="elderFreezeBtn"
@@ -227,7 +222,7 @@
     </div>
   </aside>
 
-  <!-- In-Site Modal for Videos & Playlists -->
+  <!-- Modal ya Kucheza Video & Playlists Ndani ya Tovuti -->
   <div
     id="videoModal"
     class="modal-backdrop hidden"
