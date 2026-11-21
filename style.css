@@ -1,5 +1,5 @@
 /* ==========================================================================
-   ALEMBEELA FOUNDATION — UNIFIED EMERALD, OBSIDIAN & ROYAL GOLD THEME
+   ALEMBEELA FOUNDATION — UNIFIED EMERALD, OBSIDIAN & GOLD (RESPONSIVE)
    ========================================================================== */
 
 :root {
@@ -52,7 +52,7 @@ body {
   background-attachment: fixed;
   color: var(--text-light);
   line-height: 1.6;
-  padding-bottom: 80px;
+  padding-bottom: 84px;
   min-height: 100vh;
 }
 
@@ -148,15 +148,17 @@ body {
   border-color: var(--gold-bright);
 }
 
-/* Header & AF Crest Logo */
+/* ==========================================================================
+   HEADER & RESPONSIVE NAVIGATION (DESKTOP + MOBILE DRAWER)
+   ========================================================================== */
 .site-header {
-  background: rgba(4, 9, 7, 0.94);
+  background: rgba(4, 9, 7, 0.96);
   backdrop-filter: blur(12px);
   color: var(--text-light);
   border-bottom: 2px solid var(--gold-main);
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 80;
 }
 
 .header-inner {
@@ -209,7 +211,7 @@ body {
 
 .brand-title {
   display: block;
-  font-size: 1.05rem;
+  font-size: 1.02rem;
   font-weight: 900;
   letter-spacing: 0.04em;
   color: var(--gold-bright);
@@ -219,6 +221,27 @@ body {
   display: block;
   font-size: 0.78rem;
   color: var(--text-muted);
+}
+
+.mobile-menu-toggle {
+  display: none;
+  background: var(--obsidian-card);
+  color: var(--gold-bright);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-sm);
+  padding: 8px 13px;
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.nav-collapse {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex: 1;
+  margin-left: 24px;
 }
 
 .main-nav {
@@ -439,8 +462,7 @@ body {
   background: var(--obsidian);
 }
 
-.video-aspect iframe,
-#ytPlayerMount {
+.video-aspect iframe {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -466,38 +488,3 @@ body {
   font-size: 0.75rem;
   font-weight: 800;
   background: var(--gold-soft);
-  color: var(--gold-bright);
-  border: 1px solid var(--border-gold);
-  padding: 4px 12px;
-  border-radius: var(--radius-pill);
-}
-
-.status-tag {
-  font-size: 0.74rem;
-  font-weight: 800;
-  color: var(--gold-bright);
-  letter-spacing: 0.04em;
-}
-
-.np-title {
-  margin: 0 0 8px;
-  font-size: 1.2rem;
-  font-weight: 800;
-  color: #ffffff;
-}
-
-.np-desc {
-  margin: 0 0 18px;
-  font-size: 0.92rem;
-  color: var(--text-muted);
-}
-
-.np-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding-top: 14px;
-  border-top: 1px solid var(--border-emerald);
-}
-
-/* Episode Queue Sidebar */
