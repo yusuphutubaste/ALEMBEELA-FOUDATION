@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Picha za Jamii & Kumbukumbu | Alembeela Foundation</title>
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -60,7 +60,7 @@
                 <div class="media-card photo-card" onclick="openLightbox(this)">
                     <div class="media-top-photo">
                         <img src="alembeela.jpg" alt="Alembeela" 
-                             onerror="this.src='https://unsplash.com'">
+                             onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80'">
                     </div>
                     <div class="media-body">
                         <span class="media-badge">Mwanzilishi</span>
@@ -114,12 +114,12 @@
 
     <!-- LIGHTBOX (IMEJIFICHA HADI MTU AGUSE PICHA) -->
     <div id="lightboxModal" class="lightbox" onclick="closeLightbox()">
-        <span class="close-lightbox">&times;</span>
+        <span class="close-lightbox" aria-label="Funga Picha">&times;</span>
         <img class="lightbox-content" id="lightboxImg" src="" alt="Picha Kubwa">
         <div id="lightboxCaption"></div>
     </div>
 
-    <!-- FOOTER YA KITAALAMU (SEHEMU KUU 5) -->
+    <!-- FOOTER YA KITAALAMU (SEHEMU KUU) -->
     <footer class="af-footer">
         <div class="af-footer-container">
             <div class="af-footer-grid">
@@ -137,10 +137,10 @@
                         Jukwaa rasmi la kuhifadhi, kulinda na kuendeleza historia, mila, lugha ya Kibembe na utamaduni wa jamii ya Babembe kwa vizazi vya sasa na vijavyo.
                     </p>
                     <div class="af-social-row">
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube Alembeela Foundation" title="YouTube: Alembeela Foundation">
+                        <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" aria-label="YouTube Alembeela Foundation" title="YouTube: Alembeela Foundation">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube Alembeela wa Idi" title="YouTube: Alembeela wa Idi">
+                        <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" aria-label="YouTube Alembeela wa Idi" title="YouTube: Alembeela wa Idi">
                             <i class="fab fa-youtube"></i>
                         </a>
                         <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">
@@ -174,7 +174,7 @@
                     <h4 class="af-col-title">Our Channels</h4>
                     <ul class="af-channel-list">
                         <li>
-                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="af-channel-card">
+                            <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="af-channel-card">
                                 <i class="fab fa-youtube"></i>
                                 <div>
                                     <strong>Alembeela Foundation</strong>
@@ -183,9 +183,39 @@
                             </a>
                         </li>
                         <li>
-                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="af-channel-card">
+                            <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="af-channel-card">
                                 <i class="fab fa-youtube"></i>
                                 <div>
                                     <strong>Alembeela wa Idi</strong>
                                     <span>Mafundisho ya Úmbo & Jamii</span>
                                 </div>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 4. SEHEMU YA MADA NA MAWASILIANO -->
+                <div class="af-footer-col">
+                    <h4 class="af-col-title">Mada & Mawasiliano</h4>
+                    <ul class="af-footer-links">
+                        <li><a href="index.html#mafunzo"><i class="fas fa-angle-right"></i> Úmbo Cha Babembe</a></li>
+                        <li><a href="index.html#mafunzo"><i class="fas fa-angle-right"></i> Asili na Nasaba</a></li>
+                        <li><a href="index.html#mafunzo"><i class="fas fa-angle-right"></i> Lugha ya Kibembe</a></li>
+                        <li><a href="index.html#mafunzo"><i class="fas fa-angle-right"></i> Maadili, Upendo & Amani</a></li>
+                        <li><a href="mailto:info@alembeelafoundation.org"><i class="fas fa-envelope"></i> info@alembeelafoundation.org</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- 5. SEHEMU YA CHINI YA HAKI MILIKI -->
+            <div class="af-footer-bottom">
+                <p>&copy; <span id="currentYear">2026</span> <strong>Alembeela Foundation</strong>. Haki zote zimehifadhiwa.</p>
+                <span class="af-footer-tag">OUR HERITAGE • OUR IDENTITY • OUR HISTORY</span>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
