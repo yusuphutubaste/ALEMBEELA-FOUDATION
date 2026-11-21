@@ -13,7 +13,7 @@
   --color-gold: #9A8A16;
   --color-gold-deep: #9A530B;
   
-  --bg-main: #06130d;            /* Deep obsidian forest */
+  --bg-main: #06130d;
   --bg-card: #0c2017;
   --bg-card-hover: #122b20;
   --bg-alt: #081911;
@@ -66,9 +66,7 @@ body {
   overflow-x: hidden;
 }
 
-/* ====================================================
-   Navigation Bar
-==================================================== */
+/* Navbar */
 .navbar {
   position: sticky;
   top: 0;
@@ -96,7 +94,6 @@ body {
   text-decoration: none;
 }
 
-/* Monogram Logo */
 .af-logo-badge {
   width: 46px;
   height: 46px;
@@ -150,7 +147,7 @@ body {
   letter-spacing: 2px;
 }
 
-/* Navigation Links */
+/* Nav Links */
 .nav-links {
   list-style: none;
   display: flex;
@@ -189,14 +186,12 @@ body {
   width: 100%;
 }
 
-/* Action Buttons */
 .nav-actions {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* Language Switcher */
 .lang-btn {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -216,7 +211,6 @@ body {
   color: var(--color-gold);
 }
 
-/* Theme Toggle Button */
 .theme-btn {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -264,7 +258,6 @@ body {
   border-color: #ffffff;
 }
 
-/* Mobile Hamburger */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -287,9 +280,7 @@ body {
 .hamburger.active span:nth-child(2) { opacity: 0; }
 .hamburger.active span:nth-child(3) { transform: translateY(-7.5px) rotate(-45deg); }
 
-/* ====================================================
-   Hero Section
-==================================================== */
+/* Hero */
 .hero {
   position: relative;
   background: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
@@ -348,7 +339,6 @@ body {
   flex-wrap: wrap;
 }
 
-/* Primary and Secondary Buttons */
 .btn-primary {
   background: linear-gradient(135deg, var(--color-green-primary) 0%, var(--color-green-deep) 100%);
   color: #ffffff;
@@ -392,9 +382,7 @@ body {
   transform: translateY(-2px);
 }
 
-/* ====================================================
-   Quick Stats Section
-==================================================== */
+/* Stats */
 .stats {
   display: flex;
   justify-content: space-around;
@@ -432,9 +420,7 @@ body {
   font-weight: 600;
 }
 
-/* ====================================================
-   Section Titles
-==================================================== */
+/* Sections */
 section {
   padding: 65px 24px;
   max-width: 1200px;
@@ -470,22 +456,35 @@ section {
 }
 
 /* ====================================================
-   Single Featured Video (Úmbo)
+   Video Library Grid (Inabadilisha ile video moja kuu)
 ==================================================== */
-.single-video-wrapper {
-  max-width: 860px;
-  margin: 0 auto;
+.library-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  gap: 28px;
+}
+
+.video-card {
   background: var(--bg-card);
   border: 1.5px solid var(--border-color);
   border-radius: 16px;
   overflow: hidden;
   box-shadow: var(--shadow-main);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.video-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--color-gold);
 }
 
 .iframe-container {
   position: relative;
   padding-bottom: 56.25%;
   height: 0;
+  background: #000000;
 }
 
 .iframe-container iframe {
@@ -497,7 +496,10 @@ section {
 }
 
 .card-info {
-  padding: 24px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .video-tag {
@@ -506,26 +508,26 @@ section {
   border: 1px solid var(--color-gold);
   padding: 4px 12px;
   border-radius: 14px;
-  font-size: 12px;
+  font-size: 11.5px;
   font-weight: 700;
+  align-self: flex-start;
 }
 
 .card-info h4 {
   font-family: var(--font-serif);
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 700;
-  margin: 10px 0 6px;
+  margin: 12px 0 8px;
   color: var(--text-main);
 }
 
 .card-info p {
   font-size: 14px;
   color: var(--text-muted);
+  line-height: 1.6;
 }
 
-/* ====================================================
-   Shorts Grid
-==================================================== */
+/* Shorts */
 .shorts-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -567,9 +569,7 @@ section {
   color: #ff4b4b;
 }
 
-/* ====================================================
-   Gallery Grid & Lightbox
-==================================================== */
+/* Gallery */
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -725,7 +725,6 @@ section {
   color: var(--color-gold);
 }
 
-/* Page Header (picha.html) */
 .page-header {
   padding: 70px 24px 35px;
   text-align: center;
@@ -745,9 +744,7 @@ section {
   margin: 0 auto;
 }
 
-/* ====================================================
-   Dual YouTube Channels Grid
-==================================================== */
+/* Channels Grid */
 .dual-channels-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -823,9 +820,7 @@ section {
   transform: translateY(-2px);
 }
 
-/* ====================================================
-   About Section
-==================================================== */
+/* About */
 .about-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -860,9 +855,7 @@ section {
   line-height: 1.7;
 }
 
-/* ====================================================
-   Contact Section
-==================================================== */
+/* Contact */
 .contact-form {
   max-width: 640px;
   margin: 0 auto;
@@ -894,9 +887,7 @@ section {
   box-shadow: 0 0 12px rgba(154, 138, 22, 0.25);
 }
 
-/* ====================================================
-   Site Footer
-==================================================== */
+/* Footer */
 .site-footer {
   background-color: var(--color-green-deep);
   color: #ffffff;
@@ -1082,9 +1073,7 @@ section {
   color: var(--color-gold);
 }
 
-/* ====================================================
-   Floating WhatsApp Button
-==================================================== */
+/* WhatsApp Floating */
 .whatsapp-float {
   position: fixed;
   bottom: 25px;
@@ -1123,9 +1112,7 @@ section {
   opacity: 1;
 }
 
-/* ====================================================
-   Responsive Breakpoints
-==================================================== */
+/* Responsiveness */
 @media (max-width: 992px) {
   .footer-container {
     grid-template-columns: 1fr 1fr;
