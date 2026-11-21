@@ -1186,3 +1186,18 @@ section {
         text-align: center;
     }
 }
+.af-channel-card i.platform-yt {
+    color: #FF4D4D;
+}
+
+.af-channel-card i.platform-fb {
+    color: #4A8CFF;
+}
+
+.af-channel-card i.platform-tt {
+    color: #5CE1E6;
+}
+
+.af-channel-card i.platform-ig {
+    color: #F27D9E;
+}
