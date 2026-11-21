@@ -3,195 +3,233 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alembeela Foundation — Úmbo Cha Babembe &amp; Urithi wa Jamii</title>
-  <meta name="description" content="Tovuti rasmi ya Alembeela Foundation (@Alembeelawaidi) — Úmbo Cha Babembe, Sauti za Wazee, mafunzo, na urithi wa jamii." />
+  <title>Alembeela Foundation — Urithi, Asili &amp; Mila za Babembe</title>
+  <meta name="description" content="Alembeela Foundation (@AlembeelaFoundation) — Kuhifadhi asili ya familia, mila, na uelimishaji wa jamii ya Babembe kupitia mfululizo wa Úmbo Cha Babembe." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <!-- Toast Notification -->
   <div id="toastBanner" class="toast-banner hidden" role="status" aria-live="polite"></div>
 
-  <!-- Header -->
+  <!-- Top Navigation Bar -->
   <header class="site-header">
     <div class="container header-inner">
-      <div class="brand-wrap">
-        <div class="site-logo" aria-hidden="true">AF</div>
+      <a href="index.html" class="brand-wrap">
+        <div class="af-crest" aria-hidden="true"><span>AF</span></div>
         <div>
-          <h1 class="brand-title">Alembeela Foundation</h1>
-          <p class="brand-subtitle" data-i18n="siteSubtitle">Úmbo Cha Babembe &amp; Urithi wa Jamii</p>
+          <span class="brand-title">ALEMBEELA FOUNDATION</span>
+          <span class="brand-handle">@AlembeelaFoundation</span>
         </div>
-      </div>
+      </a>
 
-      <div class="header-right">
+      <nav class="main-nav" aria-label="Primary Navigation">
+        <a href="#theaterSection" class="nav-link is-active" data-i18n="navSeries">Úmbo Cha Babembe</a>
+        <a href="#pillarsSection" class="nav-link" data-i18n="navMission">Dhamira Yetu</a>
+        <a href="#librarySection" class="nav-link" data-i18n="navArchive">Maktaba</a>
+        <a href="picha.html" class="nav-link" data-i18n="navPhotos">Picha</a>
+      </nav>
+
+      <div class="header-actions">
         <div class="lang-switch" role="group" aria-label="Language switch">
+          <button type="button" class="lang-btn" data-lang="bem">BEM</button>
           <button type="button" class="lang-btn is-active" data-lang="sw">SW</button>
           <button type="button" class="lang-btn" data-lang="en">EN</button>
         </div>
 
         <a
-          id="secondaryChannelLink"
-          class="second-channel-link"
           href="https://youtube.com"
           target="_blank"
           rel="noopener noreferrer"
+          class="btn btn-gold btn-sm"
         >
-          <span data-i18n="secondChannelPrefix">Tazama pia:</span>
-          <strong>@Alembeelawaidi</strong>
+          YouTube ↗
         </a>
       </div>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main class="container main-content">
-    <!-- Hero / Featured Intro -->
-    <section class="hero-banner" aria-labelledby="heroHeading">
-      <div class="hero-content">
-        <span class="hero-badge" data-i18n="eldersBadge">Sauti za Wazee</span>
-        <h2 id="heroHeading" class="hero-title">Úmbo Cha Babembe</h2>
-        <p class="hero-desc" data-i18n="heroDesc">
-          Hifadhi ya historia, mila, mafunzo, na sauti za wazee wa jamii ya Babembe. Tazama mfululizo kamili hapa au hifadhi vipande unavyovipenda.
+  <!-- Emerald & Gold Banner Hero (Matches Channel Art) -->
+  <section class="foundation-hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <span class="hero-kicker" data-i18n="heroKicker">URITHI WA JAMII YA BABEMBE</span>
+        <h1 class="hero-heading" data-i18n="heroHeading">
+          Kuhifadhi Asili ya Familia, Mila, na Sauti za Wazee
+        </h1>
+        <p class="hero-lead" data-i18n="heroLead">
+          Alembeela Foundation inalinda kumbukumbu za vizazi, mafundisho ya Kibembe, na uelimishaji wa jamii kwa kizazi cha sasa na kijacho.
         </p>
-        <div class="hero-actions">
-          <button type="button" id="heroPlayAllBtn" class="btn btn-primary" data-i18n="playSeriesHere">
-            Cheza Mfululizo Hapa
-          </button>
-          <a href="#playlistsSection" class="btn btn-secondary" data-i18n="playlistsHeading">
-            Playlists
+        <div class="hero-cta">
+          <a href="#theaterSection" class="btn btn-gold" data-i18n="heroWatchBtn">
+            ▶ Tazama Úmbo Cha Babembe
+          </a>
+          <a
+            href="https://www.youtube.com/@Alembeelawaidi"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-emerald-outline"
+          >
+            @Alembeelawaidi ↗
           </a>
         </div>
       </div>
-    </section>
 
-    <!-- Search Panel -->
-    <section class="search-panel" aria-label="Search">
-      <label for="searchInput" class="search-label" data-i18n="searchLabel">
-        Tafuta chochote kwenye tovuti (Video, Short, Playlist, au Sauti za Wazee)
-      </label>
-      <div class="search-box">
-        <span aria-hidden="true">🔍</span>
-        <input
-          type="search"
-          id="searchInput"
-          class="search-input"
-          placeholder="Tafuta: Úmbo, Sehemu, Short, Playlist, Kipande 01..."
-          data-i18n-placeholder="searchPlaceholder"
-          autocomplete="off"
-        />
-        <button type="button" id="clearSearchBtn" class="btn btn-ghost hidden" data-i18n="clearBtn">
-          Futa
-        </button>
-      </div>
-      <p id="searchSummary" class="search-summary"></p>
-    </section>
-
-    <!-- Main Player Stage (Inline / Active Video) -->
-    <section id="activePlayerSection" class="player-stage hidden" aria-label="Active Video Player">
-      <div class="player-stage-header">
-        <div>
-          <span id="stageBadge" class="media-badge">Sehemu ya Kwanza (1)</span>
-          <h2 id="stageTitle" class="stage-title">ÚMBO CHA BABEMBE</h2>
+      <div class="hero-emblem-card" aria-hidden="true">
+        <div class="emblem-ring">
+          <span class="emblem-letters">AF</span>
         </div>
-        <button type="button" id="closeStageBtn" class="btn btn-ghost" data-i18n="closeBtn">
-          ✕ Funga
-        </button>
+        <p class="emblem-motto">ALEMBEELA FOUNDATION</p>
       </div>
+    </div>
+  </section>
 
-      <div class="video-frame-wrap">
-        <div id="ytPlayerMount"></div>
-      </div>
+  <!-- Main Content -->
+  <main class="main-body">
+    <!-- 1. Featured Series Theater (Video Left + Episode Queue Right) -->
+    <section id="theaterSection" class="section-block">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <span class="section-eyebrow" data-i18n="seriesEyebrow">MFULULIZO MAALUM (KIBEMBE)</span>
+            <h2 class="section-heading">Úmbo Cha Babembe</h2>
+          </div>
+          <div class="theater-controls-top">
+            <button type="button" id="theaterLoopBtn" class="btn btn-light-outline is-active" data-i18n="loopOn">
+              🔁 Loop Nzima: ON
+            </button>
+          </div>
+        </div>
 
-      <div class="stage-meta">
-        <p id="stageDesc" class="stage-desc"></p>
-        <div class="stage-actions">
-          <button type="button" id="stageSaveBtn" class="btn btn-outline" data-i18n="saveBtn">☆ Hifadhi</button>
-          <button type="button" id="stageShareBtn" class="btn btn-outline" data-i18n="shareBtn">Share</button>
-          <button type="button" id="stageCopyBtn" class="btn btn-outline" data-i18n="copyLinkBtn">Nakili Link</button>
+        <div class="theater-layout">
+          <!-- Video Stage -->
+          <div class="theater-stage">
+            <div class="video-aspect">
+              <div id="ytPlayerMount"></div>
+            </div>
+
+            <div class="now-playing-card">
+              <div class="np-header">
+                <span id="stageBadge" class="gold-pill">Sehemu ya Kwanza (1)</span>
+                <span id="stageStatus" class="status-tag" data-i18n="statusReady">TAYARI KUCHEZA</span>
+              </div>
+              <h3 id="stageTitle" class="np-title">
+                ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI
+              </h3>
+              <p id="stageDesc" class="np-desc">
+                Mafundisho ya asili, historia, na chimbuko la jamii ya Babembe yakisimuliwa kwa lugha ya Kibembe.
+              </p>
+
+              <div class="np-actions">
+                <button type="button" id="stagePrevBtn" class="btn btn-light-outline" data-i18n="prevBtn">⏮ Nyuma</button>
+                <button type="button" id="stagePlayBtn" class="btn btn-emerald" data-i18n="playBtn">▶ Cheza</button>
+                <button type="button" id="stageNextBtn" class="btn btn-light-outline" data-i18n="nextBtn">Mbele ⏭</button>
+                <button type="button" id="stageSaveBtn" class="btn btn-light-outline" data-i18n="saveBtn">☆ Hifadhi</button>
+                <button type="button" id="stageShareBtn" class="btn btn-light-outline" data-i18n="shareBtn">Share</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Episode Queue Sidebar -->
+          <aside class="episode-sidebar" aria-label="Orodha ya Sehemu">
+            <div class="sidebar-head">
+              <h3 class="sidebar-title" data-i18n="episodesListTitle">Sehemu za Mfululizo</h3>
+              <span id="episodeCountPill" class="count-pill">2</span>
+            </div>
+            <div id="episodeQueueList" class="episode-list"></div>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- Library & Saved Tabs Section -->
-    <section id="librarySection" class="content-section" aria-labelledby="libraryHeading">
-      <div class="section-header">
-        <h2 id="libraryHeading" class="section-title" data-i18n="libraryHeading">Maktaba</h2>
+    <!-- 2. Three Pillars of Foundation Work -->
+    <section id="pillarsSection" class="section-block section-tinted">
+      <div class="container">
+        <div class="section-head center-head">
+          <span class="section-eyebrow" data-i18n="pillarsEyebrow">KAZI YA TAASISI</span>
+          <h2 class="section-heading" data-i18n="pillarsHeading">Nguzo Tatu za Alembeela Foundation</h2>
+        </div>
 
-        <div class="filter-tabs" role="tablist">
-          <button type="button" class="tab-btn is-active" data-filter="all" role="tab" aria-selected="true">
-            <span data-i18n="libraryHeading">Maktaba</span> (<span id="countAll">0</span>)
+        <div class="pillars-grid">
+          <article class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">🌳</div>
+            <h3 class="pillar-title" data-i18n="pillar1Title">Asili na Nasaba ya Familia</h3>
+            <p class="pillar-text" data-i18n="pillar1Desc">
+              Kuhifadhi historia ya koo, majina ya asili, na uhusiano wa vizazi ili vijana wa Babembe wajue chimbuko lao.
+            </p>
+          </article>
+
+          <article class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">🏺</div>
+            <h3 class="pillar-title" data-i18n="pillar2Title">Mila, Desturi na Kibembe</h3>
+            <p class="pillar-text" data-i18n="pillar2Desc">
+              Kurekodi hekima za wazee, methali, na mafundisho ya kitamaduni yanayowasilishwa kwa ufasaha wa lugha ya Kibembe.
+            </p>
+          </article>
+
+          <article class="pillar-card">
+            <div class="pillar-icon" aria-hidden="true">🤝</div>
+            <h3 class="pillar-title" data-i18n="pillar3Title">Uelimishaji wa Jamii</h3>
+            <p class="pillar-text" data-i18n="pillar3Desc">
+              Kujenga mshikamano, maadili mema, na uelewa mpana wa masuala ya kijamii ndani na nje ya nchi.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Full Archive & Search -->
+    <section id="librarySection" class="section-block">
+      <div class="container">
+        <div class="archive-toolbar">
+          <div>
+            <span class="section-eyebrow" data-i18n="archiveEyebrow">KUMBUKUMBU ZOTE</span>
+            <h2 class="section-heading" data-i18n="libraryHeading">Maktaba ya Video &amp; Sauti</h2>
+          </div>
+
+          <div class="search-wrap">
+            <input
+              type="search"
+              id="searchInput"
+              class="search-field"
+              placeholder="Tafuta: Úmbo, Sehemu ya 1, Asili, Kibembe..."
+              data-i18n-placeholder="searchPlaceholder"
+              autocomplete="off"
+            />
+            <button type="button" id="clearSearchBtn" class="btn btn-light-outline hidden" data-i18n="clearBtn">Futa</button>
+          </div>
+        </div>
+
+        <div class="filter-bar" role="tablist">
+          <button type="button" class="filter-chip is-active" data-filter="all">
+            <span data-i18n="filterAll">Zote</span> (<span id="countAll">0</span>)
           </button>
-          <button type="button" class="tab-btn" data-filter="video" role="tab" aria-selected="false">
+          <button type="button" class="filter-chip" data-filter="video">
             Videos (<span id="countVideos">0</span>)
           </button>
-          <button type="button" class="tab-btn" data-filter="short" role="tab" aria-selected="false">
+          <button type="button" class="filter-chip" data-filter="short">
             Shorts (<span id="countShorts">0</span>)
           </button>
-          <button type="button" class="tab-btn" data-filter="saved" role="tab" aria-selected="false">
+          <button type="button" class="filter-chip" data-filter="saved">
             <span data-i18n="savedTab">Vipendwa</span> (<span id="countSaved">0</span>)
           </button>
         </div>
+
+        <div id="mediaGrid" class="archive-grid"></div>
       </div>
-
-      <div id="mediaGrid" class="media-grid"></div>
-    </section>
-
-    <!-- Playlists Section -->
-    <section id="playlistsSection" class="content-section" aria-labelledby="playlistsHeading">
-      <div class="section-header">
-        <h2 id="playlistsHeading" class="section-title" data-i18n="playlistsHeading">Playlists</h2>
-      </div>
-
-      <div id="playlistsGrid" class="playlists-grid"></div>
     </section>
   </main>
 
-  <!-- Site Footer -->
+  <!-- Obsidian & Gold Footer -->
   <footer class="site-footer">
-    <div class="container footer-inner">
+    <div class="container footer-grid">
       <div class="footer-brand">
-        <div class="site-logo site-logo--sm" aria-hidden="true">AF</div>
+        <div class="af-crest af-crest--sm" aria-hidden="true"><span>AF</span></div>
         <div>
-          <strong>Alembeela Foundation</strong>
-          <p class="footer-copy" data-i18n="footerCopy">Urithi, mafunzo, na sauti za jamii — GitHub Pages.</p>
+          <strong class="footer-name">ALEMBEELA FOUNDATION</strong>
+          <p class="footer-tagline" data-i18n="footerCopy">
+            Kuhifadhi asili ya familia, mila, na sauti za jamii ya Babembe.
+          </p>
         </div>
       </div>
 
-      <nav class="footer-links" aria-label="Footer navigation">
-        <a href="#librarySection" data-i18n="footerLib">Maktaba</a>
-        <a href="#playlistsSection" data-i18n="footerPl">Playlists</a>
-        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">YouTube</a>
-      </nav>
-    </div>
-  </footer>
-
-  <!-- Sticky Bottom Control Bar (Playback, Loop, Freeze & Block) -->
-  <aside id="playerControlBar" class="control-bar hidden" aria-label="Playback controls">
-    <div class="container control-bar-inner">
-      <div class="now-playing-info">
-        <span id="playbackStatus" class="status-pill" data-i18n="statusPaused">IMESIMAMA</span>
-        <strong id="barTitle" class="bar-title">—</strong>
-      </div>
-
-      <div class="transport-controls">
-        <button type="button" id="prevBtn" class="ctrl-btn" data-i18n="prevBtn">⏮ Nyuma</button>
-        <button type="button" id="playPauseBtn" class="ctrl-btn ctrl-btn--primary" data-i18n="playBtn">▶ Cheza</button>
-        <button type="button" id="nextBtn" class="ctrl-btn" data-i18n="nextBtn">Mbele ⏭</button>
-        <button type="button" id="loopBtn" class="ctrl-btn is-active" data-i18n="loopOn">🔁 Loop Nzima: ON</button>
-      </div>
-
-      <div class="safety-controls">
-        <button type="button" id="freezeBtn" class="ctrl-btn ctrl-btn--freeze" aria-pressed="false" data-i18n="freezeLabel">
-          Kugandisha
-        </button>
-        <button type="button" id="blockBtn" class="ctrl-btn ctrl-btn--block" aria-pressed="false" data-i18n="blockLabel">
-          Kuzuia
-        </button>
-      </div>
-    </div>
-  </aside>
-
-  <!-- YouTube IFrame API & Main Script -->
-  <script src="https://youtube.com"></script>
-  <script src="script.js"></script>
-</body>
-</html>
+      <div class="footer-links">
