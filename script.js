@@ -40,44 +40,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. UTAFUTAJI WA PAPO HAPO (Live Instant Search)
-  const searchInput = document.getElementById("searchInput");
-  const clearSearch = document.getElementById("clearSearch");
-  const searchableItems = document.querySelectorAll(".searchable-item");
-
-  if (searchInput) {
-    searchInput.addEventListener("input", function() {
-      const query = this.value.toLowerCase().trim();
-
-      if (query.length > 0) {
-        if (clearSearch) clearSearch.style.display = "inline-block";
-      } else {
-        if (clearSearch) clearSearch.style.display = "none";
-      }
-
-      searchableItems.forEach(item => {
-        const keywords = (item.getAttribute("data-keywords") || "").toLowerCase();
-        const text = item.innerText.toLowerCase();
-
-        if (query === "" || keywords.includes(query) || text.includes(query)) {
-          item.style.display = "";
-        } else {
-          item.style.display = "none";
-        }
-      });
-    });
-
-    if (clearSearch) {
-      clearSearch.addEventListener("click", () => {
-        searchInput.value = "";
-        clearSearch.style.display = "none";
-        searchableItems.forEach(item => (item.style.display = ""));
-        searchInput.focus();
-      });
-    }
-  }
-
-  // 5. KUHESABU TAKWIMU (Counter Animation)
+  // 4. KUHESABU TAKWIMU (Counter Animation)
   const counters = document.querySelectorAll(".counter");
   counters.forEach(counter => {
     counter.innerText = "0";
@@ -98,7 +61,7 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCounter();
   });
 
-  // 6. FOMU YA MAWASILIANO & TAARIFA MPYA
+  // 5. FOMU YA MAWASILIANO & TAARIFA MPYA
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
@@ -118,5 +81,3 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
 });
-
-
