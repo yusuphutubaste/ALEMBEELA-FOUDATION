@@ -6,22 +6,29 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // 2. Menyu ya simu na kompyuta
-    const menuToggle = document.getElementById("menuToggle");
+    // Support both the current menuToggle ID and the older hamburgerBtn ID.
+    const menuToggle = document.getElementById("menuToggle") || document.getElementById("hamburgerBtn");
     const closeMenuBtn = document.getElementById("closeMenuBtn");
     const navLinks = document.getElementById("navLinks");
     const menuBackdrop = document.getElementById("menuBackdrop");
 
-    function openMenu() {
-        if (navLinks) navLinks.classList.add("active");
-        if (menuBackdrop) menuBackdrop.classList.add("active");
+    function setMenuOpen(isOpen) {
+        if (navLinks) navLinks.classList.toggle("active", isOpen);
+        if (menuBackdrop) menuBackdrop.classList.toggle("active", isOpen);
+        if (menuToggle) menuToggle.setAttribute("aria-expanded", String(isOpen));
     }
 
     function closeMenu() {
-        if (navLinks) navLinks.classList.remove("active");
-        if (menuBackdrop) menuBackdrop.classList.remove("active");
+        setMenuOpen(false);
     }
 
-    if (menuToggle) menuToggle.addEventListener("click", openMenu);
+    if (menuToggle) {
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.addEventListener("click", () => {
+            const isOpen = navLinks && navLinks.classList.contains("active");
+            setMenuOpen(!isOpen);
+        });
+    }
     if (closeMenuBtn) closeMenuBtn.addEventListener("click", closeMenu);
     if (menuBackdrop) menuBackdrop.addEventListener("click", closeMenu);
 
@@ -30,6 +37,10 @@ document.addEventListener("DOMContentLoaded", () => {
             link.addEventListener("click", closeMenu);
         });
     }
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") closeMenu();
+    });
 
     // 3. Kuchuja video kwenye Maktaba ya Video
     const filterButtons = document.querySelectorAll(".filter-btn");
@@ -92,11 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Ikiwa widget ya Google Translate bado inapakia, pakia upya ukurasa ili itafsiri ukurasa mzima
-        if (targetLang === "sw") {
-            window.location.reload();
-        } else {
-            window.location.reload();
-        }
+        window.location.reload();
     }
 
     if (languageSelector) {
