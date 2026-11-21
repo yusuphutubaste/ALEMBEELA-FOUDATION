@@ -859,7 +859,7 @@ section {
 }
 
 /* =========================================================
-   AF FOOTER (MULTI-COLUMN GRID + LEFT PLATFORM BOXES)
+   AF FOOTER (MULTI-COLUMN GRID + LEFT ICON-ONLY BOXES)
    ========================================================= */
 .af-footer {
     background: linear-gradient(180deg, #040705 0%, var(--emerald-dark) 145%);
@@ -918,52 +918,47 @@ section {
     margin-bottom: 16px;
 }
 
-/* Maboksi madogo upande wa kushoto yanayoonyesha aikoni na jina la jukwaa */
-.af-platform-boxes {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
+/* Maboksi madogo upande wa kushoto: aikoni ya app pekee bila jina */
+.af-icon-only-boxes {
+    display: flex;
+    flex-wrap: wrap;
     gap: 10px;
-    max-width: 340px;
 }
 
-.af-platform-box {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 9px 12px;
-    border-radius: 8px;
+.af-icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
     background: var(--black-card);
     border: 1px solid var(--border-gold);
-    color: var(--text-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    transition: all 0.25s ease;
+    font-size: 1.2rem;
+    transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease;
 }
 
-.af-platform-box:hover {
-    transform: translateY(-2px);
+.af-icon-box:hover {
+    transform: translateY(-3px);
     border-color: var(--gold-bright);
+    background: rgba(7, 98, 52, 0.35);
 }
 
-.af-platform-box.box-yt i {
+.af-icon-box.box-yt i {
     color: #FF4D4D;
-    font-size: 1rem;
 }
 
-.af-platform-box.box-fb i {
+.af-icon-box.box-fb i {
     color: #4A8CFF;
-    font-size: 1rem;
 }
 
-.af-platform-box.box-tt i {
+.af-icon-box.box-tt i {
     color: #5CE1E6;
-    font-size: 1rem;
 }
 
-.af-platform-box.box-ig i {
+.af-icon-box.box-ig i {
     color: #F27D9E;
-    font-size: 1rem;
 }
 
 .af-col-title {
@@ -1159,10 +1154,6 @@ section {
     .af-footer-grid {
         grid-template-columns: 1fr;
         gap: 28px;
-    }
-
-    .af-platform-boxes {
-        max-width: 100%;
     }
 
     .af-footer-bottom {
