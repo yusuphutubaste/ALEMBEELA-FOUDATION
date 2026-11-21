@@ -1,231 +1,185 @@
 <!DOCTYPE html>
 <html lang="sw">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alembeela Foundation — Urithi, Asili &amp; Mila za Babembe (@Alembeelawaidi)</title>
-  <meta name="description" content="Alembeela Foundation (@Alembeelawaidi) — Kuhifadhi asili ya familia, mila, na uelimishaji wa jamii ya Babembe kupitia mfululizo wa Úmbo Cha Babembe." />
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alembeela Foundation | Urithi, Úmbo na Utamaduni wa Babembe</title>
+    <!-- Font Awesome kwa ajili ya Aikoni za YouTube, Facebook, TikTok, Instagram -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Toast Notification -->
-  <div id="toastBanner" class="toast-banner hidden" role="status" aria-live="polite"></div>
 
-  <!-- Top Navigation Bar (Desktop + Mobile Menu) -->
-  <header class="site-header">
-    <div class="container header-inner">
-      <a href="index.html" class="brand-wrap">
-        <div class="af-crest" aria-hidden="true"><span>AF</span></div>
-        <div>
-          <span class="brand-title">ALEMBEELA FOUNDATION</span>
-          <span class="brand-handle">@Alembeelawaidi</span>
-        </div>
-      </a>
+    <!-- UPAU WA JUU (NAVBAR) -->
+    <header class="navbar">
+        <a href="index.html" class="brand">
+            <div class="brand-badge">AF</div>
+            <div class="brand-text">
+                <span class="gold-title">ALEMBEELA</span>
+                <span class="sub-title">FOUNDATION</span>
+            </div>
+        </a>
 
-      <!-- Mobile Hamburger Button -->
-      <button
-        type="button"
-        id="mobileMenuBtn"
-        class="mobile-menu-toggle"
-        aria-expanded="false"
-        aria-controls="primaryNav"
-        aria-label="Fungua Menyu"
-      >
-        <span class="hamburger-icon">☰</span>
-      </button>
-
-      <div id="primaryNav" class="nav-collapse">
-        <nav class="main-nav" aria-label="Primary Navigation">
-          <a href="#theaterSection" class="nav-link is-active" data-i18n="navSeries">Úmbo Cha Babembe</a>
-          <a href="#pillarsSection" class="nav-link" data-i18n="navMission">Dhamira Yetu</a>
-          <a href="#librarySection" class="nav-link" data-i18n="navArchive">Maktaba</a>
-          <a href="picha.html" class="nav-link" data-i18n="navPhotos">Picha</a>
+        <nav class="nav-links" id="navLinks">
+            <a href="#nyumbani" data-i18n="nav_home">Nyumbani</a>
+            <a href="#kuhusu" data-i18n="nav_about">Kuhusu Sisi</a>
+            <a href="#mafunzo" data-i18n="nav_teachings">Mafundisho</a>
+            <a href="#video-library" data-i18n="nav_videos">Maktaba ya Video</a>
+            <a href="picha.html" data-i18n="nav_photos">Picha & Kumbukumbu</a>
+            <a href="#mawasiliano" data-i18n="nav_contact">Wasiliana Nasi</a>
         </nav>
 
-        <div class="header-actions">
-          <div class="lang-switch" role="group" aria-label="Language switch">
-            <button type="button" class="lang-btn" data-lang="bem">BEM</button>
-            <button type="button" class="lang-btn is-active" data-lang="sw">SW</button>
-            <button type="button" class="lang-btn" data-lang="en">EN</button>
-          </div>
-
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-gold btn-sm"
-          >
-            @Alembeelawaidi ↗
-          </a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- Emerald & Gold Banner Hero -->
-  <section class="foundation-hero">
-    <div class="container hero-grid">
-      <div class="hero-text">
-        <span class="hero-kicker" data-i18n="heroKicker">URITHI WA JAMII YA BABEMBE</span>
-        <h1 class="hero-heading" data-i18n="heroHeading">
-          Kuhifadhi Asili ya Familia, Mila, na Sauti za Wazee
-        </h1>
-        <p class="hero-lead" data-i18n="heroLead">
-          Alembeela Foundation inalinda kumbukumbu za vizazi, mafundisho ya Kibembe, na uelimishaji wa jamii kwa kizazi cha sasa na kijacho.
-        </p>
-        <div class="hero-cta">
-          <a href="#theaterSection" class="btn btn-gold" data-i18n="heroWatchBtn">
-            ▶ Tazama Úmbo Cha Babembe
-          </a>
-          <a
-            href="https://youtube.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn-emerald-outline"
-          >
-            YouTube: @Alembeelawaidi ↗
-          </a>
-        </div>
-      </div>
-
-      <div class="hero-emblem-card" aria-hidden="true">
-        <div class="emblem-ring">
-          <span class="emblem-letters">AF</span>
-        </div>
-        <p class="emblem-motto">ALEMBEELA FOUNDATION</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Main Content -->
-  <main class="main-body">
-    <!-- 1. Featured Series Theater -->
-    <section id="theaterSection" class="section-block">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <span class="section-eyebrow" data-i18n="seriesEyebrow">MFULULIZO MAALUM (KIBEMBE)</span>
-            <h2 class="section-heading">Úmbo Cha Babembe</h2>
-          </div>
-          <div class="theater-controls-top">
-            <button type="button" id="theaterLoopBtn" class="btn btn-light-outline is-active" data-i18n="loopOn">
-              🔁 Loop Nzima: ON
+        <div class="nav-controls">
+            <!-- KIBADILISHA LUGHA (LANGUAGE SWITCHER) -->
+            <div class="lang-wrapper">
+                <i class="fas fa-globe gold-icon"></i>
+                <select id="languageSelector" aria-label="Chagua Lugha">
+                    <option value="sw">Kiswahili</option>
+                    <option value="bem">Kibembe</option>
+                    <option value="en">English</option>
+                    <option value="fr">Français</option>
+                    <option value="rn">Kirundi</option>
+                    <option value="es">Español</option>
+                    <option value="more">🌐 Lugha Zaidi (100+)</option>
+                </select>
+            </div>
+            <div id="google_translate_element" style="display:none;"></div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menyu">
+                <i class="fas fa-bars"></i>
             </button>
-          </div>
         </div>
+    </header>
 
-        <div class="theater-layout">
-          <div class="theater-stage">
-            <div class="video-aspect">
-              <iframe
-                id="ytPlayerFrame"
-                src="https://youtube.com"
-                title="ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI"
-                frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-              ></iframe>
+    <!-- HOME PAGE (HERO SECTION) -->
+    <section class="hero" id="nyumbani">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="banner-preview">
+                <img src="bango.png" alt="Alembeela Foundation Banner" onerror="this.style.display='none'">
             </div>
-
-            <div class="now-playing-card">
-              <div class="np-header">
-                <span id="stageBadge" class="gold-pill">Sehemu ya Kwanza (1)</span>
-                <span id="stageStatus" class="status-tag" data-i18n="statusReady">TAYARI KUCHEZA</span>
-              </div>
-              <h3 id="stageTitle" class="np-title">
-                ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI
-              </h3>
-              <p id="stageDesc" class="np-desc">
-                Mafundisho ya asili, historia, na chimbuko la jamii ya Babembe yakisimuliwa kwa lugha ya Kibembe.
-              </p>
-
-              <div class="np-actions">
-                <button type="button" id="stagePrevBtn" class="btn btn-light-outline" data-i18n="prevBtn">⏮ Nyuma</button>
-                <button type="button" id="stagePlayBtn" class="btn btn-emerald" data-i18n="playBtn">▶ Cheza</button>
-                <button type="button" id="stageNextBtn" class="btn btn-light-outline" data-i18n="nextBtn">Mbele ⏭</button>
-                <button type="button" id="stageSaveBtn" class="btn btn-light-outline" data-i18n="saveBtn">☆ Hifadhi</button>
-                <button type="button" id="stageShareBtn" class="btn btn-light-outline" data-i18n="shareBtn">Share</button>
-              </div>
+            <span class="tagline" data-i18n="hero_tag">URITHI • MILA • ÚMBO • AMANI</span>
+            <h1 data-i18n="hero_title">Karibu Alembeela Foundation</h1>
+            <p data-i18n="hero_desc">
+                Jukwaa rasmi la kidijitali na taasisi ya kijamii iliyojikita katika kufundisha <strong>Úmbo Cha Babembe</strong>, kuhifadhi historia, lugha ya Kibembe, na kujenga daraja la upendo na maadili mema kati ya wazee na kizazi kipya duniani kote.
+            </p>
+            <div class="hero-buttons">
+                <a href="#video-library" class="btn btn-gold" data-i18n="btn_watch">
+                    <i class="fab fa-youtube"></i> Tazama Mafundisho
+                </a>
+                <a href="picha.html" class="btn btn-outline" data-i18n="btn_gallery">
+                    <i class="fas fa-images"></i> Hifadhi ya Picha
+                </a>
             </div>
-          </div>
-
-          <aside class="episode-sidebar" aria-label="Orodha ya Sehemu">
-            <div class="sidebar-head">
-              <h3 class="sidebar-title" data-i18n="episodesListTitle">Sehemu za Mfululizo</h3>
-              <span id="episodeCountPill" class="count-pill">3</span>
-            </div>
-            <div id="episodeQueueList" class="episode-list"></div>
-          </aside>
         </div>
-      </div>
     </section>
 
-    <!-- 2. Three Pillars of Foundation Work -->
-    <section id="pillarsSection" class="section-block section-tinted">
-      <div class="container">
-        <div class="section-head center-head">
-          <span class="section-eyebrow" data-i18n="pillarsEyebrow">KAZI YA TAASISI</span>
-          <h2 class="section-heading" data-i18n="pillarsHeading">Nguzo Tatu za Alembeela Foundation</h2>
+    <!-- SEHEMU YA MWANZILISHI NA KUHUSU SISI (PICHA PEMBENI YA MAELEZO) -->
+    <section class="about-section" id="kuhusu">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker" data-i18n="about_kicker">CHIMBUKO NA MAONO</span>
+                <h2 data-i18n="about_title">Kuhusu Alembeela Foundation</h2>
+                <div class="gold-divider"></div>
+            </div>
+
+            <div class="founder-grid">
+                <!-- UPANDE WA KUSHOTO: PICHA YA MWANZILISHI -->
+                <div class="founder-card">
+                    <div class="founder-img-frame">
+                        <img src="alembeela.jpg" alt="Alembeela - Mwanzilishi wa Alembeela Foundation" 
+                             onerror="this.src='https://unsplash.com'">
+                    </div>
+                    <div class="founder-caption">
+                        <h3>Alembeela</h3>
+                        <p data-i18n="founder_role">Mwanzilishi — Alembeela Foundation</p>
+                        <div class="founder-socials">
+                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube ya Alembeela Waidi">
+                                <i class="fab fa-youtube"></i> @Alembeelawaidi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- UPANDE WA KULIA: MAELEZO KUMHUSU YEYE NA TAASISI -->
+                <div class="founder-bio">
+                    <h3 data-i18n="bio_heading">Sauti ya Urithi, Hekima ya Wazee na Ujenzi wa Jamii</h3>
+                    <p data-i18n="bio_p1">
+                        <strong>Alembeela</strong> alianzisha <strong>Alembeela Foundation</strong> akiwa na maono ya dhati ya kuhakikisha utambulisho, historia, mila, na lugha adhimu ya <strong>Kibembe</strong> havipotei bali vinahifadhiwa na kuheshimiwa na vizazi vya sasa na vijavyo popote walipo duniani.
+                    </p>
+                    <p data-i18n="bio_p2">
+                        Kupitia jukwaa hili, unaposikiliza na kufuatilia <strong>Úmbo Cha Babembe</strong> kwa makini, unapata hazina kubwa ya mafundisho kuhusu asili yako, nasaba ya familia, heshima, na misingi imara ya maisha.
+                    </p>
+                    <p data-i18n="bio_p3">
+                        Zaidi ya mafundisho ya Úmbo, tovuti hii ni <strong>eneo maalum la kuelimishana na kulishana maarifa</strong>—ambapo vijana, wamama, wadada, wakaka, watoto, na jamii nzima ya dunia wanajifunza kuishi vizuri pamoja kwa upendo, maadili mema, na amani ya kudumu.
+                    </p>
+
+                    <div class="bio-highlights">
+                        <div class="highlight-item">
+                            <i class="fas fa-landmark"></i>
+                            <span data-i18n="hl_1">Uhifadhi wa Historia & Nasaba</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-comments"></i>
+                            <span data-i18n="hl_2">Mafundisho kwa Lugha ya Kibembe</span>
+                        </div>
+                        <div class="highlight-item">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            <span data-i18n="hl_3">Eneo la Upendo, Maadili na Amani</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <div class="pillars-grid">
-          <article class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">🌳</div>
-            <h3 class="pillar-title" data-i18n="pillar1Title">Asili na Nasaba ya Familia</h3>
-            <p class="pillar-text" data-i18n="pillar1Desc">
-              Kuhifadhi historia ya koo, majina ya asili, na uhusiano wa vizazi ili vijana wa Babembe wajue chimbuko lao.
-            </p>
-          </article>
-
-          <article class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">🏺</div>
-            <h3 class="pillar-title" data-i18n="pillar2Title">Mila, Desturi na Kibembe</h3>
-            <p class="pillar-text" data-i18n="pillar2Desc">
-              Kurekodi hekima za wazee, methali, na mafundisho ya kitamaduni yanayowasilishwa kwa ufasaha wa lugha ya Kibembe.
-            </p>
-          </article>
-
-          <article class="pillar-card">
-            <div class="pillar-icon" aria-hidden="true">🤝</div>
-            <h3 class="pillar-title" data-i18n="pillar3Title">Uelimishaji wa Jamii</h3>
-            <p class="pillar-text" data-i18n="pillar3Desc">
-              Kujenga mshikamano, maadili mema, na uelewa mpana wa masuala ya kijamii ndani na nje ya nchi.
-            </p>
-          </article>
-        </div>
-      </div>
     </section>
 
-    <!-- 3. Full Archive & Search -->
-    <section id="librarySection" class="section-block">
-      <div class="container">
-        <div class="archive-toolbar">
-          <div>
-            <span class="section-eyebrow" data-i18n="archiveEyebrow">KUMBUKUMBU ZOTE</span>
-            <h2 class="section-heading" data-i18n="libraryHeading">Maktaba ya Video &amp; Sauti</h2>
-          </div>
+    <!-- NGUZO ZA MAFUNDISHO -->
+    <section class="pillars-section" id="mafunzo">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker" data-i18n="pillars_kicker">TUNACHOFUNDISHA</span>
+                <h2 data-i18n="pillars_title">Nguzo Nne za Kuelimishana</h2>
+                <div class="gold-divider"></div>
+            </div>
 
-          <div class="search-wrap">
-            <input
-              type="search"
-              id="searchInput"
-              class="search-field"
-              placeholder="Tafuta: Úmbo, Sehemu ya 1, Short, Kibembe..."
-              data-i18n-placeholder="searchPlaceholder"
-              autocomplete="off"
-            />
-            <button type="button" id="clearSearchBtn" class="btn btn-light-outline hidden" data-i18n="clearBtn">Futa</button>
-          </div>
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fas fa-drum"></i></div>
+                    <h3 data-i18n="p1_title">Úmbo Cha Babembe</h3>
+                    <p data-i18n="p1_desc">Sikiliza na fuatilia simulizi na hekima za Úmbo zinazofundisha maana ya maisha, ujasiri, na busara za mababu.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fas fa-sitemap"></i></div>
+                    <h3 data-i18n="p2_title">Asili na Nasaba</h3>
+                    <p data-i18n="p2_desc">Kujua ulikotoka, koo za Babembe, na historia ya familia zetu ili kujenga msingi imara wa kujitambua.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fas fa-language"></i></div>
+                    <h3 data-i18n="p3_title">Lugha ya Kibembe</h3>
+                    <p data-i18n="p3_desc">Kuunganisha wazee na kizazi kipya kupitia mafunzo ya lugha yetu ya asili kwa watoto, vijana, na watu wazima.</p>
+                </div>
+
+                <div class="pillar-card">
+                    <div class="pillar-icon"><i class="fas fa-dove"></i></div>
+                    <h3 data-i18n="p4_title">Maadili, Upendo & Amani</h3>
+                    <p data-i18n="p4_desc">Masomo mengine ya kijamii nje ya Úmbo yanayofundisha wamama, vijana, wadada, na wakaka kuishi kwa upendo na amani.</p>
+                </div>
+            </div>
         </div>
+    </section>
 
-        <div class="filter-bar" role="tablist">
-          <button type="button" class="filter-chip is-active" data-filter="all">
-            <span data-i18n="filterAll">Zote</span> (<span id="countAll">0</span>)
-          </button>
-          <button type="button" class="filter-chip" data-filter="video">
-            Videos (<span id="countVideos">0</span>)
-          </button>
-          <button type="button" class="filter-chip" data-filter="short">
-            Shorts (<span id="countShorts">0</span>)
-          </button>
+    <!-- MAKTABA YA VIDEO (VIDEO LIBRARY) -->
+    <section class="video-section" id="video-library">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-kicker" data-i18n="vid_kicker">TAZAMA NA SIKILIZA</span>
+                <h2 data-i18n="vid_title">Maktaba ya Video (Video Library)</h2>
+                <p class="section-desc" data-i18n="vid_sub">Fuatilia mafundisho ya Úmbo Cha Babembe pamoja na masomo ya maadili, familia, na amani.</p>
+                <div class="gold-divider"></div>
+            </div>
+
+            <!-- VITUFE VYA KUCHUJA VIDEO -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Video Zote</button>
+                <button class="filter-btn" data-filter="umbo" data-i18n="filter_umbo">Úmbo Cha Babembe</button>
