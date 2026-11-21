@@ -1,11 +1,11 @@
 /* ==========================================================================
-   ALEMBEELA FOUNDATION — COMPLETE SCRIPT (BEM / SW / EN + THEATER PLAYER)
+   ALEMBEELA FOUNDATION — COMPLETE SCRIPT (@Alembeelawaidi)
+   Mobile Menu + Trilingual (BEM/SW/EN) + Theater Player + Archive
    ========================================================================== */
 
 const SITE_CONFIG = {
-  mainChannelUrl: 'https://www.youtube.com/@AlembeelaFoundation',
-  secondaryChannelUrl: 'https://www.youtube.com/@Alembeelawaidi',
-  storageKey: 'alembeela_foundation_state_v3',
+  primaryChannelUrl: 'https://youtube.com',
+  storageKey: 'alembeela_foundation_state_v7',
   defaultLoopAll: true
 };
 
@@ -35,19 +35,17 @@ const I18N = {
       'Kujenga umoja, mwenendo mwema, na uelewa wa mambo ma jamii mukati na hanze ya nchi.',
     archiveEyebrow: 'KUMBUKUMBU ZOSE',
     libraryHeading: 'Maktaba ya Video & Malaka',
-    searchPlaceholder: 'Tafuta: Úmbo, Sehemu ya 1, Asili, Kibembe...',
+    searchPlaceholder: 'Tafuta: Úmbo, Sehemu ya 1, Short, Asili, Kibembe...',
     clearBtn: 'Futa',
     filterAll: 'Zose',
     savedTab: 'Bipendwa',
     statusReady: 'TAYARI KUCHEZA',
-    statusPlaying: 'INACHEZA · AUTO-NEXT',
-    statusPaused: 'IMESIMAMA',
+    statusPlaying: 'INACHEZA SASA',
     statusFrozen: 'IMEGANDISHWA',
     loopOn: '🔁 Loop Nzima: ON',
     loopOff: '🔁 Loop Nzima: OFF',
     prevBtn: '⏮ Nyuma',
     playBtn: '▶ Cheza',
-    pauseBtn: '⏸ Simamisha',
     nextBtn: 'Mbele ⏭',
     saveBtn: '☆ Hifadhi',
     savedBtn: '★ Imependezwa',
@@ -56,13 +54,15 @@ const I18N = {
     freezeLabel: 'Kugandisha',
     blockLabel: 'Kuzuia',
     copiedToast: 'Kiungo kimenakiliwa.',
-    frozenToast: 'Imegandishwa: Auto-next imesimamishwa.',
+    frozenToast: 'Imegandishwa: Kubadilisha video kumesimamishwa.',
     unfrozenToast: 'Kugandisha kumeondolewa.',
     blockedToast: 'Video imezuiwa kwenye mzunguko.',
     unblockedToast: 'Kizuizi kimeondolewa.',
     emptySaved: 'Haujahifadhi video yoyote kwenye Bipendwa.',
     emptySearch: 'Hakuna matokeo yaliyopatikana.',
-    footerCopy: 'Kulinda asili ya milango, mila, na malaka ma bantu ba Babembe.'
+    footerCopy: 'Kulinda asili ya milango, mila, na malaka ma bantu ba Babembe.',
+    footerNavHeading: 'Menyu',
+    footerChannelHeading: 'Channel Yetu'
   },
   sw: {
     navSeries: 'Úmbo Cha Babembe',
@@ -89,19 +89,17 @@ const I18N = {
       'Kujenga mshikamano, maadili mema, na uelewa mpana wa masuala ya kijamii ndani na nje ya nchi.',
     archiveEyebrow: 'KUMBUKUMBU ZOTE',
     libraryHeading: 'Maktaba ya Video & Sauti',
-    searchPlaceholder: 'Tafuta: Úmbo, Sehemu ya 1, Asili, Kibembe...',
+    searchPlaceholder: 'Tafuta: Úmbo, Sehemu ya 1, Short, Asili, Kibembe...',
     clearBtn: 'Futa',
     filterAll: 'Zote',
     savedTab: 'Vipendwa',
     statusReady: 'TAYARI KUCHEZA',
-    statusPlaying: 'INACHEZA · AUTO-NEXT',
-    statusPaused: 'IMESIMAMA',
+    statusPlaying: 'INACHEZA SASA',
     statusFrozen: 'IMEGANDISHWA',
     loopOn: '🔁 Loop Nzima: ON',
     loopOff: '🔁 Loop Nzima: OFF',
     prevBtn: '⏮ Nyuma',
     playBtn: '▶ Cheza',
-    pauseBtn: '⏸ Simamisha',
     nextBtn: 'Mbele ⏭',
     saveBtn: '☆ Hifadhi',
     savedBtn: '★ Imependezwa',
@@ -110,13 +108,15 @@ const I18N = {
     freezeLabel: 'Kugandisha',
     blockLabel: 'Kuzuia',
     copiedToast: 'Kiungo kimenakiliwa.',
-    frozenToast: 'Imegandishwa: Auto-next imesimamishwa.',
+    frozenToast: 'Imegandishwa: Kubadilisha video kumesimamishwa.',
     unfrozenToast: 'Kugandisha kumeondolewa.',
     blockedToast: 'Video imezuiwa kwenye mzunguko.',
     unblockedToast: 'Kizuizi kimeondolewa.',
     emptySaved: 'Bado haujahifadhi video yoyote kwenye Vipendwa.',
     emptySearch: 'Hakuna matokeo yaliyopatikana kwa utafutaji wako.',
-    footerCopy: 'Kuhifadhi asili ya familia, mila, na sauti za jamii ya Babembe.'
+    footerCopy: 'Kuhifadhi asili ya familia, mila, na sauti za jamii ya Babembe.',
+    footerNavHeading: 'Kurasa',
+    footerChannelHeading: 'Channel Rasmi'
   },
   en: {
     navSeries: 'Úmbo Cha Babembe',
@@ -143,19 +143,17 @@ const I18N = {
       'Building unity, shared values, and social awareness across communities at home and abroad.',
     archiveEyebrow: 'COMPLETE ARCHIVE',
     libraryHeading: 'Video & Audio Library',
-    searchPlaceholder: 'Search: Úmbo, Episode 1, Lineage, Kibembe...',
+    searchPlaceholder: 'Search: Úmbo, Episode 1, Short, Lineage, Kibembe...',
     clearBtn: 'Clear',
     filterAll: 'All',
     savedTab: 'Saved',
     statusReady: 'READY TO PLAY',
-    statusPlaying: 'PLAYING · AUTO-NEXT',
-    statusPaused: 'PAUSED',
+    statusPlaying: 'NOW PLAYING',
     statusFrozen: 'FROZEN',
     loopOn: '🔁 Full Loop: ON',
     loopOff: '🔁 Full Loop: OFF',
     prevBtn: '⏮ Prev',
     playBtn: '▶ Play',
-    pauseBtn: '⏸ Pause',
     nextBtn: 'Next ⏭',
     saveBtn: '☆ Save',
     savedBtn: '★ Saved',
@@ -164,109 +162,77 @@ const I18N = {
     freezeLabel: 'Freeze',
     blockLabel: 'Block',
     copiedToast: 'Link copied to clipboard.',
-    frozenToast: 'Frozen: Auto-next paused.',
-    unfrozenToast: 'Unfrozen: Auto-next resumed.',
+    frozenToast: 'Frozen: Video switching locked.',
+    unfrozenToast: 'Unfrozen: Video switching unlocked.',
     blockedToast: 'Item blocked from queue.',
     unblockedToast: 'Item unblocked.',
     emptySaved: 'You have not saved any items yet.',
     emptySearch: 'No matching items found.',
-    footerCopy: 'Preserving family lineage, traditions, and voices of the Babembe community.'
+    footerCopy: 'Preserving family lineage, traditions, and voices of the Babembe community.',
+    footerNavHeading: 'Navigation',
+    footerChannelHeading: 'Official Channel'
   }
 };
 
+/* ==========================================================================
+   MEDIA LIBRARY (3 Full Episodes + 3 YouTube Shorts)
+   ========================================================================== */
 const MEDIA_ITEMS = [
   {
     id: 'vid-chCvVUD1FPo',
     videoId: 'chCvVUD1FPo',
+    embedUrl: 'https://youtube.com',
     type: 'video',
     isSeries: true,
     badge: 'Sehemu ya Kwanza (1)',
     title: 'ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI',
     description:
       'Mafundisho ya asili, historia, na chimbuko la jamii ya Babembe yakisimuliwa kwa lugha ya Kibembe.',
-    shareUrl: 'https://youtu.be/chCvVUD1FPo'
+    shareUrl: 'https://youtu.be'
   },
   {
     id: 'vid-xsxfbtJnrzg',
     videoId: 'xsxfbtJnrzg',
+    embedUrl: 'https://youtube.com',
     type: 'video',
     isSeries: true,
     badge: 'Sehemu ya Pili (2)',
     title: 'UMBO CHA BABEMBE SEHEMU YA PILI 2 @Alembeela wa idi APRIL 18TH, 2026',
     description:
       'Mwendelezo wa mafundisho ya nasaba ya familia, mila, na maadili ya jamii ya Babembe.',
-    shareUrl: 'https://youtu.be/xsxfbtJnrzg'
-  }
-];
-
-let state = {
-  lang: 'sw',
-  filter: 'all',
-  searchQuery: '',
-  savedIds: [],
-  blockedIds: [],
-  currentIndex: 0,
-  isPlaying: false,
-  hasStarted: false,
-  loopAll: SITE_CONFIG.defaultLoopAll,
-  isFrozen: false
-};
-
-let ytPlayer = null;
-let ytApiReady = false;
-let toastTimer = null;
-
-function loadState() {
-  try {
-    const raw = localStorage.getItem(SITE_CONFIG.storageKey);
-    if (!raw) return;
-    const parsed = JSON.parse(raw);
-    state = {
-      ...state,
-      lang: ['bem', 'sw', 'en'].includes(parsed.lang) ? parsed.lang : 'sw',
-      savedIds: Array.isArray(parsed.savedIds) ? parsed.savedIds : [],
-      blockedIds: Array.isArray(parsed.blockedIds) ? parsed.blockedIds : [],
-      loopAll: typeof parsed.loopAll === 'boolean' ? parsed.loopAll : SITE_CONFIG.defaultLoopAll
-    };
-  } catch (err) {
-    console.warn('State load error:', err);
-  }
-}
-
-function saveState() {
-  try {
-    localStorage.setItem(
-      SITE_CONFIG.storageKey,
-      JSON.stringify({
-        lang: state.lang,
-        savedIds: state.savedIds,
-        blockedIds: state.blockedIds,
-        loopAll: state.loopAll
-      })
-    );
-  } catch (err) {
-    console.warn('State save error:', err);
-  }
-}
-
-function t(key) {
-  return (I18N[state.lang] && I18N[state.lang][key]) || I18N.sw[key] || key;
-}
-
-function showToast(msg) {
-  const banner = document.getElementById('toastBanner');
-  if (!banner) return;
-  banner.textContent = msg;
-  banner.classList.remove('hidden');
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => banner.classList.add('hidden'), 3000);
-}
-
-window.onYouTubeIframeAPIReady = function () {
-  ytApiReady = true;
-  if (MEDIA_ITEMS.length > 0) {
-    createPlayer(MEDIA_ITEMS[0].videoId, false);
-  }
-};
-
-function createPlayer(videoId, autoplay = true) {
+    shareUrl: 'https://youtu.be'
+  },
+  {
+    id: 'vid-YPPOyvxJ-Wk',
+    videoId: 'YPPOyvxJ-Wk',
+    embedUrl: 'https://youtube.com',
+    type: 'video',
+    isSeries: true,
+    badge: 'Sehemu ya Tatu (3)',
+    title: 'ÚMBO CHA BABEMBE: Sehemu ya Tatu (3) – @ALEMBEELAWAIDI',
+    description:
+      'Sehemu ya tatu ya mfululizo wa urithi, hekima za wazee, na historia ya jamii ya Babembe.',
+    shareUrl: 'https://youtu.be'
+  },
+  {
+    id: 'short-HhJm-izUZk4',
+    videoId: 'HhJm-izUZk4',
+    embedUrl: 'https://youtube.com',
+    type: 'short',
+    isSeries: false,
+    badge: 'Short 01 · Úmbo',
+    title: 'ÚMBO #AlembeelaFoundation #Alembeelawaidi (01)',
+    description:
+      'Kipande kifupi cha uhamasishaji wa urithi na mafundisho ya Kibembe — full video ipo YouTube.',
+    shareUrl: 'https://youtube.com'
+  },
+  {
+    id: 'short-jCPtT8ZPsoE',
+    videoId: 'jCPtT8ZPsoE',
+    embedUrl: 'https://youtube.com',
+    type: 'short',
+    isSeries: false,
+    badge: 'Short 02 · Úmbo',
+    title: 'ÚMBO #AlembeelaFoundation #Alembeelawaidi (02)',
+    description:
+      'Dondoo fupi za mila, asili, na sauti za jamii ya Babembe katika Kibembe.',
