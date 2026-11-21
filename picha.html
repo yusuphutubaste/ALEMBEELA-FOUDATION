@@ -3,44 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Picha &amp; Kumbukumbu — Alembeela Foundation</title>
+  <title>Picha &amp; Kumbukumbu — Alembeela Foundation (@Alembeelawaidi)</title>
   <meta name="description" content="Maktaba ya picha, kumbukumbu za asili ya familia, mila, na shughuli za jamii ya Babembe — Alembeela Foundation." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Top Navigation Bar -->
+  <!-- Top Navigation Bar (Desktop + Mobile Menu) -->
   <header class="site-header">
     <div class="container header-inner">
       <a href="index.html" class="brand-wrap">
         <div class="af-crest" aria-hidden="true"><span>AF</span></div>
         <div>
           <span class="brand-title">ALEMBEELA FOUNDATION</span>
-          <span class="brand-handle">@AlembeelaFoundation</span>
+          <span class="brand-handle">@Alembeelawaidi</span>
         </div>
       </a>
 
-      <nav class="main-nav" aria-label="Primary Navigation">
-        <a href="index.html#theaterSection" class="nav-link" data-i18n="navSeries">Úmbo Cha Babembe</a>
-        <a href="index.html#pillarsSection" class="nav-link" data-i18n="navMission">Dhamira Yetu</a>
-        <a href="index.html#librarySection" class="nav-link" data-i18n="navArchive">Maktaba</a>
-        <a href="picha.html" class="nav-link is-active" data-i18n="navPhotos">Picha</a>
-      </nav>
+      <button
+        type="button"
+        id="mobileMenuBtn"
+        class="mobile-menu-toggle"
+        aria-expanded="false"
+        aria-controls="primaryNav"
+        aria-label="Fungua Menyu"
+      >
+        <span class="hamburger-icon">☰</span>
+      </button>
 
-      <div class="header-actions">
-        <div class="lang-switch" role="group" aria-label="Language switch">
-          <button type="button" class="lang-btn" data-lang="bem">BEM</button>
-          <button type="button" class="lang-btn is-active" data-lang="sw">SW</button>
-          <button type="button" class="lang-btn" data-lang="en">EN</button>
+      <div id="primaryNav" class="nav-collapse">
+        <nav class="main-nav" aria-label="Primary Navigation">
+          <a href="index.html#theaterSection" class="nav-link" data-i18n="navSeries">Úmbo Cha Babembe</a>
+          <a href="index.html#pillarsSection" class="nav-link" data-i18n="navMission">Dhamira Yetu</a>
+          <a href="index.html#librarySection" class="nav-link" data-i18n="navArchive">Maktaba</a>
+          <a href="picha.html" class="nav-link is-active" data-i18n="navPhotos">Picha</a>
+        </nav>
+
+        <div class="header-actions">
+          <div class="lang-switch" role="group" aria-label="Language switch">
+            <button type="button" class="lang-btn" data-lang="bem">BEM</button>
+            <button type="button" class="lang-btn is-active" data-lang="sw">SW</button>
+            <button type="button" class="lang-btn" data-lang="en">EN</button>
+          </div>
+
+          <a
+            href="https://www.youtube.com/@Alembeelawaidi"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-gold btn-sm"
+          >
+            @Alembeelawaidi ↗
+          </a>
         </div>
-
-        <a
-          href="https://www.youtube.com/@AlembeelaFoundation"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn-gold btn-sm"
-        >
-          YouTube ↗
-        </a>
       </div>
     </div>
   </header>
@@ -107,25 +120,51 @@
     </section>
   </main>
 
-  <!-- Footer -->
+  <!-- Full Institutional Footer -->
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div class="footer-brand">
-        <div class="af-crest af-crest--sm" aria-hidden="true"><span>AF</span></div>
-        <div>
-          <strong class="footer-name">ALEMBEELA FOUNDATION</strong>
-          <p class="footer-tagline" data-i18n="footerCopy">
-            Kuhifadhi asili ya familia, mila, na sauti za jamii ya Babembe.
-          </p>
+    <div class="container footer-columns">
+      <div class="footer-col">
+        <div class="footer-brand">
+          <div class="af-crest af-crest--sm" aria-hidden="true"><span>AF</span></div>
+          <div>
+            <strong class="footer-name">ALEMBEELA FOUNDATION</strong>
+            <span class="brand-handle">@Alembeelawaidi</span>
+          </div>
         </div>
+        <p class="footer-tagline" data-i18n="footerCopy">
+          Kuhifadhi asili ya familia, mila, na sauti za jamii ya Babembe kupitia mafundisho ya Kibembe.
+        </p>
       </div>
 
-      <div class="footer-links">
-        <a href="index.html#theaterSection" data-i18n="navSeries">Úmbo Cha Babembe</a>
-        <a href="index.html#pillarsSection" data-i18n="navMission">Dhamira Yetu</a>
-        <a href="picha.html" data-i18n="navPhotos">Picha</a>
-        <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" rel="noopener noreferrer">@AlembeelaFoundation</a>
+      <div class="footer-col">
+        <h4 class="footer-heading" data-i18n="footerNavTitle">Urambazaji</h4>
+        <ul class="footer-nav-list">
+          <li><a href="index.html#theaterSection" data-i18n="navSeries">Úmbo Cha Babembe</a></li>
+          <li><a href="index.html#pillarsSection" data-i18n="navMission">Dhamira Yetu</a></li>
+          <li><a href="index.html#librarySection" data-i18n="navArchive">Maktaba</a></li>
+          <li><a href="picha.html" data-i18n="navPhotos">Picha</a></li>
+        </ul>
       </div>
+
+      <div class="footer-col">
+        <h4 class="footer-heading" data-i18n="footerConnectTitle">Channel Rasmi</h4>
+        <p class="footer-tagline" data-i18n="footerChannelNote">
+          Fuatilia video zote mpya, mafundisho ya Kibembe, na kumbukumbu za jamii kwenye YouTube.
+        </p>
+        <a
+          href="https://www.youtube.com/@Alembeelawaidi"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn-gold btn-sm"
+          style="margin-top: 10px;"
+        >
+          ▶ YouTube: @Alembeelawaidi
+        </a>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <p>&copy; 2026 Alembeela Foundation (@Alembeelawaidi). <span data-i18n="footerRights">Haki zote zimehifadhiwa.</span></p>
     </div>
   </footer>
 
@@ -167,6 +206,14 @@
         badge: 'Mila & Wazee',
         title: 'Úmbo Cha Babembe — Sehemu ya Pili (2)',
         description: 'Mafundisho ya mila, desturi, na hekima za wazee katika lugha ya Kibembe.'
+      },
+      {
+        id: 'pic-3',
+        src: 'https://i.ytimg.com/vi/YPPOyvxJ-Wk/hqdefault.jpg',
+        category: 'jamii',
+        badge: 'Matukio ya Jamii',
+        title: 'Úmbo Cha Babembe — Sehemu ya Tatu (3)',
+        description: 'Uelimishaji wa jamii na uhifadhi wa utamaduni wa Babembe (@Alembeelawaidi).'
       }
     ];
 
@@ -191,54 +238,12 @@
         catCommunity: 'Maboko ma Bantu',
         emptyMsg: 'Hakuna kipicha kilichopatikana.',
         footerCopy: 'Kulinda asili ya milango, mila, na malaka ma bantu ba Babembe.',
+        footerNavTitle: 'Urambazaji',
+        footerConnectTitle: 'Channel Rasmi',
+        footerChannelNote: 'Lola video zose za Kibembe ku YouTube ya @Alembeelawaidi.',
+        footerRights: 'Haki zote zimehifadhiwa.',
         closeBtn: '✕ Funga'
       },
       sw: {
         navSeries: 'Úmbo Cha Babembe',
         navMission: 'Dhamira Yetu',
-        navArchive: 'Maktaba',
-        navPhotos: 'Picha',
-        heroKicker: 'KUMBUKUMBU ZA PICHA',
-        heroHeading: 'Picha za Asili, Mila, na Sauti za Wazee',
-        heroLead:
-          'Hifadhi ya picha za kihistoria, familia, mikutano ya wazee, na matukio ya jamii ya Babembe. Bonyeza picha yoyote kuiona kwa ukubwa kamili.',
-        backVideosBtn: '← Rudi Kwenye Video',
-        galleryEyebrow: 'MAKTABA YA PICHA',
-        galleryHeading: 'Kumbukumbu Zote',
-        searchPlaceholder: 'Tafuta picha: Asili, Wazee, Mila, Tukio...',
-        clearBtn: 'Futa',
-        catAll: 'Zote',
-        catLineage: 'Asili & Familia',
-        catTraditions: 'Mila & Wazee',
-        catCommunity: 'Matukio ya Jamii',
-        emptyMsg: 'Hakuna picha iliyopatikana kwa utafutaji huu.',
-        footerCopy: 'Kuhifadhi asili ya familia, mila, na sauti za jamii ya Babembe.',
-        closeBtn: '✕ Funga'
-      },
-      en: {
-        navSeries: 'Úmbo Cha Babembe',
-        navMission: 'Our Mission',
-        navArchive: 'Archive',
-        navPhotos: 'Photos',
-        heroKicker: 'PHOTO ARCHIVES',
-        heroHeading: 'Photos of Lineage, Traditions, and Elders',
-        heroLead:
-          'An archive of historical photos, family heritage, elders’ gatherings, and Babembe community initiatives. Click any photo to view full size.',
-        backVideosBtn: '← Back to Videos',
-        galleryEyebrow: 'PHOTO LIBRARY',
-        galleryHeading: 'All Archives',
-        searchPlaceholder: 'Search photos: Lineage, Elders, Traditions...',
-        clearBtn: 'Clear',
-        catAll: 'All',
-        catLineage: 'Lineage & Family',
-        catTraditions: 'Traditions & Elders',
-        catCommunity: 'Community Events',
-        emptyMsg: 'No photos matched your search.',
-        footerCopy: 'Preserving family lineage, traditions, and voices of the Babembe community.',
-        closeBtn: '✕ Close'
-      }
-    };
-
-    let currentLang = 'sw';
-    let activeCategory = 'all';
-    let searchTerm = '';
