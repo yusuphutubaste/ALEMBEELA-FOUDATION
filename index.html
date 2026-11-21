@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alembeela Foundation — Maktaba, Playlists &amp; Sauti za Wazee</title>
+  <title>Alembeela Foundation</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -11,31 +11,33 @@
 
   <header class="site-header">
     <div class="container header-inner">
-      <div class="brand-block">
-        <span class="brand-eyebrow">Alembeela Foundation</span>
-        <h1 class="brand-title">Úmbo Cha Babembe &amp; Urithi wa Jamii</h1>
+      <div class="brand-wrap">
+        <div class="site-logo" aria-label="Logo ya Alembeela Foundation">
+          <span class="logo-mark">AF</span>
+        </div>
+        <div>
+          <h1 id="siteTitle" class="brand-title">Alembeela Foundation</h1>
+          <p id="siteSubtitle" class="brand-subtitle">Úmbo Cha Babembe &amp; Urithi wa Jamii</p>
+        </div>
       </div>
 
-      <div class="channel-links" aria-label="Channel za YouTube">
+      <div class="header-right">
+        <!-- Language Switch (SW / EN) -->
+        <div class="lang-switch" role="group" aria-label="Badili lugha">
+          <button type="button" id="langSwBtn" class="lang-btn is-active" data-lang="sw">SW</button>
+          <button type="button" id="langEnBtn" class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <!-- Secondary YouTube Channel Link (@Alembeelawaidi) -->
         <a
           href="https://www.youtube.com/@Alembeelawaidi"
           target="_blank"
           rel="noopener noreferrer"
-          class="channel-pill channel-pill--secondary"
+          class="second-channel-link"
           title="Tazama pia kupitia channel yetu nyingine @Alembeelawaidi"
         >
-          <span class="channel-icon" aria-hidden="true">▶</span>
-          <span>Tazama pia: <strong>@Alembeelawaidi</strong></span>
-        </a>
-        <a
-          id="foundationChannelLink"
-          href="https://www.youtube.com/@AlembeelaFoundation"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="channel-pill channel-pill--primary"
-        >
-          <span class="channel-icon" aria-hidden="true">◉</span>
-          <span>Channel Kuu</span>
+          <span>▶</span>
+          <span id="secondChannelText">Tazama pia: <strong>@Alembeelawaidi</strong></span>
         </a>
       </div>
     </div>
@@ -44,125 +46,60 @@
   <main class="container main-content">
     <!-- Search Bar ya Tovuti Nzima -->
     <section class="search-panel" aria-label="Utafutaji wa tovuti nzima">
-      <label for="globalSearchInput" class="search-label">
+      <label id="searchLabel" for="globalSearchInput" class="search-label">
         Tafuta chochote kwenye tovuti (Video, Short, Playlist, au Sauti za Wazee)
       </label>
       <div class="search-box">
-        <span class="search-icon" aria-hidden="true">🔍</span>
+        <span aria-hidden="true">🔍</span>
         <input
           id="globalSearchInput"
           type="search"
           class="search-input"
-          placeholder="Andika neno kama Úmbo, Sehemu, Short, Playlist, au 01..."
+          placeholder="Tafuta: Úmbo, Sehemu, Short, Playlist, Kipande 01..."
           autocomplete="off"
         />
-        <button
-          id="clearSearchBtn"
-          type="button"
-          class="btn btn--ghost"
-          aria-label="Futa utafutaji"
-        >
-          Futa
-        </button>
+        <button id="clearSearchBtn" type="button" class="btn btn--ghost">Futa</button>
       </div>
-      <p id="searchSummary" class="search-summary">Inaonyesha maudhui yote ya tovuti.</p>
+      <p id="searchSummary" class="search-summary"></p>
     </section>
 
     <!-- Library (All / Video / Short / Vipendwa) -->
     <section id="librarySection" class="content-section" aria-labelledby="libraryHeading">
       <div class="section-header">
-        <div>
-          <h2 id="libraryHeading" class="section-title">Maktaba ya Video &amp; Shorts</h2>
-          <p class="section-subtitle">
-            Chuja kati ya <strong>All</strong>, <strong>Video</strong>, na <strong>Short</strong>, au hifadhi vipendwa vyako.
-          </p>
-        </div>
-
+        <h2 id="libraryHeading" class="section-title">Maktaba</h2>
         <div class="filter-group" role="tablist" aria-label="Vichungi vya Maktaba">
-          <button
-            type="button"
-            role="tab"
-            class="filter-btn is-active"
-            data-library-filter="all"
-            aria-selected="true"
-            aria-pressed="true"
-          >
-            All
-          </button>
-          <button
-            type="button"
-            role="tab"
-            class="filter-btn"
-            data-library-filter="video"
-            aria-selected="false"
-            aria-pressed="false"
-          >
-            Video
-          </button>
-          <button
-            type="button"
-            role="tab"
-            class="filter-btn"
-            data-library-filter="short"
-            aria-selected="false"
-            aria-pressed="false"
-          >
-            Short
-          </button>
-          <button
-            type="button"
-            role="tab"
-            class="filter-btn"
-            data-library-filter="saved"
-            aria-selected="false"
-            aria-pressed="false"
-          >
-            Vipendwa (<span id="savedCount">0</span>)
+          <button type="button" role="tab" class="filter-btn is-active" data-library-filter="all" aria-selected="true" aria-pressed="true">All</button>
+          <button type="button" role="tab" class="filter-btn" data-library-filter="video" aria-selected="false" aria-pressed="false">Video</button>
+          <button type="button" role="tab" class="filter-btn" data-library-filter="short" aria-selected="false" aria-pressed="false">Short</button>
+          <button type="button" role="tab" class="filter-btn" data-library-filter="saved" aria-selected="false" aria-pressed="false">
+            <span id="savedTabLabel">Vipendwa</span> (<span id="savedCount">0</span>)
           </button>
         </div>
       </div>
-
       <div id="libraryGrid" class="cards-grid"></div>
     </section>
 
     <!-- Playlists (Mfululizo Ndani ya Tovuti) -->
     <section id="playlistsSection" class="content-section" aria-labelledby="playlistsHeading">
       <div class="section-header">
-        <div>
-          <h2 id="playlistsHeading" class="section-title">Playlists — Mfululizo Ndani ya Tovuti</h2>
-          <p class="section-subtitle">
-            Cheza orodha nzima mfululizo bila kutoka kwenye tovuti au shirikisha kiungo chake moja kwa moja.
-          </p>
-        </div>
+        <h2 id="playlistsHeading" class="section-title">Playlists</h2>
       </div>
-
       <div id="playlistGrid" class="playlists-grid"></div>
     </section>
   </main>
 
   <!-- Sauti za Wazee (Vipande 3, Auto-Next + Loop Nzima + Swichi za Kugandisha na Kuzuia) -->
-  <aside
-    id="eldersPlayerBar"
-    class="elders-bar"
-    aria-label="Kicheza Sauti za Wazee"
-  >
+  <aside id="eldersPlayerBar" class="elders-bar" aria-label="Sauti za Wazee">
     <div class="container elders-bar__inner">
       <div class="elders-info">
         <div class="elders-meta-row">
-          <span class="elders-tag">Sauti za Wazee</span>
+          <span id="eldersBadgeText" class="elders-tag">Sauti za Wazee</span>
           <span id="elderTrackPos" class="elders-pos">1 / 3</span>
           <span id="elderPlayerStatus" class="elders-status">IMESIMAMA</span>
         </div>
         <div id="elderTrackTitle" class="elders-title">Kipande 01</div>
         <div class="elders-progress-wrap">
-          <div
-            id="elderProgressBar"
-            class="elders-progress-bar"
-            role="progressbar"
-            aria-valuemin="0"
-            aria-valuemax="100"
-            aria-valuenow="0"
-          ></div>
+          <div id="elderProgressBar" class="elders-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
         </div>
         <div class="elders-time-row">
           <span id="elderElapsedText">00:00</span>
@@ -171,85 +108,57 @@
       </div>
 
       <div class="elders-controls">
-        <button id="elderPrevBtn" type="button" class="btn btn--icon" title="Kipande kilichopita">
-          ⏮ Nyuma
-        </button>
-        <button id="elderPlayBtn" type="button" class="btn btn--primary" title="Cheza mfululizo">
-          ▶ Cheza
-        </button>
-        <button id="elderPauseBtn" type="button" class="btn btn--secondary" title="Simamisha">
-          ⏸ Simamisha
-        </button>
-        <button id="elderNextBtn" type="button" class="btn btn--icon" title="Kipande kinachofuata">
-          Mbele ⏭
-        </button>
-        <button
-          id="elderLoopBtn"
-          type="button"
-          class="btn btn--toggle is-active"
-          aria-pressed="true"
-          title="Rudia orodha nzima ikifika mwisho"
-        >
-          🔁 Loop Nzima: Imewashwa
-        </button>
+        <button id="elderPrevBtn" type="button" class="btn btn--ghost">⏮ Nyuma</button>
+        <button id="elderPlayBtn" type="button" class="btn btn--primary">▶ Cheza</button>
+        <button id="elderPauseBtn" type="button" class="btn btn--ghost">⏸ Simamisha</button>
+        <button id="elderNextBtn" type="button" class="btn btn--ghost">Mbele ⏭</button>
+        <button id="elderLoopBtn" type="button" class="btn btn--toggle is-active" aria-pressed="true">🔁 Loop Nzima: ON</button>
       </div>
 
-      <div class="elders-switches" aria-label="Vitufe vya kuswichi hali">
-        <button
-          id="elderFreezeBtn"
-          type="button"
-          class="switch-btn switch-btn--freeze"
-          role="switch"
-          aria-checked="false"
-          aria-pressed="false"
-        >
+      <div class="elders-switches">
+        <button id="elderFreezeBtn" type="button" class="switch-btn switch-btn--freeze" role="switch" aria-checked="false" aria-pressed="false">
           <span class="switch-dot" aria-hidden="true"></span>
-          <span>Kugandisha: <strong id="freezeStateLabel">OFF</strong></span>
+          <span><span id="freezeLabelText">Kugandisha</span>: <strong id="freezeStateLabel">OFF</strong></span>
         </button>
 
-        <button
-          id="elderBlockBtn"
-          type="button"
-          class="switch-btn switch-btn--block"
-          role="switch"
-          aria-checked="false"
-          aria-pressed="false"
-        >
+        <button id="elderBlockBtn" type="button" class="switch-btn switch-btn--block" role="switch" aria-checked="false" aria-pressed="false">
           <span class="switch-dot" aria-hidden="true"></span>
-          <span>Kuzuia: <strong id="blockStateLabel">OFF</strong></span>
+          <span><span id="blockLabelText">Kuzuia</span>: <strong id="blockStateLabel">OFF</strong></span>
         </button>
       </div>
     </div>
   </aside>
 
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <span class="site-logo site-logo--sm" aria-hidden="true"><span class="logo-mark">AF</span></span>
+        <div>
+          <strong id="footerTitle">Alembeela Foundation</strong>
+          <p id="footerCopy">Urithi, mafunzo, na sauti za jamii — GitHub Pages.</p>
+        </div>
+      </div>
+      <div class="footer-links">
+        <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer">
+          YouTube: @Alembeelawaidi
+        </a>
+        <a href="#librarySection" id="footerLibLink">Maktaba</a>
+        <a href="#playlistsSection" id="footerPlLink">Playlists</a>
+      </div>
+    </div>
+  </footer>
+
   <!-- Modal ya Kucheza Video & Playlists Ndani ya Tovuti -->
-  <div
-    id="videoModal"
-    class="modal-backdrop hidden"
-    role="dialog"
-    aria-modal="true"
-    aria-labelledby="videoModalTitle"
-  >
+  <div id="videoModal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="videoModalTitle">
     <div class="modal-card">
       <div class="modal-header">
         <h3 id="videoModalTitle" class="modal-title">Inapakia...</h3>
         <div class="modal-header-actions">
-          <a
-            href="https://www.youtube.com/@Alembeelawaidi"
-            target="_blank"
-            rel="noopener noreferrer"
-            class="btn btn--ghost btn--sm"
-          >
+          <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="btn btn--ghost btn--sm">
             @Alembeelawaidi
           </a>
-          <button
-            id="closeModalBtn"
-            type="button"
-            class="btn btn--close"
-            aria-label="Funga dirisha la video"
-          >
-            ✕ Funga
-          </button>
+          <button id="closeModalBtn" type="button" class="btn btn--close">✕ Funga</button>
         </div>
       </div>
       <div class="modal-body">
