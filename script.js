@@ -3,7 +3,7 @@
    ========================================================================== */
 
 const SITE_CONFIG = {
-  mainChannelUrl: 'https://youtube.com',
+  mainChannelUrl: 'https://www.youtube.com/@AlembeelaFoundation',
   secondaryChannelUrl: 'https://www.youtube.com/@Alembeelawaidi',
   storageKey: 'alembeela_foundation_state_v3',
   defaultLoopAll: true
@@ -174,9 +174,6 @@ const I18N = {
   }
 };
 
-/* ==========================================================================
-   MEDIA LIBRARY (Ongeza video mpya za @AlembeelaFoundation / @Alembeelawaidi)
-   ========================================================================== */
 const MEDIA_ITEMS = [
   {
     id: 'vid-chCvVUD1FPo',
@@ -202,9 +199,6 @@ const MEDIA_ITEMS = [
   }
 ];
 
-/* ==========================================================================
-   STATE MANAGEMENT
-   ========================================================================== */
 let state = {
   lang: 'sw',
   filter: 'all',
@@ -263,3 +257,16 @@ function showToast(msg) {
   const banner = document.getElementById('toastBanner');
   if (!banner) return;
   banner.textContent = msg;
+  banner.classList.remove('hidden');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => banner.classList.add('hidden'), 3000);
+}
+
+window.onYouTubeIframeAPIReady = function () {
+  ytApiReady = true;
+  if (MEDIA_ITEMS.length > 0) {
+    createPlayer(MEDIA_ITEMS[0].videoId, false);
+  }
+};
+
+function createPlayer(videoId, autoplay = true) {
