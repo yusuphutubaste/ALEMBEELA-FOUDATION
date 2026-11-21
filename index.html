@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alembeela Foundation | Urithi, Úmbo na Utamaduni wa Babembe</title>
-    <!-- Font Awesome kwa ajili ya Aikoni za YouTube, Facebook, TikTok, Instagram -->
     <link rel="stylesheet" href="https://cloudflare.com">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- UPAU WA JUU (NAVBAR) -->
+    <!-- UPAU WA JUU (NAVBAR YA SIMU NA KOMPYUTA) -->
     <header class="navbar">
         <a href="index.html" class="brand">
             <div class="brand-badge">AF</div>
@@ -21,16 +20,20 @@
         </a>
 
         <nav class="nav-links" id="navLinks">
-            <a href="#nyumbani" data-i18n="nav_home">Nyumbani</a>
-            <a href="#kuhusu" data-i18n="nav_about">Kuhusu Sisi</a>
-            <a href="#mafunzo" data-i18n="nav_teachings">Mafundisho</a>
-            <a href="#video-library" data-i18n="nav_videos">Maktaba ya Video</a>
-            <a href="picha.html" data-i18n="nav_photos">Picha & Kumbukumbu</a>
-            <a href="#mawasiliano" data-i18n="nav_contact">Wasiliana Nasi</a>
+            <div class="mobile-menu-header">
+                <span class="gold-title">MENYU</span>
+                <button class="close-menu-btn" id="closeMenuBtn" aria-label="Funga Menyu">&times;</button>
+            </div>
+            <a href="#nyumbani" data-i18n="nav_home"><i class="fas fa-home"></i> Nyumbani</a>
+            <a href="#kuhusu" data-i18n="nav_about"><i class="fas fa-user-tie"></i> Kuhusu Sisi</a>
+            <a href="#mafunzo" data-i18n="nav_teachings"><i class="fas fa-book-open"></i> Mafundisho</a>
+            <a href="#video-library" data-i18n="nav_videos"><i class="fab fa-youtube"></i> Maktaba ya Video</a>
+            <a href="picha.html" data-i18n="nav_photos"><i class="fas fa-images"></i> Picha & Kumbukumbu</a>
+            <a href="#mawasiliano" data-i18n="nav_contact"><i class="fas fa-envelope"></i> Wasiliana Nasi</a>
         </nav>
 
         <div class="nav-controls">
-            <!-- KIBADILISHA LUGHA (LANGUAGE SWITCHER) -->
+            <!-- KIBADILISHA LUGHA -->
             <div class="lang-wrapper">
                 <i class="fas fa-globe gold-icon"></i>
                 <select id="languageSelector" aria-label="Chagua Lugha">
@@ -44,11 +47,15 @@
                 </select>
             </div>
             <div id="google_translate_element" style="display:none;"></div>
-            <button class="menu-toggle" id="menuToggle" aria-label="Menyu">
+            
+            <!-- KITUFE CHA MENYU YA SIMU -->
+            <button class="menu-toggle" id="menuToggle" aria-label="Fungua Menyu">
                 <i class="fas fa-bars"></i>
+                <span>Menyu</span>
             </button>
         </div>
     </header>
+    <div class="menu-backdrop" id="menuBackdrop"></div>
 
     <!-- HOME PAGE (HERO SECTION) -->
     <section class="hero" id="nyumbani">
@@ -73,7 +80,7 @@
         </div>
     </section>
 
-    <!-- SEHEMU YA MWANZILISHI NA KUHUSU SISI (PICHA PEMBENI YA MAELEZO) -->
+    <!-- SEHEMU YA MWANZILISHI NA KUHUSU SISI -->
     <section class="about-section" id="kuhusu">
         <div class="container">
             <div class="section-header">
@@ -83,7 +90,6 @@
             </div>
 
             <div class="founder-grid">
-                <!-- UPANDE WA KUSHOTO: PICHA YA MWANZILISHI -->
                 <div class="founder-card">
                     <div class="founder-img-frame">
                         <img src="alembeela.jpg" alt="Alembeela - Mwanzilishi wa Alembeela Foundation" 
@@ -93,14 +99,13 @@
                         <h3>Alembeela</h3>
                         <p data-i18n="founder_role">Mwanzilishi — Alembeela Foundation</p>
                         <div class="founder-socials">
-                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" title="YouTube ya Alembeela Waidi">
+                            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-youtube"></i> @Alembeelawaidi
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- UPANDE WA KULIA: MAELEZO KUMHUSU YEYE NA TAASISI -->
                 <div class="founder-bio">
                     <h3 data-i18n="bio_heading">Sauti ya Urithi, Hekima ya Wazee na Ujenzi wa Jamii</h3>
                     <p data-i18n="bio_p1">
@@ -132,7 +137,7 @@
         </div>
     </section>
 
-    <!-- NGUZO ZA MAFUNDISHO -->
+    <!-- NGUZO ZA MAFUNDISHO (CARD BOXES) -->
     <section class="pillars-section" id="mafunzo">
         <div class="container">
             <div class="section-header">
@@ -169,16 +174,9 @@
         </div>
     </section>
 
-    <!-- MAKTABA YA VIDEO (VIDEO LIBRARY GRID BOXES) -->
+    <!-- MAKTABA YA VIDEO (BOKSI ZA GRID KAMA NGUZO NNE) -->
     <section class="video-section" id="video-library">
         <div class="container">
             <div class="section-header">
                 <span class="section-kicker" data-i18n="vid_kicker">TAZAMA NA SIKILIZA</span>
                 <h2 data-i18n="vid_title">Maktaba ya Video (Video Library)</h2>
-                <p class="section-desc" data-i18n="vid_sub">Fuatilia mafundisho ya Úmbo Cha Babembe pamoja na masomo ya maadili, familia, na amani.</p>
-                <div class="gold-divider"></div>
-            </div>
-
-            <!-- VITUFE VYA KUCHUJA VIDEO -->
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Video Zote</button>
