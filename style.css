@@ -1,47 +1,43 @@
 /* ==========================================================================
-   ALEMBEELA FOUNDATION — BRAND STYLESHEET (EMERALD, ROYAL GOLD & IVORY)
+   ALEMBEELA FOUNDATION — UNIFIED EMERALD, OBSIDIAN & ROYAL GOLD THEME
    ========================================================================== */
 
 :root {
-  /* Brand Colors from @AlembeelaFoundation Banner & Crest */
-  --emerald-deep: #07291b;
-  --emerald-main: #0b3d29;
-  --emerald-rich: #13593d;
-  --emerald-soft: rgba(11, 61, 41, 0.08);
+  /* Rangi Halisi kutoka kwenye Bango na Nembo ya AF */
+  --obsidian: #040907;
+  --obsidian-card: #08120e;
+  --emerald-deep: #072619;
+  --emerald-main: #0c3b27;
+  --emerald-rich: #13573b;
+  --emerald-surface: #0b2419;
 
   --gold-dark: #b3820c;
   --gold-main: #d4a017;
   --gold-bright: #f5d061;
   --gold-soft: rgba(212, 160, 23, 0.14);
 
-  --obsidian: #050a08;
-  --obsidian-elevated: #0e1714;
+  /* Mipaka na Vivuli */
+  --border-emerald: rgba(24, 107, 73, 0.45);
+  --border-gold: rgba(212, 160, 23, 0.42);
+  --border-gold-strong: rgba(245, 208, 97, 0.7);
 
-  /* Clean Light Reading Surfaces */
-  --bg-page: #ffffff;
-  --bg-tinted: #f4f7f5;
-  --bg-card: #ffffff;
-  --border-light: #dce5e0;
-  --border-gold: rgba(212, 160, 23, 0.45);
-
-  /* Typography Colors */
-  --text-dark: #0f1f18;
-  --text-muted: #4b5e55;
-  --text-light: #f8faf9;
-  --text-light-muted: #c5d6ce;
+  /* Rangi za Maandishi Juu ya Mandhari ya Giza */
+  --text-light: #f4f8f6;
+  --text-muted: #b7cbc1;
+  --text-dim: #88a195;
 
   /* Status Colors */
-  --freeze-color: #0284c7;
-  --block-color: #ea580c;
+  --freeze-color: #38bdf8;
+  --block-color: #fb923c;
 
-  /* Layout & Elevation */
+  /* Vipimo */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
   --radius-pill: 999px;
-  --shadow-sm: 0 4px 14px rgba(7, 41, 27, 0.06);
-  --shadow-md: 0 12px 30px rgba(7, 41, 27, 0.1);
-  --shadow-gold: 0 8px 24px rgba(212, 160, 23, 0.25);
+  --shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 14px 34px rgba(0, 0, 0, 0.55);
+  --shadow-gold: 0 6px 22px rgba(212, 160, 23, 0.28);
 }
 
 *,
@@ -57,10 +53,13 @@ html {
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background-color: var(--bg-page);
-  color: var(--text-dark);
+  background:
+    radial-gradient(circle at top center, var(--emerald-main) 0%, var(--emerald-deep) 38%, var(--obsidian) 100%);
+  background-attachment: fixed;
+  color: var(--text-light);
   line-height: 1.6;
-  padding-bottom: 76px;
+  padding-bottom: 80px;
+  min-height: 100vh;
 }
 
 .hidden {
@@ -81,7 +80,7 @@ body {
   right: 20px;
   z-index: 1200;
   max-width: min(400px, 90vw);
-  background: var(--obsidian);
+  background: var(--obsidian-card);
   color: var(--text-light);
   border: 1px solid var(--gold-main);
   border-left: 5px solid var(--gold-bright);
@@ -124,51 +123,47 @@ body {
 
 .btn-gold:hover {
   transform: translateY(-1px);
-  filter: brightness(1.05);
+  filter: brightness(1.06);
 }
 
 .btn-emerald {
-  background: var(--emerald-main);
-  color: var(--text-light);
-}
-
-.btn-emerald:hover {
-  background: var(--emerald-rich);
-}
-
-.btn-emerald-outline {
-  background: rgba(255, 255, 255, 0.08);
+  background: linear-gradient(135deg, var(--emerald-main), var(--emerald-rich));
   color: var(--gold-bright);
   border-color: var(--border-gold);
 }
 
-.btn-emerald-outline:hover {
-  background: rgba(212, 160, 23, 0.18);
+.btn-emerald:hover {
+  filter: brightness(1.12);
+  border-color: var(--gold-bright);
 }
 
+.btn-emerald-outline,
 .btn-light-outline {
-  background: var(--bg-card);
-  color: var(--text-dark);
-  border-color: var(--border-light);
+  background: rgba(8, 18, 14, 0.75);
+  color: var(--text-light);
+  border-color: var(--border-gold);
 }
 
+.btn-emerald-outline:hover,
 .btn-light-outline:hover {
-  border-color: var(--emerald-main);
-  background: var(--bg-tinted);
+  background: var(--gold-soft);
+  color: var(--gold-bright);
+  border-color: var(--gold-bright);
 }
 
 .btn-light-outline.is-active,
 .btn-light-outline.is-saved {
-  background: var(--emerald-main);
-  color: var(--text-light);
-  border-color: var(--emerald-main);
+  background: var(--gold-soft);
+  color: var(--gold-bright);
+  border-color: var(--gold-bright);
 }
 
 /* ==========================================================================
    HEADER & AF CREST LOGO
    ========================================================================== */
 .site-header {
-  background: var(--obsidian);
+  background: rgba(4, 9, 7, 0.94);
+  backdrop-filter: blur(12px);
   color: var(--text-light);
   border-bottom: 2px solid var(--gold-main);
   position: sticky;
@@ -199,7 +194,7 @@ body {
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #1a2420, var(--obsidian));
   border: 2px solid var(--gold-main);
-  box-shadow: 0 0 12px rgba(212, 160, 23, 0.35);
+  box-shadow: 0 0 14px rgba(212, 160, 23, 0.4);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -235,7 +230,7 @@ body {
 .brand-handle {
   display: block;
   font-size: 0.78rem;
-  color: var(--text-light-muted);
+  color: var(--text-muted);
 }
 
 .main-nav {
@@ -246,7 +241,7 @@ body {
 }
 
 .nav-link {
-  color: var(--text-light-muted);
+  color: var(--text-muted);
   text-decoration: none;
   font-size: 0.88rem;
   font-weight: 600;
@@ -258,7 +253,7 @@ body {
 .nav-link:hover,
 .nav-link.is-active {
   color: var(--gold-bright);
-  background: rgba(212, 160, 23, 0.14);
+  background: var(--gold-soft);
 }
 
 .header-actions {
@@ -269,8 +264,8 @@ body {
 
 .lang-switch {
   display: inline-flex;
-  background: var(--obsidian-elevated);
-  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: var(--obsidian-card);
+  border: 1px solid var(--border-gold);
   border-radius: var(--radius-pill);
   padding: 3px;
 }
@@ -278,7 +273,7 @@ body {
 .lang-btn {
   border: 0;
   background: transparent;
-  color: var(--text-light-muted);
+  color: var(--text-muted);
   font-size: 0.74rem;
   font-weight: 800;
   padding: 5px 10px;
@@ -292,7 +287,7 @@ body {
 }
 
 /* ==========================================================================
-   EMERALD & GOLD HERO BANNER (MATCHES CHANNEL ART)
+   EMERALD & GOLD HERO BANNER (MATCHES CHANNEL BANNER ART)
    ========================================================================== */
 .foundation-hero {
   background:
@@ -303,10 +298,10 @@ body {
       transparent 2px,
       transparent 14px
     ),
-    radial-gradient(circle at 75% 50%, var(--emerald-rich) 0%, var(--emerald-deep) 75%);
+    radial-gradient(circle at 75% 50%, var(--emerald-rich) 0%, var(--emerald-deep) 80%);
   color: var(--text-light);
-  border-bottom: 3px solid var(--gold-main);
-  padding: clamp(32px, 5vw, 56px) 0;
+  border-bottom: 2px solid var(--gold-main);
+  padding: clamp(32px, 5vw, 54px) 0;
 }
 
 .hero-grid {
@@ -322,7 +317,7 @@ body {
   font-weight: 800;
   letter-spacing: 0.1em;
   color: var(--gold-bright);
-  background: rgba(5, 10, 8, 0.45);
+  background: rgba(4, 9, 7, 0.6);
   border: 1px solid var(--border-gold);
   padding: 5px 14px;
   border-radius: var(--radius-pill);
@@ -340,7 +335,7 @@ body {
 .hero-lead {
   margin: 0 0 24px;
   font-size: 1.02rem;
-  color: var(--text-light-muted);
+  color: var(--text-muted);
   max-width: 60ch;
 }
 
@@ -355,11 +350,12 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background: rgba(5, 10, 8, 0.42);
+  background: rgba(4, 9, 7, 0.65);
   border: 1px solid var(--border-gold);
   border-radius: var(--radius-lg);
   padding: 28px 20px;
   text-align: center;
+  box-shadow: var(--shadow-md);
 }
 
 .emblem-ring {
@@ -368,7 +364,7 @@ body {
   border-radius: 50%;
   background: radial-gradient(circle at 30% 30%, #1a2420, var(--obsidian));
   border: 3px solid var(--gold-main);
-  box-shadow: 0 0 28px rgba(212, 160, 23, 0.4);
+  box-shadow: 0 0 28px rgba(212, 160, 23, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -392,16 +388,16 @@ body {
 }
 
 /* ==========================================================================
-   SECTIONS & HEADINGS
+   SECTIONS & HEADINGS (UNIFIED DARK EMERALD & GOLD)
    ========================================================================== */
 .section-block {
   padding: clamp(36px, 5vw, 56px) 0;
 }
 
 .section-tinted {
-  background: var(--bg-tinted);
-  border-top: 1px solid var(--border-light);
-  border-bottom: 1px solid var(--border-light);
+  background: rgba(4, 9, 7, 0.55);
+  border-top: 1px solid var(--border-gold);
+  border-bottom: 1px solid var(--border-gold);
 }
 
 .section-head {
@@ -424,7 +420,7 @@ body {
   font-size: 0.76rem;
   font-weight: 800;
   letter-spacing: 0.09em;
-  color: var(--gold-dark);
+  color: var(--gold-bright);
   text-transform: uppercase;
   margin-bottom: 4px;
 }
@@ -433,7 +429,7 @@ body {
   margin: 0;
   font-size: clamp(1.4rem, 2.8vw, 1.95rem);
   font-weight: 800;
-  color: var(--emerald-deep);
+  color: #ffffff;
 }
 
 /* ==========================================================================
@@ -447,12 +443,3 @@ body {
 }
 
 .theater-stage {
-  background: var(--bg-card);
-  border: 1px solid var(--border-light);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
-  box-shadow: var(--shadow-md);
-}
-
-.video-aspect {
-  position: relative;
