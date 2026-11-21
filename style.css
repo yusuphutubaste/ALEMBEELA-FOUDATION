@@ -1,18 +1,23 @@
+---
+
+### 3. Faili la Tatu: `style.css` (Full Code)
+
+```css
 /* =========================================================
    ALEMBEELA FOUNDATION - OFFICIAL THEME (EMERALD, BLACK & GOLD)
    ========================================================= */
 :root {
-    --emerald-dark: #062917;
-    --emerald-main: #0B4628;
+    --emerald-dark: #044423;
+    --emerald-main: #076234;
     --emerald-light: #13633A;
     --black-deep: #050806;
     --black-card: #0C1410;
     --gold-bright: #F2C94C;
-    --gold-main: #D4AF37;
-    --gold-dark: #9E7B1E;
-    --text-white: #F4F7F5;
+    --gold-main: #9A8A16;
+    --gold-dark: #9A530B;
+    --text-white: #FFFFFF;
     --text-muted: #B8C7BE;
-    --border-gold: rgba(212, 175, 55, 0.35);
+    --border-gold: rgba(154, 138, 22, 0.45);
 }
 
 * {
@@ -44,7 +49,7 @@ body {
    ========================================================= */
 .navbar {
     background: linear-gradient(90deg, var(--black-deep) 0%, var(--emerald-dark) 50%, var(--black-deep) 100%);
-    border-bottom: 1px solid var(--border-gold);
+    border-bottom: 1.5px solid var(--gold-main);
     padding: 14px 5%;
     display: flex;
     justify-content: space-between;
@@ -66,14 +71,14 @@ body {
     width: 44px;
     height: 44px;
     border-radius: 8px;
-    background: linear-gradient(135deg, var(--gold-bright), var(--gold-dark));
-    color: var(--black-deep);
+    background: linear-gradient(135deg, #9A8A16, #9A530B);
+    color: #FFFFFF;
     font-weight: 900;
     font-size: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+    box-shadow: 0 0 15px rgba(154, 138, 22, 0.45);
     border: 1px solid #FFF2B2;
 }
 
@@ -115,7 +120,7 @@ body {
 }
 
 .nav-links a i {
-    color: var(--gold-main);
+    color: var(--gold-bright);
     font-size: 0.85rem;
 }
 
@@ -150,8 +155,8 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    background: rgba(11, 70, 40, 0.55);
-    border: 1px solid var(--border-gold);
+    background: rgba(7, 98, 52, 0.55);
+    border: 1px solid var(--gold-main);
     padding: 6px 10px;
     border-radius: 6px;
 }
@@ -178,7 +183,7 @@ body {
     display: none;
     align-items: center;
     gap: 6px;
-    background: rgba(11, 70, 40, 0.75);
+    background: rgba(7, 98, 52, 0.75);
     border: 1px solid var(--gold-bright);
     color: var(--gold-bright);
     font-size: 0.95rem;
@@ -221,7 +226,7 @@ body {
     max-height: 130px;
     border-radius: 10px;
     margin-bottom: 22px;
-    border: 1px solid var(--border-gold);
+    border: 1px solid var(--gold-main);
     box-shadow: 0 10px 30px rgba(0,0,0,0.6);
 }
 
@@ -233,14 +238,14 @@ body {
     letter-spacing: 3px;
     margin-bottom: 12px;
     padding: 5px 14px;
-    border: 1px solid var(--border-gold);
+    border: 1px solid var(--gold-main);
     border-radius: 30px;
     background: rgba(5, 8, 6, 0.5);
 }
 
 .hero h1 {
     font-size: 3rem;
-    background: linear-gradient(to right, #FFF2B2, var(--gold-bright), var(--gold-main));
+    background: linear-gradient(to right, #FFF2B2, var(--gold-bright), #D4AF37);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     margin-bottom: 18px;
@@ -277,14 +282,15 @@ body {
 }
 
 .btn-gold {
-    background: linear-gradient(135deg, var(--gold-bright), var(--gold-dark));
-    color: var(--black-deep);
-    box-shadow: 0 4px 18px rgba(212, 175, 55, 0.35);
+    background: linear-gradient(135deg, #9A8A16, #9A530B);
+    color: #FFFFFF;
+    border: 1px solid var(--gold-bright);
+    box-shadow: 0 4px 18px rgba(154, 138, 22, 0.35);
 }
 
 .btn-gold:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(242, 201, 76, 0.55);
+    background: #9A530B;
 }
 
 .btn-outline {
@@ -311,7 +317,7 @@ section {
 }
 
 .section-kicker {
-    color: var(--gold-main);
+    color: var(--gold-bright);
     font-size: 0.82rem;
     letter-spacing: 3px;
     font-weight: 700;
@@ -355,7 +361,7 @@ section {
 
 .founder-card {
     background: linear-gradient(180deg, var(--emerald-dark), var(--black-deep));
-    border: 1px solid var(--border-gold);
+    border: 1.5px solid var(--gold-main);
     border-radius: 14px;
     padding: 18px;
     text-align: center;
@@ -433,8 +439,8 @@ section {
 }
 
 .highlight-item {
-    background: rgba(11, 70, 40, 0.35);
-    border: 1px solid var(--border-gold);
+    background: rgba(4, 68, 35, 0.45);
+    border: 1px solid var(--gold-main);
     padding: 12px 15px;
     border-radius: 8px;
     display: flex;
@@ -464,7 +470,7 @@ section {
 
 .pillar-card {
     background: var(--black-card);
-    border: 1px solid var(--border-gold);
+    border: 1px solid var(--gold-main);
     border-radius: 12px;
     padding: 26px 20px;
     transition: transform 0.3s, border-color 0.3s;
