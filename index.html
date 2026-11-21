@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alembeela Foundation | Urithi, Úmbo na Utamaduni wa Babembe</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=20261121">
 </head>
 <body>
 
@@ -24,12 +24,12 @@
                 <span class="gold-title">MENYU</span>
                 <button class="close-menu-btn" id="closeMenuBtn" aria-label="Funga Menyu">&times;</button>
             </div>
-            <a href="index.html#nyumbani" data-i18n="nav_home"><i class="fas fa-home"></i> Mwanzo</a>
-            <a href="index.html#kuhusu" data-i18n="nav_about"><i class="fas fa-user-tie"></i> Kuhusu Sisi</a>
-            <a href="index.html#mafunzo" data-i18n="nav_teachings"><i class="fas fa-book-open"></i> Mafundisho</a>
-            <a href="index.html#video-library" data-i18n="nav_videos"><i class="fab fa-youtube"></i> Maktaba ya Video</a>
-            <a href="picha.html" data-i18n="nav_photos"><i class="fas fa-images"></i> Picha za Jamii</a>
-            <a href="index.html#mawasiliano" data-i18n="nav_contact"><i class="fas fa-envelope"></i> Mawasiliano</a>
+            <a href="index.html#nyumbani"><i class="fas fa-home"></i> Mwanzo</a>
+            <a href="index.html#kuhusu"><i class="fas fa-user-tie"></i> Kuhusu Sisi</a>
+            <a href="index.html#mafunzo"><i class="fas fa-book-open"></i> Mafundisho</a>
+            <a href="index.html#video-library"><i class="fab fa-youtube"></i> Maktaba ya Video</a>
+            <a href="picha.html"><i class="fas fa-images"></i> Picha za Jamii</a>
+            <a href="index.html#mawasiliano"><i class="fas fa-envelope"></i> Mawasiliano</a>
         </nav>
 
         <div class="nav-controls">
@@ -37,15 +37,19 @@
                 <i class="fas fa-globe gold-icon"></i>
                 <select id="languageSelector" aria-label="Chagua Lugha">
                     <option value="sw">Kiswahili</option>
-                    <option value="bem">Kibembe</option>
                     <option value="en">English</option>
                     <option value="fr">Français</option>
+                    <option value="rw">Kinyarwanda</option>
                     <option value="rn">Kirundi</option>
                     <option value="es">Español</option>
+                    <option value="ar">العربية</option>
+                    <option value="zh-CN">中文 (简体)</option>
+                    <option value="pt">Português</option>
+                    <option value="de">Deutsch</option>
                     <option value="more">🌐 Lugha Zaidi (100+)</option>
                 </select>
             </div>
-            <div id="google_translate_element" style="display:none;"></div>
+            <div id="google_translate_element" class="gt-floating-box"></div>
 
             <button class="menu-toggle" id="menuToggle" aria-label="Fungua Menyu">
                 <i class="fas fa-bars"></i>
@@ -62,16 +66,16 @@
             <div class="banner-preview">
                 <img src="bango.png" alt="Alembeela Foundation Banner" onerror="this.style.display='none'">
             </div>
-            <span class="tagline" data-i18n="hero_tag">OUR HERITAGE • OUR IDENTITY • OUR HISTORY</span>
-            <h1 data-i18n="hero_title">Karibu Alembeela Foundation</h1>
-            <p data-i18n="hero_desc">
+            <span class="tagline">OUR HERITAGE • OUR IDENTITY • OUR HISTORY</span>
+            <h1>Karibu Alembeela Foundation</h1>
+            <p>
                 Jukwaa rasmi la kidijitali na taasisi ya kijamii iliyojikita katika kufundisha <strong>Úmbo Cha Babembe</strong>, kuhifadhi historia, lugha ya Kibembe, na kujenga daraja la upendo na maadili mema kati ya wazee na kizazi kipya duniani kote.
             </p>
             <div class="hero-buttons">
-                <a href="#video-library" class="btn btn-gold" data-i18n="btn_watch">
+                <a href="#video-library" class="btn btn-gold">
                     <i class="fab fa-youtube"></i> Tazama Mafundisho
                 </a>
-                <a href="picha.html" class="btn btn-outline" data-i18n="btn_gallery">
+                <a href="picha.html" class="btn btn-outline">
                     <i class="fas fa-images"></i> Picha za Jamii
                 </a>
             </div>
@@ -82,8 +86,8 @@
     <section class="about-section" id="kuhusu">
         <div class="container">
             <div class="section-header">
-                <span class="section-kicker" data-i18n="about_kicker">CHIMBUKO NA MAONO</span>
-                <h2 data-i18n="about_title">Kuhusu Alembeela Foundation</h2>
+                <span class="section-kicker">CHIMBUKO NA MAONO</span>
+                <h2>Kuhusu Alembeela Foundation</h2>
                 <div class="gold-divider"></div>
             </div>
 
@@ -95,7 +99,7 @@
                     </div>
                     <div class="founder-caption">
                         <h3>Alembeela</h3>
-                        <p data-i18n="founder_role">Mwanzilishi — Alembeela Foundation</p>
+                        <p>Mwanzilishi — Alembeela Foundation</p>
                         <div class="founder-socials">
                             <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-youtube"></i> @Alembeelawaidi
@@ -105,29 +109,29 @@
                 </div>
 
                 <div class="founder-bio">
-                    <h3 data-i18n="bio_heading">Sauti ya Urithi, Hekima ya Wazee na Ujenzi wa Jamii</h3>
-                    <p data-i18n="bio_p1">
+                    <h3>Sauti ya Urithi, Hekima ya Wazee na Ujenzi wa Jamii</h3>
+                    <p>
                         <strong>Alembeela</strong> alianzisha <strong>Alembeela Foundation</strong> akiwa na maono ya dhati ya kuhakikisha utambulisho, historia, mila, na lugha adhimu ya <strong>Kibembe</strong> havipotei bali vinahifadhiwa na kuheshimiwa na vizazi vya sasa na vijavyo popote walipo duniani.
                     </p>
-                    <p data-i18n="bio_p2">
+                    <p>
                         Kupitia jukwaa hili, unaposikiliza na kufuatilia <strong>Úmbo Cha Babembe</strong> kwa makini, unapata hazina kubwa ya mafundisho kuhusu asili yako, nasaba ya familia, heshima, na misingi imara ya maisha.
                     </p>
-                    <p data-i18n="bio_p3">
+                    <p>
                         Zaidi ya mafundisho ya Úmbo, tovuti hii ni <strong>eneo maalum la kuelimishana na kulishana maarifa</strong>—ambapo vijana, wamama, wadada, wakaka, watoto, na jamii nzima ya dunia wanajifunza kuishi vizuri pamoja kwa upendo, maadili mema, na amani ya kudumu.
                     </p>
 
                     <div class="bio-highlights">
                         <div class="highlight-item">
                             <i class="fas fa-landmark"></i>
-                            <span data-i18n="hl_1">Uhifadhi wa Historia & Nasaba</span>
+                            <span>Uhifadhi wa Historia &amp; Nasaba</span>
                         </div>
                         <div class="highlight-item">
                             <i class="fas fa-comments"></i>
-                            <span data-i18n="hl_2">Mafundisho kwa Lugha ya Kibembe</span>
+                            <span>Mafundisho kwa Lugha ya Kibembe</span>
                         </div>
                         <div class="highlight-item">
                             <i class="fas fa-hand-holding-heart"></i>
-                            <span data-i18n="hl_3">Eneo la Upendo, Maadili na Amani</span>
+                            <span>Eneo la Upendo, Maadili na Amani</span>
                         </div>
                     </div>
                 </div>
@@ -139,34 +143,34 @@
     <section class="pillars-section" id="mafunzo">
         <div class="container">
             <div class="section-header">
-                <span class="section-kicker" data-i18n="pillars_kicker">TUNACHOFUNDISHA</span>
-                <h2 data-i18n="pillars_title">Nguzo Nne za Kuelimishana</h2>
+                <span class="section-kicker">TUNACHOFUNDISHA</span>
+                <h2>Nguzo Nne za Kuelimishana</h2>
                 <div class="gold-divider"></div>
             </div>
 
             <div class="pillars-grid">
                 <div class="pillar-card">
                     <div class="pillar-icon"><i class="fas fa-drum"></i></div>
-                    <h3 data-i18n="p1_title">Úmbo Cha Babembe</h3>
-                    <p data-i18n="p1_desc">Sikiliza na fuatilia simulizi na hekima za Úmbo zinazofundisha maana ya maisha, ujasiri, na busara za mababu.</p>
+                    <h3>Úmbo Cha Babembe</h3>
+                    <p>Sikiliza na fuatilia simulizi na hekima za Úmbo zinazofundisha maana ya maisha, ujasiri, na busara za mababu.</p>
                 </div>
 
                 <div class="pillar-card">
                     <div class="pillar-icon"><i class="fas fa-sitemap"></i></div>
-                    <h3 data-i18n="p2_title">Asili na Nasaba</h3>
-                    <p data-i18n="p2_desc">Kujua ulikotoka, koo za Babembe, na historia ya familia zetu ili kujenga msingi imara wa kujitambua.</p>
+                    <h3>Asili na Nasaba</h3>
+                    <p>Kujua ulikotoka, koo za Babembe, na historia ya familia zetu ili kujenga msingi imara wa kujitambua.</p>
                 </div>
 
                 <div class="pillar-card">
                     <div class="pillar-icon"><i class="fas fa-language"></i></div>
-                    <h3 data-i18n="p3_title">Lugha ya Kibembe</h3>
-                    <p data-i18n="p3_desc">Kuunganisha wazee na kizazi kipya kupitia mafunzo ya lugha yetu ya asili kwa watoto, vijana, na watu wazima.</p>
+                    <h3>Lugha ya Kibembe</h3>
+                    <p>Kuunganisha wazee na kizazi kipya kupitia mafunzo ya lugha yetu ya asili kwa watoto, vijana, na watu wazima.</p>
                 </div>
 
                 <div class="pillar-card">
                     <div class="pillar-icon"><i class="fas fa-dove"></i></div>
-                    <h3 data-i18n="p4_title">Maadili, Upendo & Amani</h3>
-                    <p data-i18n="p4_desc">Masomo mengine ya kijamii nje ya Úmbo yanayofundisha wamama, vijana, wadada, na wakaka kuishi kwa upendo na amani.</p>
+                    <h3>Maadili, Upendo &amp; Amani</h3>
+                    <p>Masomo mengine ya kijamii nje ya Úmbo yanayofundisha wamama, vijana, wadada, na wakaka kuishi kwa upendo na amani.</p>
                 </div>
             </div>
         </div>
@@ -176,106 +180,164 @@
     <section class="video-section" id="video-library">
         <div class="container">
             <div class="section-header">
-                <span class="section-kicker" data-i18n="vid_kicker">TAZAMA NA SIKILIZA</span>
-                <h2 data-i18n="vid_title">Maktaba ya Video (Video Library)</h2>
-                <p class="section-desc" data-i18n="vid_sub">Fuatilia mafundisho ya Úmbo Cha Babembe pamoja na masomo ya maadili, familia, na amani.</p>
+                <span class="section-kicker">TAZAMA NA SIKILIZA</span>
+                <h2>Maktaba ya Video (Video Library)</h2>
+                <p class="section-desc">Fuatilia mafundisho ya Úmbo Cha Babembe pamoja na masomo ya maadili, familia, na amani.</p>
                 <div class="gold-divider"></div>
             </div>
 
             <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all" data-i18n="filter_all">Zote</button>
-                <button class="filter-btn" data-filter="umbo" data-i18n="filter_umbo">Úmbo Cha Babembe</button>
-                <button class="filter-btn" data-filter="historia" data-i18n="filter_history">Asili & Historia</button>
-                <button class="filter-btn" data-filter="maadili" data-i18n="filter_values">Maadili & Familia</button>
+                <button class="filter-btn active" data-filter="all">Zote</button>
+                <button class="filter-btn" data-filter="umbo">Úmbo Cha Babembe</button>
+                <button class="filter-btn" data-filter="historia">Asili &amp; Historia</button>
+                <button class="filter-btn" data-filter="maadili">Maadili &amp; Familia</button>
             </div>
 
             <div class="video-grid" id="videoGrid">
+                <!-- VIDEO 1 -->
                 <article class="video-card" data-category="umbo">
                     <div class="video-wrapper">
                         <iframe
-                            src="https://www.youtube.com/embed/VIDEO_ID_1"
-                            title="Mafundisho ya Úmbo Cha Babembe - Sehemu ya 1"
+                            src="https://www.youtube.com/embed/YPPOyvxJ-Wk?si=tUyGi87zX1eCVQW3"
+                            title="Úmbo cha Babembe: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI"
                             loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-info">
-                        <span class="video-category" data-i18n="cat_umbo"><i class="fab fa-youtube"></i> Úmbo Cha Babembe</span>
-                        <h3 data-i18n="v1_title">Maana na Chimbuko la Úmbo kwa Babembe</h3>
-                        <p data-i18n="v1_desc">Hekima za mababu kuhusu misingi ya utu, ujasiri, na nafasi ya Úmbo katika kujenga jamii yenye heshima.</p>
+                        <span class="video-category"><i class="fab fa-youtube"></i> Úmbo Cha Babembe</span>
+                        <h3>Úmbo cha Babembe: Sehemu ya Kwanza (1)</h3>
+                        <p>Mafundisho ya mwanzo ya Úmbo cha Babembe yakifafanua misingi ya utu, mila, na hekima za asili.</p>
                         <div class="video-meta">
-                            <span><i class="fas fa-language"></i> Kibembe / Kiswahili</span>
-                            <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
+                            <span><i class="fas fa-clock"></i> 8:13</span>
+                            <a href="http://www.youtube.com/watch?v=YPPOyvxJ-Wk" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
                                 <i class="fab fa-youtube"></i> YouTube
                             </a>
                         </div>
                     </div>
                 </article>
 
-                <article class="video-card" data-category="historia">
-                    <div class="video-wrapper">
-                        <iframe
-                            src="https://www.youtube.com/embed/VIDEO_ID_2"
-                            title="Historia na Nasaba ya Babembe"
-                            loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <span class="video-category" data-i18n="cat_history"><i class="fab fa-youtube"></i> Asili & Historia</span>
-                        <h3 data-i18n="v2_title">Kujua Asili Yetu: Koo na Nasaba za Babembe</h3>
-                        <p data-i18n="v2_desc">Somo maalum kwa vijana na kizazi kipya kuhusu historia yetu, uhamiaji wa kale, na utambulisho wetu.</p>
-                        <div class="video-meta">
-                            <span><i class="fas fa-language"></i> Kibembe / Kiswahili</span>
-                            <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
-                                <i class="fab fa-youtube"></i> YouTube
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
-                <article class="video-card" data-category="maadili">
-                    <div class="video-wrapper">
-                        <iframe
-                            src="https://www.youtube.com/embed/VIDEO_ID_3"
-                            title="Upendo, Maadili na Amani katika Familia"
-                            loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                            allowfullscreen>
-                        </iframe>
-                    </div>
-                    <div class="video-info">
-                        <span class="video-category" data-i18n="cat_values"><i class="fab fa-youtube"></i> Maadili & Familia</span>
-                        <h3 data-i18n="v3_title">Ujenzi wa Familia Bora, Upendo na Amani</h3>
-                        <p data-i18n="v3_desc">Nasaha kwa wamama, wakaka, wadada, na vijana juu ya kuishi kwa upendo na kuheshimiana popote duniani.</p>
-                        <div class="video-meta">
-                            <span><i class="fas fa-language"></i> Kiswahili</span>
-                            <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
-                                <i class="fab fa-youtube"></i> YouTube
-                            </a>
-                        </div>
-                    </div>
-                </article>
-
+                <!-- VIDEO 2 -->
                 <article class="video-card" data-category="umbo">
                     <div class="video-wrapper">
                         <iframe
-                            src="https://www.youtube.com/embed/VIDEO_ID_4"
-                            title="Lugha ya Kibembe na Misemo ya Busara"
+                            src="https://www.youtube.com/embed/xsxfbtJnrzg?si=im4BF9IKDIF92Drb"
+                            title="UMBO CHA BABEMBE SEHEMU YA PILI 2 @Alembeela wa idi"
                             loading="lazy"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
                             allowfullscreen>
                         </iframe>
                     </div>
                     <div class="video-info">
-                        <span class="video-category" data-i18n="cat_umbo"><i class="fab fa-youtube"></i> Úmbo Cha Babembe</span>
-                        <h3 data-i18n="v4_title">Misemo ya Hekima na Mafunzo ya Lugha ya Kibembe</h3>
-                        <p data-i18n="v4_desc">Jifunze maneno ya asili, methali, na maana zake ili kuendeleza lugha yetu kwa watoto na vijana.</p>
+                        <span class="video-category"><i class="fab fa-youtube"></i> Úmbo Cha Babembe</span>
+                        <h3>Úmbo Cha Babembe: Sehemu ya Pili (2)</h3>
+                        <p>Mwendelezo wa mafundisho ya Úmbo cha Babembe yakitoa busara na mwongozo kwa jamii.</p>
                         <div class="video-meta">
-                            <span><i class="fas fa-language"></i> Kibembe</span>
-                            <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
+                            <span><i class="fas fa-clock"></i> 3:05</span>
+                            <a href="http://www.youtube.com/watch?v=xsxfbtJnrzg" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
+                                <i class="fab fa-youtube"></i> YouTube
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- VIDEO 3 (SHORT) -->
+                <article class="video-card" data-category="umbo">
+                    <div class="video-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/HhJm-izUZk4"
+                            title="ÚMBO #AlembeelaFoundation#Alembeelawaidi"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-category"><i class="fab fa-youtube"></i> Úmbo Cha Babembe</span>
+                        <h3>ÚMBO — Kipande Fupi (1)</h3>
+                        <p>Ujumbe mfupi wa Úmbo na hekima za mababu kutoka Alembeela Foundation.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-clock"></i> 0:11</span>
+                            <a href="http://www.youtube.com/watch?v=HhJm-izUZk4" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
+                                <i class="fab fa-youtube"></i> YouTube
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- VIDEO 4 (SHORT) -->
+                <article class="video-card" data-category="umbo">
+                    <div class="video-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/jCPtT8ZPsoE"
+                            title="ÚMBO #AlembeelaFoundation#Alembeelawaidi"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-category"><i class="fab fa-youtube"></i> Úmbo Cha Babembe</span>
+                        <h3>ÚMBO — Kipande Fupi (2)</h3>
+                        <p>Dondoo fupi za mafundisho ya Úmbo kwa kizazi cha sasa na kijavyo.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-clock"></i> 0:08</span>
+                            <a href="http://www.youtube.com/watch?v=jCPtT8ZPsoE" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
+                                <i class="fab fa-youtube"></i> YouTube
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- VIDEO 5 (SHORT) -->
+                <article class="video-card" data-category="umbo">
+                    <div class="video-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/VklA0Aw2TLc"
+                            title="ÚMBO #AlembeelaFoundation#Alembeelawaidi"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-category"><i class="fab fa-youtube"></i> Úmbo Cha Babembe</span>
+                        <h3>ÚMBO — Kipande Fupi (3)</h3>
+                        <p>Mafundisho mafupi ya lugha na utamaduni wa Babembe kutoka @Alembeelawaidi.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-clock"></i> 0:11</span>
+                            <a href="http://www.youtube.com/watch?v=VklA0Aw2TLc" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
+                                <i class="fab fa-youtube"></i> YouTube
+                            </a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- VIDEO 6 -->
+                <article class="video-card" data-category="umbo">
+                    <div class="video-wrapper">
+                        <iframe
+                            src="https://www.youtube.com/embed/chCvVUD1FPo?si=z4IDV32PI4UrEjVI"
+                            title="ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI"
+                            loading="lazy"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="video-info">
+                        <span class="video-category"><i class="fab fa-youtube"></i> Úmbo Cha Babembe</span>
+                        <h3>ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) — Foundation</h3>
+                        <p>Toleo la mafundisho ya Úmbo cha Babembe kupitia chaneli rasmi ya Alembeela Foundation.</p>
+                        <div class="video-meta">
+                            <span><i class="fas fa-clock"></i> 8:13</span>
+                            <a href="http://www.youtube.com/watch?v=chCvVUD1FPo" target="_blank" rel="noopener noreferrer" class="watch-yt-link">
                                 <i class="fab fa-youtube"></i> YouTube
                             </a>
                         </div>
@@ -284,7 +346,7 @@
             </div>
 
             <div class="video-cta">
-                <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="btn btn-gold" data-i18n="btn_more_videos">
+                <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
                     <i class="fab fa-youtube"></i> Tazama Video Zaidi Kwenye Chaneli Yetu
                 </a>
             </div>
@@ -295,9 +357,9 @@
     <section class="contact-section" id="mawasiliano">
         <div class="container">
             <div class="section-header">
-                <span class="section-kicker" data-i18n="contact_kicker">UNGANA NASI</span>
-                <h2 data-i18n="contact_title">Mawasiliano na Ushirikiano</h2>
-                <p class="section-desc" data-i18n="contact_sub">Una swali kuhusu Úmbo Cha Babembe, historia, au ungependa kuchangia mawazo katika jamii yetu? Tuandikie hapa.</p>
+                <span class="section-kicker">UNGANA NASI</span>
+                <h2>Mawasiliano na Ushirikiano</h2>
+                <p class="section-desc">Una swali kuhusu Úmbo Cha Babembe, historia, au ungependa kuchangia mawazo katika jamii yetu? Tuandikie hapa.</p>
                 <div class="gold-divider"></div>
             </div>
 
@@ -313,30 +375,30 @@
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
                         <div>
-                            <h4 data-i18n="contact_email_lbl">Barua Pepe (Email)</h4>
+                            <h4>Barua Pepe (Email)</h4>
                             <a href="mailto:info@alembeelafoundation.org">info@alembeelafoundation.org</a>
                         </div>
                     </div>
                     <div class="contact-item">
                         <i class="fas fa-globe-africa"></i>
                         <div>
-                            <h4 data-i18n="contact_loc_lbl">Wigo Wetu</h4>
-                            <p data-i18n="contact_loc_val">Tunaunganisha jamii ya Babembe na marafiki wa amani duniani kote.</p>
+                            <h4>Wigo Wetu</h4>
+                            <p>Tunaunganisha jamii ya Babembe na marafiki wa amani duniani kote.</p>
                         </div>
                     </div>
                 </div>
 
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
-                        <input type="text" id="senderName" placeholder="Jina Lako Kamili" required data-i18n-placeholder="ph_name">
+                        <input type="text" id="senderName" placeholder="Jina Lako Kamili" required>
                     </div>
                     <div class="form-group">
-                        <input type="email" id="senderEmail" placeholder="Barua Pepe Yako (Email)" required data-i18n-placeholder="ph_email">
+                        <input type="email" id="senderEmail" placeholder="Barua Pepe Yako (Email)" required>
                     </div>
                     <div class="form-group">
-                        <textarea id="senderMessage" rows="4" placeholder="Andika ujumbe wako au swali hapa..." required data-i18n-placeholder="ph_msg"></textarea>
+                        <textarea id="senderMessage" rows="4" placeholder="Andika ujumbe wako au swali hapa..." required></textarea>
                     </div>
-                    <button type="submit" class="btn btn-gold" data-i18n="btn_send">
+                    <button type="submit" class="btn btn-gold">
                         <i class="fas fa-paper-plane"></i> Tuma Ujumbe
                     </button>
                 </form>
@@ -349,7 +411,7 @@
         <div class="af-footer-container">
             <div class="af-footer-grid">
 
-                <!-- 1. NEMBO, UTAMBULISHO NA MABOKSI YA AIKONI PEKEE UPANDE WA KUSHOTO -->
+                <!-- 1. NEMBO, UTAMBULISHO NA AIKONI/LOGO ZA APP PEKEE (BILA BOX) UPANDE WA KUSHOTO -->
                 <div class="af-footer-col">
                     <div class="af-brand-box">
                         <div class="af-logo-circle">AF</div>
@@ -358,21 +420,25 @@
                             <p class="af-motto">Our Heritage, Our Identity, Our History.</p>
                         </div>
                     </div>
-                    <p class="af-brand-desc" data-i18n="footer_desc">
+                    <p class="af-brand-desc">
                         Jukwaa rasmi la kuhifadhi, kulinda na kuendeleza historia, mila, lugha ya Kibembe na utamaduni wa jamii ya Babembe kwa vizazi vya sasa na vijavyo.
                     </p>
 
-                    <div class="af-icon-only-boxes">
-                        <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="af-icon-box box-yt" aria-label="YouTube" title="YouTube">
+                    <div style="display:flex; align-items:center; flex-wrap:wrap; gap:16px; margin-top:12px;">
+                        <a href="https://youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube"
+                           style="background:none; border:none; padding:0; text-decoration:none; font-size:1.75rem; line-height:1; color:#FF2E2E;">
                             <i class="fab fa-youtube"></i>
                         </a>
-                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="af-icon-box box-fb" aria-label="Facebook" title="Facebook">
+                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook"
+                           style="background:none; border:none; padding:0; text-decoration:none; font-size:1.75rem; line-height:1; color:#1877F2;">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="af-icon-box box-tt" aria-label="TikTok" title="TikTok">
+                        <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" aria-label="TikTok" title="TikTok"
+                           style="background:none; border:none; padding:0; text-decoration:none; font-size:1.75rem; line-height:1; color:#FFFFFF; text-shadow:-2px 0 #25F4EE, 2px 0 #FE2C55;">
                             <i class="fab fa-tiktok"></i>
                         </a>
-                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="af-icon-box box-ig" aria-label="Instagram" title="Instagram">
+                        <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram"
+                           style="background:none; border:none; padding:0; text-decoration:none; font-size:1.75rem; line-height:1; color:#E1306C;">
                             <i class="fab fa-instagram"></i>
                         </a>
                     </div>
@@ -380,14 +446,14 @@
 
                 <!-- 2. MENYU YA KURASA ZOTE KUU -->
                 <div class="af-footer-col">
-                    <h4 class="af-col-title" data-i18n="footer_links">Menyu ya Kurasa</h4>
+                    <h4 class="af-col-title">Menyu ya Kurasa</h4>
                     <ul class="af-footer-links">
-                        <li><a href="index.html#nyumbani" data-i18n="nav_home"><i class="fas fa-home"></i> Mwanzo</a></li>
-                        <li><a href="index.html#kuhusu" data-i18n="nav_about"><i class="fas fa-user-tie"></i> Kuhusu Sisi</a></li>
-                        <li><a href="index.html#mafunzo" data-i18n="nav_teachings"><i class="fas fa-book-open"></i> Mafundisho</a></li>
-                        <li><a href="index.html#video-library" data-i18n="nav_videos"><i class="fab fa-youtube"></i> Maktaba ya Video</a></li>
-                        <li><a href="picha.html" data-i18n="nav_photos"><i class="fas fa-images"></i> Picha za Jamii</a></li>
-                        <li><a href="index.html#mawasiliano" data-i18n="nav_contact"><i class="fas fa-envelope"></i> Mawasiliano</a></li>
+                        <li><a href="index.html#nyumbani"><i class="fas fa-home"></i> Mwanzo</a></li>
+                        <li><a href="index.html#kuhusu"><i class="fas fa-user-tie"></i> Kuhusu Sisi</a></li>
+                        <li><a href="index.html#mafunzo"><i class="fas fa-book-open"></i> Mafundisho</a></li>
+                        <li><a href="index.html#video-library"><i class="fab fa-youtube"></i> Maktaba ya Video</a></li>
+                        <li><a href="picha.html"><i class="fas fa-images"></i> Picha za Jamii</a></li>
+                        <li><a href="index.html#mawasiliano"><i class="fas fa-envelope"></i> Mawasiliano</a></li>
                     </ul>
                 </div>
 
@@ -400,7 +466,7 @@
                                 <i class="fab fa-youtube platform-yt"></i>
                                 <div>
                                     <strong>YouTube — @Alembeelawaidi</strong>
-                                    <span>Mafundisho ya Úmbo & Video</span>
+                                    <span>Mafundisho ya Úmbo &amp; Video</span>
                                 </div>
                             </a>
                         </li>
@@ -436,24 +502,33 @@
 
                 <!-- 4. MADA KUU -->
                 <div class="af-footer-col">
-                    <h4 class="af-col-title" data-i18n="footer_topics">Mada Kuu</h4>
+                    <h4 class="af-col-title">Mada Kuu</h4>
                     <ul class="af-footer-links">
-                        <li><a href="index.html#mafunzo" data-i18n="p1_title"><i class="fas fa-drum"></i> Úmbo Cha Babembe</a></li>
-                        <li><a href="index.html#mafunzo" data-i18n="p2_title"><i class="fas fa-sitemap"></i> Asili na Nasaba</a></li>
-                        <li><a href="index.html#mafunzo" data-i18n="p3_title"><i class="fas fa-language"></i> Lugha ya Kibembe</a></li>
-                        <li><a href="index.html#mafunzo" data-i18n="p4_title"><i class="fas fa-dove"></i> Maadili, Upendo & Amani</a></li>
+                        <li><a href="index.html#mafunzo"><i class="fas fa-drum"></i> Úmbo Cha Babembe</a></li>
+                        <li><a href="index.html#mafunzo"><i class="fas fa-sitemap"></i> Asili na Nasaba</a></li>
+                        <li><a href="index.html#mafunzo"><i class="fas fa-language"></i> Lugha ya Kibembe</a></li>
+                        <li><a href="index.html#mafunzo"><i class="fas fa-dove"></i> Maadili, Upendo &amp; Amani</a></li>
                     </ul>
                 </div>
 
             </div>
 
             <div class="af-footer-bottom">
-                <p>&copy; <span id="currentYear">2026</span> <strong>Alembeela Foundation</strong>. <span data-i18n="footer_rights">Haki zote zimehifadhiwa.</span></p>
-                <span class="af-footer-tag" data-i18n="hero_tag">OUR HERITAGE • OUR IDENTITY • OUR HISTORY</span>
+                <p>&copy; <span id="currentYear">2026</span> <strong>Alembeela Foundation</strong>. Haki zote zimehifadhiwa.</p>
+                <span class="af-footer-tag">OUR HERITAGE • OUR IDENTITY • OUR HISTORY</span>
             </div>
         </div>
     </footer>
 
+    <script>
+        function googleTranslateElementInit() {
+            new google.translate.TranslateElement({
+                pageLanguage: 'sw',
+                autoDisplay: false
+            }, 'google_translate_element');
+        }
+    </script>
+    <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="script.js"></script>
 </body>
 </html>
