@@ -1,578 +1,278 @@
-/* ==========================================================
-   Alembeela Foundation - Advanced Platform JavaScript (`script.js`)
-   ========================================================== */
+/* Alembeela Foundation — complete client-side fixes */
 
-// YouTube Channel Configuration
-const YOUTUBE_CONFIG = {
-    channelId: 'UCQkPUJEsrjWNP2MfCJRwIFQ', // Replace with your channel ID
-    apiKey: 'AIzaSyCfGV3otxaHIYqzHYozRfFGLilCzZZHgqw', // YouTube Data API Key
-    channelUrl: 'https://www.youtube.com/@AlembeelaFoundation'
+const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@AlembeelaFoundation';
+const FALLBACK_VIDEOS = [
+  { title: 'Úmbo Cha Babembe — Misingi', description: 'Misingi ya historia, maadili na mshikamano wa jamii.', videoId: 'chCvVUD1FPo' },
+  { title: 'Úmbo Cha Babembe — Vizazi', description: 'Mtiririko wa hekima kati ya vizazi na namna ya kulinda urithi.', videoId: 'chCvVUD1FPo' },
+  { title: 'Úmbo Cha Babembe — Jamii', description: 'Kusuluhisha migogoro na kujenga mshikamano wa jamii.', videoId: 'chCvVUD1FPo' }
+];
+
+const translations = {
+  en: { nav_home: 'Home', nav_series: 'Series', nav_wisdom: 'Wisdom', nav_library: 'Library', nav_teachings: 'Teachings', hero_badge: 'Saving our shared wisdom & community pillars', hero_desc: 'Unveiling, preserving, and sharing Babembe heritage and community teachings that build strong foundations for life, unity, and dignity.', hero_btn1: 'Watch Episodes' },
+  sw: { nav_home: 'Nyumbani', nav_series: 'Vipindi', nav_wisdom: 'Hekima', nav_library: 'Maktaba', nav_teachings: 'Mafunzo', hero_badge: 'Kuhifadhi hekima na nguzo za jamii yetu', hero_desc: 'Tunafichua, kuhifadhi, na kusambaza urithi wa Babembe na mafunzo ya jamii yanayojenga misingi bora ya maisha, umoja, na heshima ya kibinadamu.', hero_btn1: 'Tazama Vipindi' },
+  ky: { nav_home: 'Aka', nav_series: 'Pindl', nav_wisdom: 'Uhete', nav_library: 'Library', nav_teachings: 'Amashyi' },
+  lg: { nav_home: 'Olwa', nav_series: 'Ebirimu', nav_wisdom: 'Amagezi', nav_library: 'Ebitabo', nav_teachings: 'Amasoma' },
+  yo: { nav_home: 'Ilé', nav_series: 'Awọn ìfilọ', nav_wisdom: 'Ọgbọ́n', nav_library: 'Ibi ìwé', nav_teachings: 'Ẹ̀kọ́' }
 };
 
-// Audio/Oral History Configuration
-const AUDIO_CONFIG = {
-    introMusic: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3', // Intro music (plays first)
-    enableAutoPlaylist: true, // Automatically play next track
-    fadeInDuration: 3000, // 3 second fade-in
-    fadeOutDuration: 2000 // 2 second fade-out
-};
+function escapeText(value) {
+  const element = document.createElement('span');
+  element.textContent = String(value);
+  return element.innerHTML;
+}
+
+function safeStorageGet(key, fallback) {
+  try { return JSON.parse(localStorage.getItem(key)) ?? fallback; } catch (_) { return fallback; }
+}
+
+function safeStorageSet(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch (_) { /* Storage may be unavailable */ }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-    // Styled custom startup banner in console
-    console.log(
-        "%c[ALEMBEELA FOUNDATION] %c Úmbo Cha Babembe & Community Hub Initialized Successfully 🏛️ ",
-        "background: #eab308; color: #03140c; font-weight: bold; padding: 4px 8px; border-radius: 4px;",
-        "color: #f3f4f6; font-weight: bold;"
-    );
-    console.log(`%c[Timestamp]: ${new Date().toLocaleString()}`, "color: #9ca3af; font-style: italic;");
-    
-    // Initialize components
-    initSmoothScrolling();
-    loadYouTubeVideos();
-    initAudioPlayer();
-    initMobileMenu();
+  initSmoothScrolling();
+  initMobileMenu();
+  initModals();
+  initAudioPlayer();
+  initBackToTop();
+  initLocalData();
+  renderFallbackVideos();
+
+  const savedLanguage = safeStorageGet('alembeela-language', 'sw');
+  setLanguage(savedLanguage);
+
+  document.getElementById('globalSearch')?.addEventListener('input', handleGlobalSearch);
+  document.getElementById('mobileSearch')?.addEventListener('input', handleGlobalSearch);
 });
 
-/**
- * Mobile Menu Toggle Function
- */
-function toggleMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const hamburgerIcon = document.getElementById('hamburgerIcon');
-    
-    if (!mobileMenu || !hamburgerIcon) return;
-    
-    console.log('%c[Mobile Menu] Toggle clicked', 'color: #38bdf8; font-weight: bold;');
-    
-    if (mobileMenu.classList.contains('hidden')) {
-        // Open menu
-        mobileMenu.classList.remove('hidden');
-        mobileMenu.style.maxHeight = mobileMenu.scrollHeight + 'px';
-        hamburgerIcon.classList.remove('fa-bars');
-        hamburgerIcon.classList.add('fa-xmark');
-        document.body.style.overflow = 'hidden';
-        console.log("State: Menu Opened");
-    } else {
-        // Close menu
-        mobileMenu.style.maxHeight = '0';
-        setTimeout(() => {
-            mobileMenu.classList.add('hidden');
-        }, 300);
-        hamburgerIcon.classList.remove('fa-xmark');
-        hamburgerIcon.classList.add('fa-bars');
-        document.body.style.overflow = 'auto';
-        console.log("State: Menu Closed");
-    }
+function initSmoothScrolling() {
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', event => {
+      const id = link.getAttribute('href');
+      if (!id || id === '#') return;
+      const target = document.querySelector(id);
+      if (!target) return;
+      event.preventDefault();
+      target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    });
+  });
 }
 
-/**
- * Initialize Mobile Menu
- */
+function toggleMobileMenu(forceClose = false) {
+  const menu = document.getElementById('mobileMenu');
+  const icon = document.getElementById('hamburgerIcon');
+  if (!menu || !icon) return;
+
+  const opening = forceClose ? false : menu.classList.toggle('menu-open');
+  menu.classList.toggle('hidden', !opening);
+  icon.className = `fa-solid ${opening ? 'fa-xmark' : 'fa-bars'} text-lg`;
+  document.body.classList.toggle('modal-open', opening);
+}
+
 function initMobileMenu() {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuLinks = mobileMenu?.querySelectorAll('a[href^="#"]');
-    
-    if (!mobileMenu || !mobileMenuLinks) return;
-    
-    console.log('%c[Mobile Menu] Initialized', 'color: #38bdf8; font-weight: bold;');
-    
-    // Close menu when a link is clicked (handled in toggleMobileMenu)
-    mobileMenuLinks.forEach(link => {
-        link.addEventListener('click', () => {
-            // The menu will close via toggleMobileMenu() call in HTML
-            console.log(`%c[Mobile Menu] Navigating to: ${link.getAttribute('href')}`, 'color: #34d399;');
-        });
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-        const header = document.querySelector('header');
-        const menuBtn = document.getElementById('mobileMenuBtn');
-        
-        if (header && !header.contains(e.target) && mobileMenu && !mobileMenu.classList.contains('hidden')) {
-            toggleMobileMenu();
-        }
-    });
-}
-
-/**
- * Load YouTube Videos Automatically
- * Fetches latest videos from Alembeela Foundation channel
- */
-function loadYouTubeVideos() {
-    // Using YouTube Data API to fetch latest uploads
-    const channelId = 'UCQkPUJEsrjWNP2MfCJRwIFQ'; // Alembeela Foundation Channel ID
-    const playlistId = 'UUQkPUJEsrjWNP2MfCJRwIFQ'; // Uploads playlist (U + Channel ID)
-    
-    console.log('%c[YouTube Integration] Starting to fetch videos from channel...', 'color: #ef4444; font-weight: bold;');
-    
-    // Fetch from YouTube API
-    fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playlistId}&maxResults=10&key=${YOUTUBE_CONFIG.apiKey}`)
-        .then(response => response.json())
-        .then(data => {
-            console.log('%c[YouTube Integration] Fetching videos from channel...', 'color: #ef4444; font-weight: bold;');
-            if (data.items && data.items.length > 0) {
-                populateEpisodeCards(data.items);
-                // Store videos for audio extraction
-                window.youtubeVideos = data.items;
-                initAudioPlaylist(data.items);
-                console.log('%c[YouTube Integration] Successfully loaded videos from YouTube API', 'color: #10b981; font-weight: bold;');
-            } else {
-                console.warn('%c[YouTube API] No items found, loading fallback videos', 'color: #f59e0b;');
-                loadFallbackVideos();
-            }
-        })
-        .catch(err => {
-            console.warn('%c[YouTube API Error] Using fallback video data', 'color: #f59e0b;');
-            console.log('Error:', err);
-            // Fallback: Use hardcoded video for demo
-            loadFallbackVideos();
-        });
-}
-
-/**
- * Populate Episode Cards with YouTube Videos
- */
-function populateEpisodeCards(videos) {
-    const episodesGrid = document.getElementById('episodesGrid');
-    if (!episodesGrid) return;
-
-    episodesGrid.innerHTML = '';
-
-    videos.forEach((video, index) => {
-        const videoId = video.snippet.resourceId.videoId;
-        const title = video.snippet.title;
-        const description = video.snippet.description.substring(0, 100) + '...';
-        const thumbnail = video.snippet.thumbnails.medium.url;
-
-        const episodeCard = document.createElement('div');
-        episodeCard.className = 'episode-card bg-emeraldCustom-900/60 border border-gold-600/20 rounded-2xl overflow-hidden hover:border-gold-500 transition duration-300 flex flex-col justify-between group';
-        episodeCard.setAttribute('data-title', title.toLowerCase());
-        episodeCard.setAttribute('data-video-id', videoId);
-
-        episodeCard.innerHTML = `
-            <div class="relative h-48 bg-black overflow-hidden">
-                <a href="#" onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="absolute inset-0 z-20 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition cursor-pointer">
-                    <div class="w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center text-lg shadow-lg">
-                        <i class="fa-solid fa-play ml-1"></i>
-                    </div>
-                </a>
-                <img src="${thumbnail}" alt="${title}" class="w-full h-full object-cover">
-                <div class="absolute top-3 left-3 bg-black/80 backdrop-blur-md border border-gold-500/40 text-gold-400 text-xs font-bold px-3 py-1 rounded-full z-10">
-                    Sehemu ya ${index + 1}
-                </div>
-            </div>
-            <div class="p-6 flex-1 flex flex-col justify-between">
-                <div>
-                    <h3 class="text-xl font-bold text-white mb-2 group-hover:text-gold-400 transition">${title}</h3>
-                    <p class="text-gray-400 text-sm mb-6 leading-relaxed">${description}</p>
-                </div>
-                <button onclick="openVideoModal('https://www.youtube.com/embed/${videoId}')" class="inline-flex items-center justify-center gap-2 w-full bg-gold-500/10 hover:bg-gold-500 text-gold-400 hover:text-black font-bold py-2.5 px-4 rounded-lg transition cursor-pointer">
-                    <i class="fa-solid fa-play"></i> Tazama Sehemu ya ${index + 1}
-                </button>
-            </div>
-        `;
-
-        episodesGrid.appendChild(episodeCard);
-    });
-
-    console.log(`%c[YouTube Integration] Loaded ${videos.length} videos successfully`, 'color: #10b981; font-weight: bold;');
-}
-
-/**
- * Fallback: Load demo videos if API fails
- */
-function loadFallbackVideos() {
-    const fallbackVideos = [
-        {
-            snippet: {
-                title: 'Úmbo Cha Babembe - Part 1: Misingi',
-                description: 'Gundua mizizi ya Úmbo, historia ya asili, na maadili yaliyosimamia jamii...',
-                resourceId: { videoId: 'chCvVUD1FPo' },
-                thumbnails: { medium: { url: 'https://img.youtube.com/vi/chCvVUD1FPo/mqdefault.jpg' } }
-            }
-        },
-        {
-            snippet: {
-                title: 'Úmbo Cha Babembe - Part 2: Siri za Ndani',
-                description: 'Masomo ya kina kuhusu mtiririko wa vizazi na hekima za kuzuia migogoro...',
-                resourceId: { videoId: 'chCvVUD1FPo' },
-                thumbnails: { medium: { url: 'https://img.youtube.com/vi/chCvVUD1FPo/mqdefault.jpg' } }
-            }
-        },
-        {
-            snippet: {
-                title: 'Úmbo Cha Babembe - Part 3: Hitimisho',
-                description: 'Ufumbuzi wa ramani na mafumbo yatakayosaidia vizazi vijavyo...',
-                resourceId: { videoId: 'chCvVUD1FPo' },
-                thumbnails: { medium: { url: 'https://img.youtube.com/vi/chCvVUD1FPo/mqdefault.jpg' } }
-            }
-        }
-    ];
-
-    populateEpisodeCards(fallbackVideos);
-}
-
-/**
- * Initialize Audio Player with Smooth Transitions
- */
-function initAudioPlayer() {
-    const audioPlayer = document.getElementById('audioPlayer');
-    if (!audioPlayer) return;
-
-    console.log('%c[Audio Player] Initialized with fade effects', 'color: #fb923c; font-weight: bold;');
-    
-    // Set initial volume
-    audioPlayer.volume = 0;
-    
-    // Smooth fade-in when play button is clicked
-    audioPlayer.addEventListener('play', () => {
-        fadeAudioIn(audioPlayer);
-    });
-
-    // Smooth fade-out when stopped
-    audioPlayer.addEventListener('pause', () => {
-        fadeAudioOut(audioPlayer);
-    });
-}
-
-/**
- * Initialize Audio Playlist from YouTube Videos
- */
-function initAudioPlaylist(videos) {
-    console.group('%c[Audio Playlist] Building from YouTube videos', 'color: #fb923c; font-weight: bold;');
-    
-    window.audioPlaylist = {
-        currentIndex: -1, // Start with intro music
-        tracks: [
-            {
-                title: '🎵 Intro Music - Alembeela Foundation',
-                src: AUDIO_CONFIG.introMusic,
-                type: 'intro'
-            }
-        ]
-    };
-
-    // Add video titles to playlist (users can select which to listen to)
-    videos.forEach((video, index) => {
-        window.audioPlaylist.tracks.push({
-            title: video.snippet.title,
-            videoId: video.snippet.resourceId.videoId,
-            type: 'video',
-            description: video.snippet.description.substring(0, 60)
-        });
-    });
-
-    console.log(`Playlist created with ${window.audioPlaylist.tracks.length} tracks`);
-    console.groupEnd();
-}
-
-/**
- * Fade In Audio Smoothly
- */
-function fadeAudioIn(audioElement, duration = AUDIO_CONFIG.fadeInDuration) {
-    const steps = 20;
-    const stepDuration = duration / steps;
-    const maxVolume = 0.8; // Don't go to 100% to protect ears
-    let currentStep = 0;
-
-    const fadeInterval = setInterval(() => {
-        currentStep++;
-        audioElement.volume = (currentStep / steps) * maxVolume;
-
-        if (currentStep >= steps) {
-            clearInterval(fadeInterval);
-            audioElement.volume = maxVolume;
-            console.log('%c[Audio] Fade-in complete', 'color: #10b981;');
-        }
-    }, stepDuration);
-}
-
-/**
- * Fade Out Audio Smoothly
- */
-function fadeAudioOut(audioElement, duration = AUDIO_CONFIG.fadeOutDuration) {
-    const steps = 15;
-    const stepDuration = duration / steps;
-    const startVolume = audioElement.volume;
-    let currentStep = 0;
-
-    const fadeInterval = setInterval(() => {
-        currentStep++;
-        audioElement.volume = startVolume * (1 - (currentStep / steps));
-
-        if (currentStep >= steps) {
-            clearInterval(fadeInterval);
-            audioElement.volume = 0;
-            console.log('%c[Audio] Fade-out complete', 'color: #10b981;');
-        }
-    }, stepDuration);
-}
-
-/**
- * Play Next Track in Playlist
- */
-function playNextTrack() {
-    if (!window.audioPlaylist) return;
-
-    const audioPlayer = document.getElementById('audioPlayer');
-    if (!audioPlayer) return;
-
-    // Move to next track
-    window.audioPlaylist.currentIndex++;
-    
-    if (window.audioPlaylist.currentIndex >= window.audioPlaylist.tracks.length) {
-        window.audioPlaylist.currentIndex = 0; // Loop back to intro
+  document.querySelectorAll('#mobileMenu a').forEach(link => link.addEventListener('click', () => toggleMobileMenu(true)));
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape') {
+      toggleMobileMenu(true);
+      closeVideoModal();
+      closeReaderModal();
     }
-
-    const track = window.audioPlaylist.tracks[window.audioPlaylist.currentIndex];
-
-    console.group('%c[Audio Playlist] Playing next track', 'color: #fb923c;');
-    console.log(`Track: ${track.title}`);
-    console.log(`Type: ${track.type}`);
-    console.groupEnd();
-
-    if (track.type === 'intro') {
-        audioPlayer.src = track.src;
-    } else {
-        // For video tracks, link to the video (can be embedded later)
-        console.warn('[Audio] Video audio extraction not yet implemented. Showing intro music instead.');
-        audioPlayer.src = AUDIO_CONFIG.introMusic;
-    }
-
-    audioPlayer.play();
+  });
 }
 
-/**
- * 1. Real-Time Episode Search / Filter Engine
- */
+function setLanguage(language) {
+  if (!translations[language]) language = 'sw';
+  document.documentElement.lang = language;
+  document.querySelectorAll('[data-i18n]').forEach(element => {
+    const key = element.dataset.i18n;
+    if (translations[language][key]) element.textContent = translations[language][key];
+  });
+  const selector = document.getElementById('languageSelect');
+  if (selector) selector.value = language;
+  safeStorageSet('alembeela-language', language);
+}
+
+function renderFallbackVideos() {
+  const grid = document.getElementById('episodesGrid');
+  if (!grid) return;
+
+  grid.innerHTML = FALLBACK_VIDEOS.map((video, index) => `
+    <article class="episode-card bg-emeraldCustom-900/60 border border-gold-600/20 rounded-2xl overflow-hidden hover:border-gold-500 transition duration-300 flex flex-col" data-title="${escapeText(video.title.toLowerCase())}">
+      <button type="button" onclick="openVideoModal('https://www.youtube-nocookie.com/embed/${video.videoId}?rel=0')" class="relative h-48 w-full bg-black overflow-hidden group text-left" aria-label="Play ${escapeText(video.title)}">
+        <img src="https://img.youtube.com/vi/${video.videoId}/mqdefault.jpg" alt="${escapeText(video.title)}" loading="lazy" class="w-full h-full object-cover">
+        <span class="absolute inset-0 flex items-center justify-center bg-black/30 opacity-100 sm:opacity-0 sm:group-hover:opacity-100 transition">
+          <span class="w-12 h-12 rounded-full bg-gold-500 text-black flex items-center justify-center"><i class="fa-solid fa-play"></i></span>
+        </span>
+      </button>
+      <div class="p-6 flex-1 flex flex-col justify-between">
+        <div><h3 class="text-xl font-bold text-white mb-2">${escapeText(video.title)}</h3><p class="text-gray-400 text-sm mb-6">${escapeText(video.description)}</p></div>
+        <button type="button" onclick="openVideoModal('https://www.youtube-nocookie.com/embed/${video.videoId}?rel=0')" class="w-full border border-gold-500/40 text-gold-400 hover:bg-gold-500 hover:text-black py-3 rounded-lg transition font-bold"><i class="fa-solid fa-play mr-2"></i>Tazama sehemu</button>
+      </div>
+    </article>`).join('');
+
+  document.getElementById('videoCount')?.replaceChildren(document.createTextNode(String(FALLBACK_VIDEOS.length)));
+}
+
 function filterEpisodes() {
-    const input = document.getElementById('episodeSearch').value.toLowerCase();
-    const cards = document.querySelectorAll('.episode-card');
-    let matchCount = 0;
-
-    cards.forEach(card => {
-        const title = card.getAttribute('data-title').toLowerCase();
-        if (title.includes(input)) {
-            card.style.display = 'flex';
-            matchCount++;
-        } else {
-            card.style.display = 'none';
-        }
-    });
-
-    console.groupCollapsed(`%c[Search Telemetry] Query: "${input}"`, "color: #eab308;");
-    console.log(`Matching episodes found: ${matchCount}`);
-    console.groupEnd();
+  const input = document.getElementById('episodeSearch')?.value.trim().toLowerCase() ?? '';
+  document.querySelectorAll('.episode-card').forEach(card => {
+    card.style.display = (card.dataset.title || '').includes(input) ? 'flex' : 'none';
+  });
 }
 
-/**
- * 2. Multilingual Dictionary Handler (Swahili / English)
- */
-const translations = {
-    sw: {
-        nav_home: "Nyumbani",
-        nav_about: "Kuhusu Sisi",
-        nav_series: "Vipindi vya Úmbo",
-        nav_wisdom: "Hekima ya Jamii",
-        nav_library: "Maktaba",
-        nav_teachings: "Mafunzo",
-        btn_watch: "Tazama Video",
-        hero_badge: "Saving our shared wisdom & community pillars",
-        hero_desc: "Tunafichua, kuhifadhi, na kusambaza urithi wa Babembe na mafunzo ya jamii yanayojenga misingi bora ya maisha, umoja, na heshima ya kibinadamu.",
-        hero_btn1: "Anza Kutazama Úmbo",
-        hero_btn2: "Toa Hekima Yako"
-    },
-    en: {
-        nav_home: "Home",
-        nav_about: "About Us",
-        nav_series: "Úmbo Series",
-        nav_wisdom: "Community Wisdom",
-        nav_library: "Library",
-        nav_teachings: "Teachings",
-        btn_watch: "Watch Video",
-        hero_badge: "Saving our shared wisdom & community pillars",
-        hero_desc: "Unveiling, preserving, and sharing Babembe heritage and community teachings that build solid foundations for life, unity, and human dignity.",
-        hero_btn1: "Start Watching Úmbo",
-        hero_btn2: "Share Your Wisdom"
-    }
-};
+function handleGlobalSearch(event) {
+  const query = event.target.value.trim().toLowerCase();
+  const results = document.getElementById('searchResults');
+  if (!results) return;
+  if (!query) { results.classList.add('hidden'); results.innerHTML = ''; return; }
 
-function setLanguage(lang) {
-    console.group(`%c[Localization Telemetry] Language Switch`, "color: #38bdf8;");
-    console.log(`Target Language: ${lang.toUpperCase()}`);
-    
-    const elements = document.querySelectorAll('[data-i18n]');
-    let updatedCount = 0;
-    
-    elements.forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        if (translations[lang] && translations[lang][key]) {
-            el.textContent = translations[lang][key];
-            updatedCount++;
-        }
-    });
-    
-    console.log(`Successfully updated DOM elements: ${updatedCount}`);
-    console.groupEnd();
+  const matches = [];
+  document.querySelectorAll('section[id], article[data-title]').forEach(element => {
+    const title = (element.dataset.title || element.querySelector('h1,h2,h3')?.textContent || element.id).trim();
+    if (title.toLowerCase().includes(query)) matches.push({ title, id: element.id || 'series' });
+  });
+
+  results.innerHTML = matches.length ? matches.slice(0, 8).map(item => `<button type="button" class="block w-full text-left px-4 py-3 hover:bg-gold-500/10 text-sm" onclick="jumpToSearch('${escapeText(item.id)}')">${escapeText(item.title)}</button>`).join('') : '<p class="px-4 py-3 text-sm text-gray-400">Hakuna matokeo.</p>';
+  results.classList.remove('hidden');
 }
 
-/**
- * 3. Community Wisdom Submission Handler
- */
+function jumpToSearch(id) {
+  document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('searchResults')?.classList.add('hidden');
+}
+
+function submitNewsletter(event) {
+  event.preventDefault();
+  const input = document.getElementById('newsletterEmail');
+  if (!input || !input.checkValidity()) { input?.reportValidity(); return; }
+
+  const subscribers = safeStorageGet('alembeela-subscribers', []);
+  const email = input.value.trim().toLowerCase();
+  if (!subscribers.includes(email)) subscribers.push(email);
+  safeStorageSet('alembeela-subscribers', subscribers);
+  input.value = '';
+  document.getElementById('subscriberCount')?.replaceChildren(document.createTextNode(String(subscribers.length)));
+  alert('Asante kwa kujiunga! Email yako imehifadhiwa kwenye kifaa hiki.');
+}
+
 function submitWisdom(event) {
-    event.preventDefault();
-    const name = document.getElementById('contributorName').value;
-    const text = document.getElementById('contributorWisdom').value;
+  event.preventDefault();
+  const name = document.getElementById('contributorName')?.value.trim();
+  const text = document.getElementById('contributorWisdom')?.value.trim();
+  if (!name || !text) return;
 
-    console.group("%c[Community Wall] New Wisdom Submission", "color: #10b981; font-weight: bold;");
-    console.log(`Contributor: ${name}`);
-    console.log(`Wisdom Text: "${text}"`);
-
-    const feed = document.getElementById('wisdomFeed');
-    const newCard = document.createElement('div');
-    newCard.className = "bg-emeraldCustom-900/40 border border-gold-500/30 p-6 rounded-2xl relative animate-pulse";
-    newCard.innerHTML = `
-        <i class="fa-solid fa-quote-left text-gold-500/20 text-4xl absolute top-4 right-6"></i>
-        <p class="text-gray-200 text-sm italic mb-3">"${text}"</p>
-        <span class="text-xs text-gold-400 font-bold">&mdash; ${name} (Community Contributor)</span>
-    `;
-
-    feed.prepend(newCard);
-    console.log("Status: Appended successfully to live feed.");
-    console.groupEnd();
-
-    document.getElementById('wisdomForm').reset();
-    alert('Asante! Hekima yako imechapishwa kwenye uwanja wa jamii.');
+  const entry = { name, text };
+  const wisdom = safeStorageGet('alembeela-wisdom', []);
+  wisdom.unshift(entry);
+  safeStorageSet('alembeela-wisdom', wisdom);
+  renderWisdom(entry, true);
+  document.getElementById('wisdomForm')?.reset();
+  document.getElementById('wisdomCount')?.replaceChildren(document.createTextNode(String(wisdom.length + 45)));
+  alert('Asante! Hekima yako imeongezwa kwenye uwanja wa jamii.');
 }
 
-/**
- * 4. Digital E-Reader Library Modal Handlers
- */
+function renderWisdom(entry, prepend = false) {
+  const feed = document.getElementById('wisdomFeed');
+  if (!feed) return;
+  const card = document.createElement('article');
+  card.className = 'bg-emeraldCustom-900/40 border border-gold-500/30 p-6 rounded-2xl relative';
+  card.innerHTML = `<i class="fa-solid fa-quote-left text-gold-500/20 text-4xl absolute top-4 right-6"></i><p class="text-gray-200 text-sm italic mb-3"></p><span class="text-xs text-gold-400 font-bold"></span>`;
+  card.querySelector('p').textContent = `"${entry.text}"`;
+  card.querySelector('span').textContent = `— ${entry.name}`;
+  prepend ? feed.prepend(card) : feed.append(card);
+}
+
+function initLocalData() {
+  const wisdom = safeStorageGet('alembeela-wisdom', []);
+  wisdom.forEach(entry => renderWisdom(entry));
+  const subscribers = safeStorageGet('alembeela-subscribers', []);
+  if (subscribers.length) document.getElementById('subscriberCount')?.replaceChildren(document.createTextNode(String(subscribers.length)));
+  document.getElementById('wisdomCount')?.replaceChildren(document.createTextNode(String(wisdom.length + 45)));
+}
+
+function likeWisdom(button) {
+  const count = button.querySelector('.likeCount');
+  if (!count) return;
+  const liked = button.dataset.liked === 'true';
+  button.dataset.liked = String(!liked);
+  count.textContent = String(Number(count.textContent) + (liked ? -1 : 1));
+  button.classList.toggle('text-red-400', !liked);
+}
+
+function toggleComments(button) {
+  const card = button.closest('.bg-emeraldCustom-900\\/40, article') || button.parentElement?.parentElement;
+  card?.querySelector('.commentsSection')?.classList.toggle('hidden');
+}
+
 function openReaderModal(title, content) {
-    const modal = document.getElementById('readerModal');
-    if (!modal) return;
-
-    document.getElementById('readerTitle').textContent = title;
-    document.getElementById('readerContent').textContent = content;
-    
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-
-    console.log(`%c[Digital Library] Opened Reader Modal -> Title: "${title}"`, "color: #f43f5e;");
+  const modal = document.getElementById('readerModal');
+  if (!modal) return;
+  document.getElementById('readerTitle').textContent = title;
+  document.getElementById('readerContent').textContent = content;
+  modal.classList.remove('hidden'); modal.classList.add('flex');
+  document.body.classList.add('modal-open');
+  modal.querySelector('button')?.focus();
 }
 
 function closeReaderModal() {
-    const modal = document.getElementById('readerModal');
-    if (!modal) return;
-
-    modal.classList.remove('flex');
-    modal.classList.add('hidden');
-    document.body.style.overflow = 'auto';
-
-    console.log("%c[Digital Library] Closed Reader Modal", "color: #f43f5e;");
+  const modal = document.getElementById('readerModal');
+  if (!modal) return;
+  modal.classList.remove('flex'); modal.classList.add('hidden');
+  if (!document.getElementById('videoModal')?.classList.contains('flex')) document.body.classList.remove('modal-open');
 }
 
-/**
- * 5. Accordion Toggle for Teachings / FAQs
- */
 function toggleAccordion(id) {
-    const content = document.getElementById(`content-${id}`);
-    const icon = document.getElementById(`icon-${id}`);
-    
-    if (!content || !icon) return;
-
-    console.group(`%c[FAQ Accordion] Item #${id} Toggle`, "color: #a855f7;");
-    if (content.classList.contains('hidden')) {
-        content.classList.remove('hidden');
-        icon.classList.add('rotate-180');
-        console.log("State: Expanded");
-    } else {
-        content.classList.add('hidden');
-        icon.classList.remove('rotate-180');
-        console.log("State: Collapsed");
-    }
-    console.groupEnd();
+  const content = document.getElementById(`content-${id}`);
+  const icon = document.getElementById(`icon-${id}`);
+  if (!content || !icon) return;
+  content.classList.toggle('hidden');
+  icon.classList.toggle('rotate-180');
+  document.querySelectorAll(`[id^="content-"]`).forEach((item, index) => {
+    if (index + 1 !== id) item.classList.add('hidden');
+  });
 }
 
-/**
- * 6. Audio Oral History Player Integration
- */
-function toggleAudioPlayer() {
-    const audio = document.getElementById('audioPlayer');
-    const btnIcon = document.querySelector('#audioPlayBtn i');
-
-    if (!audio || !btnIcon) return;
-
-    console.group("%c[Audio Telemetry] Oral History Player", "color: #fb923c;");
-    if (audio.paused) {
-        audio.play().catch(err => console.warn("Playback prevented:", err));
-        btnIcon.classList.remove('fa-play', 'ml-0.5');
-        btnIcon.classList.add('fa-pause');
-        console.log("State: Playing track");
-    } else {
-        audio.pause();
-        btnIcon.classList.remove('fa-pause');
-        btnIcon.classList.add('fa-play', 'ml-0.5');
-        console.log("State: Paused track");
-    }
-    console.groupEnd();
-}
-
-/**
- * 7. Video Modal Pop-up Handlers
- */
-function openVideoModal(videoUrl) {
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('modalIframe');
-    
-    if (!modal || !iframe) return;
-
-    iframe.src = videoUrl;
-    modal.classList.remove('hidden');
-    modal.classList.add('flex');
-    document.body.style.overflow = 'hidden';
-
-    console.log(`%c[Video Modal] Opened player. Source: ${videoUrl}`, "color: #eab308; font-weight: bold;");
+function openVideoModal(url) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('modalIframe');
+  if (!modal || !iframe) return;
+  iframe.src = url;
+  modal.classList.remove('hidden'); modal.classList.add('flex');
+  document.body.classList.add('modal-open');
+  modal.querySelector('button')?.focus();
 }
 
 function closeVideoModal() {
-    const modal = document.getElementById('videoModal');
-    const iframe = document.getElementById('modalIframe');
-    
-    if (!modal || !iframe) return;
-
-    iframe.src = '';
-    modal.classList.remove('flex');
-    modal.classList.add('hidden');
-    document.body.style.overflow = 'auto';
-
-    console.log("%c[Video Modal] Closed player and halted video stream.", "color: #eab308; font-weight: bold;");
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('modalIframe');
+  if (!modal || !iframe) return;
+  iframe.src = 'about:blank';
+  modal.classList.remove('flex'); modal.classList.add('hidden');
+  if (!document.getElementById('readerModal')?.classList.contains('flex')) document.body.classList.remove('modal-open');
 }
 
-/**
- * 8. Smooth Scrolling Enhancements
- */
-function initSmoothScrolling() {
-    const navLinks = document.querySelectorAll('header nav a[href^="#"]');
-    
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            console.log(`%c[Navigation] Smooth scrolling to anchor: ${targetId}`, "color: #34d399;");
-            
-            if (targetId.startsWith('#') && targetId.length > 1) {
-                e.preventDefault();
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    targetElement.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            }
-        });
-    });
+function initAudioPlayer() {
+  const audio = document.getElementById('audioPlayer');
+  const icon = document.querySelector('#audioPlayBtn i');
+  if (!audio || !icon) return;
+  audio.addEventListener('play', () => { icon.className = 'fa-solid fa-pause'; });
+  audio.addEventListener('pause', () => { icon.className = 'fa-solid fa-play ml-0.5'; });
+  audio.addEventListener('error', () => { console.warn('The oral-history audio source is currently unavailable.'); });
 }
+
+function toggleAudioPlayer() {
+  const audio = document.getElementById('audioPlayer');
+  if (!audio) return;
+  if (audio.paused) audio.play().catch(() => alert('Unable to play the audio source. Please try again later.'));
+  else audio.pause();
+}
+
+function initBackToTop() {
+  const button = document.getElementById('backToTop');
+  if (!button) return;
+  const update = () => button.classList.toggle('visible', window.scrollY > 500);
+  window.addEventListener('scroll', update, { passive: true });
+  update();
+}
+
+function scrollToTop() { window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); }
