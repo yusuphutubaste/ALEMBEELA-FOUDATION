@@ -1,350 +1,309 @@
-document.addEventListener("DOMContentLoaded", () => {
+/* ==========================================================================
+   ALEMBEELA FOUNDATION — COMPLETE SCRIPT (SW/EN, PLAYER, FREEZE & BLOCK)
+   ========================================================================== */
 
-  // ====================================================
-  // 1. DYNAMIC YEAR
-  // ====================================================
-  const currentYearSpan = document.getElementById("currentYear");
-  if (currentYearSpan) {
-    currentYearSpan.textContent = new Date().getFullYear();
+const SITE_CONFIG = {
+  secondaryChannelUrl: 'https://www.youtube.com/@Alembeelawaidi',
+  storageKey: 'alembeela_foundation_state_v2',
+  defaultLoopAll: true
+};
+
+const I18N = {
+  sw: {
+    siteSubtitle: 'Úmbo Cha Babembe & Urithi wa Jamii',
+    secondChannelPrefix: 'Tazama pia:',
+    heroDesc:
+      'Hifadhi ya historia, mila, mafunzo, na sauti za wazee wa jamii ya Babembe. Tazama mfululizo kamili hapa au hifadhi vipande unavyovipenda.',
+    searchLabel: 'Tafuta chochote kwenye tovuti (Video, Short, Playlist, au Sauti za Wazee)',
+    searchPlaceholder: 'Tafuta: Úmbo, Sehemu, Short, Playlist, Kipande 01...',
+    clearBtn: 'Futa',
+    libraryHeading: 'Maktaba',
+    savedTab: 'Vipendwa',
+    playlistsHeading: 'Playlists',
+    eldersBadge: 'Sauti za Wazee',
+    prevBtn: '⏮ Nyuma',
+    playBtn: '▶ Cheza',
+    pauseBtn: '⏸ Simamisha',
+    nextBtn: 'Mbele ⏭',
+    loopOn: '🔁 Loop Nzima: ON',
+    loopOff: '🔁 Loop Nzima: OFF',
+    freezeLabel: 'Kugandisha',
+    blockLabel: 'Kuzuia',
+    statusPaused: 'IMESIMAMA',
+    statusFrozen: 'IMEGANDISHWA',
+    statusPlayingLoop: 'INACHEZA · AUTO-NEXT & LOOP',
+    statusPlayingOnce: 'INACHEZA · AUTO-NEXT',
+    watchHere: 'Tazama Hapa',
+    playSeriesHere: 'Cheza Mfululizo Hapa',
+    shareBtn: 'Share',
+    copyLinkBtn: 'Nakili Link',
+    saveBtn: '☆ Hifadhi',
+    savedBtn: '★ Imependezwa',
+    copiedToast: 'Kiungo kimenakiliwa.',
+    frozenToast: 'Imegandishwa: Auto-next imesimamishwa kwa muda.',
+    unfrozenToast: 'Kugandisha kumeondolewa.',
+    blockedToast: 'Video imezuiwa kwenye mzunguko wa kucheza.',
+    unblockedToast: 'Kizuizi kimeondolewa.',
+    emptySaved: 'Bado haujahifadhi video yoyote kwenye Vipendwa.',
+    emptySearch: 'Hakuna matokeo yaliyopatikana kwa utafutaji wako.',
+    footerCopy: 'Urithi, mafunzo, na sauti za jamii — GitHub Pages.',
+    footerLib: 'Maktaba',
+    footerPl: 'Playlists',
+    closeBtn: '✕ Funga'
+  },
+  en: {
+    siteSubtitle: 'Úmbo Cha Babembe & Community Heritage',
+    secondChannelPrefix: 'Also watch:',
+    heroDesc:
+      'Preserving the history, traditions, teachings, and elders’ voices of the Babembe community. Watch the full series here or save your favorite episodes.',
+    searchLabel: 'Search anything across the site (Video, Short, Playlist, or Elders Voices)',
+    searchPlaceholder: 'Search: Úmbo, Sehemu, Short, Playlist, Kipande 01...',
+    clearBtn: 'Clear',
+    libraryHeading: 'Library',
+    savedTab: 'Saved',
+    playlistsHeading: 'Playlists',
+    eldersBadge: 'Elders Voices',
+    prevBtn: '⏮ Prev',
+    playBtn: '▶ Play',
+    pauseBtn: '⏸ Pause',
+    nextBtn: 'Next ⏭',
+    loopOn: '🔁 Full Loop: ON',
+    loopOff: '🔁 Full Loop: OFF',
+    freezeLabel: 'Freeze',
+    blockLabel: 'Block',
+    statusPaused: 'PAUSED',
+    statusFrozen: 'FROZEN',
+    statusPlayingLoop: 'PLAYING · AUTO-NEXT & LOOP',
+    statusPlayingOnce: 'PLAYING · AUTO-NEXT',
+    watchHere: 'Watch Here',
+    playSeriesHere: 'Play Series Here',
+    shareBtn: 'Share',
+    copyLinkBtn: 'Copy Link',
+    saveBtn: '☆ Save',
+    savedBtn: '★ Saved',
+    copiedToast: 'Link copied.',
+    frozenToast: 'Frozen: Auto-next paused.',
+    unfrozenToast: 'Unfrozen: Auto-next resumed.',
+    blockedToast: 'Item blocked from playback queue.',
+    unblockedToast: 'Item unblocked.',
+    emptySaved: 'You have not saved any items yet.',
+    emptySearch: 'No matching items found.',
+    footerCopy: 'Heritage, teachings, and community voices — GitHub Pages.',
+    footerLib: 'Library',
+    footerPl: 'Playlists',
+    closeBtn: '✕ Close'
+  }
+};
+
+/* ==========================================================================
+   MEDIA LIBRARY (Ongeza video au Shorts mpya hapa chini)
+   ========================================================================== */
+const MEDIA_ITEMS = [
+  {
+    id: 'vid-chCvVUD1FPo',
+    videoId: 'chCvVUD1FPo',
+    type: 'video',
+    badge: 'Sehemu ya Kwanza (1)',
+    title: 'ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI',
+    description: 'Úmbo Cha Babembe — Sehemu ya Kwanza (1).',
+    shareUrl: 'https://youtu.be/chCvVUD1FPo'
+  },
+  {
+    id: 'vid-xsxfbtJnrzg',
+    videoId: 'xsxfbtJnrzg',
+    type: 'video',
+    badge: 'Sehemu ya Pili (2)',
+    title: 'UMBO CHA BABEMBE SEHEMU YA PILI 2 @Alembeela wa idi APRIL 18TH, 2026',
+    description: 'Úmbo Cha Babembe — Sehemu ya Pili (2).',
+    shareUrl: 'https://youtu.be/xsxfbtJnrzg'
+  },
+  {
+    id: 'vid-YPPOyvxJ-Wk',
+    videoId: 'YPPOyvxJ-Wk',
+    type: 'video',
+    badge: 'Sehemu ya Tatu (3)',
+    title: 'ÚMBO CHA BABEMBE: Sehemu ya Tatu (3) – @ALEMBEELAWAIDI',
+    description: 'Úmbo Cha Babembe — Sehemu ya Tatu (3) & Sauti za Wazee.',
+    shareUrl: 'https://youtu.be'
+  }
+];
+
+/* ==========================================================================
+   PLAYLISTS (Mifululizo ya Channel)
+   ========================================================================== */
+const PLAYLISTS = [
+  {
+    id: 'pl-umbo-babembe',
+    badge: 'Sauti za Wazee',
+    title: 'Úmbo Cha Babembe — Mfululizo Kamili',
+    description: 'Sehemu zote za historia, asili, na mafunzo ya jamii ya Babembe.',
+    itemIds: ['vid-chCvVUD1FPo', 'vid-xsxfbtJnrzg', 'vid-YPPOyvxJ-Wk'],
+    youtubeUrl: 'https://youtube.com'
+  }
+];
+
+/* ==========================================================================
+   APPLICATION STATE
+   ========================================================================== */
+let state = {
+  lang: 'sw',
+  filter: 'all',
+  searchQuery: '',
+  savedIds: [],
+  blockedIds: [],
+  currentIndex: -1,
+  isPlaying: false,
+  loopAll: SITE_CONFIG.defaultLoopAll,
+  isFrozen: false
+};
+
+let ytPlayer = null;
+let ytApiReady = false;
+let pendingVideoId = null;
+let toastTimer = null;
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(SITE_CONFIG.storageKey);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    state = {
+      ...state,
+      lang: parsed.lang === 'en' ? 'en' : 'sw',
+      savedIds: Array.isArray(parsed.savedIds) ? parsed.savedIds : [],
+      blockedIds: Array.isArray(parsed.blockedIds) ? parsed.blockedIds : [],
+      loopAll: typeof parsed.loopAll === 'boolean' ? parsed.loopAll : SITE_CONFIG.defaultLoopAll
+    };
+  } catch (err) {
+    console.warn('Could not load saved state:', err);
+  }
+}
+
+function saveState() {
+  try {
+    localStorage.setItem(
+      SITE_CONFIG.storageKey,
+      JSON.stringify({
+        lang: state.lang,
+        savedIds: state.savedIds,
+        blockedIds: state.blockedIds,
+        loopAll: state.loopAll
+      })
+    );
+  } catch (err) {
+    console.warn('Could not save state:', err);
+  }
+}
+
+function t(key) {
+  return (I18N[state.lang] && I18N[state.lang][key]) || I18N.sw[key] || key;
+}
+
+function showToast(message) {
+  const banner = document.getElementById('toastBanner');
+  if (!banner) return;
+  banner.textContent = message;
+  banner.classList.remove('hidden');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => {
+    banner.classList.add('hidden');
+  }, 3000);
+}
+
+/* ==========================================================================
+   YOUTUBE IFRAME PLAYER SETUP
+   ========================================================================== */
+window.onYouTubeIframeAPIReady = function () {
+  ytApiReady = true;
+  if (pendingVideoId) {
+    const vid = pendingVideoId;
+    pendingVideoId = null;
+    mountOrLoadYouTubeVideo(vid);
+  }
+};
+
+function mountOrLoadYouTubeVideo(videoId) {
+  if (!ytApiReady || !window.YT || !window.YT.Player) {
+    pendingVideoId = videoId;
+    return;
   }
 
-  // ====================================================
-  // 2. DARK / LIGHT MODE
-  // ====================================================
-  const themeToggle = document.getElementById("themeToggle");
-  const htmlRoot = document.documentElement;
-
-  const savedTheme = localStorage.getItem("alembeelaTheme") || "dark";
-  htmlRoot.setAttribute("data-theme", savedTheme);
-
-  if (themeToggle) {
-    themeToggle.addEventListener("click", () => {
-      const currentTheme = htmlRoot.getAttribute("data-theme");
-      const nextTheme = currentTheme === "dark" ? "light" : "dark";
-      htmlRoot.setAttribute("data-theme", nextTheme);
-      localStorage.setItem("alembeelaTheme", nextTheme);
-    });
+  if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+    ytPlayer.loadVideoById(videoId);
+    return;
   }
 
-  // ====================================================
-  // 3. BILINGUAL TRANSLATION SYSTEM (Kiswahili & English)
-  // ====================================================
-  const translations = {
-    sw: {
-      nav_home: "Mwanzo",
-      nav_featured: "Video Kuu",
-      nav_shorts: "Vipande Fupi",
-      nav_gallery: "Picha za Jamii",
-      nav_channels: "Chaneli Zetu",
-      nav_about: "Kuhusu Sisi",
-      nav_contact: "Mawasiliano",
-      hero_badge: "Uhifadhi wa Historia na Mila za Asili",
-      hero_title: "Kuhifadhi Urithi, Utamaduni na Historia Yetu",
-      hero_desc: "Karibu Alembeela Foundation. Tunakusanya, tunarekodi, na kusimulia historia za kweli, majina ya asili, na mila za Babembe ili zibaki hai kwa vizazi vya sasa na vijavyo.",
-      hero_btn_watch: "Tazama Úmbo cha Babembe",
-      stat_episodes: "Vipindi vya Historia",
-      stat_community: "Familia na Watazamaji",
-      stat_authenticity: "% Uhalisia wa Simulizi",
-      featured_subtitle: "Simulizi Kuu",
-      featured_desc: "Tazama uchambuzi wa kina kuhusu asili, majina ya koo, historia na mafunzo kutoka kwa wazee wa jamii.",
-      tag_series: "Mfululizo Rasmi wa Úmbo",
-      featured_card_desc: "Maudhui maalum yanayochambua kwa ufasaha misingi ya kitamaduni na safari ya jamii yetu.",
-      shorts_subtitle: "Vipande Vifupi",
-      shorts_title: "Vipande Fupi & Matukio ya Haraka",
-      shorts_desc: "Mafunzo na dondoo fupi za kila siku kuhusu utamaduni na maisha ya jamii.",
-      short_item_1: "Kipande #1",
-      short_item_2: "Kipande #2",
-      short_item_3: "Kipande #3",
-      gallery_subtitle: "Matunzio Yetu",
-      gallery_title: "Picha za Jamii na Kumbukumbu",
-      gallery_desc: "Bofya picha yoyote ili kuifungua kwa ukubwa kamili na kusoma maelezo yake.",
-      gallery_p1_title: "Wazee na Mila",
-      gallery_p1_text: "Hekima za kale zinazolindwa kwa ajili ya vizazi vijavyo.",
-      gallery_p2_title: "Urithi kwa Vijana",
-      gallery_p2_text: "Kuelimisha kizazi kipya kujivunia historia yao.",
-      gallery_p3_title: "Maeneo ya Asili",
-      gallery_p3_text: "Kumbukumbu za kijiografia na chimbuko letu.",
-      gallery_p4_title: "Umoja wa Jamii",
-      gallery_p4_text: "Kujenga undugu imara popote tulipo duniani.",
-      gallery_view_all: "Tazama Ukurasa Kamili wa Picha",
-      channels_subtitle: "Jumuiya Yetu Mtandaoni",
-      channels_title: "Chaneli Zetu Rasmi za YouTube",
-      channels_desc: "Ungana nasi kupitia chaneli zetu zote mbili ili usipitwe na simulizi, video fupi, au taarifa yoyote mpya.",
-      badge_primary: "Chaneli Kuu",
-      badge_secondary: "Chaneli ya Pili",
-      ch_foundation_desc: "Inahifadhi simulizi kamili, vipindi vya Úmbo cha Babembe, pamoja na kumbukumbu rasmi za utafiti wa kitamaduni.",
-      ch_waidi_desc: "Inaleta safari za kiuhalisia, matukio ya nyuma ya pazia, maisha ya jamii, na dondoo fupi za kila siku.",
-      btn_join_foundation: "Jiunge na @AlembeelaFoundation",
-      btn_join_waidi: "Jiunge na @Alembeelawaidi",
-      about_subtitle: "Dhamira Yetu",
-      about_title: "Kuhusu Alembeela Foundation",
-      about_desc: "Daraja thabiti la kuunganisha mizizi yetu ya asili na ustawi wa vizazi vya sasa na vijavyo.",
-      about_pillar1_title: "Kuhifadhi Asili na Mila",
-      about_pillar1_desc: "Mila nyingi zinasahaulika kwa sababu hazikurekodiwa kwa maandishi wala video. Tunajenga maktaba ya wazi ya kumbukumbu za sauti, maandishi, na picha za video ili watoto wetu wajue chimbuko lao.",
-      about_pillar2_title: "Kuleta Jamii Pamoja",
-      about_pillar2_desc: "Kutumia nguvu ya vyombo vya kisasa vya habari kuwakutanisha watu wetu waliotawanyika pembe zote za dunia, kujenga heshima ya kitamaduni na kuinua mshikamano wa jamii.",
-      contact_subtitle: "Mawasiliano",
-      contact_title: "Wasiliana Nasi",
-      contact_desc: "Una simulizi, swali, au unataka kushirikiana nasi katika shughuli za kijamii? Tuandikie ujumbe hapa:",
-      btn_send_message: "Tuma Ujumbe Moja kwa Moja",
-      footer_mission: "Taasisi iliyojitolea kulinda, kurithisha, na kuenzi utamaduni, mila, na historia ya Babembe kwa maendeleo endelevu ya jamii.",
-      footer_quick_links: "Viungo vya Haraka",
-      footer_contact_info: "Mawasiliano Rasmi",
-      footer_hours: "Jumatatu - Ijumaa: 9:00 AM - 5:00 PM (MST)",
-      footer_newsletter_title: "Jarida la Taasisi",
-      footer_newsletter_desc: "Weka barua pepe yako ili upokee taarifa za video mpya, miradi ya jamii, na makala za historia.",
-      btn_subscribe: "Jiunge",
-      footer_rights: "Haki zote zimehifadhiwa.",
-      footer_back_top: "Rudi Juu ↑",
-      wa_tooltip: "Tuandikie WhatsApp",
-      gallery_badge: "Kumbukumbu Halisi Katika Picha",
-      page_gallery_title: "Matunzio ya Picha za Jamii",
-      page_gallery_desc: "Picha za matukio, wazee wa jamii, maeneo ya kurekodia simulizi, na safari za kutunza urithi wetu. Bofya picha yoyote ili kuiona kubwa.",
-      placeholder_5_title: "Nafasi ya Picha Mpya",
-      placeholder_5_desc: "Picha inayofuata itaongezwa hapa mara matukio mapya yakirekodiwa.",
-      placeholder_6_title: "Nafasi ya Picha Mpya",
-      placeholder_6_desc: "Picha inayofuata itaongezwa hapa mara matukio mapya yakirekodiwa.",
-      btn_back_home: "← Rudi Ukurasa Mkuu"
+  ytPlayer = new YT.Player('ytPlayerMount', {
+    videoId: videoId,
+    playerVars: {
+      autoplay: 1,
+      rel: 0,
+      modestbranding: 1,
+      playsinline: 1
     },
-    en: {
-      nav_home: "Home",
-      nav_featured: "Featured Video",
-      nav_shorts: "Shorts",
-      nav_gallery: "Community Gallery",
-      nav_channels: "Our Channels",
-      nav_about: "About Us",
-      nav_contact: "Contact",
-      hero_badge: "Preserving History & Indigenous Heritage",
-      hero_title: "Preserving Our Heritage, Culture & History",
-      hero_desc: "Welcome to Alembeela Foundation. We document, archive, and share authentic oral traditions, clan roots, and Babembe customs for present and future generations.",
-      hero_btn_watch: "Watch Úmbo cha Babembe",
-      stat_episodes: "Documented Episodes",
-      stat_community: "Families & Viewers",
-      stat_authenticity: "% Narrative Authenticity",
-      featured_subtitle: "Main Feature",
-      featured_desc: "In-depth insights into Babembe origins, clan naming structures, cultural heritage, and elder teachings.",
-      tag_series: "Official Úmbo Series",
-      featured_card_desc: "Authentic exploration into our cultural roots and historical legacy.",
-      shorts_subtitle: "Quick Bites",
-      shorts_title: "Shorts & Cultural Moments",
-      shorts_desc: "Concise lessons and insights into traditional values and daily life.",
-      short_item_1: "Short #1",
-      short_item_2: "Short #2",
-      short_item_3: "Short #3",
-      gallery_subtitle: "Our Archives",
-      gallery_title: "Community Photos & Memories",
-      gallery_desc: "Click any photograph to view high resolution and full documentation.",
-      gallery_p1_title: "Elders & Traditions",
-      gallery_p1_text: "Preserving generational wisdom and ancient teachings.",
-      gallery_p2_title: "Youth Heritage",
-      gallery_p2_text: "Empowering the younger generation through their roots.",
-      gallery_p3_title: "Ancestral Lands",
-      gallery_p3_text: "Geographical landmarks and origin storytelling.",
-      gallery_p4_title: "Community Unity",
-      gallery_p4_text: "Strengthening fellowship across the global diaspora.",
-      gallery_view_all: "View Full Photo Gallery",
-      channels_subtitle: "Online Community",
-      channels_title: "Our Official YouTube Channels",
-      channels_desc: "Subscribe to both channels to stay updated with full episodes, shorts, and behind-the-scenes expeditions.",
-      badge_primary: "Main Channel",
-      badge_secondary: "Second Channel",
-      ch_foundation_desc: "Hosts primary documentaries, the complete Úmbo cha Babembe series, and archival research.",
-      ch_waidi_desc: "Presents real-life journeys, field vlogs, community interactions, and short features.",
-      btn_join_foundation: "Subscribe to @AlembeelaFoundation",
-      btn_join_waidi: "Subscribe to @Alembeelawaidi",
-      about_subtitle: "Our Mission",
-      about_title: "About Alembeela Foundation",
-      about_desc: "A dedicated foundation bridging cultural origins with future prosperity.",
-      about_pillar1_title: "Historical & Cultural Preservation",
-      about_pillar1_desc: "Unrecorded heritage risks being forgotten. We build accessible digital archives in video, audio, and written formats for future generations.",
-      about_pillar2_title: "Uniting the Community",
-      about_pillar2_desc: "Using modern digital storytelling to connect our diaspora worldwide, instilling pride in identity and mutual community support.",
-      contact_subtitle: "Get In Touch",
-      contact_title: "Contact Us",
-      contact_desc: "Have a story, inquiry, or partnership opportunity? Reach out to us below:",
-      btn_send_message: "Send Message Directly",
-      footer_mission: "Dedicated to preserving, transmitting, and celebrating Babembe culture and history for sustainable community development.",
-      footer_quick_links: "Quick Links",
-      footer_contact_info: "Official Contact",
-      footer_hours: "Monday - Friday: 9:00 AM - 5:00 PM (MST)",
-      footer_newsletter_title: "Foundation Newsletter",
-      footer_newsletter_desc: "Subscribe to receive updates on new documentaries, community projects, and research papers.",
-      btn_subscribe: "Subscribe",
-      footer_rights: "All rights reserved.",
-      footer_back_top: "Back to Top ↑",
-      wa_tooltip: "Chat on WhatsApp",
-      gallery_badge: "Authentic Photographic Records",
-      page_gallery_title: "Community Photo Gallery",
-      page_gallery_desc: "Photographs documenting historical sites, tribal elders, field sessions, and heritage conservation.",
-      placeholder_5_title: "Upcoming Photo Slot",
-      placeholder_5_desc: "New field documentation will appear here soon.",
-      placeholder_6_title: "Upcoming Photo Slot",
-      placeholder_6_desc: "New field documentation will appear here soon.",
-      btn_back_home: "← Back to Homepage"
+    events: {
+      onStateChange: handlePlayerStateChange,
+      onError: () => {
+        if (!state.isFrozen) playNext(true);
+      }
     }
-  };
+  });
+}
 
-  const langToggle = document.getElementById("langToggle");
-  const langFlag = document.getElementById("langFlag");
-  const langLabel = document.getElementById("langLabel");
-
-  const setLanguage = (lang) => {
-    document.documentElement.setAttribute("lang", lang);
-    localStorage.setItem("alembeelaLang", lang);
-
-    if (lang === "en") {
-      if (langFlag) langFlag.textContent = "🇬🇧";
-      if (langLabel) langLabel.textContent = "EN";
+function handlePlayerStateChange(event) {
+  if (event.data === YT.PlayerState.PLAYING) {
+    state.isPlaying = true;
+    updateControlBar();
+  } else if (event.data === YT.PlayerState.PAUSED) {
+    state.isPlaying = false;
+    updateControlBar();
+  } else if (event.data === YT.PlayerState.ENDED) {
+    state.isPlaying = false;
+    if (!state.isFrozen) {
+      playNext(true);
     } else {
-      if (langFlag) langFlag.textContent = "🇹🇿";
-      if (langLabel) langLabel.textContent = "SW";
+      updateControlBar();
     }
+  }
+}
 
-    document.querySelectorAll("[data-i18n]").forEach(elem => {
-      const key = elem.getAttribute("data-i18n");
-      if (translations[lang] && translations[lang][key]) {
-        elem.textContent = translations[lang][key];
+/* ==========================================================================
+   PLAYBACK CONTROLS
+   ========================================================================== */
+function playItemByIndex(index) {
+  if (index < 0 || index >= MEDIA_ITEMS.length) return;
+  const item = MEDIA_ITEMS[index];
+
+  if (state.blockedIds.includes(item.id)) {
+    state.blockedIds = state.blockedIds.filter((id) => id !== item.id);
+    saveState();
+  }
+
+  state.currentIndex = index;
+  state.isPlaying = true;
+
+  const stage = document.getElementById('activePlayerSection');
+  document.getElementById('stageBadge').textContent = item.badge;
+  document.getElementById('stageTitle').textContent = item.title;
+  document.getElementById('stageDesc').textContent = item.description;
+  stage.classList.remove('hidden');
+
+  updateStageButtons(item);
+  mountOrLoadYouTubeVideo(item.videoId);
+  renderMediaGrid();
+  updateControlBar();
+
+  stage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function playNext(autoTriggered = false) {
+  if (MEDIA_ITEMS.length === 0) return;
+
+  for (let step = 1; step <= MEDIA_ITEMS.length; step++) {
+    const nextIdx = state.currentIndex + step;
+    if (nextIdx >= MEDIA_ITEMS.length) {
+      if (!state.loopAll) {
+        state.isPlaying = false;
+        updateControlBar();
+        return;
       }
-    });
-
-    // Update Form Placeholders
-    const contactName = document.getElementById("contactName");
-    const contactEmail = document.getElementById("contactEmail");
-    const contactSubject = document.getElementById("contactSubject");
-    const contactMessage = document.getElementById("contactMessage");
-
-    if (contactName) contactName.placeholder = lang === "en" ? "Your Full Name" : "Jina Lako Kamili";
-    if (contactEmail) contactEmail.placeholder = lang === "en" ? "Your Email Address" : "Barua Pepe Yako";
-    if (contactSubject) contactSubject.placeholder = lang === "en" ? "Subject" : "Mada ya Ujumbe";
-    if (contactMessage) contactMessage.placeholder = lang === "en" ? "Type your message here..." : "Andika ujumbe wako hapa...";
-  };
-
-  const savedLang = localStorage.getItem("alembeelaLang") || "sw";
-  setLanguage(savedLang);
-
-  if (langToggle) {
-    langToggle.addEventListener("click", () => {
-      const current = localStorage.getItem("alembeelaLang") || "sw";
-      const next = current === "sw" ? "en" : "sw";
-      setLanguage(next);
-    });
-  }
-
-  // ====================================================
-  // 4. MOBILE HAMBURGER MENU
-  // ====================================================
-  const hamburgerBtn = document.getElementById("hamburgerBtn");
-  const navLinks = document.getElementById("navLinks");
-
-  if (hamburgerBtn && navLinks) {
-    hamburgerBtn.addEventListener("click", () => {
-      hamburgerBtn.classList.toggle("active");
-      navLinks.classList.toggle("active");
-    });
-
-    navLinks.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => {
-        hamburgerBtn.classList.remove("active");
-        navLinks.classList.remove("active");
-      });
-    });
-  }
-
-  // ====================================================
-  // 5. INTERACTIVE PHOTO LIGHTBOX
-  // ====================================================
-  const galleryCards = document.querySelectorAll(".gallery-card");
-  const lightboxModal = document.getElementById("lightboxModal");
-  const lightboxImg = document.getElementById("lightboxImg");
-  const lightboxCaption = document.getElementById("lightboxCaption");
-  const closeLightbox = document.getElementById("closeLightbox");
-
-  galleryCards.forEach(card => {
-    card.addEventListener("click", () => {
-      const img = card.querySelector("img");
-      const currentLang = localStorage.getItem("alembeelaLang") || "sw";
-      const caption = currentLang === "en" ? card.getAttribute("data-caption-en") : card.getAttribute("data-caption-sw");
-
-      if (img && lightboxModal) {
-        lightboxImg.src = img.src;
-        lightboxCaption.textContent = caption || img.alt;
-        lightboxModal.style.display = "flex";
-        lightboxModal.setAttribute("aria-hidden", "false");
-      }
-    });
-  });
-
-  if (closeLightbox && lightboxModal) {
-    const hideLightbox = () => {
-      lightboxModal.style.display = "none";
-      lightboxModal.setAttribute("aria-hidden", "true");
-    };
-
-    closeLightbox.addEventListener("click", hideLightbox);
-    lightboxModal.addEventListener("click", (e) => {
-      if (e.target === lightboxModal) hideLightbox();
-    });
-
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape" && lightboxModal.style.display === "flex") {
-        hideLightbox();
-      }
-    });
-  }
-
-  // ====================================================
-  // 6. ANIMATED COUNTERS
-  // ====================================================
-  const counters = document.querySelectorAll(".counter");
-  counters.forEach(counter => {
-    counter.innerText = "0";
-    const target = +counter.getAttribute("data-target");
-
-    const updateCounter = () => {
-      const current = +counter.innerText.replace("+", "");
-      const increment = Math.max(1, Math.ceil(target / 30));
-
-      if (current < target) {
-        counter.innerText = `${current + increment}`;
-        setTimeout(updateCounter, 30);
-      } else {
-        counter.innerText = `${target}+`;
-      }
-    };
-
-    updateCounter();
-  });
-
-  // ====================================================
-  // 7. REAL CONTACT & NEWSLETTER ACTIONS
-  // ====================================================
-  const contactForm = document.getElementById("contactForm");
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const currentLang = localStorage.getItem("alembeelaLang") || "sw";
-      const msg = currentLang === "en" 
-        ? "Thank you! Your message has been sent to Alembeela Foundation." 
-        : "Ahsante sana! Ujumbe wako umefika kwa timu ya Alembeela Foundation.";
-      alert(msg);
-      contactForm.reset();
-    });
-  }
-
-  const newsletterForm = document.getElementById("newsletterForm");
-  if (newsletterForm) {
-    newsletterForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const currentLang = localStorage.getItem("alembeelaLang") || "sw";
-      const msg = currentLang === "en"
-        ? "Thank you for subscribing to our newsletter!"
-        : "Ahsante kwa kujiunga na jarida rasmi la Alembeela Foundation!";
-      alert(msg);
-      newsletterForm.reset();
-    });
-  }
-
-});
-
-
-
