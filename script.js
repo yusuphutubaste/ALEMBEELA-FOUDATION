@@ -89,8 +89,7 @@ const PLAYLIST_ITEMS = [
   }
 ];
 
-// 3. SAUTI ZA WAZEE (Vipande 3 vinavyoendana na vipindi vya Úmbo Cha Babembe, bila majina ya kutunga)
-// Ukipakia faili za sauti kwenye GitHub baadaye, weka mfano './audio/kipande-01.mp3' kwenye `audioSrc`.
+// 3. SAUTI ZA WAZEE (Vipande 3, bila majina ya kutunga)
 const ELDERS_VOICES = [
   {
     id: 'kipande-01',
@@ -118,17 +117,14 @@ const ELDERS_VOICES = [
   }
 ];
 
-// ==========================================================================
-// APPLICATION STATE
-// ==========================================================================
 const appState = {
-  libraryFilter: 'all', // 'all' | 'video' | 'short' | 'saved'
+  libraryFilter: 'all',
   searchQuery: '',
   savedIds: [],
   currentTrackIndex: 0,
   isPlaying: false,
-  isFrozen: false,  // Swichi ya Kugandisha
-  isBlocked: false, // Swichi ya Kuzuia
+  isFrozen: false,
+  isBlocked: false,
   loopAll: SITE_CONFIG.defaultLoopAll,
   elapsedSec: 0,
   lastFocusedElement: null
@@ -139,9 +135,6 @@ eldersAudio.preload = 'metadata';
 let tickerIntervalId = null;
 let lastTickMs = null;
 
-// ==========================================================================
-// PERSISTENCE & NOTIFICATIONS
-// ==========================================================================
 function loadSavedState() {
   try {
     const raw = localStorage.getItem(SITE_CONFIG.storageKey);
@@ -185,9 +178,6 @@ function showToast(message) {
   showToast._timer = setTimeout(() => el.classList.add('hidden'), 3200);
 }
 
-// ==========================================================================
-// SEARCH, LIBRARY (ALL / VIDEO / SHORT / VIPENDWA) & PLAYLISTS
-// ==========================================================================
 function matchesSearch(parts) {
   const q = appState.searchQuery.trim().toLowerCase();
   if (!q) return true;
@@ -393,9 +383,6 @@ function renderAllSections() {
   updateSearchSummary();
 }
 
-// ==========================================================================
-// IN-SITE VIDEO & PLAYLIST MODAL + SHARE / COPY LINK
-// ==========================================================================
 function openEmbedModal(embedUrl, title) {
   const modal = document.getElementById('videoModal');
   const iframe = document.getElementById('modalIframe');
@@ -459,9 +446,6 @@ async function copyContentLink(url) {
   showToast('Kiungo: ' + url);
 }
 
-// ==========================================================================
-// SAUTI ZA WAZEE — AUTO-NEXT + FULL LOOP + FREEZE SWITCH + BLOCK SWITCH
-// ==========================================================================
 function getCurrentTrack() {
   return ELDERS_VOICES[appState.currentTrackIndex] || ELDERS_VOICES[0];
 }
@@ -571,7 +555,6 @@ function advanceToNextElderTrack() {
   if (nextIndex < ELDERS_VOICES.length) {
     loadElderTrack(nextIndex, true, true);
   } else if (appState.loopAll) {
-    // Imefika mwisho wa orodha -> inarudia mwanzo (Kipande 01) na kuendelea
     loadElderTrack(0, true, true);
   } else {
     pauseElderQueue();
@@ -718,11 +701,7 @@ function updateEldersPlayerUI() {
   if (blockLabel) blockLabel.textContent = appState.isBlocked ? 'ON' : 'OFF';
 }
 
-// ==========================================================================
-// EVENT WIRING & INITIALIZATION
-// ==========================================================================
 function bindEvents() {
-  // Global Search Bar
   const searchInput = document.getElementById('globalSearchInput');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
@@ -740,14 +719,12 @@ function bindEvents() {
     });
   }
 
-  // Library Tabs
   document.querySelectorAll('[data-library-filter]').forEach((btn) => {
     btn.addEventListener('click', () => {
       setLibraryFilter(btn.dataset.libraryFilter);
     });
   });
 
-  // Elders Audio Controls & Switches
   document.getElementById('elderPrevBtn')?.addEventListener('click', prevElderTrack);
   document.getElementById('elderPlayBtn')?.addEventListener('click', playElderQueue);
   document.getElementById('elderPauseBtn')?.addEventListener('click', pauseElderQueue);
@@ -756,12 +733,10 @@ function bindEvents() {
   document.getElementById('elderFreezeBtn')?.addEventListener('click', toggleFreezeSwitch);
   document.getElementById('elderBlockBtn')?.addEventListener('click', toggleBlockSwitch);
 
-  // Audio Element End Event (for real uploaded .mp3/.m4a files on GitHub)
   eldersAudio.addEventListener('ended', () => {
     advanceToNextElderTrack();
   });
 
-  // Keep state synced when switching browser tabs
   document.addEventListener('visibilitychange', () => {
     if (!document.hidden && appState.isPlaying && !appState.isFrozen) {
       if (!tickerIntervalId) startTicker();
@@ -769,7 +744,6 @@ function bindEvents() {
     updateEldersPlayerUI();
   });
 
-  // Modal Close Controls
   document.getElementById('closeModalBtn')?.addEventListener('click', () => closeVideoModal(false));
   document.getElementById('videoModal')?.addEventListener('click', (e) => {
     if (e.target && e.target.id === 'videoModal') {
