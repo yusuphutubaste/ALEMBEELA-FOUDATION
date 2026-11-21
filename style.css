@@ -602,6 +602,9 @@ section {
     padding: 4px 10px;
     border-radius: 6px;
     margin-bottom: 10px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
 }
 
 .video-info h3 {
@@ -742,7 +745,7 @@ section {
 }
 
 /* =========================================================
-   PICHA ZA JAMII (PAGE BANNER, PHOTO GRID & LIGHTBOX)
+   PICHA ZA JAMII (PAGE BANNER & EMPTY PHOTO SLOTS)
    ========================================================= */
 .page-banner {
     padding: 65px 0 40px;
@@ -789,48 +792,31 @@ section {
     transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
-.photo-card {
-    cursor: pointer;
-}
-
 .media-card:hover {
     transform: translateY(-5px);
     border-color: var(--gold-bright);
 }
 
-.media-top-photo {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
-    border-bottom: 1px solid var(--border-gold);
-    background: #040705;
-}
-
-.media-top-photo img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    display: block;
-}
-
 .media-placeholder {
     width: 100%;
-    height: 250px;
-    background: rgba(4, 68, 35, 0.25);
+    height: 240px;
+    background: rgba(4, 68, 35, 0.22);
     border-bottom: 1px dashed var(--gold-main);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 8px;
+    gap: 10px;
+    padding: 16px;
+    text-align: center;
     color: var(--gold-bright);
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     font-weight: 600;
 }
 
 .media-placeholder i {
-    font-size: 2rem;
-    opacity: 0.85;
+    font-size: 2.1rem;
+    opacity: 0.9;
 }
 
 .media-body {
@@ -872,52 +858,8 @@ section {
     line-height: 1.55;
 }
 
-/* Lightbox Modal */
-.lightbox {
-    display: none;
-    position: fixed;
-    inset: 0;
-    z-index: 2000;
-    background: rgba(0, 0, 0, 0.9);
-    padding: 30px 20px;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.lightbox.active {
-    display: flex;
-}
-
-.close-lightbox {
-    position: absolute;
-    top: 18px;
-    right: 26px;
-    color: var(--gold-bright);
-    font-size: 2.4rem;
-    font-weight: bold;
-    cursor: pointer;
-    line-height: 1;
-}
-
-.lightbox-content {
-    max-width: min(92vw, 760px);
-    max-height: 72vh;
-    border-radius: 10px;
-    border: 2px solid var(--gold-bright);
-    object-fit: contain;
-}
-
-#lightboxCaption {
-    margin-top: 14px;
-    color: var(--text-white);
-    text-align: center;
-    max-width: 680px;
-    font-size: 1rem;
-}
-
 /* =========================================================
-   AF FOOTER (MULTI-COLUMN GRID + CHANNEL CARDS)
+   AF FOOTER (MULTI-COLUMN GRID + LEFT PLATFORM BOXES)
    ========================================================= */
 .af-footer {
     background: linear-gradient(180deg, #040705 0%, var(--emerald-dark) 145%);
@@ -932,7 +874,7 @@ section {
 
 .af-footer-grid {
     display: grid;
-    grid-template-columns: 1.5fr 1fr 1.2fr 1fr;
+    grid-template-columns: 1.55fr 1fr 1.2fr 1fr;
     gap: 30px;
     padding-bottom: 38px;
 }
@@ -976,29 +918,52 @@ section {
     margin-bottom: 16px;
 }
 
-.af-social-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+/* Maboksi madogo upande wa kushoto yanayoonyesha aikoni na jina la jukwaa */
+.af-platform-boxes {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    gap: 10px;
+    max-width: 340px;
 }
 
-.af-social-row a {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    background: var(--black-card);
-    border: 1px solid var(--gold-main);
-    color: var(--gold-bright);
+.af-platform-box {
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 8px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: var(--black-card);
+    border: 1px solid var(--border-gold);
+    color: var(--text-white);
     text-decoration: none;
-    transition: all 0.3s ease;
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.25s ease;
 }
 
-.af-social-row a:hover {
-    background: var(--gold-bright);
-    color: var(--black-deep);
+.af-platform-box:hover {
+    transform: translateY(-2px);
+    border-color: var(--gold-bright);
+}
+
+.af-platform-box.box-yt i {
+    color: #FF4D4D;
+    font-size: 1rem;
+}
+
+.af-platform-box.box-fb i {
+    color: #4A8CFF;
+    font-size: 1rem;
+}
+
+.af-platform-box.box-tt i {
+    color: #5CE1E6;
+    font-size: 1rem;
+}
+
+.af-platform-box.box-ig i {
+    color: #F27D9E;
+    font-size: 1rem;
 }
 
 .af-col-title {
@@ -1032,7 +997,7 @@ section {
     font-size: 0.9rem;
     display: inline-flex;
     align-items: center;
-    gap: 6px;
+    gap: 7px;
     transition: color 0.3s, transform 0.3s;
 }
 
@@ -1066,9 +1031,24 @@ section {
 }
 
 .af-channel-card i {
-    color: #FF5252;
     font-size: 1.35rem;
     flex-shrink: 0;
+}
+
+.af-channel-card i.platform-yt {
+    color: #FF4D4D;
+}
+
+.af-channel-card i.platform-fb {
+    color: #4A8CFF;
+}
+
+.af-channel-card i.platform-tt {
+    color: #5CE1E6;
+}
+
+.af-channel-card i.platform-ig {
+    color: #F27D9E;
 }
 
 .af-channel-card strong {
@@ -1181,23 +1161,12 @@ section {
         gap: 28px;
     }
 
+    .af-platform-boxes {
+        max-width: 100%;
+    }
+
     .af-footer-bottom {
         flex-direction: column;
         text-align: center;
     }
-}
-.af-channel-card i.platform-yt {
-    color: #FF4D4D;
-}
-
-.af-channel-card i.platform-fb {
-    color: #4A8CFF;
-}
-
-.af-channel-card i.platform-tt {
-    color: #5CE1E6;
-}
-
-.af-channel-card i.platform-ig {
-    color: #F27D9E;
 }
