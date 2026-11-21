@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alembeela Foundation | Utamaduni, Asili na Urithi wa Babembe</title>
-  <meta name="description" content="Tovuti rasmi ya Alembeela Foundation - Uhifadhi wa historia, simulizi za Babembe, mila, desturi na mshikamano wa jamii.">
+  <meta name="description" content="Tovuti rasmi ya Alembeela Foundation - Maktaba ya video, historia, simulizi za Babembe, mila na mshikamano wa jamii.">
   
-  <!-- Google Fonts & Font Awesome Icons -->
+  <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -31,7 +31,7 @@
       <nav aria-label="Menyu Kuu">
         <ul class="nav-links" id="navLinks">
           <li><a href="#top" data-i18n="nav_home">Mwanzo</a></li>
-          <li><a href="#featured" data-i18n="nav_featured">Video Kuu</a></li>
+          <li><a href="#library" data-i18n="nav_library">Maktaba ya Video</a></li>
           <li><a href="#shorts-series" data-i18n="nav_shorts">Vipande Fupi</a></li>
           <li><a href="picha.html" data-i18n="nav_gallery">Picha za Jamii</a></li>
           <li><a href="#channels" data-i18n="nav_channels">Chaneli Zetu</a></li>
@@ -82,9 +82,9 @@
       <p data-i18n="hero_desc">Karibu Alembeela Foundation. Tunakusanya, tunarekodi, na kusimulia historia za kweli, majina ya asili, na mila za Babembe ili zibaki hai kwa vizazi vya sasa na vijavyo.</p>
       
       <div class="hero-buttons">
-        <a href="#featured" class="btn-primary">
-          <i class="fa-solid fa-circle-play"></i>
-          <span data-i18n="hero_btn_watch">Tazama Úmbo cha Babembe</span>
+        <a href="#library" class="btn-primary">
+          <i class="fa-solid fa-photo-film"></i>
+          <span data-i18n="hero_btn_library">Fungua Maktaba ya Video</span>
         </a>
         <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" rel="noopener" class="btn-secondary">
           <i class="fa-brands fa-youtube"></i>
@@ -117,29 +117,68 @@
     </div>
   </section>
 
-  <!-- Featured Video Section -->
-  <section id="featured" class="video-section">
+  <!-- Maktaba ya Video (Video Library Grid) -->
+  <section id="library" class="video-section">
     <div class="section-title">
-      <span class="sub-title" data-i18n="featured_subtitle">Simulizi Kuu</span>
-      <h2>ÚMBO CHA BABEMBE</h2>
-      <p data-i18n="featured_desc">Tazama uchambuzi wa kina kuhusu asili, majina ya koo, historia na mafunzo kutoka kwa wazee wa jamii.</p>
+      <span class="sub-title" data-i18n="library_subtitle">Maktaba Rasmi</span>
+      <h2 data-i18n="library_title">Maktaba ya Video na Simulizi</h2>
+      <p data-i18n="library_desc">Chagua na utazame mfululizo wa vipindi vya kihistoria, asili ya Babembe, na maudhui ya kijamii moja kwa moja hapa.</p>
     </div>
 
-    <div class="single-video-wrapper">
-      <div class="iframe-container">
-        <iframe 
-          src="https://www.youtube-nocookie.com/embed/xsxfbtJnrzg" 
-          title="ÚMBO CHA BABEMBE" 
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="card-info">
-        <span class="video-tag" data-i18n="tag_series">Mfululizo Rasmi wa Úmbo</span>
-        <h4>Úmbo cha Babembe</h4>
-        <p data-i18n="featured_card_desc">Maudhui maalum yanayochambua kwa ufasaha misingi ya kitamaduni na safari ya jamii yetu.</p>
-      </div>
+    <div class="library-grid">
+      <!-- Video 1: Úmbo cha Babembe Sehemu ya 1 -->
+      <article class="video-card">
+        <div class="iframe-container">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/chCvVUD1FPo" 
+            title="ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1)" 
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="card-info">
+          <span class="video-tag" data-i18n="tag_series_part1">Úmbo Series • Sehemu ya 1</span>
+          <h4>Úmbo cha Babembe (Sehemu ya 1)</h4>
+          <p data-i18n="video_1_desc">Mwanzo wa safari ya kina kuelewa chimbuko, mila, hekima na utambulisho wa asili.</p>
+        </div>
+      </article>
+
+      <!-- Video 2: Úmbo cha Babembe Sehemu ya 2 -->
+      <article class="video-card">
+        <div class="iframe-container">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/vTuqdG2yEmk" 
+            title="UMBO CHA BABEMBE SEHEMU YA PILI 2" 
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="card-info">
+          <span class="video-tag" data-i18n="tag_series_part2">Úmbo Series • Sehemu ya 2</span>
+          <h4>Úmbo cha Babembe (Sehemu ya 2)</h4>
+          <p data-i18n="video_2_desc">Mwendelezo wa uchambuzi wa majina ya koo, kumbukumbu za wazee na misingi ya jamii yetu.</p>
+        </div>
+      </article>
+
+      <!-- Video 3: Toleo Maalum la Úmbo -->
+      <article class="video-card">
+        <div class="iframe-container">
+          <iframe 
+            src="https://www.youtube-nocookie.com/embed/xsxfbtJnrzg" 
+            title="ÚMBO CHA BABEMBE" 
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+            allowfullscreen>
+          </iframe>
+        </div>
+        <div class="card-info">
+          <span class="video-tag" data-i18n="tag_special">Simulizi Maalum</span>
+          <h4>Úmbo cha Babembe (Toleo Maalum)</h4>
+          <p data-i18n="video_3_desc">Toleo maalum linaloangazia mafunzo na ujumbe wa msingi kwa vizazi vya sasa na vijavyo.</p>
+        </div>
+      </article>
     </div>
   </section>
 
@@ -175,7 +214,7 @@
     </div>
   </section>
 
-  <!-- Interactive Community Photo Gallery (Included on Index & Dedicated Page) -->
+  <!-- Interactive Community Photo Gallery -->
   <section id="gallery" class="gallery-section">
     <div class="section-title">
       <span class="sub-title" data-i18n="gallery_subtitle">Matunzio Yetu</span>
@@ -184,7 +223,6 @@
     </div>
 
     <div class="gallery-grid">
-      <!-- Item 1 -->
       <div class="gallery-card" data-caption-sw="Mazungumzo na wazee wa mila kuhusu misingi ya asili ya Babembe." data-caption-en="Conversations with community elders on ancestral Babembe roots.">
         <div class="gallery-thumb-wrap">
           <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?auto=format&fit=crop&w=800&q=80" alt="Wazee wa Jamii" loading="lazy">
@@ -196,7 +234,6 @@
         </div>
       </div>
 
-      <!-- Item 2 -->
       <div class="gallery-card" data-caption-sw="Mkutano wa vijana wakifundishwa majina ya ukoo na utambulisho." data-caption-en="Youth learning tribal clan names and identity.">
         <div class="gallery-thumb-wrap">
           <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=800&q=80" alt="Vijana na Urithi" loading="lazy">
@@ -208,7 +245,6 @@
         </div>
       </div>
 
-      <!-- Item 3 -->
       <div class="gallery-card" data-caption-sw="Safari ya kurekodi maeneo ya kihistoria na asili." data-caption-en="Expedition documenting historical sites and origins.">
         <div class="gallery-thumb-wrap">
           <img src="https://images.unsplash.com/photo-1489749798305-4fea3ae63d43?auto=format&fit=crop&w=800&q=80" alt="Mazingira ya Asili" loading="lazy">
@@ -220,7 +256,6 @@
         </div>
       </div>
 
-      <!-- Item 4 -->
       <div class="gallery-card" data-caption-sw="Mshikamano na furaha ya kifamilia wakati wa shughuli za jamii." data-caption-en="Solidarity and community gatherings celebrating our heritage.">
         <div class="gallery-thumb-wrap">
           <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="Umoja wa Jamii" loading="lazy">
@@ -362,7 +397,7 @@
         <h4 class="col-title" data-i18n="footer_quick_links">Viungo vya Haraka</h4>
         <ul class="footer-nav">
           <li><a href="#top" data-i18n="nav_home">Mwanzo</a></li>
-          <li><a href="#featured" data-i18n="nav_featured">Video Kuu</a></li>
+          <li><a href="#library" data-i18n="nav_library">Maktaba ya Video</a></li>
           <li><a href="#shorts-series" data-i18n="nav_shorts">Vipande Fupi</a></li>
           <li><a href="picha.html" data-i18n="nav_gallery">Picha za Jamii</a></li>
           <li><a href="#channels" data-i18n="nav_channels">Chaneli Zetu</a></li>
@@ -408,7 +443,7 @@
 
     </div>
 
-    <!-- Bottom Copyright & Legal Links -->
+    <!-- Bottom Copyright -->
     <div class="footer-bottom">
       <div class="bottom-container">
         <p class="copyright">
@@ -421,7 +456,7 @@
     </div>
   </footer>
 
-  <!-- WhatsApp Floating Widget (Direct Link to WhatsApp) -->
+  <!-- WhatsApp Floating Widget -->
   <a href="https://wa.me/13035550199?text=Habari%20Alembeela%20Foundation,%20ninawasiliana%20kutoka%20kwenye%20tovuti." class="whatsapp-float" target="_blank" rel="noopener" aria-label="Wasiliana Nasi WhatsApp">
     <i class="fa-brands fa-whatsapp"></i>
     <span class="whatsapp-tooltip" data-i18n="wa_tooltip">Tuandikie WhatsApp</span>
