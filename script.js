@@ -1,722 +1,807 @@
-/* Alembeela Foundation — accessible interactions and real channel video loading.
- * For individual video cards, set window.ALEMBEELA_YOUTUBE_API_KEY before this file
- * to a YouTube Data API key restricted to this site's HTTP referrers and YouTube Data API v3.
- * Without a key, the official YouTube uploads playlist still works without credentials.
- */
-const YOUTUBE_CHANNEL_ID = 'UCQkPUJEsrjWNP2MfCJRwIFQ';
-const YOUTUBE_API_KEY = window.ALEMBEELA_YOUTUBE_API_KEY || '';
-const UPLOADS_PLAYLIST_ID = `UU${YOUTUBE_CHANNEL_ID.slice(2)}`;
-const CHANNEL_URL = 'https://www.youtube.com/@AlembeelaFoundation';
+/* ==========================================================================
+   ALEMBEELA FOUNDATION — COMPLETE UNIFIED SCRIPT (GITHUB PAGES READY)
+   ========================================================================== */
 
-const STORAGE_KEYS = {
-  lang: 'alembeela_lang',
-  wisdom: 'alembeela_wisdom_posts',
-  subscribers: 'alembeela_subscribers',
-  visits: 'alembeela_visits'
+const SITE_CONFIG = {
+  primaryChannelUrl: 'https://www.youtube.com/@AlembeelaFoundation',
+  secondaryChannelUrl: 'https://www.youtube.com/@Alembeelawaidi',
+  storageKey: 'alembeela_foundation_state_v1',
+  defaultLoopAll: true
 };
 
-const translations = {
-  en: {
-    nav_home: 'Home',
-    nav_series: 'Series',
-    nav_wisdom: 'Wisdom',
-    nav_library: 'Library',
-    nav_teachings: 'Teachings',
-    hero_badge: 'Saving our shared wisdom & community pillars',
-    hero_desc: 'Unveiling, preserving, and sharing Babembe heritage and community teachings that build strong foundations for life, unity, and dignity.',
-    hero_btn1: 'Watch Episodes',
-    hero_btn2: 'Join Newsletter',
-    newsletter_title: '📧 Join Our Community',
-    newsletter_desc: 'Receive new episodes, teachings, and Alembeela updates directly in your inbox.',
-    newsletter_btn: 'Subscribe',
-    series_title: 'Úmbo Cha Babembe Episodes',
-    series_desc: 'Search and watch episodes carrying foundational community teachings.',
-    wisdom_title: 'Community Wisdom Wall',
-    wisdom_desc: 'Read teachings from the community or contribute your own proverb and advice.',
-    library_title: 'Documents & Guides',
-    library_desc: 'Read summaries of publications and cultural lessons.',
-    teachings_title: 'Key Teachings (FAQ)'
-  },
-  sw: {
-    nav_home: 'Nyumbani',
-    nav_series: 'Vipindi',
-    nav_wisdom: 'Hekima',
-    nav_library: 'Maktaba',
-    nav_teachings: 'Mafunzo',
-    hero_badge: 'Kuhifadhi hekima na nguzo za jamii yetu',
-    hero_desc: 'Tunafichua, kuhifadhi, na kusambaza urithi wa Babembe na mafunzo ya jamii yanayojenga misingi bora ya maisha, umoja, na heshima ya kibinadamu.',
-    hero_btn1: 'Tazama Vipindi',
-    hero_btn2: 'Jiunga Newsletter',
-    newsletter_title: '📧 Jiunga na Jamii Yetu',
-    newsletter_desc: 'Pokea sehemu mpya, mafunzo, na habari za Alembeela kwenye inbox yako.',
-    newsletter_btn: 'Jiunga',
-    series_title: 'Úmbo Cha Babembe Episodes',
-    series_desc: 'Tafuta na utazame vipindi vyote vilivyobeba mafunzo ya msingi ya jamii.',
-    wisdom_title: 'Uwanja wa Hekima ya Jamii',
-    wisdom_desc: 'Soma mafunzo kutoka kwa jamii au changia msemo na ushauri wako.',
-    library_title: 'Nyaraka na Mwongozo',
-    library_desc: 'Soma muhtasari wa machapisho na masomo.',
-    teachings_title: 'Mafunzo Muhimu (FAQ)'
-  },
-  ky: {
-    nav_home: 'Aka',
-    nav_series: 'Pindi',
-    nav_wisdom: 'Uhete',
-    nav_library: 'Maktaba',
-    nav_teachings: 'Mafunzo',
-    hero_badge: 'Kuhifadhi uhete na nguzo za jamii yetu',
-    hero_desc: 'Tunafichua na kuhifadhi urithi wa Babembe na mafunzo ya jamii yanayojenga maisha bora, umoja, na heshima.',
-    hero_btn1: 'Lola Vipindi',
-    hero_btn2: 'Jiunga Newsletter',
-    newsletter_title: '📧 Jiunga na Jamii Yetu',
-    newsletter_desc: 'Pokea vipindi vipya na mafunzo ya Alembeela moja kwa moja.',
-    newsletter_btn: 'Jiunga',
-    series_title: 'Úmbo Cha Babembe Episodes',
-    series_desc: 'Tafuta na uangalie vipindi vyote vya mafunzo ya jamii.',
-    wisdom_title: 'Uwanja wa Uhete wa Jamii',
-    wisdom_desc: 'Soma mafunzo kutoka kwa jamii au andika ushauri wako.',
-    library_title: 'Nyaraka na Mwongozo',
-    library_desc: 'Soma muhtasari wa machapisho na masomo.',
-    teachings_title: 'Mafunzo Muhimu (FAQ)'
-  },
-  lg: {
-    nav_home: 'Ewaka',
-    nav_series: 'Emizannyo',
-    nav_wisdom: 'Amagezi',
-    nav_library: 'Etterekero',
-    nav_teachings: 'Enjigiriza',
-    hero_badge: 'Okukuuma amagezi gaffe n’empagi z’ekitundu',
-    hero_desc: 'Tubikkula, tukuuma, era tubunyisa obusika bw’Ababembe n’enjigiriza ezizimba obulamu obulungi, obumu, n’ekitiibwa.',
-    hero_btn1: 'Laba Ebikwata ku Mboozi',
-    hero_btn2: 'Wegatte ku Newsletter',
-    newsletter_title: '📧 Wegatte ku Kitundu Kyaffe',
-    newsletter_desc: 'Funa ebitundu ebipya n’enjigiriza za Alembeela mu inbox yo.',
-    newsletter_btn: 'Wegatte',
-    series_title: 'Úmbo Cha Babembe Episodes',
-    series_desc: 'Noonya era olabe ebitundu byonna ebirimu enjigiriza z’ekitundu.',
-    wisdom_title: 'Ekisaawe ky’Amagezi g’Ekitundu',
-    wisdom_desc: 'Soma enjigiriza okuva mu kitundu oba gattaako amagezi go.',
-    library_title: 'Ebiwandiiko n’Obulagirizi',
-    library_desc: 'Soma mu bufunze ebikwata ku bitabo n’amasomo.',
-    teachings_title: 'Enjigiriza Enkulu (FAQ)'
-  },
-  yo: {
-    nav_home: 'Ilé',
-    nav_series: 'Àwọn Ètò',
-    nav_wisdom: 'Ọgbọ́n',
-    nav_library: 'Ilé-Ìkàwé',
-    nav_teachings: 'Ẹ̀kọ́',
-    hero_badge: 'Pípa ọgbọ́n àjọpín àti àwọn òpó àwùjọ wa mọ́',
-    hero_desc: 'A ń ṣípayá, pa mọ́, àti pín ogún Babembe àti àwọn ẹ̀kọ́ àwùjọ tí ó ń kọ́ ìpìlẹ̀ tó lágbára fún ìgbésí ayé, ìṣọ̀kan, àti ọ̀wọ̀.',
-    hero_btn1: 'Wo Àwọn Ètò',
-    hero_btn2: 'Darapọ̀ mọ́ Ìwé Ìròyìn',
-    newsletter_title: '📧 Darapọ̀ mọ́ Àwùjọ Wa',
-    newsletter_desc: 'Gba àwọn ètò tuntun àti ẹ̀kọ́ Alembeela sínú àpótí ìfìwéránṣẹ́ rẹ.',
-    newsletter_btn: 'Forúkọsílẹ̀',
-    series_title: 'Úmbo Cha Babembe Episodes',
-    series_desc: 'Wá kí o sì wo gbogbo àwọn ètò tó ní ẹ̀kọ́ ìpìlẹ̀ àwùjọ.',
-    wisdom_title: 'Ògiri Ọgbọ́n Àwùjọ',
-    wisdom_desc: 'Ka àwọn ẹ̀kọ́ láti ọ̀dọ̀ àwùjọ tàbí fi òwe àti ìmọ̀ràn tìrẹ kún un.',
-    library_title: 'Àwọn Ìwé àti Ìtọ́sọ́nà',
-    library_desc: 'Ka àkópọ̀ àwọn ìwé àti ẹ̀kọ́ àṣà.',
-    teachings_title: 'Àwọn Ẹ̀kọ́ Pàtàkì (FAQ)'
-  }
-};
-
-const defaultWisdomPosts = [
+// 1. VIDEOS & SHORTS
+const MEDIA_ITEMS = [
   {
-    id: 'w-1',
-    name: 'Mzee wa Jamii',
-    text: 'Umoja wa jamii ni ngao thabiti kuliko ukuta wa mawe.',
-    likes: 14,
-    liked: false,
-    comments: ['Hekima kubwa sana!']
+    id: 'vid-chCvVUD1FPo',
+    videoId: 'chCvVUD1FPo',
+    type: 'video',
+    topic: 'Úmbo & Utamaduni',
+    badge: 'Sehemu ya Kwanza (1)',
+    title: 'ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI',
+    description: 'Kipindi cha kwanza cha mfululizo wa Úmbo Cha Babembe kutoka Alembeela Foundation.',
+    shareUrl: 'https://youtu.be/chCvVUD1FPo'
   },
   {
-    id: 'w-2',
-    name: 'Mama Mlezi',
-    text: 'Mtoto anayejua asili yake hawezi kupotea njia hata akiwa mbali na nyumbani.',
-    likes: 9,
-    liked: false,
-    comments: []
+    id: 'vid-xsxfbtJnrzg',
+    videoId: 'xsxfbtJnrzg',
+    type: 'video',
+    topic: 'Úmbo & Utamaduni',
+    badge: 'Sehemu ya Pili (2)',
+    title: 'UMBO CHA BABEMBE SEHEMU YA PILI 2 @Alembeela wa idi APRIL 18TH, 2026',
+    description: 'Sehemu ya pili ya mafunzo ya Úmbo cha Babembe yenye mpangilio wa hatua za jamii.',
+    shareUrl: 'https://youtu.be/xsxfbtJnrzg'
+  },
+  {
+    id: 'vid-YPPOyvxJ-Wk',
+    videoId: 'YPPOyvxJ-Wk',
+    type: 'video',
+    topic: 'Úmbo & Utamaduni',
+    badge: 'Sehemu ya Kwanza (Toleo)',
+    title: 'Úmbo cha Babembe: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI',
+    description: 'Toleo la kipindi cha kwanza cha Úmbo cha Babembe kwa ajili ya kujifunza na kushirikisha.',
+    shareUrl: 'https://youtu.be/YPPOyvxJ-Wk'
+  },
+  {
+    id: 'short-HhJm-izUZk4',
+    videoId: 'HhJm-izUZk4',
+    type: 'short',
+    topic: 'Úmbo & Utamaduni',
+    badge: 'Short · 0:11',
+    title: 'ÚMBO #AlembeelaFoundation#Alembeelawaidi . full video ipo youtube',
+    description: 'Dondoo fupi la sekunde 11 linaloelekeza kwenye mafunzo kamili ya Úmbo.',
+    shareUrl: 'https://youtube.com/shorts/HhJm-izUZk4'
+  },
+  {
+    id: 'short-jCPtT8ZPsoE',
+    videoId: 'jCPtT8ZPsoE',
+    type: 'short',
+    topic: 'Úmbo & Utamaduni',
+    badge: 'Short · 0:08',
+    title: 'ÚMBO #AlembeelaFoundation#Alembeelawaidi . full video ipo youtube',
+    description: 'Dondoo fupi la sekunde 8 la utambulisho wa Úmbo na hekima ya jamii.',
+    shareUrl: 'https://youtube.com/shorts/jCPtT8ZPsoE'
+  },
+  {
+    id: 'short-VklA0Aw2TLc',
+    videoId: 'VklA0Aw2TLc',
+    type: 'short',
+    topic: 'Úmbo & Utamaduni',
+    badge: 'Short · 0:11',
+    title: 'ÚMBO #AlembeelaFoundation#Alembeelawaidi . full video ipo youtube',
+    description: 'Dondoo fupi la sekunde 11 lenye vipengele vya mafunzo ya jamii ya Babembe.',
+    shareUrl: 'https://youtube.com/shorts/VklA0Aw2TLc'
   }
 ];
 
-const searchableIndex = [
-  { title: 'Úmbo Cha Babembe — Vipindi vya Video', category: 'Vipindi', href: '#series' },
-  { title: 'Uwanja wa Hekima ya Jamii', category: 'Hekima', href: '#wisdom-wall' },
-  { title: 'Misingi ya Úmbo na Utamaduni', category: 'Maktaba', href: '#library' },
-  { title: 'Elimu kwa Vijana', category: 'Maktaba', href: '#library' },
-  { title: 'Úmbo Cha Babembe ni nini? (FAQ)', category: 'Mafunzo', href: '#teachings' },
-  { title: 'Jiunga na Newsletter ya Jamii', category: 'Newsletter', href: '#newsletter' }
+// 2. PLAYLISTS (Mfululizo ndani ya tovuti)
+const PLAYLIST_ITEMS = [
+  {
+    id: 'PLns5POVtyOJszsYfQkjrf7YD80ycoj4IG',
+    title: 'Playlist 01 — Úmbo Cha Babembe',
+    description: 'Mkusanyiko wa vipindi vinavyocheza mfululizo ndani ya tovuti.',
+    shareUrl: 'https://youtube.com/playlist?list=PLns5POVtyOJszsYfQkjrf7YD80ycoj4IG'
+  },
+  {
+    id: 'PLcI8Km4aCNOM',
+    title: 'Playlist 02 — Alembeela Foundation',
+    description: 'Orodha ya ziada ya video na mafunzo ya jamii.',
+    shareUrl: 'https://youtube.com/playlist?list=PLcI8Km4aCNOM'
+  }
 ];
 
-let loadedEpisodes = [];
-let lastFocusedElement = null;
+// 3. SAUTI ZA WAZEE (Vipande 3 vinavyoendana na vipindi vya Úmbo Cha Babembe, bila majina ya kutunga)
+// Ukipakia faili za sauti kwenye GitHub baadaye, weka mfano './audio/kipande-01.mp3' kwenye `audioSrc`.
+const ELDERS_VOICES = [
+  {
+    id: 'kipande-01',
+    label: 'Kipande 01',
+    videoId: 'chCvVUD1FPo',
+    shareUrl: 'https://youtu.be/chCvVUD1FPo',
+    audioSrc: '',
+    durationSec: 45
+  },
+  {
+    id: 'kipande-02',
+    label: 'Kipande 02',
+    videoId: 'xsxfbtJnrzg',
+    shareUrl: 'https://youtu.be/xsxfbtJnrzg',
+    audioSrc: '',
+    durationSec: 45
+  },
+  {
+    id: 'kipande-03',
+    label: 'Kipande 03',
+    videoId: 'YPPOyvxJ-Wk',
+    shareUrl: 'https://youtu.be/YPPOyvxJ-Wk',
+    audioSrc: '',
+    durationSec: 45
+  }
+];
 
-function escapeHTML(str) {
-  return String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-}
+// ==========================================================================
+// APPLICATION STATE
+// ==========================================================================
+const appState = {
+  libraryFilter: 'all', // 'all' | 'video' | 'short' | 'saved'
+  searchQuery: '',
+  savedIds: [],
+  currentTrackIndex: 0,
+  isPlaying: false,
+  isFrozen: false,  // Swichi ya Kugandisha
+  isBlocked: false, // Swichi ya Kuzuia
+  loopAll: SITE_CONFIG.defaultLoopAll,
+  elapsedSec: 0,
+  lastFocusedElement: null
+};
 
-/* ---------------- Language Switcher ---------------- */
-function setLanguage(lang) {
-  const dict = translations[lang] || translations.sw;
-  document.documentElement.lang = lang;
+const eldersAudio = new Audio();
+eldersAudio.preload = 'metadata';
+let tickerIntervalId = null;
+let lastTickMs = null;
 
-  document.querySelectorAll('[data-i18n]').forEach((el) => {
-    const key = el.getAttribute('data-i18n');
-    if (dict[key]) {
-      el.textContent = dict[key];
-    }
-  });
-
-  const select = document.getElementById('languageSelect');
-  if (select) select.value = lang;
-
-  document.querySelectorAll('.lang-btn').forEach((btn) => {
-    const isActive = btn.dataset.lang === lang;
-    btn.classList.toggle('bg-gold-500', isActive);
-    btn.classList.toggle('text-black', isActive);
-    btn.classList.toggle('font-bold', isActive);
-  });
-
+// ==========================================================================
+// PERSISTENCE & NOTIFICATIONS
+// ==========================================================================
+function loadSavedState() {
   try {
-    localStorage.setItem(STORAGE_KEYS.lang, lang);
+    const raw = localStorage.getItem(SITE_CONFIG.storageKey);
+    if (!raw) return;
+    const parsed = JSON.parse(raw);
+    if (Array.isArray(parsed.savedIds)) appState.savedIds = parsed.savedIds;
+    if (typeof parsed.libraryFilter === 'string') appState.libraryFilter = parsed.libraryFilter;
+    if (typeof parsed.currentTrackIndex === 'number') {
+      appState.currentTrackIndex = parsed.currentTrackIndex;
+    }
+    if (typeof parsed.loopAll === 'boolean') appState.loopAll = parsed.loopAll;
+    if (typeof parsed.isFrozen === 'boolean') appState.isFrozen = parsed.isFrozen;
+    if (typeof parsed.isBlocked === 'boolean') appState.isBlocked = parsed.isBlocked;
+    if (typeof parsed.elapsedSec === 'number') appState.elapsedSec = parsed.elapsedSec;
   } catch (_) {}
 }
 
-/* ---------------- Mobile Menu & Scroll ---------------- */
-function toggleMobileMenu(forceState) {
-  const menu = document.getElementById('mobileMenu');
-  const btn = document.getElementById('mobileMenuBtn');
-  const icon = document.getElementById('hamburgerIcon');
-  if (!menu || !btn) return;
+function saveState() {
+  try {
+    localStorage.setItem(
+      SITE_CONFIG.storageKey,
+      JSON.stringify({
+        savedIds: appState.savedIds,
+        libraryFilter: appState.libraryFilter,
+        currentTrackIndex: appState.currentTrackIndex,
+        loopAll: appState.loopAll,
+        isFrozen: appState.isFrozen,
+        isBlocked: appState.isBlocked,
+        elapsedSec: appState.elapsedSec
+      })
+    );
+  } catch (_) {}
+}
 
-  const isOpen = typeof forceState === 'boolean'
-    ? forceState
-    : menu.classList.contains('hidden');
+function showToast(message) {
+  const el = document.getElementById('toastBanner');
+  if (!el) return;
+  el.textContent = message;
+  el.classList.remove('hidden');
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => el.classList.add('hidden'), 3200);
+}
 
-  if (isOpen) {
-    menu.classList.remove('hidden');
-    requestAnimationFrame(() => menu.classList.add('menu-open'));
-    btn.setAttribute('aria-expanded', 'true');
-    if (icon) {
-      icon.classList.remove('fa-bars');
-      icon.classList.add('fa-xmark');
-    }
+// ==========================================================================
+// SEARCH, LIBRARY (ALL / VIDEO / SHORT / VIPENDWA) & PLAYLISTS
+// ==========================================================================
+function matchesSearch(parts) {
+  const q = appState.searchQuery.trim().toLowerCase();
+  if (!q) return true;
+  return parts.join(' ').toLowerCase().includes(q);
+}
+
+function setLibraryFilter(filter) {
+  appState.libraryFilter = filter;
+  document.querySelectorAll('[data-library-filter]').forEach((btn) => {
+    const active = btn.dataset.libraryFilter === filter;
+    btn.classList.toggle('is-active', active);
+    btn.setAttribute('aria-selected', String(active));
+    btn.setAttribute('aria-pressed', String(active));
+  });
+  saveState();
+  renderAllSections();
+}
+
+function toggleSavedItem(itemId) {
+  const idx = appState.savedIds.indexOf(itemId);
+  if (idx >= 0) {
+    appState.savedIds.splice(idx, 1);
+    showToast('Imeondolewa kwenye Vipendwa.');
   } else {
-    menu.classList.remove('menu-open');
-    btn.setAttribute('aria-expanded', 'false');
-    if (icon) {
-      icon.classList.remove('fa-xmark');
-      icon.classList.add('fa-bars');
-    }
-    setTimeout(() => {
-      if (!menu.classList.contains('menu-open')) {
-        menu.classList.add('hidden');
-      }
-    }, 250);
+    appState.savedIds.push(itemId);
+    showToast('Imehifadhiwa kwenye Vipendwa.');
   }
+  saveState();
+  renderLibrary();
 }
 
-function handleScroll() {
-  const btn = document.getElementById('backToTop');
-  if (!btn) return;
-  if (window.scrollY > 400) {
-    btn.classList.add('visible');
-  } else {
-    btn.classList.remove('visible');
-  }
-}
-
-function scrollToTop() {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-}
-
-/* ---------------- YouTube Channel Loader ---------------- */
-async function loadChannelVideos() {
-  const grid = document.getElementById('episodesGrid');
-  const searchWrap = document.getElementById('episodeSearchWrap');
+function renderLibrary() {
+  const grid = document.getElementById('libraryGrid');
+  const countEl = document.getElementById('savedCount');
+  if (countEl) countEl.textContent = String(appState.savedIds.length);
   if (!grid) return;
 
-  if (YOUTUBE_API_KEY) {
-    try {
-      const url = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&maxResults=9&playlistId=${encodeURIComponent(UPLOADS_PLAYLIST_ID)}&key=${encodeURIComponent(YOUTUBE_API_KEY)}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('YouTube API request failed');
-      const data = await res.json();
+  const items = MEDIA_ITEMS.filter((item) => {
+    const typeMatch =
+      appState.libraryFilter === 'all' ||
+      (appState.libraryFilter === 'saved'
+        ? appState.savedIds.includes(item.id)
+        : item.type === appState.libraryFilter);
 
-      loadedEpisodes = (data.items || [])
-        .filter((item) => item.snippet && item.snippet.resourceId && item.snippet.resourceId.videoId)
-        .map((item) => {
-          const s = item.snippet;
-          const thumbs = s.thumbnails || {};
-          const thumb = (thumbs.high || thumbs.medium || thumbs.default || {}).url || '';
-          return {
-            videoId: s.resourceId.videoId,
-            title: s.title || 'Úmbo Cha Babembe Episode',
-            description: s.description || 'Mafunzo ya jamii na urithi wa Babembe.',
-            publishedAt: s.publishedAt ? new Date(s.publishedAt).toLocaleDateString() : '',
-            thumbnail: thumb
-          };
-        });
+    const searchMatch = matchesSearch([
+      item.title,
+      item.description,
+      item.badge,
+      item.topic,
+      item.type,
+      item.videoId
+    ]);
 
-      if (loadedEpisodes.length > 0) {
-        updateStatCounter('videoCount', loadedEpisodes.length);
-        loadedEpisodes.forEach((ep) => {
-          searchableIndex.push({
-            title: ep.title,
-            category: 'Video',
-            href: '#series'
-          });
-        });
-        renderEpisodeCards(loadedEpisodes);
-        return;
-      }
-    } catch (err) {
-      console.warn('Falling back to official YouTube uploads playlist embed:', err);
-    }
-  }
+    return typeMatch && searchMatch;
+  });
 
-  // Fallback without API credentials: embed the official YouTube uploads playlist directly
-  if (searchWrap) searchWrap.classList.add('hidden');
-  grid.innerHTML = `
-    <div class="col-span-full max-w-4xl mx-auto w-full">
-      <div class="channel-playlist">
-        <iframe
-          src="https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(UPLOADS_PLAYLIST_ID)}"
-          title="Alembeela Foundation Official Uploads Playlist"
-          loading="lazy"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen>
-        </iframe>
-      </div>
-      <div class="mt-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-emeraldCustom-900/60 border border-gold-500/30 rounded-2xl p-5">
-        <p class="text-sm text-gray-300 text-center sm:text-left">
-          Tazama mfululizo kamili wa <strong class="text-gold-400">Úmbo Cha Babembe</strong> moja kwa moja kutoka chaneli rasmi ya Alembeela Foundation.
-        </p>
-        <a href="${CHANNEL_URL}" target="_blank" rel="noopener noreferrer" class="shrink-0 inline-flex items-center gap-2 bg-red-600 hover:bg-red-700 text-white font-bold text-xs px-5 py-3 rounded-xl transition">
-          <i class="fa-brands fa-youtube text-base"></i> Fungua Kwenye YouTube
-        </a>
-      </div>
-    </div>
-  `;
-}
-
-function renderEpisodeCards(episodes) {
-  const grid = document.getElementById('episodesGrid');
-  if (!grid) return;
-
-  if (!episodes.length) {
+  if (!items.length) {
     grid.innerHTML = `
-      <div class="col-span-full text-center py-12 bg-emeraldCustom-900/40 border border-gold-500/20 rounded-2xl">
-        <p class="text-gray-300 text-sm">Hakuna kipindi kilicholingana na utafutaji wako.</p>
+      <div class="empty-state">
+        <p>Hakuna maudhui ya Library yanayolingana na chaguo au utafutaji wako wa sasa.</p>
+        <button type="button" class="btn btn--secondary" onclick="resetSearchAndFilters()">
+          Onyesha Yote
+        </button>
       </div>
     `;
     return;
   }
 
-  grid.innerHTML = episodes
-    .map((ep) => `
-      <article class="episode-card border border-gold-500/30 rounded-2xl overflow-hidden flex flex-col justify-between">
-        <div>
-          <div class="relative aspect-video bg-black overflow-hidden">
-            <img src="${escapeHTML(ep.thumbnail)}" alt="${escapeHTML(ep.title)}" loading="lazy" class="w-full h-full object-cover">
-            <button type="button" onclick="openVideoModal('${escapeHTML(ep.videoId)}')" aria-label="Play ${escapeHTML(ep.title)}" class="absolute inset-0 bg-black/40 hover:bg-black/20 flex items-center justify-center transition group">
-              <span class="w-14 h-14 rounded-full bg-gold-500 text-black flex items-center justify-center shadow-lg group-hover:scale-110 transition">
-                <i class="fa-solid fa-play text-lg ml-0.5"></i>
-              </span>
+  grid.innerHTML = items
+    .map((item) => {
+      const isSaved = appState.savedIds.includes(item.id);
+      return `
+        <article class="media-card" data-type="${escapeAttr(item.type)}">
+          <div class="media-card__top">
+            <span class="media-card__badge">${escapeHtml(item.badge)}</span>
+            <span class="media-card__type">${escapeHtml(item.type.toUpperCase())}</span>
+          </div>
+          <h3 class="media-card__title">${escapeHtml(item.title)}</h3>
+          <p class="media-card__desc">${escapeHtml(item.description)}</p>
+          <div class="media-card__actions">
+            <button
+              type="button"
+              class="btn btn--primary btn--sm"
+              onclick="openVideoModal('${escapeAttr(item.videoId)}', '${escapeAttr(item.title)}')"
+            >
+              Tazama Hapa
+            </button>
+            <button
+              type="button"
+              class="btn btn--ghost btn--sm"
+              onclick="shareContent('${escapeAttr(item.shareUrl)}', '${escapeAttr(item.title)}')"
+            >
+              Share
+            </button>
+            <button
+              type="button"
+              class="btn btn--ghost btn--sm"
+              onclick="copyContentLink('${escapeAttr(item.shareUrl)}')"
+            >
+              Nakili Link
+            </button>
+            <button
+              type="button"
+              class="btn btn--ghost btn--sm ${isSaved ? 'is-saved' : ''}"
+              onclick="toggleSavedItem('${escapeAttr(item.id)}')"
+            >
+              ${isSaved ? '★ Imependezwa' : '☆ Hifadhi'}
             </button>
           </div>
-          <div class="p-6">
-            <span class="text-[11px] font-bold uppercase tracking-wider text-gold-400 block mb-2">${escapeHTML(ep.publishedAt || 'Alembeela Foundation')}</span>
-            <h3 class="text-lg font-bold text-white mb-2 line-clamp-2">${escapeHTML(ep.title)}</h3>
-            <p class="text-gray-400 text-xs leading-relaxed line-clamp-3">${escapeHTML(ep.description)}</p>
-          </div>
-        </div>
-        <div class="px-6 pb-6">
-          <button type="button" onclick="openVideoModal('${escapeHTML(ep.videoId)}')" class="w-full bg-gold-500/15 hover:bg-gold-500 text-gold-400 hover:text-black border border-gold-500/40 font-bold text-xs py-2.5 px-4 rounded-xl transition">
-            <i class="fa-solid fa-circle-play mr-1.5"></i> Tazama Kipindi
-          </button>
-        </div>
-      </article>
-    `)
+        </article>
+      `;
+    })
     .join('');
 }
 
-function filterEpisodes() {
-  const input = document.getElementById('episodeSearch');
-  if (!input || !loadedEpisodes.length) return;
-  const q = input.value.trim().toLowerCase();
-  if (!q) {
-    renderEpisodeCards(loadedEpisodes);
+function renderPlaylists() {
+  const grid = document.getElementById('playlistGrid');
+  if (!grid) return;
+
+  const items = PLAYLIST_ITEMS.filter((pl) =>
+    matchesSearch([pl.title, pl.description, pl.id])
+  );
+
+  if (!items.length) {
+    grid.innerHTML = `
+      <div class="empty-state">
+        <p>Hakuna Playlist inayolingana na utafutaji wa sasa.</p>
+      </div>
+    `;
     return;
   }
-  const filtered = loadedEpisodes.filter(
-    (ep) => ep.title.toLowerCase().includes(q) || ep.description.toLowerCase().includes(q)
-  );
-  renderEpisodeCards(filtered);
-}
 
-/* ---------------- Global Search ---------------- */
-function setupSearch(inputId, resultsId) {
-  const input = document.getElementById(inputId);
-  const results = document.getElementById(resultsId);
-  if (!input || !results) return;
-
-  input.addEventListener('input', () => {
-    const q = input.value.trim().toLowerCase();
-    if (!q) {
-      results.classList.add('hidden');
-      results.innerHTML = '';
-      return;
-    }
-
-    const matches = searchableIndex.filter(
-      (item) => item.title.toLowerCase().includes(q) || item.category.toLowerCase().includes(q)
-    );
-
-    if (!matches.length) {
-      results.innerHTML = `<div class="p-3 text-xs text-gray-400">Hakuna matokeo kwa "${escapeHTML(q)}"</div>`;
-    } else {
-      results.innerHTML = matches
-        .slice(0, 6)
-        .map(
-          (m) => `
-          <a href="${escapeHTML(m.href)}" onclick="closeSearchDropdowns()" class="block px-4 py-3 hover:bg-gold-500/10 border-b border-gold-500/10 last:border-0 transition">
-            <span class="block text-xs font-bold text-white">${escapeHTML(m.title)}</span>
-            <span class="block text-[10px] text-gold-400 uppercase tracking-wider mt-0.5">${escapeHTML(m.category)}</span>
-          </a>
-        `
-        )
-        .join('');
-    }
-    results.classList.remove('hidden');
-  });
-}
-
-function closeSearchDropdowns() {
-  ['searchResults', 'mobileSearchResults'].forEach((id) => {
-    const el = document.getElementById(id);
-    if (el) el.classList.add('hidden');
-  });
-  toggleMobileMenu(false);
-}
-
-/* ---------------- Wisdom Wall ---------------- */
-function getWisdomPosts() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEYS.wisdom);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (Array.isArray(parsed) && parsed.length) return parsed;
-    }
-  } catch (_) {}
-  return defaultWisdomPosts;
-}
-
-function saveWisdomPosts(posts) {
-  try {
-    localStorage.setItem(STORAGE_KEYS.wisdom, JSON.stringify(posts));
-  } catch (_) {}
-}
-
-function renderWisdomFeed() {
-  const feed = document.getElementById('wisdomFeed');
-  if (!feed) return;
-  const posts = getWisdomPosts();
-
-  updateStatCounter('wisdomCount', 43 + posts.length);
-
-  feed.innerHTML = posts
+  grid.innerHTML = items
     .map(
-      (post) => `
-      <div class="bg-emeraldCustom-900/40 border border-gold-500/30 p-6 rounded-2xl relative">
-        <i class="fa-solid fa-quote-left text-gold-500/20 text-4xl absolute top-4 right-6"></i>
-        <p class="text-gray-200 text-sm italic mb-3">"${escapeHTML(post.text)}"</p>
-        <span class="text-xs text-gold-400 font-bold">&mdash; ${escapeHTML(post.name)}</span>
-        <div class="mt-3 flex gap-4 text-xs">
-          <button type="button" onclick="likeWisdom('${escapeHTML(post.id)}')" class="flex items-center gap-1.5 ${post.liked ? 'text-red-400' : 'text-gray-400 hover:text-red-400'} transition">
-            <i class="fa-solid fa-heart"></i> <span>${post.likes}</span>
+      (pl) => `
+      <article class="playlist-card">
+        <span class="playlist-card__tag">PLAYLIST · MFULULIZO</span>
+        <h3 class="playlist-card__title">${escapeHtml(pl.title)}</h3>
+        <p class="playlist-card__desc">${escapeHtml(pl.description)}</p>
+        <div class="playlist-card__actions">
+          <button
+            type="button"
+            class="btn btn--primary btn--sm"
+            onclick="openPlaylistModal('${escapeAttr(pl.id)}', '${escapeAttr(pl.title)}')"
+          >
+            Cheza Mfululizo Hapa
           </button>
-          <button type="button" onclick="toggleComments('${escapeHTML(post.id)}')" class="flex items-center gap-1.5 text-gray-400 hover:text-blue-400 transition">
-            <i class="fa-solid fa-comment"></i> <span>${post.comments.length}</span>
+          <button
+            type="button"
+            class="btn btn--ghost btn--sm"
+            onclick="shareContent('${escapeAttr(pl.shareUrl)}', '${escapeAttr(pl.title)}')"
+          >
+            Share
+          </button>
+          <button
+            type="button"
+            class="btn btn--ghost btn--sm"
+            onclick="copyContentLink('${escapeAttr(pl.shareUrl)}')"
+          >
+            Nakili Link
           </button>
         </div>
-        <div id="comments-${escapeHTML(post.id)}" class="hidden mt-3 border-t border-gold-500/20 pt-3 space-y-2">
-          ${post.comments
-            .map((c) => `<p class="text-xs text-gray-300 bg-black/30 rounded px-2.5 py-1.5">${escapeHTML(c)}</p>`)
-            .join('')}
-          <form onsubmit="addWisdomComment(event, '${escapeHTML(post.id)}')" class="flex gap-2 pt-1">
-            <input type="text" required maxlength="200" placeholder="Andika maoni yako..." aria-label="Write a comment" class="flex-1 bg-black/50 border border-gold-500/20 rounded px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-gold-400">
-            <button type="submit" class="bg-gold-500 text-black font-bold text-xs px-3 py-1.5 rounded hover:bg-gold-400 transition">Tuma</button>
-          </form>
-        </div>
-      </div>
+      </article>
     `
     )
     .join('');
 }
 
-function submitWisdom(event) {
-  event.preventDefault();
-  const nameInput = document.getElementById('contributorName');
-  const wisdomInput = document.getElementById('contributorWisdom');
-  const statusEl = document.getElementById('wisdomStatus');
-  if (!nameInput || !wisdomInput) return;
+function updateSearchSummary() {
+  const summaryEl = document.getElementById('searchSummary');
+  if (!summaryEl) return;
 
-  const name = nameInput.value.trim();
-  const text = wisdomInput.value.trim();
-  if (!name || !text) return;
+  const q = appState.searchQuery.trim();
+  const matchingMedia = MEDIA_ITEMS.filter((item) =>
+    matchesSearch([item.title, item.description, item.badge, item.topic, item.type, item.videoId])
+  ).length;
+  const matchingPlaylists = PLAYLIST_ITEMS.filter((pl) =>
+    matchesSearch([pl.title, pl.description, pl.id])
+  ).length;
+  const matchingVoices = ELDERS_VOICES.filter((v) =>
+    matchesSearch([v.label, v.videoId])
+  ).length;
 
-  const posts = getWisdomPosts();
-  posts.unshift({
-    id: `w-${Date.now()}`,
-    name,
-    text,
-    likes: 1,
-    liked: true,
-    comments: []
-  });
-
-  saveWisdomPosts(posts);
-  renderWisdomFeed();
-  nameInput.value = '';
-  wisdomInput.value = '';
-
-  if (statusEl) {
-    statusEl.textContent = 'Asante! Hekima yako imeongezwa kwenye uwanja wa jamii.';
-    setTimeout(() => {
-      statusEl.textContent = '';
-    }, 4000);
-  }
-}
-
-function likeWisdom(id) {
-  const posts = getWisdomPosts();
-  const target = posts.find((p) => p.id === id);
-  if (!target) return;
-
-  target.liked = !target.liked;
-  target.likes += target.liked ? 1 : -1;
-  saveWisdomPosts(posts);
-  renderWisdomFeed();
-}
-
-function toggleComments(id) {
-  const section = document.getElementById(`comments-${id}`);
-  if (section) section.classList.toggle('hidden');
-}
-
-function addWisdomComment(event, id) {
-  event.preventDefault();
-  const input = event.target.querySelector('input');
-  if (!input) return;
-  const text = input.value.trim();
-  if (!text) return;
-
-  const posts = getWisdomPosts();
-  const target = posts.find((p) => p.id === id);
-  if (!target) return;
-
-  target.comments.push(text);
-  saveWisdomPosts(posts);
-  renderWisdomFeed();
-
-  const section = document.getElementById(`comments-${id}`);
-  if (section) section.classList.remove('hidden');
-}
-
-/* ---------------- Newsletter ---------------- */
-function submitNewsletter(event) {
-  event.preventDefault();
-  const emailInput = document.getElementById('newsletterEmail');
-  const statusEl = document.getElementById('newsletterStatus');
-  if (!emailInput || !statusEl) return;
-
-  const email = emailInput.value.trim().toLowerCase();
-  if (!email) return;
-
-  let subscribers = [];
-  try {
-    subscribers = JSON.parse(localStorage.getItem(STORAGE_KEYS.subscribers) || '[]');
-  } catch (_) {}
-
-  if (!subscribers.includes(email)) {
-    subscribers.push(email);
-    try {
-      localStorage.setItem(STORAGE_KEYS.subscribers, JSON.stringify(subscribers));
-    } catch (_) {}
-    updateStatCounter('subscriberCount', 567 + subscribers.length);
-    statusEl.textContent = 'Asante kwa kujiunga! Utapokea taarifa mpya za Alembeela.';
-  } else {
-    statusEl.textContent = 'Tayari umejiunga na newsletter yetu. Asante!';
+  if (!q) {
+    summaryEl.textContent = `Inaonyesha maudhui yote (${MEDIA_ITEMS.length} Library, ${PLAYLIST_ITEMS.length} Playlists, ${ELDERS_VOICES.length} Sauti za Wazee).`;
+    return;
   }
 
-  emailInput.value = '';
+  summaryEl.textContent = `Utafutaji "${q}": ${matchingMedia} kwenye Library, ${matchingPlaylists} kwenye Playlists, ${matchingVoices} kwenye Sauti za Wazee.`;
 }
 
-/* ---------------- FAQ Accordion ---------------- */
-function toggleAccordion(index) {
-  const content = document.getElementById(`content-${index}`);
-  const icon = document.getElementById(`icon-${index}`);
-  if (!content) return;
-
-  const button = content.previousElementSibling;
-  const isHidden = content.classList.contains('hidden');
-
-  content.classList.toggle('hidden', !isHidden);
-  if (button) button.setAttribute('aria-expanded', String(isHidden));
-  if (icon) icon.classList.toggle('rotate-180', isHidden);
+function resetSearchAndFilters() {
+  appState.searchQuery = '';
+  const input = document.getElementById('globalSearchInput');
+  if (input) input.value = '';
+  setLibraryFilter('all');
 }
 
-/* ---------------- Modals (Video & Reader) ---------------- */
-function openVideoModal(videoId) {
+function renderAllSections() {
+  renderLibrary();
+  renderPlaylists();
+  updateEldersPlayerUI();
+  updateSearchSummary();
+}
+
+// ==========================================================================
+// IN-SITE VIDEO & PLAYLIST MODAL + SHARE / COPY LINK
+// ==========================================================================
+function openEmbedModal(embedUrl, title) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('modalIframe');
+  const titleEl = document.getElementById('videoModalTitle');
+  if (!modal || !iframe) return;
+
+  appState.lastFocusedElement = document.activeElement;
+  if (titleEl) titleEl.textContent = title;
+  iframe.src = embedUrl;
+  modal.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+}
+
+function openVideoModal(videoId, title) {
+  const src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1`;
+  openEmbedModal(src, title);
+}
+
+function openPlaylistModal(playlistId, title) {
+  const src = `https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(playlistId)}&autoplay=1`;
+  openEmbedModal(src, title);
+}
+
+function closeVideoModal(force = false) {
+  if (appState.isBlocked && !force) {
+    showToast('Kuzuia kumewashwa (ON). Zima swichi ya "Kuzuia" kwanza ili kufunga.');
+    return;
+  }
+
   const modal = document.getElementById('videoModal');
   const iframe = document.getElementById('modalIframe');
   if (!modal || !iframe) return;
 
-  lastFocusedElement = document.activeElement;
-  iframe.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1`;
-  modal.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-}
-
-function closeVideoModal() {
-  const modal = document.getElementById('videoModal');
-  const iframe = document.getElementById('modalIframe');
-  if (!modal) return;
-
-  if (iframe) iframe.src = '';
+  iframe.src = '';
   modal.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  if (lastFocusedElement) lastFocusedElement.focus();
-}
 
-function openReaderModal(title, content) {
-  const modal = document.getElementById('readerModal');
-  const titleEl = document.getElementById('readerTitle');
-  const contentEl = document.getElementById('readerContent');
-  if (!modal || !titleEl || !contentEl) return;
-
-  lastFocusedElement = document.activeElement;
-  titleEl.textContent = title;
-  contentEl.textContent = content;
-  modal.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-}
-
-function closeReaderModal() {
-  const modal = document.getElementById('readerModal');
-  if (!modal) return;
-
-  modal.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-  if (lastFocusedElement) lastFocusedElement.focus();
-}
-
-/* ---------------- Audio Player ---------------- */
-function toggleAudioPlayer() {
-  const audio = document.getElementById('audioPlayer');
-  const icon = document.getElementById('audioPlayIcon');
-  const waveIcon = document.getElementById('audioWaveIcon');
-  if (!audio || !icon) return;
-
-  if (audio.paused) {
-    audio.play().then(() => {
-      icon.classList.remove('fa-play', 'ml-0.5');
-      icon.classList.add('fa-pause');
-      if (waveIcon) waveIcon.classList.add('animate-pulse');
-    }).catch(() => {});
-  } else {
-    audio.pause();
-    icon.classList.remove('fa-pause');
-    icon.classList.add('fa-play', 'ml-0.5');
-    if (waveIcon) waveIcon.classList.remove('animate-pulse');
+  if (appState.lastFocusedElement && typeof appState.lastFocusedElement.focus === 'function') {
+    appState.lastFocusedElement.focus();
   }
 }
 
-function initAudioPlayer() {
-  const audio = document.getElementById('audioPlayer');
-  const timeEl = document.getElementById('audioTime');
-  const icon = document.getElementById('audioPlayIcon');
-  const waveIcon = document.getElementById('audioWaveIcon');
-  if (!audio) return;
+async function shareContent(url, title) {
+  if (navigator.share) {
+    try {
+      await navigator.share({ title, url });
+      return;
+    } catch (_) {}
+  }
+  await copyContentLink(url);
+}
 
-  audio.addEventListener('timeupdate', () => {
-    if (!timeEl) return;
-    const mins = Math.floor(audio.currentTime / 60);
-    const secs = Math.floor(audio.currentTime % 60).toString().padStart(2, '0');
-    timeEl.textContent = `${mins}:${secs}`;
-  });
+async function copyContentLink(url) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    try {
+      await navigator.clipboard.writeText(url);
+      showToast('Kiungo kimenakiliwa.');
+      return;
+    } catch (_) {}
+  }
+  showToast('Kiungo: ' + url);
+}
 
-  audio.addEventListener('ended', () => {
-    if (icon) {
-      icon.classList.remove('fa-pause');
-      icon.classList.add('fa-play', 'ml-0.5');
+// ==========================================================================
+// SAUTI ZA WAZEE — AUTO-NEXT + FULL LOOP + FREEZE SWITCH + BLOCK SWITCH
+// ==========================================================================
+function getCurrentTrack() {
+  return ELDERS_VOICES[appState.currentTrackIndex] || ELDERS_VOICES[0];
+}
+
+function stopTicker() {
+  if (tickerIntervalId) {
+    clearInterval(tickerIntervalId);
+    tickerIntervalId = null;
+  }
+  lastTickMs = null;
+}
+
+function startTicker() {
+  stopTicker();
+  lastTickMs = Date.now();
+
+  tickerIntervalId = setInterval(() => {
+    if (!appState.isPlaying || appState.isFrozen) {
+      lastTickMs = Date.now();
+      return;
     }
-    if (waveIcon) waveIcon.classList.remove('animate-pulse');
+
+    const now = Date.now();
+    const deltaSec = Math.max(0.2, (now - (lastTickMs || now)) / 1000);
+    lastTickMs = now;
+
+    const track = getCurrentTrack();
+    if (track.audioSrc && !eldersAudio.paused) {
+      appState.elapsedSec = eldersAudio.currentTime || 0;
+    } else {
+      appState.elapsedSec += deltaSec;
+      const duration = track.durationSec || 45;
+      if (appState.elapsedSec >= duration) {
+        advanceToNextElderTrack();
+        return;
+      }
+    }
+
+    updateEldersPlayerUI();
+  }, 500);
+}
+
+function loadElderTrack(index, autoPlay = false, bypassBlock = false) {
+  if (appState.isBlocked && !bypassBlock) {
+    showToast('Swichi ya "Kuzuia" imewashwa (ON). Zima kwanza ili kubadili kipande.');
+    return;
+  }
+
+  const total = ELDERS_VOICES.length;
+  if (!total) return;
+
+  appState.currentTrackIndex = ((index % total) + total) % total;
+  appState.elapsedSec = 0;
+
+  eldersAudio.pause();
+  eldersAudio.removeAttribute('src');
+
+  const track = getCurrentTrack();
+  if (track.audioSrc) {
+    eldersAudio.src = track.audioSrc;
+    eldersAudio.load();
+  }
+
+  saveState();
+  updateEldersPlayerUI();
+
+  if (autoPlay && !appState.isFrozen) {
+    playElderQueue();
+  }
+}
+
+function playElderQueue() {
+  if (appState.isFrozen) {
+    appState.isFrozen = false;
+    showToast('Kugandisha kumezimwa (OFF). Kucheza kunaendelea.');
+  }
+
+  appState.isPlaying = true;
+  const track = getCurrentTrack();
+
+  if (track.audioSrc) {
+    if (appState.elapsedSec > 0 && eldersAudio.readyState >= 1) {
+      try {
+        eldersAudio.currentTime = appState.elapsedSec;
+      } catch (_) {}
+    }
+    eldersAudio.play().catch(() => {});
+  }
+
+  startTicker();
+  saveState();
+  updateEldersPlayerUI();
+}
+
+function pauseElderQueue() {
+  appState.isPlaying = false;
+  eldersAudio.pause();
+  stopTicker();
+  saveState();
+  updateEldersPlayerUI();
+}
+
+function advanceToNextElderTrack() {
+  if (appState.isFrozen) return;
+
+  const nextIndex = appState.currentTrackIndex + 1;
+  if (nextIndex < ELDERS_VOICES.length) {
+    loadElderTrack(nextIndex, true, true);
+  } else if (appState.loopAll) {
+    // Imefika mwisho wa orodha -> inarudia mwanzo (Kipande 01) na kuendelea
+    loadElderTrack(0, true, true);
+  } else {
+    pauseElderQueue();
+  }
+}
+
+function prevElderTrack() {
+  if (appState.isBlocked) {
+    showToast('Swichi ya "Kuzuia" imewashwa (ON).');
+    return;
+  }
+  loadElderTrack(appState.currentTrackIndex - 1, appState.isPlaying, false);
+}
+
+function nextElderTrack() {
+  if (appState.isBlocked) {
+    showToast('Swichi ya "Kuzuia" imewashwa (ON).');
+    return;
+  }
+  loadElderTrack(appState.currentTrackIndex + 1, appState.isPlaying, false);
+}
+
+function toggleLoopAll() {
+  if (appState.isBlocked) {
+    showToast('Swichi ya "Kuzuia" imewashwa (ON).');
+    return;
+  }
+  appState.loopAll = !appState.loopAll;
+  showToast(
+    appState.loopAll
+      ? 'Loop Nzima imewashwa (IKIFIKA MWISHO INARUDIA MWANZO).'
+      : 'Loop Nzima imezimwa.'
+  );
+  saveState();
+  updateEldersPlayerUI();
+}
+
+function toggleFreezeSwitch() {
+  appState.isFrozen = !appState.isFrozen;
+  if (appState.isFrozen) {
+    appState.isPlaying = false;
+    eldersAudio.pause();
+    stopTicker();
+    showToast('Kugandisha: ON (Hali imegandishwa palepale).');
+  } else {
+    showToast('Kugandisha: OFF.');
+  }
+  saveState();
+  updateEldersPlayerUI();
+}
+
+function toggleBlockSwitch() {
+  appState.isBlocked = !appState.isBlocked;
+  showToast(
+    appState.isBlocked
+      ? 'Kuzuia: ON (Mabadiliko ya haraka na kufunga modal vimezuiwa).'
+      : 'Kuzuia: OFF.'
+  );
+  saveState();
+  updateEldersPlayerUI();
+}
+
+function formatSeconds(sec) {
+  const clean = Math.max(0, Math.floor(sec || 0));
+  const m = String(Math.floor(clean / 60)).padStart(2, '0');
+  const s = String(clean % 60).padStart(2, '0');
+  return `${m}:${s}`;
+}
+
+function updateEldersPlayerUI() {
+  const track = getCurrentTrack();
+  const titleEl = document.getElementById('elderTrackTitle');
+  const posEl = document.getElementById('elderTrackPos');
+  const statusEl = document.getElementById('elderPlayerStatus');
+  const progressEl = document.getElementById('elderProgressBar');
+  const elapsedEl = document.getElementById('elderElapsedText');
+  const durationEl = document.getElementById('elderDurationText');
+  const loopBtn = document.getElementById('elderLoopBtn');
+  const freezeBtn = document.getElementById('elderFreezeBtn');
+  const blockBtn = document.getElementById('elderBlockBtn');
+  const freezeLabel = document.getElementById('freezeStateLabel');
+  const blockLabel = document.getElementById('blockStateLabel');
+
+  const isMatchedBySearch = matchesSearch([track.label, track.videoId]);
+  if (titleEl) {
+    titleEl.textContent = isMatchedBySearch
+      ? track.label
+      : `${track.label} (Haiko kwenye utafutaji wa sasa)`;
+  }
+
+  if (posEl) {
+    posEl.textContent = `${appState.currentTrackIndex + 1} / ${ELDERS_VOICES.length}`;
+  }
+
+  const totalDuration =
+    track.audioSrc && Number.isFinite(eldersAudio.duration) && eldersAudio.duration > 0
+      ? eldersAudio.duration
+      : track.durationSec || 45;
+
+  const currentSec =
+    track.audioSrc && !eldersAudio.paused
+      ? eldersAudio.currentTime || appState.elapsedSec
+      : appState.elapsedSec;
+
+  const pct = Math.min(100, Math.max(0, (currentSec / totalDuration) * 100));
+
+  if (progressEl) {
+    progressEl.style.width = `${pct}%`;
+    progressEl.setAttribute('aria-valuenow', String(Math.round(pct)));
+  }
+  if (elapsedEl) elapsedEl.textContent = formatSeconds(currentSec);
+  if (durationEl) durationEl.textContent = formatSeconds(totalDuration);
+
+  if (statusEl) {
+    if (appState.isFrozen) {
+      statusEl.textContent = 'IMEGANDISHWA';
+    } else if (appState.isPlaying) {
+      statusEl.textContent = appState.loopAll ? 'INACHEZA · AUTO-NEXT & LOOP' : 'INACHEZA · AUTO-NEXT';
+    } else {
+      statusEl.textContent = 'IMESIMAMA';
+    }
+  }
+
+  if (loopBtn) {
+    loopBtn.classList.toggle('is-active', appState.loopAll);
+    loopBtn.setAttribute('aria-pressed', String(appState.loopAll));
+    loopBtn.textContent = appState.loopAll
+      ? '🔁 Loop Nzima: Imewashwa'
+      : '🔁 Loop Nzima: Imezimwa';
+  }
+
+  if (freezeBtn) {
+    freezeBtn.classList.toggle('is-on', appState.isFrozen);
+    freezeBtn.setAttribute('aria-checked', String(appState.isFrozen));
+    freezeBtn.setAttribute('aria-pressed', String(appState.isFrozen));
+  }
+  if (freezeLabel) freezeLabel.textContent = appState.isFrozen ? 'ON' : 'OFF';
+
+  if (blockBtn) {
+    blockBtn.classList.toggle('is-on', appState.isBlocked);
+    blockBtn.setAttribute('aria-checked', String(appState.isBlocked));
+    blockBtn.setAttribute('aria-pressed', String(appState.isBlocked));
+  }
+  if (blockLabel) blockLabel.textContent = appState.isBlocked ? 'ON' : 'OFF';
+}
+
+// ==========================================================================
+// EVENT WIRING & INITIALIZATION
+// ==========================================================================
+function bindEvents() {
+  // Global Search Bar
+  const searchInput = document.getElementById('globalSearchInput');
+  if (searchInput) {
+    searchInput.addEventListener('input', (e) => {
+      appState.searchQuery = e.target.value || '';
+      renderAllSections();
+    });
+  }
+
+  const clearSearchBtn = document.getElementById('clearSearchBtn');
+  if (clearSearchBtn) {
+    clearSearchBtn.addEventListener('click', () => {
+      if (searchInput) searchInput.value = '';
+      appState.searchQuery = '';
+      renderAllSections();
+    });
+  }
+
+  // Library Tabs
+  document.querySelectorAll('[data-library-filter]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      setLibraryFilter(btn.dataset.libraryFilter);
+    });
+  });
+
+  // Elders Audio Controls & Switches
+  document.getElementById('elderPrevBtn')?.addEventListener('click', prevElderTrack);
+  document.getElementById('elderPlayBtn')?.addEventListener('click', playElderQueue);
+  document.getElementById('elderPauseBtn')?.addEventListener('click', pauseElderQueue);
+  document.getElementById('elderNextBtn')?.addEventListener('click', nextElderTrack);
+  document.getElementById('elderLoopBtn')?.addEventListener('click', toggleLoopAll);
+  document.getElementById('elderFreezeBtn')?.addEventListener('click', toggleFreezeSwitch);
+  document.getElementById('elderBlockBtn')?.addEventListener('click', toggleBlockSwitch);
+
+  // Audio Element End Event (for real uploaded .mp3/.m4a files on GitHub)
+  eldersAudio.addEventListener('ended', () => {
+    advanceToNextElderTrack();
+  });
+
+  // Keep state synced when switching browser tabs
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && appState.isPlaying && !appState.isFrozen) {
+      if (!tickerIntervalId) startTicker();
+    }
+    updateEldersPlayerUI();
+  });
+
+  // Modal Close Controls
+  document.getElementById('closeModalBtn')?.addEventListener('click', () => closeVideoModal(false));
+  document.getElementById('videoModal')?.addEventListener('click', (e) => {
+    if (e.target && e.target.id === 'videoModal') {
+      closeVideoModal(false);
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      const modal = document.getElementById('videoModal');
+      if (modal && !modal.classList.contains('hidden')) {
+        closeVideoModal(false);
+      }
+    }
   });
 }
 
-/* ---------------- Stats & Initialization ---------------- */
-function updateStatCounter(id, value) {
-  const el = document.getElementById(id);
-  if (el) el.textContent = Number(value).toLocaleString();
+function escapeHtml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
 }
 
-function initStats() {
-  let visits = 1234;
-  let subscriberExtra = 0;
-  try {
-    const storedVisits = parseInt(localStorage.getItem(STORAGE_KEYS.visits) || '1234', 10);
-    visits = (Number.isNaN(storedVisits) ? 1234 : storedVisits) + 1;
-    localStorage.setItem(STORAGE_KEYS.visits, String(visits));
-
-    const subs = JSON.parse(localStorage.getItem(STORAGE_KEYS.subscribers) || '[]');
-    subscriberExtra = Array.isArray(subs) ? subs.length : 0;
-  } catch (_) {}
-
-  updateStatCounter('visitorCount', visits);
-  updateStatCounter('subscriberCount', 567 + subscriberExtra);
+function escapeAttr(str) {
+  return escapeHtml(str).replace(/'/g, '&#39;');
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-  let savedLang = 'sw';
-  try {
-    savedLang = localStorage.getItem(STORAGE_KEYS.lang) || 'sw';
-  } catch (_) {}
-
-  setLanguage(savedLang);
-  initStats();
-  renderWisdomFeed();
-  loadChannelVideos();
-  setupSearch('globalSearch', 'searchResults');
-  setupSearch('mobileSearch', 'mobileSearchResults');
-  initAudioPlayer();
-
-  window.addEventListener('scroll', handleScroll, { passive: true });
-  handleScroll();
-
-  document.addEventListener('click', (e) => {
-    if (!e.target.closest('#globalSearch') && !e.target.closest('#searchResults')) {
-      const sr = document.getElementById('searchResults');
-      if (sr) sr.classList.add('hidden');
-    }
-    if (e.target.id === 'videoModal') closeVideoModal();
-    if (e.target.id === 'readerModal') closeReaderModal();
-  });
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      closeVideoModal();
-      closeReaderModal();
-      toggleMobileMenu(false);
-    }
-  });
+  loadSavedState();
+  bindEvents();
+  setLibraryFilter(appState.libraryFilter);
+  loadElderTrack(appState.currentTrackIndex, false, true);
+  renderAllSections();
 });
