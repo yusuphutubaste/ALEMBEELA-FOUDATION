@@ -15,7 +15,9 @@
     --border-gold: rgba(154, 138, 22, 0.45);
 }
 
-* {
+*,
+*::before,
+*::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -75,6 +77,7 @@ body {
     justify-content: center;
     box-shadow: 0 0 15px rgba(154, 138, 22, 0.45);
     border: 1px solid #FFF2B2;
+    flex-shrink: 0;
 }
 
 .brand-text {
@@ -272,7 +275,10 @@ body {
     font-size: 0.98rem;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
+    border: none;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
 
@@ -455,6 +461,7 @@ section {
    ========================================================= */
 .pillars-section {
     background: linear-gradient(180deg, var(--black-deep) 0%, var(--emerald-dark) 100%);
+    border-bottom: 1px solid var(--border-gold);
 }
 
 .pillars-grid {
@@ -478,3 +485,445 @@ section {
 
 .pillar-icon {
     width: 48px;
+    height: 48px;
+    border-radius: 10px;
+    background: rgba(7, 98, 52, 0.55);
+    border: 1px solid var(--gold-main);
+    color: var(--gold-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+}
+
+.pillar-card h3 {
+    color: var(--gold-bright);
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.pillar-card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+/* =========================================================
+   VIDEO LIBRARY SECTION (FILTERS + GRID CARDS SIDE BY SIDE)
+   ========================================================= */
+.video-section {
+    background-color: var(--black-deep);
+    border-bottom: 1px solid var(--border-gold);
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 36px;
+}
+
+.filter-btn {
+    background: var(--black-card);
+    color: var(--text-muted);
+    border: 1px solid var(--gold-main);
+    padding: 9px 18px;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: linear-gradient(135deg, #9A8A16, #9A530B);
+    color: var(--text-white);
+    border-color: var(--gold-bright);
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+.video-card {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(180deg, var(--black-card) 0%, #070d09 100%);
+    border: 1px solid var(--gold-main);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.55);
+    transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold-bright);
+    box-shadow: 0 14px 30px rgba(154, 138, 22, 0.22);
+}
+
+.video-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background: #020403;
+    border-bottom: 1px solid var(--border-gold);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+.video-info {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding: 20px;
+}
+
+.video-category {
+    align-self: flex-start;
+    background: rgba(7, 98, 52, 0.55);
+    color: var(--gold-bright);
+    border: 1px solid var(--gold-main);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    padding: 4px 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+.video-info h3 {
+    color: var(--text-white);
+    font-size: 1.12rem;
+    line-height: 1.35;
+    margin-bottom: 10px;
+}
+
+.video-info p {
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    margin-bottom: 18px;
+    flex: 1;
+}
+
+.video-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(154, 138, 22, 0.25);
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.watch-yt-link {
+    color: var(--gold-bright);
+    text-decoration: none;
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.3s;
+}
+
+.watch-yt-link:hover {
+    color: #FFF2B2;
+}
+
+.video-cta {
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* =========================================================
+   CONTACT SECTION (2-COLUMN GRID)
+   ========================================================= */
+.contact-section {
+    background: linear-gradient(180deg, var(--black-card) 0%, var(--black-deep) 100%);
+    border-bottom: 1px solid var(--border-gold);
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+    align-items: start;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    background: var(--black-card);
+    border: 1px solid var(--gold-main);
+    border-radius: 12px;
+    padding: 18px 20px;
+    transition: border-color 0.3s;
+}
+
+.contact-item:hover {
+    border-color: var(--gold-bright);
+}
+
+.contact-item > i {
+    color: var(--gold-bright);
+    font-size: 1.3rem;
+    margin-top: 3px;
+    flex-shrink: 0;
+}
+
+.contact-item h4 {
+    color: var(--gold-bright);
+    font-size: 1rem;
+    margin-bottom: 4px;
+}
+
+.contact-item a,
+.contact-item p {
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    text-decoration: none;
+}
+
+.contact-item a:hover {
+    color: var(--text-white);
+}
+
+.contact-form {
+    background: linear-gradient(180deg, rgba(4, 68, 35, 0.35), var(--black-card));
+    border: 1px solid var(--gold-main);
+    border-radius: 12px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.45);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    background: var(--black-deep);
+    color: var(--text-white);
+    border: 1px solid var(--border-gold);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 0.95rem;
+    transition: border-color 0.3s;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--gold-bright);
+}
+
+.contact-form button {
+    align-self: flex-start;
+}
+
+/* =========================================================
+   FOOTER SECTION (3-COLUMN GRID + BOTTOM BAR)
+   ========================================================= */
+.footer {
+    background: linear-gradient(180deg, #040705 0%, var(--emerald-dark) 140%);
+    padding-top: 60px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    gap: 36px;
+    padding-bottom: 40px;
+}
+
+.footer-about {
+    color: var(--text-muted);
+    font-size: 0.93rem;
+    margin: 15px 0 18px;
+    max-width: 390px;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 10px;
+}
+
+.footer-socials a {
+    width: 38px;
+    height: 38px;
+    border-radius: 8px;
+    background: var(--black-card);
+    border: 1px solid var(--gold-main);
+    color: var(--gold-bright);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-socials a:hover {
+    background: var(--gold-bright);
+    color: var(--black-deep);
+}
+
+.footer-heading {
+    color: var(--gold-bright);
+    font-size: 1.02rem;
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    position: relative;
+}
+
+.footer-heading::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 34px;
+    height: 2px;
+    background: var(--gold-bright);
+}
+
+.footer-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-list a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.93rem;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.footer-list a:hover {
+    color: var(--gold-bright);
+    padding-left: 5px;
+}
+
+.footer-bottom {
+    border-top: 1px solid var(--border-gold);
+    padding: 20px 0 28px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    font-size: 0.88rem;
+    color: var(--text-muted);
+}
+
+.footer-motto {
+    color: var(--gold-bright);
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN (TABLET & MOBILE)
+   ========================================================= */
+@media (max-width: 900px) {
+    .founder-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .founder-card {
+        max-width: 380px;
+        margin: 0 auto;
+        width: 100%;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 280px;
+        height: 100vh;
+        background: var(--black-card);
+        border-left: 1.5px solid var(--gold-main);
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+        gap: 18px;
+        z-index: 999;
+        transition: right 0.3s ease;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .mobile-menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--border-gold);
+    }
+
+    .close-menu-btn {
+        background: transparent;
+        border: none;
+        color: var(--gold-bright);
+        font-size: 1.8rem;
+        line-height: 1;
+        cursor: pointer;
+    }
+}
+
+@media (max-width: 600px) {
+    section {
+        padding: 58px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.1rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.7rem;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+    }
+}
