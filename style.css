@@ -67,12 +67,35 @@ body {
   text-decoration: none;
 }
 
-.brand-logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 2px solid var(--primary-accent);
+/* Nembo ya Kisasa ya AF (Monogram Badge) */
+.af-logo-badge {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, #e67e22 0%, #c0392b 100%);
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 1px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 15px rgba(230, 126, 34, 0.35);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  user-select: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo-area:hover .af-logo-badge {
+  transform: rotate(-6deg) scale(1.05);
+  box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5);
+}
+
+.footer-af-badge {
+  width: 36px;
+  height: 36px;
+  font-size: 15px;
+  border-radius: 10px;
 }
 
 .logo-text {
@@ -293,6 +316,11 @@ body {
   gap: 8px;
 }
 
+.btn-secondary:hover {
+  background: #ffffff;
+  color: #0f172a;
+}
+
 /* Stats */
 .stats {
   display: flex;
@@ -478,6 +506,79 @@ section {
   max-width: 600px;
 }
 
+/* Dual Channels Grid */
+.dual-channels-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.channel-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  padding: 35px 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.channel-card h3 {
+  font-size: 20px;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+
+.channel-card p {
+  color: var(--text-muted);
+  font-size: 14px;
+  line-height: 1.6;
+  margin-bottom: 20px;
+  flex: 1;
+}
+
+.channel-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.12);
+  color: #ef4444;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.channel-badge-secondary {
+  background: rgba(230, 126, 34, 0.15);
+  color: var(--primary-accent);
+}
+
+.btn-channel-card {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ef4444;
+  color: #ffffff;
+  padding: 11px 22px;
+  border-radius: 25px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 13px;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-channel-card:hover {
+  background: #dc2626;
+  transform: translateY(-2px);
+}
+
 /* Ukurasa wa Picha Pekee (picha.html) */
 .page-header {
   padding: 60px 20px 30px;
@@ -526,53 +627,6 @@ section {
 .gallery-placeholder p {
   font-size: 12px;
   color: var(--text-muted);
-}
-
-/* Channel Promo */
-.channel-promo-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  padding: 40px 20px;
-  border-radius: 16px;
-  text-align: center;
-}
-
-.channel-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(239, 68, 68, 0.12);
-  color: #ef4444;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  margin-bottom: 10px;
-}
-
-.channel-promo-box h2 {
-  font-size: 24px;
-  margin-bottom: 8px;
-}
-
-.channel-promo-box p {
-  color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto 20px;
-  font-size: 14px;
-}
-
-.btn-channel-large {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: #ef4444;
-  color: #ffffff;
-  padding: 12px 26px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 14px;
 }
 
 /* About */
@@ -660,13 +714,6 @@ section {
   align-items: center;
   gap: 10px;
   margin-bottom: 10px;
-}
-
-.footer-logo {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  object-fit: cover;
 }
 
 .footer-brand {
@@ -815,6 +862,10 @@ section {
 .legal-links a {
   color: #9ca3af;
   text-decoration: none;
+}
+
+.legal-links a:hover {
+  color: var(--primary-accent);
 }
 
 .legal-links .divider {
