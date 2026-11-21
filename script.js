@@ -1,16 +1,15 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. MWAKA WA KIOTOMATIKI (Dynamic Year kwenye Footer)
+  // 1. MWAKA WA SASA KIOTOMATIKI (Dynamic Year)
   const currentYearSpan = document.getElementById("currentYear");
   if (currentYearSpan) {
     currentYearSpan.textContent = new Date().getFullYear();
   }
 
-  // 2. DARK MODE / LIGHT MODE SWITCH (Inafanya kazi 100%)
+  // 2. BADILI MUONEKANO (Dark / Light Mode)
   const themeToggle = document.getElementById("themeToggle");
   const htmlRoot = document.documentElement;
 
-  // Angalia mandhari iliyohifadhiwa au anza na dark
   const savedTheme = localStorage.getItem("alembeelaTheme") || "dark";
   htmlRoot.setAttribute("data-theme", savedTheme);
 
@@ -23,7 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. MENU YA SIMU (Mobile Hamburger Toggle)
+  // 3. MENYU YA SIMU (Mobile Hamburger)
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const navLinks = document.getElementById("navLinks");
 
@@ -33,7 +32,6 @@ document.addEventListener("DOMContentLoaded", () => {
       navLinks.classList.toggle("active");
     });
 
-    // Funga menu kiungo kikibofywa
     navLinks.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         hamburgerBtn.classList.remove("active");
@@ -42,16 +40,16 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. LIVE INSTANT SEARCH (Inatafuta video, Shorts, na kadi)
+  // 4. UTAFUTAJI WA PAPO HAPO (Live Instant Search)
   const searchInput = document.getElementById("searchInput");
   const clearSearch = document.getElementById("clearSearch");
   const searchableItems = document.querySelectorAll(".searchable-item");
 
   if (searchInput) {
-    searchInput.addEventListener("input", (e) => {
-      const term = e.target.value.toLowerCase().trim();
+    searchInput.addEventListener("input", function() {
+      const query = this.value.toLowerCase().trim();
 
-      if (term.length > 0) {
+      if (query.length > 0) {
         if (clearSearch) clearSearch.style.display = "inline-block";
       } else {
         if (clearSearch) clearSearch.style.display = "none";
@@ -61,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const keywords = (item.getAttribute("data-keywords") || "").toLowerCase();
         const text = item.innerText.toLowerCase();
 
-        if (term === "" || keywords.includes(term) || text.includes(term)) {
+        if (query === "" || keywords.includes(query) || text.includes(query)) {
           item.style.display = "";
         } else {
           item.style.display = "none";
@@ -79,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
-  // 5. TAKWIMU ANIMATED COUNTERS
+  // 5. KUHESABU TAKWIMU (Counter Animation)
   const counters = document.querySelectorAll(".counter");
   counters.forEach(counter => {
     counter.innerText = "0";
@@ -87,11 +85,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const updateCounter = () => {
       const current = +counter.innerText.replace("+", "");
-      const increment = Math.max(1, Math.ceil(target / 40));
+      const increment = Math.max(1, Math.ceil(target / 30));
 
       if (current < target) {
         counter.innerText = `${current + increment}`;
-        setTimeout(updateCounter, 25);
+        setTimeout(updateCounter, 30);
       } else {
         counter.innerText = `${target}+`;
       }
@@ -100,12 +98,12 @@ document.addEventListener("DOMContentLoaded", () => {
     updateCounter();
   });
 
-  // 6. CONTACT & NEWSLETTER FORM HANDLERS
+  // 6. FOMU YA MAWASILIANO & TAARIFA MPYA
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Ahsante! Ujumbe wako umepokelewa na timu ya Alembeela Foundation.");
+      alert("Ahsante sana! Ujumbe wako umefika kwa timu ya Alembeela Foundation.");
       contactForm.reset();
     });
   }
@@ -114,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (newsletterForm) {
     newsletterForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Ahsante kwa kujiunga na jarida letu!");
+      alert("Ahsante kwa kujiunga nasi!");
       newsletterForm.reset();
     });
   }
