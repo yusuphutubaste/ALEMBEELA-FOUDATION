@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. MWAKA WA SASA KIOTOMATIKI (Dynamic Year)
+  // 1. MWAKA WA SASA KIOTOMATIKI (Dynamic Year kwenye Footer)
   const currentYearSpan = document.getElementById("currentYear");
   if (currentYearSpan) {
     currentYearSpan.textContent = new Date().getFullYear();
