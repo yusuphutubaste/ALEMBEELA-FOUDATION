@@ -1,23 +1,29 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. Dark Mode / Light Mode Switch (Ikiwa na kumbukumbu ya localStorage)
+  // 1. MWAKA WA KIOTOMATIKI (Dynamic Year kwenye Footer)
+  const currentYearSpan = document.getElementById("currentYear");
+  if (currentYearSpan) {
+    currentYearSpan.textContent = new Date().getFullYear();
+  }
+
+  // 2. DARK MODE / LIGHT MODE SWITCH (Inafanya kazi 100%)
   const themeToggle = document.getElementById("themeToggle");
   const htmlRoot = document.documentElement;
 
-  // Angalia uchaguzi uliopita
+  // Angalia mandhari iliyohifadhiwa au anza na dark
   const savedTheme = localStorage.getItem("alembeelaTheme") || "dark";
   htmlRoot.setAttribute("data-theme", savedTheme);
 
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
       const currentTheme = htmlRoot.getAttribute("data-theme");
-      const newTheme = currentTheme === "dark" ? "light" : "dark";
-      htmlRoot.setAttribute("data-theme", newTheme);
-      localStorage.setItem("alembeelaTheme", newTheme);
+      const nextTheme = currentTheme === "dark" ? "light" : "dark";
+      htmlRoot.setAttribute("data-theme", nextTheme);
+      localStorage.setItem("alembeelaTheme", nextTheme);
     });
   }
 
-  // 2. Mobile Menu (Hamburger Toggle)
+  // 3. MENU YA SIMU (Mobile Hamburger Toggle)
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const navLinks = document.getElementById("navLinks");
 
@@ -27,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
       navLinks.classList.toggle("active");
     });
 
-    // Funga menu mtu akibofya kiungo chochote
+    // Funga menu kiungo kikibofywa
     navLinks.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
         hamburgerBtn.classList.remove("active");
@@ -36,7 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. Live Instant Search Bar
+  // 4. LIVE INSTANT SEARCH (Inatafuta video, Shorts, na kadi)
   const searchInput = document.getElementById("searchInput");
   const clearSearch = document.getElementById("clearSearch");
   const searchableItems = document.querySelectorAll(".searchable-item");
@@ -46,16 +52,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const term = e.target.value.toLowerCase().trim();
 
       if (term.length > 0) {
-        clearSearch.style.display = "block";
+        if (clearSearch) clearSearch.style.display = "inline-block";
       } else {
-        clearSearch.style.display = "none";
+        if (clearSearch) clearSearch.style.display = "none";
       }
 
       searchableItems.forEach(item => {
         const keywords = (item.getAttribute("data-keywords") || "").toLowerCase();
-        const text = item.textContent.toLowerCase();
+        const text = item.innerText.toLowerCase();
 
-        if (keywords.includes(term) || text.includes(term)) {
+        if (term === "" || keywords.includes(term) || text.includes(term)) {
           item.style.display = "";
         } else {
           item.style.display = "none";
@@ -63,90 +69,38 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    clearSearch.addEventListener("click", () => {
-      searchInput.value = "";
-      clearSearch.style.display = "none";
-      searchableItems.forEach(item => (item.style.display = ""));
-      searchInput.focus();
-    });
+    if (clearSearch) {
+      clearSearch.addEventListener("click", () => {
+        searchInput.value = "";
+        clearSearch.style.display = "none";
+        searchableItems.forEach(item => (item.style.display = ""));
+        searchInput.focus();
+      });
+    }
   }
 
-  // 4. Interactive Photo Lightbox Modal
-  const galleryItems = document.querySelectorAll(".gallery-item");
-  const lightboxModal = document.getElementById("lightboxModal");
-  const lightboxImg = document.getElementById("lightboxImg");
-  const lightboxCaption = document.getElementById("lightboxCaption");
-  const closeLightbox = document.getElementById("closeLightbox");
-
-  galleryItems.forEach(item => {
-    item.addEventListener("click", () => {
-      const img = item.querySelector("img");
-      const caption = item.getAttribute("data-caption");
-
-      if (img && lightboxModal) {
-        lightboxImg.src = img.src;
-        lightboxCaption.innerText = caption || img.alt;
-        lightboxModal.style.display = "flex";
-      }
-    });
-  });
-
-  if (closeLightbox && lightboxModal) {
-    closeLightbox.addEventListener("click", () => {
-      lightboxModal.style.display = "none";
-    });
-
-    lightboxModal.addEventListener("click", (e) => {
-      if (e.target === lightboxModal) {
-        lightboxModal.style.display = "none";
-      }
-    });
-  }
-
-  // 5. Takwimu Animated Counter
+  // 5. TAKWIMU ANIMATED COUNTERS
   const counters = document.querySelectorAll(".counter");
-  let animated = false;
+  counters.forEach(counter => {
+    counter.innerText = "0";
+    const target = +counter.getAttribute("data-target");
 
-  const runCounters = () => {
-    counters.forEach(counter => {
-      counter.innerText = "0";
-      const target = +counter.getAttribute("data-target");
+    const updateCounter = () => {
+      const current = +counter.innerText.replace("+", "");
+      const increment = Math.max(1, Math.ceil(target / 40));
 
-      const updateCounter = () => {
-        const current = +counter.innerText.replace("+", "");
-        const increment = Math.max(1, Math.ceil(target / 50));
-
-        if (current < target) {
-          counter.innerText = `${current + increment}`;
-          setTimeout(updateCounter, 25);
-        } else {
-          counter.innerText = `${target}+`;
-        }
-      };
-
-      updateCounter();
-    });
-  };
-
-  // Anzisha namba ukurasa ukipakia
-  runCounters();
-
-  // 6. Smooth Scrolling for Internal Links
-  const allAnchorLinks = document.querySelectorAll('a[href^="#"]');
-  allAnchorLinks.forEach(link => {
-    link.addEventListener("click", function(e) {
-      const targetId = this.getAttribute("href");
-      if (targetId && targetId.length > 1) {
-        const targetElement = document.querySelector(targetId);
-        if (targetElement) {
-          e.preventDefault();
-          targetElement.scrollIntoView({ behavior: "smooth" });
-        }
+      if (current < target) {
+        counter.innerText = `${current + increment}`;
+        setTimeout(updateCounter, 25);
+      } else {
+        counter.innerText = `${target}+`;
       }
-    });
+    };
+
+    updateCounter();
   });
 
-  // 7. Contact Form Handler
+  // 6. CONTACT & NEWSLETTER FORM HANDLERS
   const contactForm = document.getElementById("contactForm");
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
@@ -156,12 +110,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 8. Newsletter Form Handler
   const newsletterForm = document.getElementById("newsletterForm");
   if (newsletterForm) {
     newsletterForm.addEventListener("submit", (e) => {
       e.preventDefault();
-      alert("Ahsante kwa kujiunga na jarida rasmi la Alembeela Foundation!");
+      alert("Ahsante kwa kujiunga na jarida letu!");
       newsletterForm.reset();
     });
   }
