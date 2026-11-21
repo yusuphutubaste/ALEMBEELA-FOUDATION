@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="sw" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Picha za Jamii | Alembeela Foundation</title>
+  
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="logo-area">
+        <img src="logo.png" alt="Alembeela Foundation Logo" class="brand-logo" onerror="this.style.display='none'">
+        <span class="logo-text">Alembeela <span>Foundation</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links" id="navLinks">
+          <li><a href="index.html">Rudi Mwanzo</a></li>
+          <li><a href="picha.html" class="active-link">Picha za Jamii</a></li>
+          <li><a href="index.html#featured">Video Zetu</a></li>
+          <li><a href="index.html#contact">Mawasiliano</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <button type="button" id="themeToggle" class="theme-btn" title="Badili mwonekano">
+          <i class="fa-solid fa-sun light-icon"></i>
+          <i class="fa-solid fa-moon dark-icon"></i>
+        </button>
+
+        <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" class="btn-channel-nav">
+          <i class="fa-brands fa-youtube"></i> @Alembeelawaidi
+        </a>
+
+        <button type="button" class="hamburger" id="hamburgerBtn" aria-label="Menyu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Kichwa cha Ukurasa wa Picha -->
+  <section class="page-header">
+    <div class="header-content">
+      <h1>Matunzio ya Picha za Jamii</h1>
+      <p>Kumbukumbu zetu katika picha: Wazee wetu, matukio ya jamii na maeneo yetu ya asili.</p>
+    </div>
+  </section>
+
+  <!-- Albamu ya Picha -->
+  <section class="gallery-full-section">
+    <div class="gallery-grid">
+      <!-- Sehemu hizi ziko wazi. Utakapokuwa tayari kuweka picha, badilisha tag ya <div> na kuwa:
+           <div class="gallery-item" data-caption="Maelezo ya picha">
+             <img src="jina_la_picha.jpg" alt="Picha">
+           </div>
+      -->
+      <div class="gallery-placeholder">
+        <i class="fa-solid fa-camera placeholder-icon"></i>
+        <h4>Picha #1</h4>
+        <p>Weka picha yako hapa baadaye</p>
+      </div>
+
+      <div class="gallery-placeholder">
+        <i class="fa-solid fa-camera placeholder-icon"></i>
+        <h4>Picha #2</h4>
+        <p>Weka picha yako hapa baadaye</p>
+      </div>
+
+      <div class="gallery-placeholder">
+        <i class="fa-solid fa-camera placeholder-icon"></i>
+        <h4>Picha #3</h4>
+        <p>Weka picha yako hapa baadaye</p>
+      </div>
+
+      <div class="gallery-placeholder">
+        <i class="fa-solid fa-camera placeholder-icon"></i>
+        <h4>Picha #4</h4>
+        <p>Weka picha yako hapa baadaye</p>
+      </div>
+
+      <div class="gallery-placeholder">
+        <i class="fa-solid fa-camera placeholder-icon"></i>
+        <h4>Picha #5</h4>
+        <p>Weka picha yako hapa baadaye</p>
+      </div>
+
+      <div class="gallery-placeholder">
+        <i class="fa-solid fa-camera placeholder-icon"></i>
+        <h4>Picha #6</h4>
+        <p>Weka picha yako hapa baadaye</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-bottom">
+      <div class="bottom-container">
+        <p class="copyright">&copy; <span id="currentYear"></span> Alembeela Foundation. Haki zote zimehifadhiwa.</p>
+        <div class="legal-links">
+          <a href="index.html">Rudi Ukurasa Mkuu</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
