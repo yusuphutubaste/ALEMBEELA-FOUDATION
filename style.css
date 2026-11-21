@@ -1,8 +1,3 @@
----
-
-### 3. Faili la Tatu: `style.css` (Full Code)
-
-```css
 /* =========================================================
    ALEMBEELA FOUNDATION - OFFICIAL THEME (EMERALD, BLACK & GOLD)
    ========================================================= */
@@ -478,3 +473,8 @@ section {
 
 .pillar-card:hover {
     transform: translateY(-5px);
+    border-color: var(--gold-bright);
+}
+
+.pillar-icon {
+    width: 48px;
