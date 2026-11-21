@@ -66,7 +66,7 @@ body {
   text-decoration: none;
 }
 
-/* Nembo ya Kisasa ya "AF" */
+/* Nembo ya AF (Premium Gradient Monogram) */
 .af-logo-badge {
   width: 48px;
   height: 48px;
@@ -238,7 +238,7 @@ body {
   flex-wrap: wrap;
 }
 
-/* Vitufe */
+/* Buttons */
 .btn-primary {
   background: var(--primary-accent);
   color: #ffffff;
@@ -313,7 +313,7 @@ body {
   font-size: 13px;
 }
 
-/* Common Sections */
+/* Sections */
 section {
   padding: 55px 20px;
   max-width: 1200px;
