@@ -4,8 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Alembeela Foundation | Utamaduni na Historia</title>
-  <link rel="stylesheet" href="style.css">
+  
+  <!-- Fonts & Icons -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -53,7 +57,7 @@
     </div>
   </section>
 
-  <!-- Kundi 1: ÚMBO CHA BABEMBE (Video Kuu & Mfululizo) -->
+  <!-- Kundi 1: ÚMBO CHA BABEMBE (Video Ndefu) -->
   <section id="umbo-series" class="video-section">
     <div class="section-title">
       <h2>ÚMBO CHA BABEMBE</h2>
@@ -100,7 +104,7 @@
   <section id="shorts-series" class="shorts-section">
     <div class="section-title">
       <h2>Vipande Fupi & Matukio</h2>
-      <p>Tazama Shorts za papo hapo zenye mafunzo na matukio muhimu</p>
+      <p>Tazama Shorts zenye mafunzo na matukio muhimu</p>
     </div>
 
     <div class="shorts-grid">
@@ -139,11 +143,11 @@
     </div>
   </section>
 
-  <!-- Sehemu ya Chaneli Nyingine / Chaneli Zetu -->
+  <!-- Sehemu ya Chaneli Nyingine -->
   <section id="channels" class="channel-promo">
     <div class="channel-promo-box">
       <h2>Fuatilia Pia Chaneli Yetu Nyingine</h2>
-      <p>Kwenye <strong>@Alembeelawaidi</strong> tunashiriki simulizi nyingine nyingi, matukio ya kila siku na maudhui ya kipekee. Bonyeza hapa chini kuungana nasi:</p>
+      <p>Kwenye <strong>@Alembeelawaidi</strong> tunashiriki simulizi nyingi za ziada na matukio ya kipekee. Ungana nasi hapa:</p>
       <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" class="btn-channel-large">
         Tembelea @Alembeelawaidi Kwenye YouTube
       </a>
@@ -172,7 +176,7 @@
   <section id="contact" class="contact">
     <div class="section-title">
       <h2>Wasiliana Nasi</h2>
-      <p>Una maoni au unataka kushiriki nasi? Tuandikie hapa:</p>
+      <p>Una maoni au unataka kushiriki nasi? Tuandikie ujumbe wako hapa:</p>
     </div>
     <form class="contact-form" id="contactForm">
       <input type="text" placeholder="Jina Lako Kamili" required>
@@ -182,9 +186,84 @@
     </form>
   </section>
 
-  <!-- Footer Safi Isiyo na Maneno Yasiyotakiwa -->
-  <footer>
-    <p>&copy; 2026 Alembeela Foundation. Haki zote zimehifadhiwa.</p>
+  <!-- Modern 4-Column Footer -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      
+      <!-- Safu 1: Brand Info -->
+      <div class="footer-col brand-col">
+        <h3 class="footer-brand">Alembeela <span>Foundation</span></h3>
+        <p class="brand-mission">
+          Kuhifadhi urithi, mila, na simulizi halisi za jamii yetu kwa ajili ya kuelimisha na kuhamasisha vizazi vya sasa na vijavyo.
+        </p>
+        <div class="social-links">
+          <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="#" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" target="_blank" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+        </div>
+      </div>
+
+      <!-- Safu 2: Quick Links -->
+      <div class="footer-col">
+        <h4 class="col-title">Viungo vya Haraka</h4>
+        <ul class="footer-nav">
+          <li><a href="#home">Mwanzo</a></li>
+          <li><a href="#about">Kuhusu Sisi</a></li>
+          <li><a href="#umbo-series">Úmbo cha Babembe</a></li>
+          <li><a href="#shorts-series">Vipande Fupi</a></li>
+          <li><a href="#contact">Mawasiliano</a></li>
+        </ul>
+      </div>
+
+      <!-- Safu 3: Contact Details -->
+      <div class="footer-col contact-col">
+        <h4 class="col-title">Mawasiliano</h4>
+        <ul class="contact-list">
+          <li>
+            <i class="fa-solid fa-location-dot"></i>
+            <span>Denver, CO, Marekani</span>
+          </li>
+          <li>
+            <i class="fa-solid fa-phone"></i>
+            <a href="tel:+13035550199">+1 (303) 555-0199</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-envelope"></i>
+            <a href="mailto:info@alembeelafoundation.org">info@alembeelafoundation.org</a>
+          </li>
+          <li>
+            <i class="fa-solid fa-clock"></i>
+            <span>Jumatatu - Ijumaa: 9:00 AM - 5:00 PM</span>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Safu 4: Newsletter / Action -->
+      <div class="footer-col newsletter-col">
+        <h4 class="col-title">Pata Taarifa Mpya</h4>
+        <p class="newsletter-desc">Jiunge na jarida letu ili kupokea taarifa za video mpya na miradi ya kijamii punde inapochapishwa.</p>
+        <form class="newsletter-form" id="newsletterForm">
+          <div class="input-group">
+            <input type="email" placeholder="Barua pepe yako..." required>
+            <button type="submit">Jiunge</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar: Copyright & Legal -->
+    <div class="footer-bottom">
+      <div class="bottom-container">
+        <p class="copyright">&copy; 2026 Alembeela Foundation. Haki zote zimehifadhiwa.</p>
+        <div class="legal-links">
+          <a href="#">Privacy Policy</a>
+          <span class="divider">|</span>
+          <a href="#">Terms of Service</a>
+        </div>
+      </div>
+    </div>
   </footer>
 
   <script src="script.js"></script>
