@@ -1,123 +1,165 @@
 /* ==========================================================================
-   ALEMBEELA FOUNDATION — COMPLETE UNIFIED SCRIPT (GITHUB PAGES READY)
+   ALEMBEELA FOUNDATION — COMPLETE SCRIPT (WITH LANGUAGE SWITCH SW/EN)
    ========================================================================== */
 
 const SITE_CONFIG = {
-  primaryChannelUrl: 'https://www.youtube.com/@AlembeelaFoundation',
   secondaryChannelUrl: 'https://www.youtube.com/@Alembeelawaidi',
-  storageKey: 'alembeela_foundation_state_v1',
+  storageKey: 'alembeela_foundation_state_v2',
   defaultLoopAll: true
 };
 
-// 1. VIDEOS & SHORTS
+const I18N = {
+  sw: {
+    siteSubtitle: 'Úmbo Cha Babembe & Urithi wa Jamii',
+    secondChannelPrefix: 'Tazama pia:',
+    searchLabel: 'Tafuta chochote kwenye tovuti (Video, Short, Playlist, au Sauti za Wazee)',
+    searchPlaceholder: 'Tafuta: Úmbo, Sehemu, Short, Playlist, Kipande 01...',
+    clearBtn: 'Futa',
+    libraryHeading: 'Maktaba',
+    savedTab: 'Vipendwa',
+    playlistsHeading: 'Playlists',
+    eldersBadge: 'Sauti za Wazee',
+    prevBtn: '⏮ Nyuma',
+    playBtn: '▶ Cheza',
+    pauseBtn: '⏸ Simamisha',
+    nextBtn: 'Mbele ⏭',
+    loopOn: '🔁 Loop Nzima: ON',
+    loopOff: '🔁 Loop Nzima: OFF',
+    freezeLabel: 'Kugandisha',
+    blockLabel: 'Kuzuia',
+    statusPaused: 'IMESIMAMA',
+    statusFrozen: 'IMEGANDISHWA',
+    statusPlayingLoop: 'INACHEZA · AUTO-NEXT & LOOP',
+    statusPlayingOnce: 'INACHEZA · AUTO-NEXT',
+    watchHere: 'Tazama Hapa',
+    playSeriesHere: 'Cheza Mfululizo Hapa',
+    shareBtn: 'Share',
+    copyLinkBtn: 'Nakili Link',
+    saveBtn: '☆ Hifadhi',
+    savedBtn: '★ Imependezwa',
+    copiedToast: 'Kiungo kimenakiliwa.',
+    footerCopy: 'Urithi, mafunzo, na sauti za jamii — GitHub Pages.',
+    footerLib: 'Maktaba',
+    footerPl: 'Playlists',
+    closeBtn: '✕ Funga'
+  },
+  en: {
+    siteSubtitle: 'Úmbo Cha Babembe & Community Heritage',
+    secondChannelPrefix: 'Also watch:',
+    searchLabel: 'Search anything across the site (Video, Short, Playlist, or Elders Voices)',
+    searchPlaceholder: 'Search: Úmbo, Sehemu, Short, Playlist, Kipande 01...',
+    clearBtn: 'Clear',
+    libraryHeading: 'Library',
+    savedTab: 'Saved',
+    playlistsHeading: 'Playlists',
+    eldersBadge: 'Elders Voices',
+    prevBtn: '⏮ Prev',
+    playBtn: '▶ Play',
+    pauseBtn: '⏸ Pause',
+    nextBtn: 'Next ⏭',
+    loopOn: '🔁 Full Loop: ON',
+    loopOff: '🔁 Full Loop: OFF',
+    freezeLabel: 'Freeze',
+    blockLabel: 'Block',
+    statusPaused: 'PAUSED',
+    statusFrozen: 'FROZEN',
+    statusPlayingLoop: 'PLAYING · AUTO-NEXT & LOOP',
+    statusPlayingOnce: 'PLAYING · AUTO-NEXT',
+    watchHere: 'Watch Here',
+    playSeriesHere: 'Play Series Here',
+    shareBtn: 'Share',
+    copyLinkBtn: 'Copy Link',
+    saveBtn: '☆ Save',
+    savedBtn: '★ Saved',
+    copiedToast: 'Link copied.',
+    footerCopy: 'Heritage, teachings, and community voices — GitHub Pages.',
+    footerLib: 'Library',
+    footerPl: 'Playlists',
+    closeBtn: '✕ Close'
+  }
+};
+
 const MEDIA_ITEMS = [
   {
     id: 'vid-chCvVUD1FPo',
     videoId: 'chCvVUD1FPo',
     type: 'video',
-    topic: 'Úmbo & Utamaduni',
     badge: 'Sehemu ya Kwanza (1)',
     title: 'ÚMBO CHA BABEMBE: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI',
-    description: 'Kipindi cha kwanza cha mfululizo wa Úmbo Cha Babembe kutoka Alembeela Foundation.',
+    description: 'Úmbo Cha Babembe — Sehemu ya Kwanza (1).',
     shareUrl: 'https://youtu.be/chCvVUD1FPo'
   },
   {
     id: 'vid-xsxfbtJnrzg',
     videoId: 'xsxfbtJnrzg',
     type: 'video',
-    topic: 'Úmbo & Utamaduni',
     badge: 'Sehemu ya Pili (2)',
     title: 'UMBO CHA BABEMBE SEHEMU YA PILI 2 @Alembeela wa idi APRIL 18TH, 2026',
-    description: 'Sehemu ya pili ya mafunzo ya Úmbo cha Babembe yenye mpangilio wa hatua za jamii.',
+    description: 'Úmbo Cha Babembe — Sehemu ya Pili (2).',
     shareUrl: 'https://youtu.be/xsxfbtJnrzg'
   },
   {
     id: 'vid-YPPOyvxJ-Wk',
     videoId: 'YPPOyvxJ-Wk',
     type: 'video',
-    topic: 'Úmbo & Utamaduni',
     badge: 'Sehemu ya Kwanza (Toleo)',
     title: 'Úmbo cha Babembe: Sehemu ya Kwanza (1) – @ALEMBEELAWAIDI',
-    description: 'Toleo la kipindi cha kwanza cha Úmbo cha Babembe kwa ajili ya kujifunza na kushirikisha.',
+    description: 'Úmbo Cha Babembe — Sehemu ya Kwanza (1).',
     shareUrl: 'https://youtu.be/YPPOyvxJ-Wk'
   },
   {
     id: 'short-HhJm-izUZk4',
     videoId: 'HhJm-izUZk4',
     type: 'short',
-    topic: 'Úmbo & Utamaduni',
     badge: 'Short · 0:11',
     title: 'ÚMBO #AlembeelaFoundation#Alembeelawaidi . full video ipo youtube',
-    description: 'Dondoo fupi la sekunde 11 linaloelekeza kwenye mafunzo kamili ya Úmbo.',
+    description: 'Short — 0:11 (@Alembeelawaidi).',
     shareUrl: 'https://youtube.com/shorts/HhJm-izUZk4'
   },
   {
     id: 'short-jCPtT8ZPsoE',
     videoId: 'jCPtT8ZPsoE',
     type: 'short',
-    topic: 'Úmbo & Utamaduni',
     badge: 'Short · 0:08',
     title: 'ÚMBO #AlembeelaFoundation#Alembeelawaidi . full video ipo youtube',
-    description: 'Dondoo fupi la sekunde 8 la utambulisho wa Úmbo na hekima ya jamii.',
+    description: 'Short — 0:08 (@Alembeelawaidi).',
     shareUrl: 'https://youtube.com/shorts/jCPtT8ZPsoE'
   },
   {
     id: 'short-VklA0Aw2TLc',
     videoId: 'VklA0Aw2TLc',
     type: 'short',
-    topic: 'Úmbo & Utamaduni',
     badge: 'Short · 0:11',
     title: 'ÚMBO #AlembeelaFoundation#Alembeelawaidi . full video ipo youtube',
-    description: 'Dondoo fupi la sekunde 11 lenye vipengele vya mafunzo ya jamii ya Babembe.',
+    description: 'Short — 0:11 (@Alembeelawaidi).',
     shareUrl: 'https://youtube.com/shorts/VklA0Aw2TLc'
   }
 ];
 
-// 2. PLAYLISTS (Mfululizo ndani ya tovuti)
 const PLAYLIST_ITEMS = [
   {
     id: 'PLns5POVtyOJszsYfQkjrf7YD80ycoj4IG',
     title: 'Playlist 01 — Úmbo Cha Babembe',
-    description: 'Mkusanyiko wa vipindi vinavyocheza mfululizo ndani ya tovuti.',
+    description: 'PLns5POVtyOJszsYfQkjrf7YD80ycoj4IG',
     shareUrl: 'https://youtube.com/playlist?list=PLns5POVtyOJszsYfQkjrf7YD80ycoj4IG'
   },
   {
     id: 'PLcI8Km4aCNOM',
     title: 'Playlist 02 — Alembeela Foundation',
-    description: 'Orodha ya ziada ya video na mafunzo ya jamii.',
+    description: 'PLcI8Km4aCNOM',
     shareUrl: 'https://youtube.com/playlist?list=PLcI8Km4aCNOM'
   }
 ];
 
-// 3. SAUTI ZA WAZEE (Vipande 3, bila majina ya kutunga)
+// Sauti za Wazee: Vipande 3 bila majina ya kutunga
 const ELDERS_VOICES = [
-  {
-    id: 'kipande-01',
-    label: 'Kipande 01',
-    videoId: 'chCvVUD1FPo',
-    shareUrl: 'https://youtu.be/chCvVUD1FPo',
-    audioSrc: '',
-    durationSec: 45
-  },
-  {
-    id: 'kipande-02',
-    label: 'Kipande 02',
-    videoId: 'xsxfbtJnrzg',
-    shareUrl: 'https://youtu.be/xsxfbtJnrzg',
-    audioSrc: '',
-    durationSec: 45
-  },
-  {
-    id: 'kipande-03',
-    label: 'Kipande 03',
-    videoId: 'YPPOyvxJ-Wk',
-    shareUrl: 'https://youtu.be/YPPOyvxJ-Wk',
-    audioSrc: '',
-    durationSec: 45
-  }
+  { id: 'kipande-01', label: 'Kipande 01', videoId: 'chCvVUD1FPo', audioSrc: '', durationSec: 45 },
+  { id: 'kipande-02', label: 'Kipande 02', videoId: 'xsxfbtJnrzg', audioSrc: '', durationSec: 45 },
+  { id: 'kipande-03', label: 'Kipande 03', videoId: 'YPPOyvxJ-Wk', audioSrc: '', durationSec: 45 }
 ];
 
 const appState = {
+  lang: 'sw',
   libraryFilter: 'all',
   searchQuery: '',
   savedIds: [],
@@ -135,20 +177,23 @@ eldersAudio.preload = 'metadata';
 let tickerIntervalId = null;
 let lastTickMs = null;
 
+function t(key) {
+  return (I18N[appState.lang] && I18N[appState.lang][key]) || I18N.sw[key] || '';
+}
+
 function loadSavedState() {
   try {
     const raw = localStorage.getItem(SITE_CONFIG.storageKey);
     if (!raw) return;
-    const parsed = JSON.parse(raw);
-    if (Array.isArray(parsed.savedIds)) appState.savedIds = parsed.savedIds;
-    if (typeof parsed.libraryFilter === 'string') appState.libraryFilter = parsed.libraryFilter;
-    if (typeof parsed.currentTrackIndex === 'number') {
-      appState.currentTrackIndex = parsed.currentTrackIndex;
-    }
-    if (typeof parsed.loopAll === 'boolean') appState.loopAll = parsed.loopAll;
-    if (typeof parsed.isFrozen === 'boolean') appState.isFrozen = parsed.isFrozen;
-    if (typeof parsed.isBlocked === 'boolean') appState.isBlocked = parsed.isBlocked;
-    if (typeof parsed.elapsedSec === 'number') appState.elapsedSec = parsed.elapsedSec;
+    const p = JSON.parse(raw);
+    if (p.lang === 'sw' || p.lang === 'en') appState.lang = p.lang;
+    if (Array.isArray(p.savedIds)) appState.savedIds = p.savedIds;
+    if (typeof p.libraryFilter === 'string') appState.libraryFilter = p.libraryFilter;
+    if (typeof p.currentTrackIndex === 'number') appState.currentTrackIndex = p.currentTrackIndex;
+    if (typeof p.loopAll === 'boolean') appState.loopAll = p.loopAll;
+    if (typeof p.isFrozen === 'boolean') appState.isFrozen = p.isFrozen;
+    if (typeof p.isBlocked === 'boolean') appState.isBlocked = p.isBlocked;
+    if (typeof p.elapsedSec === 'number') appState.elapsedSec = p.elapsedSec;
   } catch (_) {}
 }
 
@@ -157,6 +202,7 @@ function saveState() {
     localStorage.setItem(
       SITE_CONFIG.storageKey,
       JSON.stringify({
+        lang: appState.lang,
         savedIds: appState.savedIds,
         libraryFilter: appState.libraryFilter,
         currentTrackIndex: appState.currentTrackIndex,
@@ -169,13 +215,60 @@ function saveState() {
   } catch (_) {}
 }
 
-function showToast(message) {
+function showToast(msg) {
   const el = document.getElementById('toastBanner');
   if (!el) return;
-  el.textContent = message;
+  el.textContent = msg;
   el.classList.remove('hidden');
   clearTimeout(showToast._timer);
-  showToast._timer = setTimeout(() => el.classList.add('hidden'), 3200);
+  showToast._timer = setTimeout(() => el.classList.add('hidden'), 3000);
+}
+
+function setLanguage(lang) {
+  if (appState.isBlocked) {
+    showToast(appState.lang === 'en' ? 'Block is ON.' : 'Swichi ya Kuzuia imewashwa (ON).');
+    return;
+  }
+  appState.lang = lang === 'en' ? 'en' : 'sw';
+  document.documentElement.lang = appState.lang;
+  document.querySelectorAll('[data-lang]').forEach((btn) => {
+    btn.classList.toggle('is-active', btn.dataset.lang === appState.lang);
+  });
+  saveState();
+  applyLanguageLabels();
+  renderAllSections();
+}
+
+function applyLanguageLabels() {
+  const setText = (id, val) => {
+    const el = document.getElementById(id);
+    if (el) el.textContent = val;
+  };
+  setText('siteSubtitle', t('siteSubtitle'));
+  setText('searchLabel', t('searchLabel'));
+  setText('clearSearchBtn', t('clearBtn'));
+  setText('libraryHeading', t('libraryHeading'));
+  setText('savedTabLabel', t('savedTab'));
+  setText('playlistsHeading', t('playlistsHeading'));
+  setText('eldersBadgeText', t('eldersBadge'));
+  setText('elderPrevBtn', t('prevBtn'));
+  setText('elderPlayBtn', t('playBtn'));
+  setText('elderPauseBtn', t('pauseBtn'));
+  setText('elderNextBtn', t('nextBtn'));
+  setText('freezeLabelText', t('freezeLabel'));
+  setText('blockLabelText', t('blockLabel'));
+  setText('footerCopy', t('footerCopy'));
+  setText('footerLibLink', t('footerLib'));
+  setText('footerPlLink', t('footerPl'));
+  setText('closeModalBtn', t('closeBtn'));
+
+  const secondChannelEl = document.getElementById('secondChannelText');
+  if (secondChannelEl) {
+    secondChannelEl.innerHTML = `${escapeHtml(t('secondChannelPrefix'))} <strong>@Alembeelawaidi</strong>`;
+  }
+
+  const searchInput = document.getElementById('globalSearchInput');
+  if (searchInput) searchInput.placeholder = t('searchPlaceholder');
 }
 
 function matchesSearch(parts) {
@@ -198,13 +291,8 @@ function setLibraryFilter(filter) {
 
 function toggleSavedItem(itemId) {
   const idx = appState.savedIds.indexOf(itemId);
-  if (idx >= 0) {
-    appState.savedIds.splice(idx, 1);
-    showToast('Imeondolewa kwenye Vipendwa.');
-  } else {
-    appState.savedIds.push(itemId);
-    showToast('Imehifadhiwa kwenye Vipendwa.');
-  }
+  if (idx >= 0) appState.savedIds.splice(idx, 1);
+  else appState.savedIds.push(itemId);
   saveState();
   renderLibrary();
 }
@@ -221,28 +309,12 @@ function renderLibrary() {
       (appState.libraryFilter === 'saved'
         ? appState.savedIds.includes(item.id)
         : item.type === appState.libraryFilter);
-
-    const searchMatch = matchesSearch([
-      item.title,
-      item.description,
-      item.badge,
-      item.topic,
-      item.type,
-      item.videoId
-    ]);
-
+    const searchMatch = matchesSearch([item.title, item.description, item.badge, item.type, item.videoId]);
     return typeMatch && searchMatch;
   });
 
   if (!items.length) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <p>Hakuna maudhui ya Library yanayolingana na chaguo au utafutaji wako wa sasa.</p>
-        <button type="button" class="btn btn--secondary" onclick="resetSearchAndFilters()">
-          Onyesha Yote
-        </button>
-      </div>
-    `;
+    grid.innerHTML = `<div class="empty-state"><p>0</p></div>`;
     return;
   }
 
@@ -258,33 +330,17 @@ function renderLibrary() {
           <h3 class="media-card__title">${escapeHtml(item.title)}</h3>
           <p class="media-card__desc">${escapeHtml(item.description)}</p>
           <div class="media-card__actions">
-            <button
-              type="button"
-              class="btn btn--primary btn--sm"
-              onclick="openVideoModal('${escapeAttr(item.videoId)}', '${escapeAttr(item.title)}')"
-            >
-              Tazama Hapa
+            <button type="button" class="btn btn--primary btn--sm" onclick="openVideoModal('${escapeAttr(item.videoId)}', '${escapeAttr(item.title)}')">
+              ${escapeHtml(t('watchHere'))}
             </button>
-            <button
-              type="button"
-              class="btn btn--ghost btn--sm"
-              onclick="shareContent('${escapeAttr(item.shareUrl)}', '${escapeAttr(item.title)}')"
-            >
-              Share
+            <button type="button" class="btn btn--ghost btn--sm" onclick="shareContent('${escapeAttr(item.shareUrl)}', '${escapeAttr(item.title)}')">
+              ${escapeHtml(t('shareBtn'))}
             </button>
-            <button
-              type="button"
-              class="btn btn--ghost btn--sm"
-              onclick="copyContentLink('${escapeAttr(item.shareUrl)}')"
-            >
-              Nakili Link
+            <button type="button" class="btn btn--ghost btn--sm" onclick="copyContentLink('${escapeAttr(item.shareUrl)}')">
+              ${escapeHtml(t('copyLinkBtn'))}
             </button>
-            <button
-              type="button"
-              class="btn btn--ghost btn--sm ${isSaved ? 'is-saved' : ''}"
-              onclick="toggleSavedItem('${escapeAttr(item.id)}')"
-            >
-              ${isSaved ? '★ Imependezwa' : '☆ Hifadhi'}
+            <button type="button" class="btn btn--ghost btn--sm ${isSaved ? 'is-saved' : ''}" onclick="toggleSavedItem('${escapeAttr(item.id)}')">
+              ${escapeHtml(isSaved ? t('savedBtn') : t('saveBtn'))}
             </button>
           </div>
         </article>
@@ -297,16 +353,9 @@ function renderPlaylists() {
   const grid = document.getElementById('playlistGrid');
   if (!grid) return;
 
-  const items = PLAYLIST_ITEMS.filter((pl) =>
-    matchesSearch([pl.title, pl.description, pl.id])
-  );
-
+  const items = PLAYLIST_ITEMS.filter((pl) => matchesSearch([pl.title, pl.description, pl.id]));
   if (!items.length) {
-    grid.innerHTML = `
-      <div class="empty-state">
-        <p>Hakuna Playlist inayolingana na utafutaji wa sasa.</p>
-      </div>
-    `;
+    grid.innerHTML = `<div class="empty-state"><p>0</p></div>`;
     return;
   }
 
@@ -314,30 +363,18 @@ function renderPlaylists() {
     .map(
       (pl) => `
       <article class="playlist-card">
-        <span class="playlist-card__tag">PLAYLIST · MFULULIZO</span>
+        <span class="playlist-card__tag">PLAYLIST</span>
         <h3 class="playlist-card__title">${escapeHtml(pl.title)}</h3>
         <p class="playlist-card__desc">${escapeHtml(pl.description)}</p>
         <div class="playlist-card__actions">
-          <button
-            type="button"
-            class="btn btn--primary btn--sm"
-            onclick="openPlaylistModal('${escapeAttr(pl.id)}', '${escapeAttr(pl.title)}')"
-          >
-            Cheza Mfululizo Hapa
+          <button type="button" class="btn btn--primary btn--sm" onclick="openPlaylistModal('${escapeAttr(pl.id)}', '${escapeAttr(pl.title)}')">
+            ${escapeHtml(t('playSeriesHere'))}
           </button>
-          <button
-            type="button"
-            class="btn btn--ghost btn--sm"
-            onclick="shareContent('${escapeAttr(pl.shareUrl)}', '${escapeAttr(pl.title)}')"
-          >
-            Share
+          <button type="button" class="btn btn--ghost btn--sm" onclick="shareContent('${escapeAttr(pl.shareUrl)}', '${escapeAttr(pl.title)}')">
+            ${escapeHtml(t('shareBtn'))}
           </button>
-          <button
-            type="button"
-            class="btn btn--ghost btn--sm"
-            onclick="copyContentLink('${escapeAttr(pl.shareUrl)}')"
-          >
-            Nakili Link
+          <button type="button" class="btn btn--ghost btn--sm" onclick="copyContentLink('${escapeAttr(pl.shareUrl)}')">
+            ${escapeHtml(t('copyLinkBtn'))}
           </button>
         </div>
       </article>
@@ -350,30 +387,18 @@ function updateSearchSummary() {
   const summaryEl = document.getElementById('searchSummary');
   if (!summaryEl) return;
 
-  const q = appState.searchQuery.trim();
-  const matchingMedia = MEDIA_ITEMS.filter((item) =>
-    matchesSearch([item.title, item.description, item.badge, item.topic, item.type, item.videoId])
+  const mCount = MEDIA_ITEMS.filter((i) =>
+    matchesSearch([i.title, i.description, i.badge, i.type, i.videoId])
   ).length;
-  const matchingPlaylists = PLAYLIST_ITEMS.filter((pl) =>
-    matchesSearch([pl.title, pl.description, pl.id])
+  const pCount = PLAYLIST_ITEMS.filter((p) =>
+    matchesSearch([p.title, p.description, p.id])
   ).length;
-  const matchingVoices = ELDERS_VOICES.filter((v) =>
-    matchesSearch([v.label, v.videoId])
-  ).length;
+  const vCount = ELDERS_VOICES.filter((v) => matchesSearch([v.label, v.videoId])).length;
 
-  if (!q) {
-    summaryEl.textContent = `Inaonyesha maudhui yote (${MEDIA_ITEMS.length} Library, ${PLAYLIST_ITEMS.length} Playlists, ${ELDERS_VOICES.length} Sauti za Wazee).`;
-    return;
-  }
-
-  summaryEl.textContent = `Utafutaji "${q}": ${matchingMedia} kwenye Library, ${matchingPlaylists} kwenye Playlists, ${matchingVoices} kwenye Sauti za Wazee.`;
-}
-
-function resetSearchAndFilters() {
-  appState.searchQuery = '';
-  const input = document.getElementById('globalSearchInput');
-  if (input) input.value = '';
-  setLibraryFilter('all');
+  summaryEl.textContent =
+    appState.lang === 'en'
+      ? `Library: ${mCount} · Playlists: ${pCount} · Elders Voices: ${vCount}`
+      : `Maktaba: ${mCount} · Playlists: ${pCount} · Sauti za Wazee: ${vCount}`;
 }
 
 function renderAllSections() {
@@ -397,21 +422,18 @@ function openEmbedModal(embedUrl, title) {
 }
 
 function openVideoModal(videoId, title) {
-  const src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1`;
-  openEmbedModal(src, title);
+  openEmbedModal(`https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}?autoplay=1`, title);
 }
 
 function openPlaylistModal(playlistId, title) {
-  const src = `https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(playlistId)}&autoplay=1`;
-  openEmbedModal(src, title);
+  openEmbedModal(`https://www.youtube-nocookie.com/embed/videoseries?list=${encodeURIComponent(playlistId)}&autoplay=1`, title);
 }
 
 function closeVideoModal(force = false) {
   if (appState.isBlocked && !force) {
-    showToast('Kuzuia kumewashwa (ON). Zima swichi ya "Kuzuia" kwanza ili kufunga.');
+    showToast(appState.lang === 'en' ? 'Block is ON.' : 'Swichi ya Kuzuia imewashwa (ON).');
     return;
   }
-
   const modal = document.getElementById('videoModal');
   const iframe = document.getElementById('modalIframe');
   if (!modal || !iframe) return;
@@ -419,7 +441,6 @@ function closeVideoModal(force = false) {
   iframe.src = '';
   modal.classList.add('hidden');
   document.body.classList.remove('modal-open');
-
   if (appState.lastFocusedElement && typeof appState.lastFocusedElement.focus === 'function') {
     appState.lastFocusedElement.focus();
   }
@@ -439,11 +460,11 @@ async function copyContentLink(url) {
   if (navigator.clipboard && navigator.clipboard.writeText) {
     try {
       await navigator.clipboard.writeText(url);
-      showToast('Kiungo kimenakiliwa.');
+      showToast(t('copiedToast'));
       return;
     } catch (_) {}
   }
-  showToast('Kiungo: ' + url);
+  showToast(url);
 }
 
 function getCurrentTrack() {
@@ -461,39 +482,34 @@ function stopTicker() {
 function startTicker() {
   stopTicker();
   lastTickMs = Date.now();
-
   tickerIntervalId = setInterval(() => {
     if (!appState.isPlaying || appState.isFrozen) {
       lastTickMs = Date.now();
       return;
     }
-
     const now = Date.now();
-    const deltaSec = Math.max(0.2, (now - (lastTickMs || now)) / 1000);
+    const dt = Math.max(0.2, (now - (lastTickMs || now)) / 1000);
     lastTickMs = now;
 
     const track = getCurrentTrack();
     if (track.audioSrc && !eldersAudio.paused) {
       appState.elapsedSec = eldersAudio.currentTime || 0;
     } else {
-      appState.elapsedSec += deltaSec;
-      const duration = track.durationSec || 45;
-      if (appState.elapsedSec >= duration) {
+      appState.elapsedSec += dt;
+      if (appState.elapsedSec >= (track.durationSec || 45)) {
         advanceToNextElderTrack();
         return;
       }
     }
-
     updateEldersPlayerUI();
   }, 500);
 }
 
 function loadElderTrack(index, autoPlay = false, bypassBlock = false) {
   if (appState.isBlocked && !bypassBlock) {
-    showToast('Swichi ya "Kuzuia" imewashwa (ON). Zima kwanza ili kubadili kipande.');
+    showToast(appState.lang === 'en' ? 'Block is ON.' : 'Swichi ya Kuzuia imewashwa (ON).');
     return;
   }
-
   const total = ELDERS_VOICES.length;
   if (!total) return;
 
@@ -502,7 +518,6 @@ function loadElderTrack(index, autoPlay = false, bypassBlock = false) {
 
   eldersAudio.pause();
   eldersAudio.removeAttribute('src');
-
   const track = getCurrentTrack();
   if (track.audioSrc) {
     eldersAudio.src = track.audioSrc;
@@ -511,21 +526,13 @@ function loadElderTrack(index, autoPlay = false, bypassBlock = false) {
 
   saveState();
   updateEldersPlayerUI();
-
-  if (autoPlay && !appState.isFrozen) {
-    playElderQueue();
-  }
+  if (autoPlay && !appState.isFrozen) playElderQueue();
 }
 
 function playElderQueue() {
-  if (appState.isFrozen) {
-    appState.isFrozen = false;
-    showToast('Kugandisha kumezimwa (OFF). Kucheza kunaendelea.');
-  }
-
+  if (appState.isFrozen) appState.isFrozen = false;
   appState.isPlaying = true;
   const track = getCurrentTrack();
-
   if (track.audioSrc) {
     if (appState.elapsedSec > 0 && eldersAudio.readyState >= 1) {
       try {
@@ -534,7 +541,6 @@ function playElderQueue() {
     }
     eldersAudio.play().catch(() => {});
   }
-
   startTicker();
   saveState();
   updateEldersPlayerUI();
@@ -550,7 +556,6 @@ function pauseElderQueue() {
 
 function advanceToNextElderTrack() {
   if (appState.isFrozen) return;
-
   const nextIndex = appState.currentTrackIndex + 1;
   if (nextIndex < ELDERS_VOICES.length) {
     loadElderTrack(nextIndex, true, true);
@@ -562,32 +567,18 @@ function advanceToNextElderTrack() {
 }
 
 function prevElderTrack() {
-  if (appState.isBlocked) {
-    showToast('Swichi ya "Kuzuia" imewashwa (ON).');
-    return;
-  }
+  if (appState.isBlocked) return;
   loadElderTrack(appState.currentTrackIndex - 1, appState.isPlaying, false);
 }
 
 function nextElderTrack() {
-  if (appState.isBlocked) {
-    showToast('Swichi ya "Kuzuia" imewashwa (ON).');
-    return;
-  }
+  if (appState.isBlocked) return;
   loadElderTrack(appState.currentTrackIndex + 1, appState.isPlaying, false);
 }
 
 function toggleLoopAll() {
-  if (appState.isBlocked) {
-    showToast('Swichi ya "Kuzuia" imewashwa (ON).');
-    return;
-  }
+  if (appState.isBlocked) return;
   appState.loopAll = !appState.loopAll;
-  showToast(
-    appState.loopAll
-      ? 'Loop Nzima imewashwa (IKIFIKA MWISHO INARUDIA MWANZO).'
-      : 'Loop Nzima imezimwa.'
-  );
   saveState();
   updateEldersPlayerUI();
 }
@@ -598,9 +589,6 @@ function toggleFreezeSwitch() {
     appState.isPlaying = false;
     eldersAudio.pause();
     stopTicker();
-    showToast('Kugandisha: ON (Hali imegandishwa palepale).');
-  } else {
-    showToast('Kugandisha: OFF.');
   }
   saveState();
   updateEldersPlayerUI();
@@ -608,11 +596,6 @@ function toggleFreezeSwitch() {
 
 function toggleBlockSwitch() {
   appState.isBlocked = !appState.isBlocked;
-  showToast(
-    appState.isBlocked
-      ? 'Kuzuia: ON (Mabadiliko ya haraka na kufunga modal vimezuiwa).'
-      : 'Kuzuia: OFF.'
-  );
   saveState();
   updateEldersPlayerUI();
 }
@@ -638,16 +621,8 @@ function updateEldersPlayerUI() {
   const freezeLabel = document.getElementById('freezeStateLabel');
   const blockLabel = document.getElementById('blockStateLabel');
 
-  const isMatchedBySearch = matchesSearch([track.label, track.videoId]);
-  if (titleEl) {
-    titleEl.textContent = isMatchedBySearch
-      ? track.label
-      : `${track.label} (Haiko kwenye utafutaji wa sasa)`;
-  }
-
-  if (posEl) {
-    posEl.textContent = `${appState.currentTrackIndex + 1} / ${ELDERS_VOICES.length}`;
-  }
+  if (titleEl) titleEl.textContent = track.label;
+  if (posEl) posEl.textContent = `${appState.currentTrackIndex + 1} / ${ELDERS_VOICES.length}`;
 
   const totalDuration =
     track.audioSrc && Number.isFinite(eldersAudio.duration) && eldersAudio.duration > 0
@@ -660,7 +635,6 @@ function updateEldersPlayerUI() {
       : appState.elapsedSec;
 
   const pct = Math.min(100, Math.max(0, (currentSec / totalDuration) * 100));
-
   if (progressEl) {
     progressEl.style.width = `${pct}%`;
     progressEl.setAttribute('aria-valuenow', String(Math.round(pct)));
@@ -669,21 +643,15 @@ function updateEldersPlayerUI() {
   if (durationEl) durationEl.textContent = formatSeconds(totalDuration);
 
   if (statusEl) {
-    if (appState.isFrozen) {
-      statusEl.textContent = 'IMEGANDISHWA';
-    } else if (appState.isPlaying) {
-      statusEl.textContent = appState.loopAll ? 'INACHEZA · AUTO-NEXT & LOOP' : 'INACHEZA · AUTO-NEXT';
-    } else {
-      statusEl.textContent = 'IMESIMAMA';
-    }
+    if (appState.isFrozen) statusEl.textContent = t('statusFrozen');
+    else if (appState.isPlaying) statusEl.textContent = appState.loopAll ? t('statusPlayingLoop') : t('statusPlayingOnce');
+    else statusEl.textContent = t('statusPaused');
   }
 
   if (loopBtn) {
     loopBtn.classList.toggle('is-active', appState.loopAll);
     loopBtn.setAttribute('aria-pressed', String(appState.loopAll));
-    loopBtn.textContent = appState.loopAll
-      ? '🔁 Loop Nzima: Imewashwa'
-      : '🔁 Loop Nzima: Imezimwa';
+    loopBtn.textContent = appState.loopAll ? t('loopOn') : t('loopOff');
   }
 
   if (freezeBtn) {
@@ -702,6 +670,10 @@ function updateEldersPlayerUI() {
 }
 
 function bindEvents() {
+  document.querySelectorAll('[data-lang]').forEach((btn) => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+  });
+
   const searchInput = document.getElementById('globalSearchInput');
   if (searchInput) {
     searchInput.addEventListener('input', (e) => {
@@ -710,19 +682,14 @@ function bindEvents() {
     });
   }
 
-  const clearSearchBtn = document.getElementById('clearSearchBtn');
-  if (clearSearchBtn) {
-    clearSearchBtn.addEventListener('click', () => {
-      if (searchInput) searchInput.value = '';
-      appState.searchQuery = '';
-      renderAllSections();
-    });
-  }
+  document.getElementById('clearSearchBtn')?.addEventListener('click', () => {
+    if (searchInput) searchInput.value = '';
+    appState.searchQuery = '';
+    renderAllSections();
+  });
 
   document.querySelectorAll('[data-library-filter]').forEach((btn) => {
-    btn.addEventListener('click', () => {
-      setLibraryFilter(btn.dataset.libraryFilter);
-    });
+    btn.addEventListener('click', () => setLibraryFilter(btn.dataset.libraryFilter));
   });
 
   document.getElementById('elderPrevBtn')?.addEventListener('click', prevElderTrack);
@@ -733,29 +700,23 @@ function bindEvents() {
   document.getElementById('elderFreezeBtn')?.addEventListener('click', toggleFreezeSwitch);
   document.getElementById('elderBlockBtn')?.addEventListener('click', toggleBlockSwitch);
 
-  eldersAudio.addEventListener('ended', () => {
-    advanceToNextElderTrack();
-  });
+  eldersAudio.addEventListener('ended', () => advanceToNextElderTrack());
 
   document.addEventListener('visibilitychange', () => {
-    if (!document.hidden && appState.isPlaying && !appState.isFrozen) {
-      if (!tickerIntervalId) startTicker();
+    if (!document.hidden && appState.isPlaying && !appState.isFrozen && !tickerIntervalId) {
+      startTicker();
     }
     updateEldersPlayerUI();
   });
 
   document.getElementById('closeModalBtn')?.addEventListener('click', () => closeVideoModal(false));
   document.getElementById('videoModal')?.addEventListener('click', (e) => {
-    if (e.target && e.target.id === 'videoModal') {
-      closeVideoModal(false);
-    }
+    if (e.target && e.target.id === 'videoModal') closeVideoModal(false);
   });
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
       const modal = document.getElementById('videoModal');
-      if (modal && !modal.classList.contains('hidden')) {
-        closeVideoModal(false);
-      }
+      if (modal && !modal.classList.contains('hidden')) closeVideoModal(false);
     }
   });
 }
@@ -774,6 +735,10 @@ function escapeAttr(str) {
 
 document.addEventListener('DOMContentLoaded', () => {
   loadSavedState();
+  document.querySelectorAll('[data-lang]').forEach((btn) => {
+    btn.classList.toggle('is-active', btn.dataset.lang === appState.lang);
+  });
+  applyLanguageLabels();
   bindEvents();
   setLibraryFilter(appState.libraryFilter);
   loadElderTrack(appState.currentTrackIndex, false, true);
