@@ -1,3 +1,8 @@
+---
+
+### 4. Faili la Nne: `script.js` (Full Code)
+
+```javascript
 /* =========================================================
    1. MENYU YA SIMU NA VIFAA TOFAUTI (MOBILE DRAWER MENU)
    ========================================================= */
@@ -216,3 +221,4 @@ videoFilterBtns.forEach((btn) => {
         btn.classList.add('active');
 
         const filter = btn.getAttribute('data-filter');
+        videoCards.forEach((card) => {
