@@ -52,7 +52,6 @@ body {
   background: radial-gradient(circle at top, #102a1f 0%, var(--bg-main) 58%);
   color: var(--text-primary);
   line-height: 1.55;
-  /* Reserve space so the sticky Sauti za Wazee bar never covers page bottom content */
   padding-bottom: 195px;
   min-height: 100vh;
 }
@@ -70,9 +69,6 @@ body.modal-open {
   margin-inline: auto;
 }
 
-/* ==========================================================================
-   TOAST NOTIFICATION
-   ========================================================================== */
 .toast-banner {
   position: fixed;
   top: 18px;
@@ -90,9 +86,6 @@ body.modal-open {
   box-shadow: var(--shadow-card);
 }
 
-/* ==========================================================================
-   HEADER & DUAL YOUTUBE CHANNELS
-   ========================================================================== */
 .site-header {
   background: rgba(7, 20, 15, 0.88);
   backdrop-filter: blur(10px);
@@ -174,9 +167,6 @@ body.modal-open {
   font-size: 0.8rem;
 }
 
-/* ==========================================================================
-   MAIN CONTENT & GLOBAL SEARCH BAR
-   ========================================================================== */
 .main-content {
   padding-top: 26px;
   display: flex;
@@ -241,9 +231,6 @@ body.modal-open {
   color: var(--text-secondary);
 }
 
-/* ==========================================================================
-   SECTIONS, FILTERS & CARDS (LIBRARY + PLAYLISTS)
-   ========================================================================== */
 .content-section {
   display: flex;
   flex-direction: column;
@@ -394,9 +381,6 @@ body.modal-open {
   color: var(--text-secondary);
 }
 
-/* ==========================================================================
-   BUTTONS & TOGGLE SWITCHES
-   ========================================================================== */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -481,7 +465,6 @@ body.modal-open {
   color: #86efac;
 }
 
-/* Switch Buttons: Kugandisha (Freeze) & Kuzuia (Block) */
 .switch-btn {
   display: inline-flex;
   align-items: center;
@@ -526,9 +509,6 @@ body.modal-open {
   box-shadow: 0 0 8px var(--block-active);
 }
 
-/* ==========================================================================
-   SAUTI ZA WAZEE — STICKY / PERSISTENT BOTTOM PLAYER BAR
-   ========================================================================== */
 .elders-bar {
   position: fixed;
   left: 0;
@@ -630,9 +610,6 @@ body.modal-open {
   gap: 7px;
 }
 
-/* ==========================================================================
-   IN-SITE VIDEO & PLAYLIST MODAL
-   ========================================================================== */
 .modal-backdrop {
   position: fixed;
   inset: 0;
@@ -702,9 +679,6 @@ body.modal-open {
   display: block;
 }
 
-/* ==========================================================================
-   RESPONSIVE ADJUSTMENTS
-   ========================================================================== */
 @media (max-width: 960px) {
   body {
     padding-bottom: 245px;
