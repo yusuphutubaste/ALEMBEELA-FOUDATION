@@ -4,8 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kumbukumbu & Picha za Watu | Alembeela Foundation</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cloudflare.com">
     <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ulinzi wa ziada kuhakikisha Lightbox imejificha na Footer imepangika */
+        .lightbox {
+            display: none !important;
+        }
+        .lightbox.show {
+            display: flex !important;
+        }
+        .pro-footer {
+            background-color: #030504;
+            color: #B8C7BE;
+            border-top: 3px solid #D4AF37;
+            margin-top: 50px;
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+            gap: 40px;
+            padding: 60px 0 40px;
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        @media (max-width: 960px) {
+            .footer-grid { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 650px) {
+            .footer-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
 
@@ -51,7 +81,7 @@
         </div>
     </section>
 
-    <!-- GALLERY YA BOKSI/KADI ZA PICHA (KAMA NGUZO NNE) -->
+    <!-- GALLERY YA BOKSI/KADI ZA PICHA -->
     <section class="gallery-section">
         <div class="container">
             <div class="photo-grid">
@@ -59,7 +89,7 @@
                 <!-- BOKSI LA 1: PICHA YA MWANZILISHI -->
                 <div class="photo-item" onclick="openLightbox(this)">
                     <img src="alembeela.jpg" alt="Alembeela" 
-                         onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=800&q=80'">
+                         onerror="this.src='https://unsplash.com'">
                     <div class="photo-overlay">
                         <h4>Alembeela</h4>
                         <p>Mwanzilishi — Alembeela Foundation</p>
@@ -106,17 +136,17 @@
         </div>
     </section>
 
-    <!-- LIGHTBOX -->
+    <!-- LIGHTBOX (IMEJIFICHA HADI MTU AGUSE PICHA) -->
     <div id="lightboxModal" class="lightbox" onclick="closeLightbox()">
         <span class="close-lightbox">&times;</span>
-        <img class="lightbox-content" id="lightboxImg" alt="Picha Kubwa">
+        <img class="lightbox-content" id="lightboxImg" src="" alt="Picha Kubwa">
         <div id="lightboxCaption"></div>
     </div>
 
-    <!-- FOOTER YA KITAALAMU -->
+    <!-- FOOTER YA KITAALAMU (SAFU 4 ZILIZOPANGIKA) -->
     <footer class="pro-footer">
-        <div class="footer-top-line"></div>
-        <div class="container footer-grid">
+        <div class="footer-grid">
+            <!-- SAFU YA 1: UTAMBULISHO & AIKONI -->
             <div class="footer-col">
                 <div class="brand footer-brand">
                     <div class="brand-badge">AF</div>
@@ -129,24 +159,25 @@
                     Jukwaa rasmi la kufundisha Úmbo Cha Babembe, kulinda historia, lugha ya Kibembe, na kujenga jamii yenye upendo, maadili mema, na amani duniani kote.
                 </p>
                 <div class="social-icons">
-                    <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" rel="noopener noreferrer" class="social-link yt" title="YouTube: Alembeela Foundation">
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link yt" title="YouTube: Alembeela Foundation">
                         <i class="fab fa-youtube"></i>
                     </a>
-                    <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer" class="social-link yt" title="YouTube: Alembeela Waidi">
+                    <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" class="social-link yt" title="YouTube: Alembeela Waidi">
                         <i class="fab fa-youtube"></i>
                     </a>
-                    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer" class="social-link fb" title="Facebook">
+                    <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" class="social-link fb" title="Facebook (Alembeela Foundation)">
                         <i class="fab fa-facebook-f"></i>
                     </a>
-                    <a href="https://www.tiktok.com" target="_blank" rel="noopener noreferrer" class="social-link tt" title="TikTok">
+                    <a href="https://tiktok.com" target="_blank" rel="noopener noreferrer" class="social-link tt" title="TikTok (Alembeela Foundation)">
                         <i class="fab fa-tiktok"></i>
                     </a>
-                    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer" class="social-link ig" title="Instagram">
+                    <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-link ig" title="Instagram (Alembeela Foundation)">
                         <i class="fab fa-instagram"></i>
                     </a>
                 </div>
             </div>
 
+            <!-- SAFU YA 2: VIUNGO VYA HARAKA -->
             <div class="footer-col">
                 <h4>Viungo vya Haraka</h4>
                 <ul>
@@ -158,42 +189,26 @@
                 </ul>
             </div>
 
+            <!-- SAFU YA 3: CHANELI RASMI -->
             <div class="footer-col">
                 <h4>Chaneli Rasmi</h4>
                 <ul>
                     <li>
-                        <a href="https://www.youtube.com/@AlembeelaFoundation" target="_blank" rel="noopener noreferrer">
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-youtube"></i> @AlembeelaFoundation
                         </a>
                     </li>
                     <li>
-                        <a href="https://www.youtube.com/@Alembeelawaidi" target="_blank" rel="noopener noreferrer">
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer">
                             <i class="fab fa-youtube"></i> @Alembeelawaidi
                         </a>
                     </li>
+                    <li><a href="index.html#mafunzo"><i class="fas fa-book-open"></i> Masomo ya Úmbo</a></li>
+                    <li><a href="index.html#mafunzo"><i class="fas fa-heart"></i> Elimu ya Upendo na Amani</a></li>
                 </ul>
             </div>
 
+            <!-- SAFU YA 4: WASILIANA NASI -->
             <div class="footer-col">
                 <h4>Wasiliana Nasi</h4>
                 <p class="footer-note">Kwa wazee, wamama, vijana, wadada, wakaka, watoto, na marafiki wa utamaduni wa Babembe duniani kote.</p>
-                <div class="footer-contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <a href="mailto:alembeelafoundation@gmail.com" style="color: #F4F7F5; text-decoration: none;">
-                        alembeelafoundation@gmail.com
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="container footer-bottom-flex">
-                <p>&copy; 2026 <strong>Alembeela Foundation</strong>. Haki zote zimehifadhiwa.</p>
-                <p class="gold-motto">Urithi Wetu • Lugha Yetu • Amani Yetu</p>
-            </div>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
-</body>
-</html>
