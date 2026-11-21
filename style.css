@@ -47,7 +47,7 @@ body {
   z-index: 1000;
   background-color: var(--nav-bg);
   border-bottom: 1px solid var(--border-color);
-  padding: 10px 0;
+  padding: 12px 0;
 }
 
 .nav-container {
@@ -61,51 +61,46 @@ body {
 }
 
 .logo-area {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
   text-decoration: none;
 }
 
-/* Nembo ya Kisasa ya AF (Monogram Badge) */
+/* ====================================================
+   NEMBO YA KISASA YA "AF" (Premium Gradient Monogram)
+==================================================== */
 .af-logo-badge {
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, #e67e22 0%, #c0392b 100%);
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #ff7e29 0%, #e67e22 45%, #c0392b 100%);
   color: #ffffff;
-  font-weight: 800;
-  font-size: 17px;
-  letter-spacing: 1px;
-  border-radius: 12px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: 1.5px;
+  border-radius: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 15px rgba(230, 126, 34, 0.35);
-  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 8px 22px rgba(230, 126, 34, 0.4), inset 0 1px 1px rgba(255, 255, 255, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
   user-select: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
 }
 
 .logo-area:hover .af-logo-badge {
-  transform: rotate(-6deg) scale(1.05);
-  box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5);
+  transform: translateY(-2px) scale(1.06) rotate(-4deg);
+  box-shadow: 0 12px 28px rgba(230, 126, 34, 0.55), inset 0 1px 2px rgba(255, 255, 255, 0.6);
 }
 
 .footer-af-badge {
-  width: 36px;
-  height: 36px;
-  font-size: 15px;
-  border-radius: 10px;
-}
-
-.logo-text {
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-.logo-text span {
-  color: var(--primary-accent);
+  width: 44px;
+  height: 44px;
+  font-size: 18px;
+  border-radius: 12px;
 }
 
 /* Search Box */
@@ -173,8 +168,8 @@ body {
 .theme-btn {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   cursor: pointer;
   display: flex;
@@ -195,7 +190,7 @@ body {
   text-decoration: none;
   font-size: 13px;
   font-weight: 600;
-  padding: 6px 14px;
+  padding: 7px 14px;
   border-radius: 20px;
   display: inline-flex;
   align-items: center;
@@ -232,7 +227,7 @@ body {
 .hero {
   position: relative;
   background: url('https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
-  padding: 90px 20px;
+  padding: 95px 20px;
   text-align: center;
   color: #ffffff;
 }
@@ -481,7 +476,7 @@ section {
   color: #ef4444;
 }
 
-/* Gallery Promo Box (kwenye index) */
+/* Gallery Promo Box */
 .gallery-promo-box {
   background: var(--bg-card);
   border: 1px solid var(--border-color);
@@ -705,24 +700,14 @@ section {
   margin: 0 auto;
   padding: 0 20px 40px;
   display: grid;
-  grid-template-columns: 1.3fr 0.9fr 1.1fr 1.2fr;
+  grid-template-columns: 1.1fr 0.9fr 1.1fr 1.2fr;
   gap: 30px;
 }
 
 .footer-logo-row {
   display: flex;
   align-items: center;
-  gap: 10px;
-  margin-bottom: 10px;
-}
-
-.footer-brand {
-  font-size: 20px;
-  font-weight: 700;
-}
-
-.footer-brand span {
-  color: var(--primary-accent);
+  margin-bottom: 14px;
 }
 
 .brand-mission {
@@ -864,10 +849,6 @@ section {
   text-decoration: none;
 }
 
-.legal-links a:hover {
-  color: var(--primary-accent);
-}
-
 .legal-links .divider {
   margin: 0 8px;
 }
@@ -923,7 +904,7 @@ section {
 
   .nav-links {
     position: fixed;
-    top: 60px;
+    top: 65px;
     left: 0;
     width: 100%;
     background-color: var(--nav-bg);
