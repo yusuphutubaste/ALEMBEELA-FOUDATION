@@ -3,7 +3,6 @@
    ========================================================================== */
 
 :root {
-  /* Rangi Halisi kutoka kwenye Bango na Nembo ya AF */
   --obsidian: #040907;
   --obsidian-card: #08120e;
   --emerald-deep: #072619;
@@ -16,21 +15,17 @@
   --gold-bright: #f5d061;
   --gold-soft: rgba(212, 160, 23, 0.14);
 
-  /* Mipaka na Vivuli */
   --border-emerald: rgba(24, 107, 73, 0.45);
   --border-gold: rgba(212, 160, 23, 0.42);
   --border-gold-strong: rgba(245, 208, 97, 0.7);
 
-  /* Rangi za Maandishi Juu ya Mandhari ya Giza */
   --text-light: #f4f8f6;
   --text-muted: #b7cbc1;
   --text-dim: #88a195;
 
-  /* Status Colors */
   --freeze-color: #38bdf8;
   --block-color: #fb923c;
 
-  /* Vipimo */
   --radius-sm: 8px;
   --radius-md: 14px;
   --radius-lg: 20px;
@@ -53,8 +48,7 @@ html {
 body {
   margin: 0;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  background:
-    radial-gradient(circle at top center, var(--emerald-main) 0%, var(--emerald-deep) 38%, var(--obsidian) 100%);
+  background: radial-gradient(circle at top center, var(--emerald-main) 0%, var(--emerald-deep) 38%, var(--obsidian) 100%);
   background-attachment: fixed;
   color: var(--text-light);
   line-height: 1.6;
@@ -71,9 +65,7 @@ body {
   margin-inline: auto;
 }
 
-/* ==========================================================================
-   TOAST NOTIFICATION
-   ========================================================================== */
+/* Toast Notification */
 .toast-banner {
   position: fixed;
   top: 20px;
@@ -91,9 +83,7 @@ body {
   box-shadow: var(--shadow-md);
 }
 
-/* ==========================================================================
-   BUTTONS
-   ========================================================================== */
+/* Buttons */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -158,9 +148,7 @@ body {
   border-color: var(--gold-bright);
 }
 
-/* ==========================================================================
-   HEADER & AF CREST LOGO
-   ========================================================================== */
+/* Header & AF Crest Logo */
 .site-header {
   background: rgba(4, 9, 7, 0.94);
   backdrop-filter: blur(12px);
@@ -286,9 +274,7 @@ body {
   color: var(--obsidian);
 }
 
-/* ==========================================================================
-   EMERALD & GOLD HERO BANNER (MATCHES CHANNEL BANNER ART)
-   ========================================================================== */
+/* Emerald & Gold Hero Banner */
 .foundation-hero {
   background:
     repeating-linear-gradient(
@@ -387,9 +373,7 @@ body {
   color: var(--gold-bright);
 }
 
-/* ==========================================================================
-   SECTIONS & HEADINGS (UNIFIED DARK EMERALD & GOLD)
-   ========================================================================== */
+/* Sections & Headings */
 .section-block {
   padding: clamp(36px, 5vw, 56px) 0;
 }
@@ -432,9 +416,7 @@ body {
   color: #ffffff;
 }
 
-/* ==========================================================================
-   1. FEATURED SERIES THEATER (VIDEO LEFT + EPISODE QUEUE RIGHT)
-   ========================================================================== */
+/* 1. Featured Series Theater */
 .theater-layout {
   display: grid;
   grid-template-columns: 1.65fr 1fr;
@@ -443,3 +425,79 @@ body {
 }
 
 .theater-stage {
+  background: var(--obsidian-card);
+  border: 1px solid var(--border-gold);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+}
+
+.video-aspect {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--obsidian);
+}
+
+.video-aspect iframe,
+#ytPlayerMount {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.now-playing-card {
+  padding: 20px;
+}
+
+.np-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.gold-pill {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  background: var(--gold-soft);
+  color: var(--gold-bright);
+  border: 1px solid var(--border-gold);
+  padding: 4px 12px;
+  border-radius: var(--radius-pill);
+}
+
+.status-tag {
+  font-size: 0.74rem;
+  font-weight: 800;
+  color: var(--gold-bright);
+  letter-spacing: 0.04em;
+}
+
+.np-title {
+  margin: 0 0 8px;
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.np-desc {
+  margin: 0 0 18px;
+  font-size: 0.92rem;
+  color: var(--text-muted);
+}
+
+.np-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-emerald);
+}
+
+/* Episode Queue Sidebar */
